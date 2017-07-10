@@ -1,20 +1,17 @@
-
-#include<string>
-#include<iostream>
-
+#include "Room.h"
 
 Room::Room()
 {
-	name = "default";
+	rName = "default";
 	type = "default";
-	description = "default";
+	rDescription = "default";
 	itemUsed = 0;
 }
 
 Room::Room(string newName, string description, string tType, unsigned int used)
 {
-	name = newName;
-	description = desc;
+	rName = newName;
+	rDescription = desc;
 	type = tType;
 	itemUsed = used;
 }
@@ -25,12 +22,12 @@ Room::~Room()
 
 void Room::setName(std::string newName)
 {
-	name = newName;
+	rName = newName;
 }
 
 string Room::getName()
 {
-	return name;
+	return rName;
 }
 
 void Room::setType(std::string tType)
@@ -45,10 +42,10 @@ string Room::getType()
 
 void Room::setDescription(std::string desc)
 {
-	description = desc;
+	rDescription = desc;
 }
 
 string Room::getDescription()
 {
-	return description;
+	return rDescription;
 }
