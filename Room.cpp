@@ -1,51 +1,72 @@
 #include "Room.h"
 
+//Constructors
 Room::Room()
 {
 	rName = "default";
-	type = "default";
+	rType = "default";
 	rDescription = "default";
+	rMonster = "default";
+	monsterDesc = "default";
 	itemUsed = 0;
 }
 
-Room::Room(string newName, string description, string tType, unsigned int used)
+Room::Room(std::string newName, std::string description, std::string tType, std::string newMonster, std::string mdesc, int used)
 {
 	rName = newName;
-	rDescription = desc;
-	type = tType;
+	rDescription = description;
+	rType = tType;
+	rMonster = newMonster;
+	monsterDesc = mdesc;
 	itemUsed = used;
 }
 
+//Destructors
 Room::~Room()
 {
 }
 
+//Set Values Methods
 void Room::setName(std::string newName)
 {
 	rName = newName;
 }
 
-string Room::getName()
-{
-	return rName;
-}
-
 void Room::setType(std::string tType)
 {
-	type = tType;
+	rType = tType;
 }
 
-string Room::getType()
+void Room::setDescription(std::string rdesc)
 {
-	return type;
+	rDescription = rdesc;
 }
 
-void Room::setDescription(std::string desc)
+//void Room::setMonster(std::newMonster)
+
+void Room::setMonsterDesc(std::string mdesc)
 {
-	rDescription = desc;
+	monsterDesc = mdesc;
 }
 
-string Room::getDescription()
+//Get Values Methods
+std::string Room::getName()
+{
+     return rName;
+}
+
+std::string Room::getType()
+{
+     return rType;
+}
+
+std::string Room::getDescription()
 {
 	return rDescription;
 }
+
+std::string Room::getMonsterDesc()
+{
+	return monsterDesc;
+}
+

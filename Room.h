@@ -8,14 +8,17 @@ class Room
 {
 	private:
 		std::string rName;
-		std::string rDesciption;
+		std::string rDescription;
 		std::string rMonster;
 		std::string rItems[12];	
+		std::string monsterDesc;
+		std::string rType;
+		int itemUsed;
 
 	public:
 		//Constructors
 		Room();
-		Room(std::string newName, std::string description, std::string tType, unsigned int used)
+		Room(std::string newName, std::string description, std::string tType, std::string newMonster, std::string mdesc, int used);
 	
 		//Destructor
 		~Room();
@@ -26,14 +29,18 @@ class Room
 		Room * north();
 		Room * south();
 
-		void Room::setName(std::string newName);
-		string Room:getName();
-		void Room::setType(std::string tType);
-		string Room::getType();
-		void Room::setDescription(std::string desc);
-		string Room::getDescription();
-		//bool Room::getMonster();
-		//bool Room::getItem();	
+		//Set Values
+		void setName(std::string newName);
+		void setType(std::string tType);
+		void setDescription(std::string rdesc);
+		void setMonster(std::string newMonster);
+		void setMonsterDesc(std::string mdesc);
+
+		//Get Values
+		std::string getName();
+		std::string getType();
+		std::string getDescription();
+		std::string getMonsterDesc();
 };
 
 #endif 
