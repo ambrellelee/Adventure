@@ -43,7 +43,7 @@ void Room::setDescription(std::string rdesc)
 }
 
 //void Room::setMonster(std::newMonster)
-
+		
 void Room::setMonsterDesc(std::string mdesc)
 {
 	monsterDesc = mdesc;
@@ -70,3 +70,7 @@ std::string Room::getMonsterDesc()
 	return monsterDesc;
 }
 
+std::string Room::getMonster()
+{
+	return rMonster();
+}

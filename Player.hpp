@@ -16,15 +16,22 @@ class Player
 		std::string pInventory[12];	//Player's inventory
 
 	public:
+		//Constructors
+		Player();
+		Player(std::string hPoints, int pStamina, double pScore); 	
+	
+		//Set Values	
 		void setName(std::string playerName);
-		std::string getName();
 		void setHitPoints(int playerHitPoints);
-		int getHitPoints();
 		void setStamina(int playerStamina);
-		int getStamina();
 		void setScore(double playerScore);
+	
+		//Get Values
+		std::string getName();
+		int getHitPoints();
+		int getStamina();
 		int getScore();
-		
+	
 		//add inventory method
 };
 		

@@ -40,7 +40,10 @@ class Room
 		std::string getName();
 		std::string getType();
 		std::string getDescription();
+		std::string getMonster();
 		std::string getMonsterDesc();
+
+		bool isMonster();	//Checks for Monster in the room
 };
 
 #endif 
