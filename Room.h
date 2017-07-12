@@ -4,6 +4,12 @@
 #include<iostream>
 #include<string>
 
+/*need to:
+	-Add text Parser Object
+	-Add number of times features have been accessed
+	-Items
+*/
+
 class Room
 {
 	private:
