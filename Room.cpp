@@ -1,4 +1,4 @@
-#include "Room.h"
+#include "Room.hpp"
 
 //Constructors
 Room::Room()
@@ -72,5 +72,5 @@ std::string Room::getMonsterDesc()
 
 std::string Room::getMonster()
 {
-	return rMonster();
+	return rMonster;
 }

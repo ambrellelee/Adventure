@@ -1,13 +1,12 @@
 #ifndef ROOM_H
 #define ROOM_H
 
+#include<vector>
 #include<iostream>
 #include<string>
 
 /*need to:
-	-Add text Parser Object
 	-Add number of times features have been accessed
-	-Items
 */
 
 class Room
@@ -16,11 +15,17 @@ class Room
 		std::string rName;
 		std::string rDescription;
 		std::string rMonster;
-		std::string rItems[12];	
 		std::string monsterDesc;
 		std::string rType;
 		int itemUsed;
+		struct Item
+          {
+               std::string iName;
+               std::string iDesc;
+          };
 
+
+		
 	public:
 		//Constructors
 		Room();
@@ -48,8 +53,8 @@ class Room
 		std::string getDescription();
 		std::string getMonster();
 		std::string getMonsterDesc();
+		std::vector<Item> items;
 
-		bool isMonster();	//Checks for Monster in the room
 };
 
 #endif 
