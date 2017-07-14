@@ -4,6 +4,9 @@
 #include<string>
 #include<iostream>
 
+//add methods to find location in game
+//add methods to move player through game
+
 class Player
 {
 	private:

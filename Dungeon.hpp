@@ -5,8 +5,10 @@
 #include <iostream>
 #include "Room.hpp"
 #include "Player.hpp"
+//#include "Parser.hpp"
 
 //start adding functions
+//add method to display game description
 
 class Dungeon
 {
@@ -14,10 +16,15 @@ class Dungeon
 		Room *newRoom;
 		Player *newPlayer;
 		Parser *newParser;
+		std::string gameDesc;
+		
 
 	public:
 		Dungeon();
-		Dungeon(Room *createRoom, Player *createPlayer, Parser *createParser();
+		void setGameDescription();
+		void showGameDescription();
+		void playGame();
+
 		~Dungeon();
 	
 
