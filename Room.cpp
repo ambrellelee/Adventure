@@ -1,30 +1,45 @@
 #include "Room.hpp"
 
+/*Methods to check for interactivity will be in Features class
+-Need to add methods to add and remove items to/from inventory
+-Need to get and set exits
+*/
+
 //Constructors
 Room::Room()
 {
-	rName = "default";
-	rType = "default";
-	rDescription = "default";
-	rMonster = "default";
-	monsterDesc = "default";
-	itemUsed = 0;
+	rName = "no name";
+ 	rDescription = "no description";
+	rType = "no type";
+	rMonster = "no monster";
+	monsterDesc = "no monster description";
+//	itemUsed = 0;
 }
 
-Room::Room(std::string newName, std::string description, std::string tType, std::string newMonster, std::string mdesc, int used)
+Room::Room(std::string newName, std::string description, std::string tType, std::string newMonster, std::string mdesc/*, int used*/)
 {
 	rName = newName;
 	rDescription = description;
 	rType = tType;
 	rMonster = newMonster;
 	monsterDesc = mdesc;
-	itemUsed = used;
+//	itemUsed = used;
 }
 
 //Destructors
 Room::~Room()
 {
+	items.empty();
 }
+
+//setItem
+void Room::setItem(std::string iName, std::string iDesc)
+{
+	items.push_back(Item(iName, iDesc));
+}
+
+//Get and Set Exits
+
 
 //Set Values Methods
 void Room::setName(std::string newName)
