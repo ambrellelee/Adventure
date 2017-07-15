@@ -1,5 +1,9 @@
-#ifndef INVENTORY_H
-#define INVENTORY_H
+#ifndef INVENTORY_HPP
+#define INVENTORY_HPP
+
+#include<vector>
+#include<iostream>
+#include<string>
 
 class Inventory
 {
@@ -8,11 +12,14 @@ class Inventory
 
 	public:
 		Inventory();
+		std::vector<std::string> stuff;
+
 		bool add();
 		std::string remove();
-		void view();
+		std::string view();
 		bool full();
 		bool empty();		
+		bool checkInventory();
 };
 
 #endif

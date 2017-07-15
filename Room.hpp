@@ -9,8 +9,20 @@
 
 
 /*need to:
-	-Add number of times features have been accessed
+	-Add number of times features have been accessed - move to Features class?
 */
+
+struct Item                   //holds information about items in room
+{
+	std::string iName;
+     std::string iDesc;
+     Item(std::string newItemName, std::string newItemDesc)
+     {
+		iName = newItemName;
+          iDesc = newItemDesc;
+	}
+};
+
 
 class Room
 {
@@ -23,17 +35,6 @@ class Room
 		std::string monsterDesc;
 		std::string rType;
 //		int itemUsed;
-		struct Item				//holds information about items in room
-          {
-               std::string iName;
-               std::string iDesc;
-			Item(std::string newItemName, std::string newItemDesc)
-			{
-				iName = newItemName;
-				iDesc = newItemDesc;
-			}	
-
-		};
 		std::vector<Item> items;		//vector holding structs of items
 	
 
