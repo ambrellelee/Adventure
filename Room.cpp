@@ -2,17 +2,18 @@
 
 /*Methods to check for interactivity will be in Features class
 -Need to add methods to add and remove items from room to inventory/from inventory to room
+-Add methods for features in room once Features class is finished
+-Add method to look at item in a room
 */
 
 //Constructors
 Room::Room()
 {
 	rName = "no name";
- 	rDescription = "no description";
 	rType = "no type";
 }
 
-Room::Room(std::string newName, std::string description, std::string tType, std::vector<std::string> exits)
+Room::Room(std::string newName, std::vector<std::string> description, std::string tType, std::vector<std::string> exits)
 {
 	rName = newName;
 	rDescription = description;
@@ -23,13 +24,13 @@ Room::Room(std::string newName, std::string description, std::string tType, std:
 //Destructors
 Room::~Room()
 {
-	items.empty();
+	inRoom.empty();
 }
 
 //setItem
 void Room::setItem(std::string newItemName, std::string newItemDesc, std::string newUseDesc, int water, bool addable)
 {
-	items.push_back(Item(newItemName, newItemDesc, newUseDesc, water, addable));
+	inRoom.push_back(Item(newItemName, newItemDesc, newUseDesc, water, addable));
 }
 
 //Set Values Methods
@@ -45,12 +46,12 @@ void Room::setType(std::string tType)
 
 void Room::setDescription(std::string rdesc)
 {
-	rDescription = rdesc;
+	rDescription.push_back(rdesc); 
 }
 
-void Room::setExits(std::vector<std::string> newExit)
+void Room::setExits(std::string newExit)
 {
-	exitVec = newExit;
+	exitVec.push_back(newExit);
 }
 
 //Get Values Methods
@@ -64,7 +65,7 @@ std::string Room::getType()
      return rType;
 }
 
-std::string Room::getDescription()
+std::vector<std::string> Room::getDescription()
 {
 	return rDescription;
 }
