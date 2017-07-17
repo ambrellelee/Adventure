@@ -7,23 +7,6 @@
 #include "Inventory.hpp"
 #include "Feature.hpp"
 
-
-/*need to:
-	-Add number of times features have been accessed - move to Features class?
-*/
-
-struct Item                   //holds information about items in room
-{
-	std::string iName;
-     std::string iDesc;
-     Item(std::string newItemName, std::string newItemDesc)
-     {
-		iName = newItemName;
-          iDesc = newItemDesc;
-	}
-};
-
-
 class Room
 {
 	private:
@@ -31,44 +14,52 @@ class Room
 		Feature *f2;
 		std::string rName;
 		std::string rDescription;
-		std::string rMonster;
-		std::string monsterDesc;
-		std::string rType;
-//		int itemUsed;
-		std::vector<Item> items;		//vector holding structs of items
-	
+		struct Item                   //holds information about items in room
+		{
+			std::string iName;
+			std::string iDesc;
+			std::string useDesc;
+			int waterLevel;
+			bool available;
+			Item(std::string newItemName, std::string newItemDesc, std::string newUseDesc, int water, bool addable)
+			{	
+				iName = newItemName;
+				iDesc = newItemDesc;
+				useDesc = newUseDesc;
+				waterLevel = water;
+				available = addable;
+			}
+		};
+		Room *isNorth, *isSouth, *isEast, *isWest;
+          std::string rType;
+          std::vector<Item> items;      //vector holding structs of items
+          std::vector<Item> dropped;
+          std::vector<std::string> exitVec;
 
 	public:
 		//Constructors
 		Room();
-		Room(std::string newName, std::string description, std::string tType, std::string newMonster, std::string mdesc/*, int used*/);
+		Room(std::string newName, std::string description, std::string tType, std::vector<std::string> exits);
+
 	
 		//Destructor
 		~Room();
-
-		//Pointers to connecting rooms
-		Room * east();
-		Room * west();
-		Room * north();
-		Room * south();
 
 		//Set Values
 		void setName(std::string newName);
 		void setType(std::string tType);
 		void setDescription(std::string rdesc);
-		void setMonster(std::string newMonster);
-		void setMonsterDesc(std::string mdesc);
-		void setItem(std::string, std::string);
+		void setItem(std::string, std::string, std::string, int, bool);
+		void setExits(std::vector<std::string> newExit);
 
 		//Get Values
 		std::string getName();
 		std::string getType();
 		std::string getDescription();
-		std::string getMonster();
-		std::string getMonsterDesc();
+		std::vector<std::string> getExits();
 
-		bool itemUsed;
-
+		bool canProceed(std::string exitName);		//Finds whether an exit is valid or not
+		void lookItems();		//look at an item in the room	
 };
 
 #endif 

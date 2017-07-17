@@ -1,8 +1,7 @@
 #include "Room.hpp"
 
 /*Methods to check for interactivity will be in Features class
--Need to add methods to add and remove items to/from inventory
--Need to get and set exits
+-Need to add methods to add and remove items from room to inventory/from inventory to room
 */
 
 //Constructors
@@ -11,19 +10,14 @@ Room::Room()
 	rName = "no name";
  	rDescription = "no description";
 	rType = "no type";
-	rMonster = "no monster";
-	monsterDesc = "no monster description";
-//	itemUsed = 0;
 }
 
-Room::Room(std::string newName, std::string description, std::string tType, std::string newMonster, std::string mdesc/*, int used*/)
+Room::Room(std::string newName, std::string description, std::string tType, std::vector<std::string> exits)
 {
 	rName = newName;
 	rDescription = description;
 	rType = tType;
-	rMonster = newMonster;
-	monsterDesc = mdesc;
-//	itemUsed = used;
+	exitVec = exits;
 }
 
 //Destructors
@@ -33,13 +27,10 @@ Room::~Room()
 }
 
 //setItem
-void Room::setItem(std::string iName, std::string iDesc)
+void Room::setItem(std::string newItemName, std::string newItemDesc, std::string newUseDesc, int water, bool addable)
 {
-	items.push_back(Item(iName, iDesc));
+	items.push_back(Item(newItemName, newItemDesc, newUseDesc, water, addable));
 }
-
-//Get and Set Exits
-
 
 //Set Values Methods
 void Room::setName(std::string newName)
@@ -57,11 +48,9 @@ void Room::setDescription(std::string rdesc)
 	rDescription = rdesc;
 }
 
-//void Room::setMonster(std::newMonster)
-		
-void Room::setMonsterDesc(std::string mdesc)
+void Room::setExits(std::vector<std::string> newExit)
 {
-	monsterDesc = mdesc;
+	exitVec = newExit;
 }
 
 //Get Values Methods
@@ -80,12 +69,21 @@ std::string Room::getDescription()
 	return rDescription;
 }
 
-std::string Room::getMonsterDesc()
+std::vector<std::string> Room::getExits()
 {
-	return monsterDesc;
+	return exitVec;	
 }
 
-std::string Room::getMonster()
+bool Room::canProceed(std::string exitName)
 {
-	return rMonster;
+	bool exitPresent = false;
+
+	for(int i = 0; i < exitVec.size(); i++)
+	{
+		if (exitVec[i] == exitName)
+		exitPresent = true;
+		break;
+	}
+
+	return exitPresent;
 }

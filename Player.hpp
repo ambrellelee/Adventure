@@ -3,6 +3,9 @@
 
 #include<string>
 #include<iostream>
+#include "Room.hpp"
+#include "Inventory.hpp"
+
 
 //add methods to find location in game
 //add methods to move player through game
@@ -12,17 +15,19 @@ class Player
 	private:
 		std::string pName;		//player name
 		int hitPoints;
-		int maxHitPoints;	//what do we want this value to be?
+		int maxHitPoints = 10;	//what do we want this value to be?
 		int stamina;
-		int maxStamina;	//what do we want this value to be?
+		int maxStamina = 10;	//what do we want this value to be?
 		double score;
-		std::string pInventory[12];	//Player's inventory
+		Room *currentLocation;
+		Room *lastLocation;		
 
 	public:
 		//Constructors
 		Player();
-		Player(std::string hPoints, int pStamina, double pScore); 	
-	
+		Player(int hPoints, int pStamina, double pScore); 	
+		~Player();	
+
 		//Set Values	
 		void setName(std::string playerName);
 		void setHitPoints(int playerHitPoints);
@@ -36,6 +41,11 @@ class Player
 		int getScore();
 	
 		//add inventory method
+		void move();
+		Room* getCurrentLocation();
+		Room* getLastLocation();
+		void setCurrentLocation(Room*);
+		
 };
 		
 #endif

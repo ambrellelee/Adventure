@@ -8,7 +8,7 @@ Player::Player()
 	score = 0;
 }
 
-Player::Player(std::string hPoints, ins pStamina, double pScore)
+Player::Player(int hPoints, int pStamina, double pScore)
 {
 	hitPoints = hPoints;
 	stamina = pStamina;
