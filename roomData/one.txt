@@ -1,3 +1,5 @@
+2
+@@
 Ugh...where am I? Face down on a stone floor and it's so blasted hot...As I get
 up I notice that I'm in a midieval style room made of stone. Their are no 
 windows, the only sources of light are torches on the wall. There's a wooden 
@@ -23,11 +25,35 @@ True
 @@
 flask
 @@
-An old flask. Worn but devoid of leaks.
+An old flask. Worn, but devoid of leaks.
+@@
+I take a drink from the flask. It is refreshing
+@@
+5
+@@
+10
+@@
+False
+@@
+0
+@@
+1
 @@
 sword
 @@
 A sharp broadsword
+@@
+It's a nice sword, but only usable in battle of course!
+@@
+0
+@@
+0
+@@
+False
+@@
+1
+@@
+2
 @@
 2
 @@

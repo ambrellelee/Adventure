@@ -15,6 +15,30 @@ using std::string;
 using std::vector;
 using namespace std;
 
+struct Item                   //holds information about items in room
+{
+        std::string iName;
+        std::string iDesc;
+        std::string iUse;
+        int waterUnits;
+        int maxWater;
+        bool canTake;
+        int featureSource;
+        int WhenCanTake;
+        Item(std::string newItemName, std::string newItemDesc, std::string newItemUse, int waterU, int waterMax, bool canPickUp, int featureIndex, int interactionNum)
+        {
+                iName = newItemName;
+                iDesc = newItemDesc;
+                iUse = newItemUse;
+                waterUnits = waterU;
+                maxWater = waterMax;
+                canTake = canPickUp;
+                featureSource = featureIndex;
+                WhenCanTake = interactionNum;
+        }
+};
+
+
 int main(int argc, char *argv[])
 {
 	if (argc != 2)
@@ -26,9 +50,11 @@ int main(int argc, char *argv[])
 	string directory;
 	string fileName;
 	string fullPath;
-	//DIR *dp;
-	//struct dirent *dirp;
-	//struct stat fileStatus;
+	string roomName;
+	string roomType;
+	int numExits;
+	vector<string> exits;
+	vector<Item> roomItems;
 
 	vector<string> roomDescriptions;
 	int numRoomDescriptions;
@@ -71,5 +97,12 @@ int main(int argc, char *argv[])
 	for (int i = 0; i < roomDescriptions.size(); i++) {
 		cout << roomDescriptions[i];
 	}
+
+	roomName = line;
+	getline(inputFile, line);
+	getline(inputFile, line);
+
+	roomType = line;
+	cout << roomName << endl << roomType << endl;
 	return 0;
 }
