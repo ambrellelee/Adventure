@@ -8,6 +8,7 @@
 #include <vector>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sstream>
 //#include "Room.hpp"
 
 using std::string;
@@ -44,12 +45,31 @@ int main(int argc, char *argv[])
 	}
 
 	getline(inputFile, line);
-	while (inputFile && line != "@@") 
+
+	stringstream numEntries(line);
+	numEntries >> numRoomDescriptions;
+	cout << numRoomDescriptions << endl;
+	getline(inputFile, line);
+	getline(inputFile, line);
+	//cout << line << endl;
+	
+	for (int i = 0; i < numRoomDescriptions; i++) 
 	{
-		fullMessage = fullMessage + line + "\n";
-		getline(inputFile, line);
+		while (inputFile && line != "@@") 
+		{
+			fullMessage = fullMessage + line + "\n";
+			getline(inputFile, line);
+			
+		}
+		//	cout << fullMessage << endl;
+			getline (inputFile, line);
+			roomDescriptions.push_back(fullMessage);
+			fullMessage = "";
+		
 	}
 
-	cout << fullMessage << endl;
+	for (int i = 0; i < roomDescriptions.size(); i++) {
+		cout << roomDescriptions[i];
+	}
 	return 0;
 }
