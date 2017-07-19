@@ -21,6 +21,7 @@ class Player
 		double score;
 		Room *currentLocation;
 		Room *lastLocation;		
+		Inventory *bag; 
 
 	public:
 		//Constructors
@@ -33,19 +34,21 @@ class Player
 		void setHitPoints(int playerHitPoints);
 		void setStamina(int playerStamina);
 		void setScore(double playerScore);
+		void setCurrentLocation(Room*);
 	
 		//Get Values
 		std::string getName();
 		int getHitPoints();
 		int getStamina();
 		int getScore();
+		Room* getCurrentLocation();
+          Room* getLastLocation();
 	
 		//add inventory method
 		void move();
-		Room* getCurrentLocation();
-		Room* getLastLocation();
-		void setCurrentLocation(Room*);
-		
+		void addBag();
+		void removeBag();
+		void lookBag();		
 };
 		
 #endif

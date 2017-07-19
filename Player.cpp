@@ -51,7 +51,8 @@ void Player::setScore(double playerScore)
 {
 	score = playerScore;
 }
- //get values
+
+//get values
 std::string Player::getName()
 {
      return pName;
@@ -73,3 +74,32 @@ int Player::getScore()
 	return score;
 }
 
+Room getCurrentLocation()
+{
+	return currentLocation;
+}
+
+Room getLastLocation()
+{
+	return lastLocation;
+}
+
+void move()
+{
+
+}
+
+void addBag()
+{
+
+}
+
+void removeBag()
+{
+
+}
+
+void lookBag()
+{
+
+}

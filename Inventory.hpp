@@ -8,18 +8,17 @@
 class Inventory
 {
 	private:
-		std::vector<std::string> bag;		//stores items
+		std::vector<std::string> stuff;		//stores items
+		std::string containerName;
 
 	public:
-		Inventory();
-		std::vector<std::string> stuff;
-
-		bool add();
-		std::string remove();
-		std::string view();
-		bool full();
-		bool empty();		
-		bool checkInventory();
+		Inventory(std::string newName);
+		void setName(std::string);
+		std::string getName();
+		bool addInventory(std::string);
+		std::string removeInventory(std::string);
+		std::string viewInventory();
+		bool inInventory(std::string);
 };
 
 #endif
