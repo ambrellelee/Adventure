@@ -15,9 +15,9 @@ class Inventory
 		Inventory(std::string newName);
 		void setName(std::string);
 		std::string getName();
-		bool addInventory(std::string);
-		std::string removeInventory(std::string);
-		std::string viewInventory();
+		void addInventory(std::string);
+		void removeInventory(std::string);
+		void viewInventory();
 		bool inInventory(std::string);
 };
 

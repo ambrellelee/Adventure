@@ -16,6 +16,11 @@ void Feature::setFeatureDesc(std::string description)
 	fDesc.push_back(description);
 }
 
+void Feature::setInteractionDesc(std::string iDesc)
+{
+	interactionDesc.push_back(iDesc);
+}
+
 std::string Feature::getName()
 {
 	return fName;
@@ -24,4 +29,9 @@ std::string Feature::getName()
 std::vector<std::string> Feature::getFeatureDesc()
 {
 	return fDesc;
+}
+
+std::vector<std::string> Feature::getInteractionDesc()
+{
+	return interactionDesc;
 }
