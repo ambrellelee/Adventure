@@ -1,5 +1,8 @@
 #include "Player.hpp"
 
+//Finish move, drop, and pickup methods
+//add in identifier to end the game
+
 //Constructors
 Player::Player()
 {
@@ -13,6 +16,7 @@ Player::Player(int hPoints, int pStamina, double pScore)
 	hitPoints = hPoints;
 	stamina = pStamina;
 	score = pScore;
+	bag = new Inventory("bag");
 }
 
 //set values
@@ -52,6 +56,12 @@ void Player::setScore(double playerScore)
 	score = playerScore;
 }
 
+void Player::setCurrentLocation(Room* position)
+{
+	lastLocation = currentLocation;
+	currentLocation = position;
+}
+
 //get values
 std::string Player::getName()
 {
@@ -66,7 +76,6 @@ int Player::getHitPoints()
 int Player::getStamina()
 {
      return stamina;
-
 }
 
 int Player::getScore()
@@ -74,12 +83,12 @@ int Player::getScore()
 	return score;
 }
 
-Room getCurrentLocation()
+Room* Player::getCurrentLocation()
 {
 	return currentLocation;
 }
 
-Room getLastLocation()
+Room* Player::getLastLocation()
 {
 	return lastLocation;
 }
@@ -89,17 +98,32 @@ void move()
 
 }
 
-void addBag()
+bool Player::addToBag(std::string thing)
 {
-
+	return bag->addInventory(thing);
 }
 
-void removeBag()
+std::string Player::removeFromBag(std::string thing)
 {
-
+	return bag->removeInventory(thing);
 }
 
-void lookBag()
+std::string Player::lookBag()
 {
+	return bag->viewInventory();
+}
 
+std::string Player::pickUpItem(std::string thing)
+{
+	addToBag(thing);
+}
+
+void Player::dropItem(std::string thing)
+{
+	removeFromBag(thing);
+}
+
+Player::~Player()
+{
+	delete bag;
 }

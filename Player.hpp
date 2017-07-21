@@ -7,17 +7,14 @@
 #include "Inventory.hpp"
 
 
-//add methods to find location in game
-//add methods to move player through game
-
 class Player
 {
 	private:
 		std::string pName;		//player name
 		int hitPoints;
-		int maxHitPoints = 10;	//what do we want this value to be?
+		int maxHitPoints;	//what do we want this value to be?
 		int stamina;
-		int maxStamina = 10;	//what do we want this value to be?
+		int maxStamina;	//what do we want this value to be?
 		double score;
 		Room *currentLocation;
 		Room *lastLocation;		
@@ -46,9 +43,12 @@ class Player
 	
 		//add inventory method
 		void move();
-		void addBag();
-		void removeBag();
-		void lookBag();		
+		bool addToBag(std::string);
+		std::string removeFromBag(std::string);
+		std::string lookBag();		
+		std::string pickUpItem(std::string);
+		void dropItem(std::string);
+
 };
 		
 #endif
