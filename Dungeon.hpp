@@ -1,10 +1,11 @@
 #ifndef DUNGEON_HPP
-#define DUNGEON_HPP 
+#define DUNGEON_HPP
 
 #include <string.h>
 #include <iostream>
 #include "Room.hpp"
 #include "Player.hpp"
+#include "Parser.hpp"
 //#include "Parser.hpp"
 
 //start adding functions
@@ -17,7 +18,7 @@ class Dungeon
 		Player *newPlayer;
 		Parser *newParser;
 		std::string gameDesc;
-		
+
 
 	public:
 		Dungeon();
@@ -26,8 +27,8 @@ class Dungeon
 		void playGame();
 
 		~Dungeon();
-	
+
 
 };
 
-#endif 
+#endif

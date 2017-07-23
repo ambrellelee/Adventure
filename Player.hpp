@@ -7,6 +7,9 @@
 #include "Inventory.hpp"
 
 
+//add methods to find location in game
+//add methods to move player through game
+
 class Player
 {
 	private:
@@ -17,39 +20,43 @@ class Player
 		int maxStamina;	//what do we want this value to be?
 		double score;
 		Room *currentLocation;
-		Room *lastLocation;		
-		Inventory *bag; 
+		Room *lastLocation;
+		Inventory *bag;
 
 	public:
 		//Constructors
 		Player();
-		Player(int hPoints, int pStamina, double pScore); 	
-		~Player();	
+		Player(int hPoints, int pStamina, double pScore);
+		~Player();
 
-		//Set Values	
+		//Set Values
 		void setName(std::string playerName);
 		void setHitPoints(int playerHitPoints);
 		void setStamina(int playerStamina);
 		void setScore(double playerScore);
 		void setCurrentLocation(Room*);
-	
+
 		//Get Values
 		std::string getName();
 		int getHitPoints();
 		int getStamina();
 		int getScore();
 		Room* getCurrentLocation();
-          Room* getLastLocation();
-	
+        Room* getLastLocation();
+
 		//add inventory method
 		void move();
-		bool addToBag(std::string);
-		std::string removeFromBag(std::string);
-		std::string lookBag();		
-		std::string pickUpItem(std::string);
+		void addToBag(std::string);
+		void removeFromBag(std::string);
+		void lookBag();
+		void pickUpItem(std::string);
 		void dropItem(std::string);
 
+		//
+		bool itemInInventory(std:: string pItem);
+		bool useItem(std:: string pItem);
+		void removeItem(std::string pItem);
 };
-		
+
 #endif
-	
+

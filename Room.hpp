@@ -15,7 +15,7 @@ class Room
 		std::string rName;
 		std::vector<std::string> rDescription;
 		Room *north, *south, *east, *west;
-          std::string rType;
+        std::string rType;
 		struct Item                   //holds information about items in room
 		{
 			std::string iName;
@@ -24,7 +24,7 @@ class Room
 			int waterLevel;
 			bool available;
 			Item(std::string newItemName, std::string newItemDesc, std::string newUseDesc, int water, bool addable)
-			{	
+			{
 				iName = newItemName;
 				iDesc = newItemDesc;
 				useDesc = newUseDesc;
@@ -42,7 +42,7 @@ class Room
 		Room();
 		Room(std::string newName, std::vector<std::string> rDescription, std::string tType, std::vector<std::string> exits);
 
-	
+
 		//Destructor
 		~Room();
 
@@ -60,7 +60,11 @@ class Room
 		std::vector<std::string> getExits();
 
 		bool canProceed(std::string exitName);		//Finds whether an exit is valid or not
-		void lookItems();		//look at an item in the room	
+		void lookItems(std::string rItem);		//look at an item in the room
+
+		bool checkRoomNames(std::string rName);    //Find if parameter match any room names
+		bool checkItemInRoom(std::string rItem);  //check if item is in room
+		void removeItem(std::string rItem);
 };
 
-#endif 
+#endif

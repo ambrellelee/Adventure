@@ -36,12 +36,12 @@ void Inventory::removeInventory(std::string item)
 	else
 	{
 		viewInventory();
-		
-		std::vector<std::string>::iterator i = std::find(stuff.begin(), stuff.end(), item); 		
+
+		std::vector<std::string>::iterator i = std::find(stuff.begin(), stuff.end(), item);
 		stuff.erase(i);
 		std::cout << "You have removed << item << from your inventory." << std::endl;
 
-	}	
+	}
 }
 
 void Inventory::viewInventory()
@@ -49,13 +49,13 @@ void Inventory::viewInventory()
 	std::cout << "You currently have " << stuff.size() << "items in your inventory." << std::endl;
 	for(int i = 0; i < stuff.size(); i++)
 	{
-		std::cout << i+1 << ":" << stuff[i] <<std::endl;	
+		std::cout << i+1 << ":" << stuff[i] <<std::endl;
 	}
 }
 
 bool Inventory::inInventory(std::string item)
 {
-	bool hasItem; 
+	bool hasItem;
 
 	for(int i = 0; i < stuff.size(); i++)
 	{
@@ -68,6 +68,7 @@ bool Inventory::inInventory(std::string item)
 			hasItem = false;
 		}
 	}
-	
+
 	return hasItem;
 }
+

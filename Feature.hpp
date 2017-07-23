@@ -8,10 +8,10 @@ class Feature
 {
 	private:
 		std::string fName;
-		std::vector<std::string> fDesc;	
-		std::vector<std::string> interactionDesc;		
+		std::vector<std::string> fDesc;
+		std::vector<std::string> interactionDesc;
 		int interactionNum;
-		std::vector<bool> nextAction;		
+		std::vector<bool> nextAction;
 
 	public:
 		Feature(std::string, std::vector<std::string>);

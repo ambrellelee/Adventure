@@ -1,7 +1,6 @@
 #include "Player.hpp"
 
-//Finish move, drop, and pickup methods
-//add in identifier to end the game
+#define NOISYTEST
 
 //Constructors
 Player::Player()
@@ -23,18 +22,18 @@ Player::Player(int hPoints, int pStamina, double pScore)
 void Player::setName(std::string playerName)
 {
 	pName = playerName;
-} 
+}
 
 
 void Player::setHitPoints(int playerHitPoints)
 {
 	hitPoints = playerHitPoints;
-	
+
 	if(hitPoints >= maxHitPoints)
-	{	
+	{
 		//end Game
 	}
-}	
+}
 
 void Player::setStamina(int playerStamina)
 {
@@ -45,7 +44,7 @@ void Player::setStamina(int playerStamina)
           //end Game
      }
      else if(stamina > maxStamina)
-     {    
+     {
         stamina = maxStamina;
      }
 
@@ -98,24 +97,25 @@ void move()
 
 }
 
-bool Player::addToBag(std::string thing)
+void Player::addToBag(std::string thing)
 {
-	return bag->addInventory(thing);
+	bag->addInventory(thing);
 }
 
-std::string Player::removeFromBag(std::string thing)
+void Player::removeFromBag(std::string thing)
 {
-	return bag->removeInventory(thing);
+    bag->removeInventory(thing);
 }
 
-std::string Player::lookBag()
+void Player::lookBag()
 {
-	return bag->viewInventory();
+	bag->viewInventory();
 }
 
-std::string Player::pickUpItem(std::string thing)
+void Player::pickUpItem(std::string thing)
 {
-	addToBag(thing);
+    std::cout << "picked up item, add to bag" << std::endl;
+//	addToBag(thing);  //buggy at this point
 }
 
 void Player::dropItem(std::string thing)
@@ -126,4 +126,67 @@ void Player::dropItem(std::string thing)
 Player::~Player()
 {
 	delete bag;
+}
+
+bool Player::itemInInventory(std:: string pItem)
+{
+    if(pItem == "sword")
+    {
+#ifdef NOISYTEST
+        std::cout << pItem << " is in inventory." << std::endl;
+#endif
+        return true;
+    }
+    else if(pItem == "water")
+    {
+#ifdef NOISYTEST
+        std::cout << pItem << " is in inventory." << std::endl;
+#endif
+        return true;
+    }
+    else if(pItem == "potion")
+    {
+#ifdef NOISYTEST
+        std::cout << pItem << " is in inventory." << std::endl;
+#endif
+        return true;
+    }
+    else
+        return false;
+}
+
+bool Player::useItem(std:: string pItem)
+{
+    if(pItem == "sword")
+    {
+#ifdef NOISYTEST
+        std::cout << "Using " << pItem << " from inventory." << std::endl;
+#endif
+        return true;
+    }
+    else if(pItem == "water")
+    {
+#ifdef NOISYTEST
+        std::cout << "filling/Drinking " << pItem << " from inventory." << std::endl;
+#endif
+        return true;
+    }
+   else if(pItem == "potion")
+   {
+#ifdef NOISYTEST
+        std::cout << "Drinking " << pItem << " from inventory." << std::endl;
+#endif
+        return true;
+   }
+    else
+        return false;
+
+}
+void Player::removeItem(std::string pItem)
+{
+#ifdef NOISYTEST
+        std::cout << pItem << " removed from inventory." << std::endl;
+#endif
+    removeFromBag(pItem);
+
 }
