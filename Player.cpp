@@ -98,22 +98,22 @@ void move()
 
 }
 
-bool Player::addToBag(std::string thing)
+void Player::addToBag(std::string thing)
 {
-	return bag->addInventory(thing);
+	bag->addInventory(thing);
 }
 
-std::string Player::removeFromBag(std::string thing)
+void Player::removeFromBag(std::string thing)
 {
-	return bag->removeInventory(thing);
+	 bag->removeInventory(thing);
 }
 
-std::string Player::lookBag()
+void Player::lookBag()
 {
-	return bag->viewInventory();
+	 bag->viewInventory();
 }
 
-std::string Player::pickUpItem(std::string thing)
+void Player::pickUpItem(std::string thing)
 {
 	addToBag(thing);
 }

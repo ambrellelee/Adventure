@@ -43,10 +43,10 @@ class Player
 	
 		//add inventory method
 		void move();
-		bool addToBag(std::string);
-		std::string removeFromBag(std::string);
-		std::string lookBag();		
-		std::string pickUpItem(std::string);
+		void addToBag(std::string);
+		void removeFromBag(std::string);
+		void lookBag();		
+		void pickUpItem(std::string);
 		void dropItem(std::string);
 
 };
