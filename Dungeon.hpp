@@ -5,7 +5,7 @@
 #include <iostream>
 #include "Room.hpp"
 #include "Player.hpp"
-//#include "Parser.hpp"
+#include "Parser.hpp"
 
 //start adding functions
 //add method to display game description
@@ -17,12 +17,14 @@ class Dungeon
 		Player *newPlayer;
 		Parser *newParser;
 		std::string gameDesc;
-		
+		int playerInput;	
 
 	public:
 		Dungeon();
-		void setGameDescription();
-		void showGameDescription();
+		void menu();
+		void setGameDescription(std::string);
+		std::string showGameDescription();
+		void initializeRooms();
 		void playGame();
 
 		~Dungeon();

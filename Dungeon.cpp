@@ -5,36 +5,42 @@
 Dungeon::Dungeon()
 {
 	newRoom = new Room;
-		newRoom->setName;
-		newRoom->setType;
-		newRoom->setDescription;	
-		newRoom->setMonster;
-		newRoom->setMonsterDesc;
-		newRoom->setItem;
-
 	newPlayer = new Player;
-		newPlayer->setName;
-		newplayer->setHitPoints;
-		newPlayer->setStamina;
-		newPlayer->setScore;		
-
-	//newParser = new Parser;
+	newParser = new Parser;
 }
 
-void Dungeon::setGameDescription(newDesc)
+void Dungeon::setGameDescription(std::string newDesc)
 {
 	gameDesc = newDesc;
 }
 
-void Dungeon::showGameDescription()
+std::string Dungeon::showGameDescription()
 {
 	return gameDesc;
 }
 
-/*void Dungeon::playGame()	
+void Dungeon::menu()
+{
+	std::cout << "Welcome to the Dungeon! What would you like to do? \n Enter 1 to play and 2 to quit." << std::endl;
+	std::cin >>playerInput;
+	if(playerInput == 2)
+	{
+		exit(0);
+	}
+	else if (playerInput != 1)
+	{
+		std::cout << "Please enter a valid option." <<std::endl;
+	}
+}
+void Dungeon::initializeRooms()
+{
+
+}
+
+void Dungeon::playGame()	
 {
 }
-*/
+
 
 Dungeon::~Dungeon()
 {
