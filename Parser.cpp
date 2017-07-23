@@ -249,6 +249,7 @@ void Parser::findNextRoom(playerString& curSentence, Room& curRoom, Player& curP
 			std::cout << "You have entered: " << (*i) << "Room." << std::endl;
 
 			//set current room to room name found here.
+		//	curPlayer.setCurrentLocation(*i); //setting current room;
 
 			roomFound = true;
 			break;

@@ -1,0 +1,22 @@
+TotalNumberOfRooms= 3
+
+RoomNumber= 1
+Name= Entry
+Description= Player wakes up with a low stamina level. They see the chest and must decide to open the chest in order to find the flask before they lose all of their stamina points. Inside they will find the water flask. Picking up the water flask will trigger the NPC to appear and introduce the object of the game and offer the player a sword. There is a door on the east wall that leaves this room
+ExitsNumber= 1
+Exit1= Court
+
+
+RoomNumber= 2
+Name= Court
+Description= The player enters an ornate area and notices both a fancy water fountain and an exit to the north. This exit is blocked by a monster that is quite large, but very slow and old. The player should refill their flask here, as it won’t be close to full after getting it and drinking from it in the first room. They can also drink from the fountain itself. They will need to kill the monster. It poses no threat beyond it’s ability to preclude further progress. Upon killing it, the player will have the option to take its entrails (which he or she will need later).
+ExitsNumber= 2
+Exit1= Entry
+Exit2= Map
+
+RoomNumber= 3
+Name= Map
+Description= Player enters this floor and finds themselves in a room with a glass case containing a map and some food. The exit to the north is clear of any obstacles. The player should refresh themselves with food from the table and remove the map from the glass case to study the maps to learn about different challenges that lie  ahead.
+ExitsNumber= 2
+Exit1= Court
+Exit2= Exit

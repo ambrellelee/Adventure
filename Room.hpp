@@ -1,8 +1,8 @@
 #ifndef ROOM_H
 #define ROOM_H
-
-#include<vector>
-#include<iostream>
+#include <fstream>
+#include <vector>
+#include <iostream>
 #include<string>
 #include "Inventory.hpp"
 #include "Feature.hpp"
@@ -12,6 +12,10 @@ class Room
 	private:
 		Feature *f1;
 		Feature *f2;
+		unsigned int roomNumber;
+		std::string description;
+		std::vector<std::string> doors;
+
 		std::string rName;
 		std::vector<std::string> rDescription;
 		Room *north, *south, *east, *west;
@@ -65,6 +69,8 @@ class Room
 		bool checkRoomNames(std::string rName);    //Find if parameter match any room names
 		bool checkItemInRoom(std::string rItem);  //check if item is in room
 		void removeItem(std::string rItem);
+		void setRooms(std::ifstream& readFile);
+		void printRoomInfo();
 };
 
 #endif

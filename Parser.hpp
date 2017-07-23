@@ -1,6 +1,7 @@
 #ifndef PARSER_HPP
 #define PARSER_HPP
 
+#include"Dungeon.hpp"
 #include"Room.hpp"
 #include"Player.hpp"
 #include"Inventory.hpp"

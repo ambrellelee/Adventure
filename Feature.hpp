@@ -14,13 +14,15 @@ class Feature
 		std::vector<bool> nextAction;
 
 	public:
-		Feature(std::string, std::vector<std::string>);
+		Feature(std::string newName, std::vector<std::string> newDesc);
+		Feature(std::string featName, std::vector<std::string> fDescs, std::vector<std::string> interactions, std::vector<bool> actions);
 		void setName(std::string);
 		void setFeatureDesc(std::string);
 		void setInteractionDesc(std::string);
 		std::string getName();
 		std::vector<std::string> getFeatureDesc();
 		std::vector<std::string> getInteractionDesc();
+		std::vector<bool> getActions();
 };
 
 #endif
