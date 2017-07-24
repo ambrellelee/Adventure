@@ -1,7 +1,7 @@
-TotalNumberOfRooms= 1
+TotalNumberOfRooms= 3
 
 RoomNumber= 1
 Name= Entry
-Description= Player wakes up with a low stamina level. They see the chest and must decide to open the chest in order to find the flask before they lose all of their stamina points. Inside they will find the water flask. Picking up the water flask will trigger the NPC to appear and introduce the object of the game and offer the player a sword. There is a door on the east wall that leaves this room
+Description= Ugh...where am I? Face down on a stone floor and it's so blasted hot...As I get up I notice that I'm in a midieval style room made of stone. Their are no windows, the only sources of light are torches on the wall. There's a wooden chest a short distance from me. In the corner, there seems to be the silhouette of a person, but it's hard to focus on it. I'm so damn thirsty. There is a door on the eastern side of the room. I'm in the room I first woke up in. I see a wooden chest and the silhouette of a person. The room is lit by torches that show no signs of going out. An exit lies on the eastern side of the room.
 ExitsNumber= 1
 Exit1= Court
