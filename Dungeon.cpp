@@ -16,7 +16,6 @@ Dungeon::Dungeon()
 {
 	newRoom = new Room;
 	newPlayer = new Player;
-	newParser = new Parser;
 }
 
 void Dungeon::setGameDescription(std::string newDesc)
@@ -60,18 +59,17 @@ int Dungeon::showMenu()
     }
 }
 
-void Dungeon::playGame()	
+void Dungeon::playGame()
 {
 	//readRoom();
-		
+
 }
 
 Dungeon::~Dungeon()
 {
 	delete newRoom;
 	delete newPlayer;
-	delete newParser;
-}	
+}
 void Dungeon::readRooms(std::ifstream& readFile)
 {
     while(!readFile.eof()) //loop until end

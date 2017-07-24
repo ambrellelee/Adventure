@@ -98,7 +98,9 @@ main()
                 input = playerInput();
             }
             d.sendParse(p, input);
-
+	    std::cout << "---------------------------------------------------------------" << std::endl;
+	    std::cout << "~~~~~~~~~~~~End of game trial, thanks for playing.~~~~~~~~~~~~~" << std::endl;
+	    std::cout << "---------------------------------------------------------------" << std::endl;
         //    exit(0);
         }
         else if(choice == 2)

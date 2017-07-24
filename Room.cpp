@@ -301,12 +301,13 @@ void Room::printAllData()
         }
 
         if (canProceedForward == true)
-        {
-             cout << "Can leave room now" << endl;
-             std::cout << "Thanks you for playing~ Good-Bye~" << std::endl;
-             exit(0);
-        }
+	{
+                cout << "Can leave room now" << endl;
 
+	        std::cout << "---------------------------------------------------------------" << std::endl;
+	        std::cout << "~~~~~~~~~~~~   End of demo, thanks for watching.  ~~~~~~~~~~~~~" << std::endl;
+	        std::cout << "---------------------------------------------------------------" << std::endl;
+	}
         else
                 cout << "Can not leave room now" << endl;
 

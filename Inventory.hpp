@@ -1,7 +1,9 @@
 #ifndef INVENTORY_HPP
 #define INVENTORY_HPP
 
-#include<vector>
+#include <algorithm>
+#include <vector>
+#include <iterator>
 #include<iostream>
 #include<string>
 #include "Item.hpp"
@@ -9,17 +11,17 @@
 class Inventory
 {
 	private:
-		std::vector<Item> stuff;		//stores items
+		std::vector<std::string> stuff;		//stores items
 		std::string containerName;
 
 	public:
 		Inventory(std::string newName);
 		void setName(std::string);
 		std::string getName();
-		void addInventory(Item thing);
-		void removeInventory(Item thing);
+		void addInventory(std::string);
+		void removeInventory(std::string);
 		void viewInventory();
-		bool inInventory(Item thing);
+		bool inInventory(std::string);
 };
 
 #endif

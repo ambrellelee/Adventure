@@ -1,5 +1,5 @@
 #ifndef DUNGEON_HPP
-#define DUNGEON_HPP 
+#define DUNGEON_HPP
 
 #include <string.h>
 #include <iostream>
@@ -15,7 +15,6 @@ class Dungeon
 	private:
 		Room *newRoom;
 		Player *newPlayer;
-		Parser *newParser;
 		std::string gameDesc;
 		int playerInput;
 		typedef std::vector<std::string> playerWords;
@@ -28,9 +27,9 @@ class Dungeon
 		std::string showGameDescription();
 		void initializeRooms();
 		void playGame();
-		
+
 		~Dungeon();
-	
+
 		Dungeon(std::vector<Room> rooms);
 		void readRooms(std::ifstream& readFile);
         	void setCurrentRoom(Room& currRoom);
@@ -40,4 +39,4 @@ class Dungeon
         	void sendParse(Player& curP, playerWords& curSentence);
 };
 
-#endif 
+#endif

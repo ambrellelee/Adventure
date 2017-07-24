@@ -14,20 +14,20 @@ std::string Inventory::getName()
 	return containerName;
 }
 
-void Inventory::addInventory(Item thing)
+void Inventory::addInventory(std::string  thing)
 {
 	if(inInventory(thing))
 	{
-		std::cout << thing.iName << " is already in your inventory." << std::endl;
+//		std::cout << thing.iName << " is already in your inventory." << std::endl;
 	}
 	else
 	{
 		stuff.push_back(thing);
-		std::cout << thing.iName << " has been added to your inventory." <<std::endl;
+//		std::cout << thing.iName << " has been added to your inventory." <<std::endl;
 	}
 }
 
-void Inventory::removeInventory(Item thing)
+void Inventory::removeInventory(std::string  thing)
 {
 	if(stuff.empty())
 	{
@@ -36,12 +36,12 @@ void Inventory::removeInventory(Item thing)
 	else
 	{
 		viewInventory();
-		
-		std::vector<Item>::iterator i = std::find(stuff.begin(), stuff.end(), thing); 		
+
+		std::vector<std::string >::iterator i = std::find(stuff.begin(), stuff.end(), thing);
 		stuff.erase(i);
 		std::cout << "You have removed << item << from your inventory." << std::endl;
 
-	}	
+	}
 }
 
 void Inventory::viewInventory()
@@ -49,26 +49,26 @@ void Inventory::viewInventory()
 	std::cout << "You currently have " << stuff.size() << "items in your inventory." << std::endl;
 	for(int i = 0; i < stuff.size(); i++)
 	{
-		std::cout << i+1 << ":" << stuff[i].getName() <<std::endl;	
+	//	std::cout << i+1 << ":" << stuff[i].getName() <<std::endl;
 	}
 }
 
-bool Inventory::inInventory(Item thing)
+bool Inventory::inInventory(std::string  thing)
 {
-	bool hasItem; 
+	bool hasItem = false;
 
 	for(int i = 0; i < stuff.size(); i++)
 	{
-		if(stuff[i].getname() == thing)
-		{
-
-			hasItem = true;
-		}
-		else
-		{
-			hasItem = false;
-		}
+//		if(stuff[i].getname() == thing)
+//		{
+//
+//			hasItem = true;
+//		}
+//		else
+//		{
+//			hasItem = false;
+//		}
 	}
-	
+
 	return hasItem;
 }

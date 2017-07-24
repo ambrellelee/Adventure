@@ -16,26 +16,26 @@ Player::Player(int hPoints, int pStamina, double pScore)
 	hitPoints = hPoints;
 	stamina = pStamina;
 	score = pScore;
-	bag = new Inventory("bag");
+//	bag = new Inventory("bag");
 }
 
 //set values
 void Player::setName(std::string playerName)
 {
 	pName = playerName;
-} 
+}
 
 
 void Player::setHitPoints(int playerHitPoints)
 {
 	hitPoints = playerHitPoints;
-	
+
 	if(hitPoints >= maxHitPoints)
-	{	
+	{
 		std::cout << "You have been hit too many times. You have lost." << std::endl;
 		exit(0);
 	}
-}	
+}
 
 void Player::setStamina(int playerStamina)
 {
@@ -47,7 +47,7 @@ void Player::setStamina(int playerStamina)
 		exit(0);
      }
      else if(stamina > maxStamina)
-     {    
+     {
         stamina = maxStamina;
      }
 
@@ -97,22 +97,22 @@ Room* Player::getLastLocation()
 
 void move()
 {
-	
+
 }
 
 void Player::addToBag(std::string thing)
 {
-	bag->addInventory(thing);
+//	bag->addInventory(thing);
 }
 
 void Player::removeFromBag(std::string thing)
 {
-	bag->removeInventory(thing);
+//	bag->removeInventory(thing);
 }
 
 void Player::lookBag()
 {
-	 bag->viewInventory();
+//	 bag->viewInventory();
 }
 
 Player::~Player()
