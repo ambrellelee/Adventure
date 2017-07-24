@@ -166,10 +166,8 @@ bool Room::checkItemInRoom(std::string rItem)
         return false;
 
 }
-
+/*
 void Room::setRooms(std::ifstream& readFile)
-{
-    void Room::setRooms(std::ifstream& readFile)
 {
     std::string blank = "";
     int exitDoors = 0; //read in number of exit doors in the room
@@ -191,7 +189,7 @@ void Room::setRooms(std::ifstream& readFile)
     for(i = 0; i !=numOfItems; i++)
     {
         readFile >> blank >> curItem;
-        itemInRoom.push_back(curItem); //get the item name
+        inRoom.push_back(curItem); //changed to inRoom from itemInRoom, which isn't declared. Is this ok?
     }
 }
 }
@@ -217,7 +215,7 @@ void Room::printRoomInfo()
 	cout << endl;
 	cout << "What do you want to do ? " << endl;
 }
-
+*/
 void Room::printAllData()
 {
         cout << "Room Name: " << rName << endl;
