@@ -1,6 +1,15 @@
 #include "Dungeon.hpp"
+#include <cctype>
 //add method to set exits to newRoom
 //test and then add loop to create all rooms
+using std::transform;
+using std::vector;
+using std::cout;
+using std::endl;
+using std::string;
+using std::cin;
+typedef vector<Room> vectorRooms;
+typedef std::vector<std::string> playerWords;
 
 Dungeon::Dungeon()
 {
@@ -49,3 +58,42 @@ Dungeon::~Dungeon()
 	delete newPlayer;
 	delete newParser;
 }	
+void Dungeon::readRooms(std::ifstream& readFile)
+{
+    std::string blank;
+    unsigned int totalRooms;
+    readFile >> blank >> totalRooms; //read in how many rooms in file
+    allRooms.reserve(totalRooms);   //reserve spaces in Room vector
+    while(!readFile.eof()) //loop until end
+    {
+        Room load;
+        load.setRooms(readFile); //set up the variables of the room.
+        allRooms.push_back(load); //push room into dungeon
+    }
+
+}
+
+void Dungeon::printRooms()
+{
+    for(vectorRooms::iterator i = allRooms.begin(); i != allRooms.end(); ++i)
+    {
+        i->printRoomInfo();
+    }
+}
+void Dungeon::printCurLocation()
+{
+    newRoom->printRoomInfo();
+}
+void Dungeon::sendParse(Player& curP, playerWords& curSentence)
+{
+    Room testRoom;
+    Parser* p = new Parser;
+    p->parser(testRoom, curP, curSentence);
+ //   curD.setCurrentRoom(1);
+//    curD.printCurLocation();
+
+}
+void Dungeon::setCurrentRoom(int i)
+{
+    newRoom = &(allRooms[i]);
+}
