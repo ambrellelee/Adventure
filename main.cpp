@@ -1,5 +1,7 @@
 #include "Dungeon.hpp"
 #include "Player.hpp"
+#include "Item.hpp"
+#include "Room.hpp"
 #include <iostream>
 #include <algorithm>
 #include <string>
