@@ -1,0 +1,136 @@
+2
+@@
+Ugh...where am I? Face down on a stone floor and it's so blasted hot...As I get
+up I notice that I'm in a midieval style room made of stone. Their are no
+windows, the only sources of light are torches on the wall. There's a wooden
+chest a short distance from me. In the corner, there seems to be the silhouette
+of a person, but it's hard to focus on it. I'm so damn thirsty. There is a door
+on the eastern side of the room.
+@@
+I'm in the room I first woke up in. I see a wooden chest and the silhouette of
+a person. The room is lit by torches that show no signs of going out. An exit
+lies on the eastern side of the room.
+@@
+Entry Room
+@@
+normal
+@@
+1
+@@
+east
+@@
+True
+@@
+2
+@@
+flask
+@@
+An old flask. Worn, but devoid of leaks.
+@@
+I take a drink from the flask. It is refreshing
+@@
+5
+@@
+10
+@@
+False
+@@
+0
+@@
+1
+@@
+sword
+@@
+A sharp broadsword
+@@
+It's a nice sword, but only usable in battle of course!
+@@
+0
+@@
+0
+@@
+False
+@@
+1
+@@
+2
+@@
+2
+@@
+chest
+@@
+3
+@@
+Initially it seems like a rather ordinary wooden chest, but upon closer
+inspection you notice the distinct picture of a water droplet painted on its
+front side. That reminds you of just how thirsty you are.
+@@
+It's an open chest. There appears to be a flask inside.
+@@
+It's an empty wooden chest.
+@@
+As I grasp the chest's lid, I notice that it isn't locked. How fortunate! I
+open the chest and notice there is something inside.
+@@
+I reach into the chest and grab the flask, which is surprisingly cool given
+the temperature of the room.
+@@
+False
+@@
+False
+@@
+silhouette
+@@
+6
+@@
+It quite distinctly the silhouette of a man. Strange, considering there seems
+to be no source casting a shadow.
+@@
+It speaks! It offered help in a way that didn't feel particularly warm. Even so,
+given the circumstances, it would be unwise to not ask for help.
+@@
+The silhouette's shadowy hand holds a sword with the handle facing me. The way
+it offered help made it unclear whether the help was for me or my enemies. Even
+so, getting a sword COULD go a long way towards making me feel safe.
+@@
+The shadowy figure is swiping its sword at me. I need to defend myself!
+@@
+The figure is off balance after I blocked its attack. Now is the perfect time
+to counter.
+@@
+The silhouette stands motionless.
+@@
+I look towards the silhouette and say "hello." Upon doing so the silhouette
+turns his head to look at me. "The road ahead is fraught with foes," says the
+shape in a flat, lifeless tone, "I can help."
+@@
+"Please, offer me what help you can." I say to the silhouette, immediately
+wondering why I bothered with manners towards something so clearly indifferent
+to them. Regardless the shape's shadowy hand reaches out from the wall, holding
+a sword. "Take this with you," the shape drawled, "it is imperative for the
+struggles ahead. Remember that it can be used to block other attacks as well as
+performing your own."
+@@
+Still wary of the mysterious shape before me, I slowly start to reach out for
+the sword. Then, quite quickly, I snatch it and take a step back, not sure of
+what to expect. Suddenly, the shape leaps out from the wall, taking on the form
+of a three dimensional-yet still shadowy, brute. Its arm morphs into the shape
+of a sword and the former-silhouette swings it at you!
+@@
+I hold up my sword in the path of the brute's sword. The foe's sword hits mine,
+and the impact takes the brute by surprise. It stumbles back, off balance
+@@
+I swing my sword at the form as hard as I can. Probably not the best technique,
+but the blade hits home. The form lets out a piercing howl, retreating to the
+wall and returning to its silhouette form.
+@@
+False
+@@
+False
+@@
+True
+@@
+False
+@@
+True
+@@@
