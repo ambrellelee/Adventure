@@ -88,3 +88,15 @@ bool Room::canProceed(std::string exitName)
 
 	return exitPresent;
 }
+
+void Room::addItem(Item thing)
+{
+	dropped.push_back(thing);
+}
+
+/*void Room::removeItem(Item thing)
+{
+	std::vector<Item>::iterator i = std::find(inRoom.begin(), inRoom.end(), thing);
+	inRoom.erase(i);
+}*/
+

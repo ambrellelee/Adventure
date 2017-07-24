@@ -32,7 +32,8 @@ void Player::setHitPoints(int playerHitPoints)
 	
 	if(hitPoints >= maxHitPoints)
 	{	
-		//end Game
+		std::cout << "You have been hit too many times. You have lost." << std::endl;
+		exit(0);
 	}
 }	
 
@@ -42,7 +43,8 @@ void Player::setStamina(int playerStamina)
 
 	 if(stamina <= 0)
      {
-          //end Game
+          std::cout << "You do not have enough stamina left. You have expired." <<std::endl;
+		exit(0);
      }
      else if(stamina > maxStamina)
      {    
@@ -95,7 +97,7 @@ Room* Player::getLastLocation()
 
 void move()
 {
-
+	
 }
 
 void Player::addToBag(std::string thing)
@@ -105,22 +107,12 @@ void Player::addToBag(std::string thing)
 
 void Player::removeFromBag(std::string thing)
 {
-	 bag->removeInventory(thing);
+	bag->removeInventory(thing);
 }
 
 void Player::lookBag()
 {
 	 bag->viewInventory();
-}
-
-void Player::pickUpItem(std::string thing)
-{
-	addToBag(thing);
-}
-
-void Player::dropItem(std::string thing)
-{
-	removeFromBag(thing);
 }
 
 Player::~Player()

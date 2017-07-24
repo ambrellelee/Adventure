@@ -21,7 +21,7 @@ class Dungeon
 
 	public:
 		Dungeon();
-		void menu();
+		void showMenu();
 		void setGameDescription(std::string);
 		std::string showGameDescription();
 		void initializeRooms();

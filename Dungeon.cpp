@@ -19,7 +19,7 @@ std::string Dungeon::showGameDescription()
 	return gameDesc;
 }
 
-void Dungeon::menu()
+void Dungeon::showMenu()
 {
 	std::cout << "Welcome to the Dungeon! What would you like to do? \n Enter 1 to play and 2 to quit." << std::endl;
 	std::cin >>playerInput;
@@ -31,16 +31,17 @@ void Dungeon::menu()
 	{
 		std::cout << "Please enter a valid option." <<std::endl;
 	}
-}
-void Dungeon::initializeRooms()
-{
-
+	else
+	{
+		playGame();
+	}
 }
 
 void Dungeon::playGame()	
 {
+	//readRoom();
+		
 }
-
 
 Dungeon::~Dungeon()
 {
