@@ -17,7 +17,9 @@ class Dungeon
 		Player *newPlayer;
 		Parser *newParser;
 		std::string gameDesc;
-		int playerInput;	
+		int playerInput;
+		typedef std::vector<std::string> playerWords;
+		std::vector<Room> allRooms; //vector of rooms
 
 	public:
 		Dungeon();
@@ -26,10 +28,16 @@ class Dungeon
 		std::string showGameDescription();
 		void initializeRooms();
 		void playGame();
-
+		
 		~Dungeon();
 	
-
+		Dungeon(std::vector<Room> rooms);
+		void readRooms(std::ifstream& readFile);
+        	void setCurrentRoom(Room& currRoom);
+        	void setCurrentRoom(int i);
+       	 	void printRooms();
+       	 	void printCurLocation();
+        	void sendParse(Player& curP, playerWords& curSentence);
 };
 
 #endif 
