@@ -34,7 +34,7 @@ int Dungeon::showMenu()
    bool go = false;
     while(!go)
     {
-        std::cout << "Welcome to the Dungeon! What would you like to do? \n Enter 1 to play or 2 to simulate room data or 3 to quit." << std::endl;
+        std::cout << "Welcome to the Dungeon! What would you like to do? \n Enter 1 to play \n 2 to demonstrate the file parsing software by making a room and printing its contents \n 3 to quit." << std::endl;
         std::cin >>playerInput;
         if(playerInput == 1)
         {
