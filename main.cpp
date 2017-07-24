@@ -98,7 +98,8 @@ main()
     }
     else if(choice == 2)
     {
-
+	Room myRoom = Room("one.txt", 0);
+        myRoom.printAllData();
     }
     else
     {
