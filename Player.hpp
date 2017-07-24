@@ -48,6 +48,11 @@ class Player
 		void lookBag();		
 		void pickUpItem(std::string);
 		void dropItem(std::string);
+	
+	//
+		bool itemInInventory(std:: string pItem);
+		bool useItem(std:: string pItem);
+		void removeItem(std::string pItem);
 
 };
 		
