@@ -25,7 +25,16 @@ void newGame(Dungeon& newD, Player& newP)
         std::cout << "failed to load rooms" << std::endl;
     }
     readFile.close();
-
+    std::ifstream readFile2("room2.txt");
+    if(readFile2)
+    {
+        newD.readRooms(readFile2);  //load rooms from file on dungeon
+    }
+    else
+    {
+        std::cout << "failed to load rooms" << std::endl;
+    }
+    readFile2.close();
 }
 
 std::vector<string> split(const string& s)
@@ -64,23 +73,36 @@ main()
     Player p;   //create player
 
     newGame(d, p);
-    d.setCurrentRoom(0);
-    d.printCurLocation();
-
-    std::vector<string> input;
-    while(input.size() == 0)
+    int choice = d.showMenu();
+    if(choice ==  1)
     {
-        input = playerInput();
-    }
-    d.sendParse(p, input);
-    d.setCurrentRoom(1);
-    d.printCurLocation();
-    input.clear();
-    while(input.size() == 0)
-    {
-        input = playerInput();
-    }
-    d.sendParse(p, input);
+        d.setCurrentRoom(0);
+        d.printCurLocation();
 
+        std::vector<string> input;
+        while(input.size() == 0)
+        {
+            input = playerInput();
+        }
+        d.sendParse(p, input);
+        d.setCurrentRoom(1);
+        d.printCurLocation();
+        input.clear();
+        while(input.size() == 0)
+        {
+            input = playerInput();
+        }
+        d.sendParse(p, input);
+
+        exit(0);
+    }
+    else if(choice == 2)
+    {
+
+    }
+    else
+    {
+        exit(0);
+    }
     return 0;
 }
