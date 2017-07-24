@@ -42,6 +42,8 @@ class Room
 		std::vector<std::string> interactions;	// vector holding descriptions for interactions that occur in the room
 		bool canProceedForward;
 
+		       std::vector<std::string> itemInRoom;  //temp item vector
+
 	public:
 		//Constructors
 		Room();
@@ -73,7 +75,7 @@ class Room
 		void setRooms(std::ifstream& readFile);
 		void printRoomInfo();
 		void printAllData();
-		
+
 };
 
 #endif

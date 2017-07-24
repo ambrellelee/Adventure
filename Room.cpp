@@ -8,7 +8,7 @@
 #include <sstream>
 
 using namespace std;
-
+typedef std::vector<std::string> Container;
 /*Methods to check for interactivity will be in Features class
 -Need to add methods to add and remove items from room to inventory/from inventory to room
 -Add methods for features in room once Features class is finished
@@ -68,7 +68,7 @@ void Room::setType(std::string tType)
 
 void Room::setDescription(std::string rdesc)
 {
-	rDescription.push_back(rdesc); 
+	rDescription.push_back(rdesc);
 }
 
 void Room::setExits(std::string newExit)
@@ -94,7 +94,7 @@ std::vector<std::string> Room::getDescription()
 
 std::vector<std::string> Room::getExits()
 {
-	return exitVec;	
+	return exitVec;
 }
 
 bool Room::canProceed(std::string exitName)
@@ -121,7 +121,11 @@ void Room::addItem(Item thing)
 	std::vector<Item>::iterator i = std::find(inRoom.begin(), inRoom.end(), thing);
 	inRoom.erase(i);
 }*/
+void Room::lookItems(std::string rItem)
+{
+    std::cout << "return item description here..." << std::endl;
 
+}
 //hardcoded comparison for now to show it works.
 bool Room::checkRoomNames(std::string rName)
 {
@@ -166,7 +170,7 @@ bool Room::checkItemInRoom(std::string rItem)
         return false;
 
 }
-/*
+
 void Room::setRooms(std::ifstream& readFile)
 {
     std::string blank = "";
@@ -189,9 +193,8 @@ void Room::setRooms(std::ifstream& readFile)
     for(i = 0; i !=numOfItems; i++)
     {
         readFile >> blank >> curItem;
-        inRoom.push_back(curItem); //changed to inRoom from itemInRoom, which isn't declared. Is this ok?
+        itemInRoom.push_back(curItem); //changed to inRoom from itemInRoom, which isn't declared. Is this ok?
     }
-}
 }
 void Room::printRoomInfo()
 {
@@ -215,7 +218,7 @@ void Room::printRoomInfo()
 	cout << endl;
 	cout << "What do you want to do ? " << endl;
 }
-*/
+
 void Room::printAllData()
 {
         cout << "Room Name: " << rName << endl;
@@ -298,7 +301,12 @@ void Room::printAllData()
         }
 
         if (canProceedForward == true)
-                cout << "Can leave room now" << endl;
+        {
+             cout << "Can leave room now" << endl;
+             std::cout << "Thanks you for playing~ Good-Bye~" << std::endl;
+             exit(0);
+        }
+
         else
                 cout << "Can not leave room now" << endl;
 
