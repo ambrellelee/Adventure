@@ -100,7 +100,7 @@ void move()
 	
 }
 
-void Player::addToBag(std::string thing)
+void Player::addToBag(Item thing)
 {
 	bag->addInventory(thing);
 }

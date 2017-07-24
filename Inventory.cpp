@@ -16,7 +16,7 @@ std::string Inventory::getName()
 
 void Inventory::addInventory(Item thing)
 {
-	if(inInventory(thing))
+	if(inInventory(thing.iName))
 	{
 		std::cout << thing.iName << " is already in your inventory." << std::endl;
 	}
@@ -27,7 +27,7 @@ void Inventory::addInventory(Item thing)
 	}
 }
 
-void Inventory::removeInventory(Item thing)
+void Inventory::removeInventory(std::string item)
 {
 	if(stuff.empty())
 	{
@@ -35,9 +35,7 @@ void Inventory::removeInventory(Item thing)
 	}
 	else
 	{
-		viewInventory();
-		
-		std::vector<Item>::iterator i = std::find(stuff.begin(), stuff.end(), thing); 		
+		std::vector<Item>::iterator i = std::find_if(stuff.begin(), stuff.end(), findItem(item)); 		
 		stuff.erase(i);
 		std::cout << "You have removed << item << from your inventory." << std::endl;
 
@@ -49,17 +47,17 @@ void Inventory::viewInventory()
 	std::cout << "You currently have " << stuff.size() << "items in your inventory." << std::endl;
 	for(int i = 0; i < stuff.size(); i++)
 	{
-		std::cout << i+1 << ":" << stuff[i].getName() <<std::endl;	
+		std::cout << i+1 << ":" << stuff[i].iName <<std::endl;	
 	}
 }
 
-bool Inventory::inInventory(Item thing)
+bool Inventory::inInventory(std::string thing)
 {
 	bool hasItem; 
 
 	for(int i = 0; i < stuff.size(); i++)
 	{
-		if(stuff[i].getname() == thing)
+		if(stuff[i].iName == thing)
 		{
 
 			hasItem = true;

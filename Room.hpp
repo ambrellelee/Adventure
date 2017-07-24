@@ -72,6 +72,7 @@ class Room
 		bool checkRoomNames(std::string rName);    //Find if parameter match any room names
 		bool checkItemInRoom(std::string rItem);  //check if item is in room
 		void removeItem(std::string rItem);
+		void addItem(Item);
 		void setRooms(std::ifstream& readFile);
 		void printRoomInfo();
 		void printAllData();

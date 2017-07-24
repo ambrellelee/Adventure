@@ -110,22 +110,24 @@ bool Room::canProceed(std::string exitName)
 
 	return exitPresent;
 }
-/*
+
 void Room::addItem(Item thing)
 {
 	dropped.push_back(thing);
 }
-*/
-/*void Room::removeItem(Item thing)
-{
-	std::vector<Item>::iterator i = std::find(inRoom.begin(), inRoom.end(), thing);
-	inRoom.erase(i);
-}*/
-void Room::lookItems(std::string rItem)
-{
-    std::cout << "return item description here..." << std::endl;
 
+void Room::removeItem(std::string rItem)
+{
+	std::vector<Item>::iterator i = std::find_if(inRoom.begin(), inRoom.end(), findItem(rItem));
+	inRoom.erase(i);
 }
+
+/*void Room::lookItems(std::string rItem)
+{
+	std::vector<Item>::iterator i = std::find_if(inRoom.begin(), inRoom.end(), findItem(rItem));
+	std::cout << rItem.iDesc << std::endl;
+
+}*/
 //hardcoded comparison for now to show it works.
 bool Room::checkRoomNames(std::string rName)
 {
