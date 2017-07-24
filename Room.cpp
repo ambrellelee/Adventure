@@ -147,6 +147,8 @@ bool Room::checkItemInRoom(std::string rItem)
 
 void Room::setRooms(std::ifstream& readFile)
 {
+    void Room::setRooms(std::ifstream& readFile)
+{
     std::string blank = "";
     int exitDoors = 0; //read in number of exit doors in the room
     std::string curDoor = "";
@@ -155,12 +157,21 @@ void Room::setRooms(std::ifstream& readFile)
     readFile >> blank;
     std::getline(readFile, description); //read the description line
     readFile >> blank >> exitDoors; //get the number of exit doors.
-    unsigned int i;
+    int i;
     for(i = 0; i != exitDoors; i++)
     {
         readFile >> blank >> curDoor;
         doors.push_back(curDoor); //get the door name
     }
+    int numOfItems = 0; //read in number of exit doors in the room
+    std::string curItem = "";
+    readFile >> blank >> numOfItems;
+    for(i = 0; i !=numOfItems; i++)
+    {
+        readFile >> blank >> curItem;
+        itemInRoom.push_back(curItem); //get the item name
+    }
+}
 }
 void Room::printRoomInfo()
 {
