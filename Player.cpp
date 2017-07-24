@@ -119,3 +119,78 @@ Player::~Player()
 {
 	delete bag;
 }
+
+//hardcoded comparsion for now refine later
+void Player::pickUpItem(std::string thing)
+{
+    std::cout << "picked up item, add to bag" << std::endl;
+//	addToBag(thing);  //buggy at this point
+}
+
+void Player::dropItem(std::string thing)
+{
+	removeFromBag(thing);
+}
+
+bool Player::itemInInventory(std:: string pItem)
+{
+    if(pItem == "sword")
+    {
+#ifdef NOISYTEST
+        std::cout << pItem << " is in inventory." << std::endl;
+#endif
+        return true;
+    }
+    else if(pItem == "water")
+    {
+#ifdef NOISYTEST
+        std::cout << pItem << " is in inventory." << std::endl;
+#endif
+        return true;
+    }
+    else if(pItem == "potion")
+    {
+#ifdef NOISYTEST
+        std::cout << pItem << " is in inventory." << std::endl;
+#endif
+        return true;
+    }
+    else
+        return false;
+}
+
+bool Player::useItem(std:: string pItem)
+{
+    if(pItem == "sword")
+    {
+#ifdef NOISYTEST
+        std::cout << "Using " << pItem << " from inventory." << std::endl;
+#endif
+        return true;
+    }
+    else if(pItem == "water")
+    {
+#ifdef NOISYTEST
+        std::cout << "filling/Drinking " << pItem << " from inventory." << std::endl;
+#endif
+        return true;
+    }
+   else if(pItem == "potion")
+   {
+#ifdef NOISYTEST
+        std::cout << "Drinking " << pItem << " from inventory." << std::endl;
+#endif
+        return true;
+   }
+    else
+        return false;
+
+}
+void Player::removeItem(std::string pItem)
+{
+#ifdef NOISYTEST
+        std::cout << pItem << " removed from inventory." << std::endl;
+#endif
+    removeFromBag(pItem);
+
+}
