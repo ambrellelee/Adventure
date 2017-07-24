@@ -1,10 +1,9 @@
-TotalNumberOfRooms= 1
-
 RoomNumber= 1
 Name= Entry
 Description= Player wakes up with a low stamina level. They see the chest and must decide to open the chest in order to find the flask before they lose all of their stamina points. Inside they will find the water flask. Picking up the water flask will trigger the NPC to appear and introduce the object of the game and offer the player a sword. There is a door on the east wall that leaves this room
 ExitsNumber= 1
 Exit1= Court
+NumberOfItems= 4
 RoomItem1= Sword
 RoomItem2= Flask
 RoomItem3= Chest
