@@ -75,37 +75,43 @@ main()
     Player p;   //create player
 
     newGame(d, p);
-    int choice = d.showMenu();
-    if(choice ==  1)
+    bool quit = false;
+    while(!quit)
     {
-        d.setCurrentRoom(0);
-        d.printCurLocation();
-
-        std::vector<string> input;
-        while(input.size() == 0)
+        int choice = d.showMenu();
+        if(choice ==  1)
         {
-            input = playerInput();
-        }
-        d.sendParse(p, input);
-        d.setCurrentRoom(1);
-        d.printCurLocation();
-        input.clear();
-        while(input.size() == 0)
-        {
-            input = playerInput();
-        }
-        d.sendParse(p, input);
+            d.setCurrentRoom(0);
+            d.printCurLocation();
 
-        exit(0);
+            std::vector<string> input;
+            while(input.size() == 0)
+            {
+                input = playerInput();
+            }
+            d.sendParse(p, input);
+            d.setCurrentRoom(1);
+            d.printCurLocation();
+            input.clear();
+            while(input.size() == 0)
+            {
+                input = playerInput();
+            }
+            d.sendParse(p, input);
+
+        //    exit(0);
+        }
+        else if(choice == 2)
+        {
+        Room myRoom = Room("one.txt", 0);
+            myRoom.printAllData();
+        }
+        else
+        {
+            quit = true;
+            exit(0);
+        }
     }
-    else if(choice == 2)
-    {
-	Room myRoom = Room("one.txt", 0);
-        myRoom.printAllData();
-    }
-    else
-    {
-        exit(0);
-    }
+
     return 0;
 }
