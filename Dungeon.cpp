@@ -30,20 +30,31 @@ std::string Dungeon::showGameDescription()
 
 void Dungeon::showMenu()
 {
-	std::cout << "Welcome to the Dungeon! What would you like to do? \n Enter 1 to play and 2 to quit." << std::endl;
-	std::cin >>playerInput;
-	if(playerInput == 2)
-	{
-		exit(0);
-	}
-	else if (playerInput != 1)
-	{
-		std::cout << "Please enter a valid option." <<std::endl;
-	}
-	else
-	{
-		playGame();
-	}
+   bool go = false;
+    while(!go)
+    {
+        std::cout << "Welcome to the Dungeon! What would you like to do? \n Enter 1 to play or 2 to simulate room data or 3 to quit." << std::endl;
+        std::cin >>playerInput;
+        if(playerInput == 1)
+        {
+            go = true;
+            return 1;
+        }
+        else if(playerInput == 2)
+        {
+            go = true;
+            return 2;
+        }
+        else if (playerInput < 1 || playerInput > 2)
+        {
+            std::cout << "Please enter a valid option." <<std::endl;
+        }
+        else
+        {
+            go = true;
+            return 3;
+        }
+    }
 }
 
 void Dungeon::playGame()	
@@ -60,17 +71,12 @@ Dungeon::~Dungeon()
 }	
 void Dungeon::readRooms(std::ifstream& readFile)
 {
-    std::string blank;
-    unsigned int totalRooms;
-    readFile >> blank >> totalRooms; //read in how many rooms in file
-    allRooms.reserve(totalRooms);   //reserve spaces in Room vector
     while(!readFile.eof()) //loop until end
     {
         Room load;
         load.setRooms(readFile); //set up the variables of the room.
         allRooms.push_back(load); //push room into dungeon
     }
-
 }
 
 void Dungeon::printRooms()
