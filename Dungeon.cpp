@@ -1,5 +1,6 @@
 #include "Dungeon.hpp"
 #include <cctype>
+#include <limits>
 //add method to set exits to newRoom
 //test and then add loop to create all rooms
 using std::transform;
@@ -48,6 +49,8 @@ int Dungeon::showMenu()
         else if (playerInput < 1 || playerInput > 2)
         {
             std::cout << "Please enter a valid option." <<std::endl;
+	    std::cin.clear(); // reset failbit
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //skip bad input
         }
         else
         {
