@@ -16,30 +16,31 @@ class Parser
 	private:
 		//create vector to hold strings from player input
 		typedef std::vector<std::string> playerString;
-		std::string goTo = "go";
-		std::string useItem = "use";
-		std::string take = "take";
-		std::string openChest = "open";
-		std::string talk = "talk";
-		std::string drink = "drink";
-		std::string drop = "drop";
-		std::string look = "look";
-		std::string help = "help";
-		std::string inventory = "inventory";
-		std::string fills = "fill";
-		std::string moves = "move";
-		std::string cross = "cross";
-		std::string unlock = "unlock";
-		std::string investigate = "investigate";
-		std::string smell = "smell";
-		std::string sneak = "sneak";
-		std::string attack = "attack";
-		std::string ring = "ring";
-		std::string say = "say";
-		std::string block = "block";
-		std::string touch = "touch";
-		std::string quit = "exit";
-
+		/*
+		const std::string goTo = "go";
+		const std::string useItem = "use";
+		const std::string take = "take";
+		const std::string openChest = "open";
+		const std::string talk = "talk";
+		const std::string drink = "drink";
+		const std::string drop = "drop";
+		const std::string look = "look";
+		const std::string help = "help";
+		const std::string inventory = "inventory";
+		const std::string fills = "fill";
+		const std::string moves = "move";
+		const std::string cross = "cross";
+		const std::string unlock = "unlock";
+		const std::string investigate = "investigate";
+		const std::string smell = "smell";
+		const std::string sneak = "sneak";
+		const std::string attack = "attack";
+		const std::string ring = "ring";
+		const std::string say = "say";
+		const std::string block = "block";
+		const std::string touch = "touch";
+		const std::string quit = "exit";
+*/
 	public:
 
 		void parser(Room& curRoom, Player& curPlayer, playerString& curSentence);
