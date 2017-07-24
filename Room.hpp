@@ -10,8 +10,7 @@
 class Room
 {
 	private:
-		Feature *f1;
-		Feature *f2;
+		std::vector<Feature> roomFeatures;
 		unsigned int roomNumber;
 		std::string description;
 		std::vector<std::string> doors;
