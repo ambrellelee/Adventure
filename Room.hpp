@@ -6,6 +6,7 @@
 #include<string>
 #include "Inventory.hpp"
 #include "Feature.hpp"
+#include "Item.hpp"
 
 class Room
 {
@@ -18,8 +19,8 @@ class Room
 		std::string rName;
 		std::vector<std::string> rDescription;
 		Room *north, *south, *east, *west;
-        std::string rType;
-		struct Item                   //holds information about items in room
+        	std::string rType;
+		/*struct Item                   //holds information about items in room
 		{
 			std::string iName;
 			std::string iDesc;
@@ -34,17 +35,18 @@ class Room
 				waterLevel = water;
 				available = addable;
 			}
-		};
+		};*/
 		std::vector<Item> inRoom;      //vector holding structs of items in the room
-          std::vector<Item> dropped;	//vector holding structs of items that the player dropped in the room
-          std::vector<std::string> exitVec;		//vector holding exits
+          	std::vector<Item> dropped;	//vector holding structs of items that the player dropped in the room
+          	std::vector<std::string> exitVec;		//vector holding exits
 		std::vector<std::string> interactions;	// vector holding descriptions for interactions that occur in the room
+		bool canProceedForward;
 
 	public:
 		//Constructors
 		Room();
 		Room(std::string newName, std::vector<std::string> rDescription, std::string tType, std::vector<std::string> exits);
-
+		Room(std::string roomFile, int thisRoomNum);
 
 		//Destructor
 		~Room();
@@ -53,7 +55,7 @@ class Room
 		void setName(std::string newName);
 		void setType(std::string tType);
 		void setDescription(std::string rdesc);
-		void setItem(std::string, std::string, std::string, int, bool);
+		void setItem(std::string, std::string, std::string, int, int, bool, int, int);
 		void setExits(std::string newExit);
 
 		//Get Values
@@ -70,6 +72,8 @@ class Room
 		void removeItem(std::string rItem);
 		void setRooms(std::ifstream& readFile);
 		void printRoomInfo();
+		void printAllData();
+		
 };
 
 #endif
