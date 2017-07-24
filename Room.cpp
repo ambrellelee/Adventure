@@ -122,12 +122,16 @@ void Room::removeItem(std::string rItem)
 	inRoom.erase(i);
 }
 
-/*void Room::lookItems(std::string rItem)
-{
-	std::vector<Item>::iterator i = std::find_if(inRoom.begin(), inRoom.end(), findItem(rItem));
-	std::cout << rItem.iDesc << std::endl;
-
-}*/
+void Room::lookItems(std::string rItem)
+{	
+	for( int i = 0; i< inRoom.size(); i++)
+	{
+		if(inRoom[i].iName == rItem)
+		{ 
+			std::cout << inRoom[i].iDesc << std::endl;
+		}
+	}
+}
 //hardcoded comparison for now to show it works.
 bool Room::checkRoomNames(std::string rName)
 {
