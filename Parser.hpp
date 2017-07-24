@@ -1,6 +1,7 @@
 #ifndef PARSER_HPP
 #define PARSER_HPP
 
+#include"Dungeon.hpp"
 #include"Room.hpp"
 #include"Player.hpp"
 #include"Inventory.hpp"
@@ -37,6 +38,7 @@ class Parser
 		std::string say = "say";
 		std::string block = "block";
 		std::string touch = "touch";
+		std::string quit = "exit";
 
 	public:
 

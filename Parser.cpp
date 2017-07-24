@@ -84,7 +84,7 @@ void Parser::parser(Room& curRoom, Player& curPlayer, playerString& curSentence)
 #endif
     std::cout << "All verbs you can use: go, use, take, open, talk, drink, drop, \n";
     std::cout << "look, help, inventory, fill, move, cross, unlock, investigate, \n";
-    std::cout << "smell, sneak, attack, ring, say, block, touch. " << std::endl;
+    std::cout << "smell, sneak, attack, ring, say, block, touch, exit. " << std::endl;
 
     }
     else if(verbInSentence(curSentence, inventory) == true)
@@ -191,6 +191,14 @@ void Parser::parser(Room& curRoom, Player& curPlayer, playerString& curSentence)
 		//touch something
 		touchSomething(curSentence, curPlayer, curRoom);
     }
+    else if(verbInSentence(curSentence, quit) == true)
+    {
+#ifdef NOISYTEST
+		std::cout << "'exit' detected...proceeding to 'exit' function." << std::endl;
+#endif
+		exit(0);
+    }
+
 	else
 	{
 		//entered wrong verb
@@ -249,6 +257,7 @@ void Parser::findNextRoom(playerString& curSentence, Room& curRoom, Player& curP
 			std::cout << "You have entered: " << (*i) << "Room." << std::endl;
 
 			//set current room to room name found here.
+		//	curPlayer.setCurrentLocation(*i); //setting current room;
 
 			roomFound = true;
 			break;
