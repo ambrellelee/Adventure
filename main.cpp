@@ -90,7 +90,7 @@ main()
                 input = playerInput();
             }
             d.sendParse(p, input);
-            d.setCurrentRoom(1);
+            d.setCurrentRoom(2);
             d.printCurLocation();
             input.clear();
             while(input.size() == 0)
