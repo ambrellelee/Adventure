@@ -28,7 +28,7 @@ std::string Dungeon::showGameDescription()
 	return gameDesc;
 }
 
-void Dungeon::showMenu()
+int Dungeon::showMenu()
 {
    bool go = false;
     while(!go)
