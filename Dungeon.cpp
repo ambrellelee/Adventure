@@ -46,7 +46,7 @@ int Dungeon::showMenu()
             go = true;
             return 2;
         }
-        else if (playerInput < 1 || playerInput > 2)
+        else if (playerInput < 1 || playerInput > 3)
         {
             std::cout << "Please enter a valid option." <<std::endl;
 	    std::cin.clear(); // reset failbit
