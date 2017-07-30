@@ -1,7 +1,9 @@
 #include "Player.hpp"
 
-#define NOISYTEST
+//Finish move, drop, and pickup methods
+//add in identifier to end the game
 
+//typedef vector<Inventory> vectorInventory;
 //Constructors
 Player::Player()
 {
@@ -15,7 +17,7 @@ Player::Player(int hPoints, int pStamina, double pScore)
 	hitPoints = hPoints;
 	stamina = pStamina;
 	score = pScore;
-	bag = new Inventory("bag");
+//	bag = new Inventory("bag");
 }
 
 //set values
@@ -31,7 +33,8 @@ void Player::setHitPoints(int playerHitPoints)
 
 	if(hitPoints >= maxHitPoints)
 	{
-		//end Game
+		std::cout << "You have been hit too many times. You have lost." << std::endl;
+		exit(0);
 	}
 }
 
@@ -41,7 +44,8 @@ void Player::setStamina(int playerStamina)
 
 	 if(stamina <= 0)
      {
-          //end Game
+          std::cout << "You do not have enough stamina left. You have expired." <<std::endl;
+		exit(0);
      }
      else if(stamina > maxStamina)
      {
@@ -99,33 +103,35 @@ void move()
 
 void Player::addToBag(std::string thing)
 {
-	bag->addInventory(thing);
+//	bag->addInventory(thing);
 }
 
 void Player::removeFromBag(std::string thing)
 {
-    bag->removeInventory(thing);
+//	bag->removeInventory(thing);
 }
 
 void Player::lookBag()
 {
-	bag->viewInventory();
+//	 bag->viewInventory();
 }
 
+Player::~Player()
+{
+	delete bag;
+}
+
+//hardcoded comparsion for now refine later
 void Player::pickUpItem(std::string thing)
 {
     std::cout << "picked up item, add to bag" << std::endl;
+
 //	addToBag(thing);  //buggy at this point
 }
 
 void Player::dropItem(std::string thing)
 {
 	removeFromBag(thing);
-}
-
-Player::~Player()
-{
-	delete bag;
 }
 
 bool Player::itemInInventory(std:: string pItem)

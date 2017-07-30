@@ -8,13 +8,13 @@ class Feature
 {
 	private:
 		std::string fName;
-		std::vector<std::string> fDesc;
-		std::vector<std::string> interactionDesc;
+		std::vector<std::string> fDesc;	
+		std::vector<std::string> interactionDesc;		
 		int interactionNum;
-		std::vector<bool> nextAction;
+		std::vector<bool> nextAction;		
 
 	public:
-		Feature(std::string newName, std::vector<std::string> newDesc);
+		Feature(std::string, std::vector<std::string>);
 		Feature(std::string featName, std::vector<std::string> fDescs, std::vector<std::string> interactions, std::vector<bool> actions);
 		void setName(std::string);
 		void setFeatureDesc(std::string);

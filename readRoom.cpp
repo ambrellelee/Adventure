@@ -54,12 +54,11 @@ bool setBool(string input)
 
 int main(int argc, char *argv[])
 {
-/*
 	if (argc != 2) {
 		cout << "USAGE: " << argv[0] << "[directoryName]" << endl;
 		return 1;
 	}
-*/
+
 	fstream inputFile;
 	string line;
 	string fullMessage = "";
@@ -76,8 +75,7 @@ int main(int argc, char *argv[])
 	vector<string> roomDescriptions;
 	int numRoomDescriptions;
 
-//	directory = argv[1];
-directory = "C:/Users/Yunghi/Desktop/CS467/Gemini/roomData/";
+	directory = argv[1];
 	//dp = opendir(dir.c_str());
 	fullPath = directory + "/" + "one.txt";
 
@@ -96,19 +94,19 @@ directory = "C:/Users/Yunghi/Desktop/CS467/Gemini/roomData/";
 	cout << numRoomDescriptions << endl;
 	getline(inputFile, line);
 	getline(inputFile, line);
-
-
-	for (int i = 0; i < numRoomDescriptions; i++)
+	
+	
+	for (int i = 0; i < numRoomDescriptions; i++) 
 	{
-		while (inputFile && line != "@@")
+		while (inputFile && line != "@@") 
 		{
 			fullMessage = fullMessage + line + "\n";
-			getline(inputFile, line);
-		}
+			getline(inputFile, line);			
+		}		
 			getline (inputFile, line);
 			roomDescriptions.push_back(fullMessage);
 			fullMessage = "";
-
+		
 	}
 
 	for (int i = 0; i < roomDescriptions.size(); i++) {
@@ -143,7 +141,7 @@ directory = "C:/Users/Yunghi/Desktop/CS467/Gemini/roomData/";
         }
 
 	getline(inputFile, line);
-
+	
 	canProceed = setBool(line);
 
 	if (canProceed == true)
@@ -168,15 +166,15 @@ directory = "C:/Users/Yunghi/Desktop/CS467/Gemini/roomData/";
         {
 		getline(inputFile, line);
 		iName = line;
-
+		
 		getline(inputFile, line);
 		getline(inputFile, line);
 		iDescription = line;
-
+		
 		getline(inputFile, line);
 		getline(inputFile, line);
 		iUse = line;
-
+		
 		getline(inputFile, line);
 		getline(inputFile, line);
 		stringstream wLevel(line);
@@ -186,11 +184,11 @@ directory = "C:/Users/Yunghi/Desktop/CS467/Gemini/roomData/";
 		getline(inputFile, line);
 		stringstream limit(line);
 		limit >> waterLimit;
-
+	
 		getline(inputFile, line);
 		getline(inputFile, line);
 		canPickUp = setBool(line);
-
+		
 		getline(inputFile, line);
                 getline(inputFile, line);
                 stringstream fNum(line);
@@ -205,7 +203,7 @@ directory = "C:/Users/Yunghi/Desktop/CS467/Gemini/roomData/";
 		Item newItem = Item(iName, iDescription, iUse, waterNum, waterLimit, canPickUp, featNum, interactionNum);
 		roomItems.push_back(newItem);
 
-
+		
         }
 
         for (int i = 0; i < roomItems.size(); i++)
@@ -235,7 +233,7 @@ directory = "C:/Users/Yunghi/Desktop/CS467/Gemini/roomData/";
 	vector<bool> canLeave;
 	bool canLeaveNow;
 	int numberFeatures;
-
+	
 	getline(inputFile, line);
         stringstream numFeatures(line);
         numFeatures >> numberFeatures;
@@ -257,7 +255,7 @@ directory = "C:/Users/Yunghi/Desktop/CS467/Gemini/roomData/";
 		descNumber >> numDesc;
 		getline(inputFile, line);
 		getline(inputFile, line);
-
+		
 		for (int j = 0; j < numDesc; j++)
 		{
 			while(line != "@@")
@@ -265,7 +263,7 @@ directory = "C:/Users/Yunghi/Desktop/CS467/Gemini/roomData/";
 				fullMessage = fullMessage + line + "\n";
 				getline(inputFile, line);
 			}
-
+			
 			getline(inputFile, line);
 			fDesc.push_back(fullMessage);
 			fullMessage = "";
@@ -292,7 +290,7 @@ directory = "C:/Users/Yunghi/Desktop/CS467/Gemini/roomData/";
 			getline(inputFile, line);
                         canLeave.push_back(canLeaveNow);
                 }
-
+		
 		//getline(inputFile, line);
 
 		Feature myFeat = Feature(featName, fDesc, interactionDesc, canLeave);
@@ -301,12 +299,12 @@ directory = "C:/Users/Yunghi/Desktop/CS467/Gemini/roomData/";
 		interactionDesc.clear();
 		canLeave.clear();
 	}
-
+	
 	//Feature::Feature(std::string featName, std::vector<std::string> fDescs, std::vector<std::string> interactions, std::vector<bool> actions)
 	vector<string> fDescTest;
         vector<string> interactionDescTest;
         vector<bool> canLeaveTest;
-
+	
 	for (int i = 0; i < roomFeatures.size(); i++)
 	{
 		cout << roomFeatures[i].getName() << endl;

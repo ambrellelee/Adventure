@@ -1,5 +1,8 @@
 #include "Dungeon.hpp"
 #include "Player.hpp"
+#include "Item.hpp"
+#include "Room.hpp"
+#include "Parser.hpp"
 #include <iostream>
 #include <algorithm>
 #include <string>
@@ -25,7 +28,16 @@ void newGame(Dungeon& newD, Player& newP)
         std::cout << "failed to load rooms" << std::endl;
     }
     readFile.close();
-
+    std::ifstream readFile2("room2.txt");
+    if(readFile2)
+    {
+        newD.readRooms(readFile2);  //load rooms from file on dungeon
+    }
+    else
+    {
+        std::cout << "failed to load rooms" << std::endl;
+    }
+    readFile2.close();
 }
 
 std::vector<string> split(const string& s)
@@ -62,143 +74,47 @@ main()
 {
     Dungeon d;  //create dungeon
     Player p;   //create player
-
+    Parser par;
     newGame(d, p);
-    d.setCurrentRoom(0);
-    d.printCurLocation();
 
-    std::vector<string> input;
-    while(input.size() == 0)
+    bool quit = false;
+    while(!quit)
     {
-        input = playerInput();
+        int choice = d.showMenu();
+        if(choice ==  1)
+        {
+            d.setCurrentRoom(0);
+            d.printCurLocation();
+
+            std::vector<string> input;
+            while(input.size() == 0)
+            {
+                input = playerInput();
+            }
+            par.parser(d, p, input);
+            d.setCurrentRoom(1);
+            d.printCurLocation();
+            input.clear();
+            while(input.size() == 0)
+            {
+                input = playerInput();
+            }
+            par.parser(d, p, input);
+        //    exit(0);
+        }
+        /************************************************************************
+        else if(choice == 2)
+        {
+        Room myRoom = Room("one.txt", 0);
+            myRoom.printAllData();
+        }
+        *************************************************************************/
+        else
+        {
+            quit = true;
+            exit(0);
+        }
     }
-    d.sendParse(p, input);
-    d.setCurrentRoom(1);
-    d.printCurLocation();
-    input.clear();
-    while(input.size() == 0)
-    {
-        input = playerInput();
-    }
-    d.sendParse(p, input);
-
-    /*
-
-    std::cout << "test" << std::endl;
-    std::cout << "creating new room..." << std::endl;
-    Room testRoom;
-    std::cout << "creating new player..." << std::endl;
-    Player testPlayer;
-
-//test GO to room
-    std::vector<std::string> curSentence;
-    curSentence.push_back("Go");
-    curSentence.push_back("To");
-    curSentence.push_back("Treasure");
-    curSentence.push_back("Room");
-
-	cout << endl;
-    std::cout << "sending in parsing request" << std::endl;
-    Parser* p = new Parser;
-    p->parser(testRoom, testPlayer, curSentence);
-    curSentence.clear();
-    curSentence.push_back("Go");
-    curSentence.push_back("To");
-    curSentence.push_back("Riddle");
-    curSentence.push_back("Room");
-
-	cout << endl;
-    std::cout << "sending in parsing request" << std::endl;
-    p->parser(testRoom, testPlayer, curSentence);
-
-//test Use item
-    curSentence.clear();
-    curSentence.push_back("Use");
-    curSentence.push_back("SWORD");
-    cout << endl;
-    std::cout << "sending in parsing request" << std::endl;
-    p->parser(testRoom, testPlayer, curSentence);
-
-    curSentence.clear();
-    curSentence.push_back("Use");
-    curSentence.push_back("chest");
-    cout << endl;
-    std::cout << "sending in parsing request" << std::endl;
-    p->parser(testRoom, testPlayer, curSentence);
-
-//test open object
-    curSentence.clear();
-    curSentence.push_back("Open");
-    curSentence.push_back("Chest");
-    cout << endl;
-    std::cout << "sending in parsing request" << std::endl;
-    p->parser(testRoom, testPlayer, curSentence);
-    curSentence.clear();
-    curSentence.push_back("Open");
-    curSentence.push_back("rock");
-    cout << endl;
-    std::cout << "sending in parsing request" << std::endl;
-    p->parser(testRoom, testPlayer, curSentence);
-
-
-//test take item
-    curSentence.clear();
-    curSentence.push_back("Take");
-    curSentence.push_back("SWORD");
-    cout << endl;
-    std::cout << "sending in parsing request" << std::endl;
-    p->parser(testRoom, testPlayer, curSentence);
-    curSentence.clear();
-    curSentence.push_back("Take");
-    curSentence.push_back("shield");
-    cout << endl;
-    std::cout << "sending in parsing request" << std::endl;
-    p->parser(testRoom, testPlayer, curSentence);
-
-//test look
-    curSentence.clear();
-    curSentence.push_back("Look");
-    curSentence.push_back("at");
-    curSentence.push_back("chest");
-    cout << endl;
-    std::cout << "sending in parsing request" << std::endl;
-    p->parser(testRoom, testPlayer, curSentence);
-    curSentence.clear();
-    curSentence.push_back("Look");
-    cout << endl;
-    std::cout << "sending in parsing request" << std::endl;
-    p->parser(testRoom, testPlayer, curSentence);
-
-//test help
-    curSentence.clear();
-    curSentence.push_back("HELP");
-    cout << endl;
-    std::cout << "sending in parsing request" << std::endl;
-    p->parser(testRoom, testPlayer, curSentence);
-
-*/
-
- //testing vector
-/*
-    std::cout << "testing > string to lowercase." << std::endl;
-    std::cout << "String To Test." << std::endl;
-
-    vector<string>::iterator i;
-    for (i = curSentence.begin(); i != curSentence.end(); ++i)
-	{
-		//converts the chars in string all into lower case to compare
-		//https://notfaq.wordpress.com/2007/08/04/cc-convert-string-to-upperlower-case/
-		cout << *i << " > ";
-		std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-        cout << " " << *i << " | ";
-		if (*i == "test")
-		{
-			cout << endl << "test found" << endl;
-		}
-	}
-
-*/
-
 
     return 0;
 }

@@ -10,73 +10,73 @@ using std::cout;
 using std::endl;
 using std::string;
 using std::cin;
-void Parser::parser(Room& curRoom, Player& curPlayer, playerString& curSentence)
+void Parser::parser(Dungeon& curDungeon, Player& curPlayer, playerString& curSentence)
 {
-    if (verbInSentence(curSentence, goTo) == true)
+    if (verbInSentence(curSentence, "go") == true)
 	{
-		//search for the next room and if found, go to next room.
+		//search for the next Room and if found, go to next Room.
 #ifdef NOISYTEST
 		std::cout << "'GO' detected...proceeding to 'GO' function." << std::endl;
 #endif
-		findNextRoom(curSentence, curRoom, curPlayer);
+		findNextDungeon(curSentence, curDungeon, curPlayer);
 	}
-	else if(verbInSentence(curSentence, useItem) == true)
+	else if(verbInSentence(curSentence, "use") == true)
 	{
 #ifdef NOISYTEST
 		std::cout << "'Use' detected...proceeding to 'Use' function." << std::endl;
 #endif
 		//search for item name in inventory and if it exist, use it.
-		searchItemToUse(curSentence, curPlayer, curRoom);
+		searchItemToUse(curSentence, curPlayer, curDungeon);
 	}
-	else if (verbInSentence(curSentence, take) == true)
+	else if (verbInSentence(curSentence, "take") == true)
 	{
 #ifdef NOISYTEST
 		std::cout << "'Take' detected...proceeding to 'Take' function." << std::endl;
 #endif
-		//search for item in room to take if exist
-		takeItemInRoom(curSentence, curPlayer, curRoom);
+		//search for item in Dungeon to take if exist
+		takeItemInDungeon(curSentence, curPlayer, curDungeon);
 	}
-	else if(verbInSentence(curSentence, openChest) == true)
+	else if(verbInSentence(curSentence, "open") == true)
     {
 #ifdef NOISYTEST
 		std::cout << "'Open' detected...proceeding to 'Open' function." << std::endl;
 #endif
-		//Open object in the room
-		openObject(curSentence, curPlayer, curRoom);
+		//Open object in the Dungeon
+		openObject(curSentence, curPlayer, curDungeon);
     }
-    else if(verbInSentence(curSentence, talk) == true)
+    else if(verbInSentence(curSentence, "talk") == true)
     {
 #ifdef NOISYTEST
 		std::cout << "'Talk' detected...proceeding to 'Talk' function." << std::endl;
 #endif
-		//talk to NPC in the room
-		talkToNPC(curSentence, curPlayer, curRoom);
+		//talk to NPC in the Dungeon
+		talkToNPC(curSentence, curPlayer, curDungeon);
     }
-    else if(verbInSentence(curSentence, drink) == true)
+    else if(verbInSentence(curSentence, "drink") == true)
     {
 #ifdef NOISYTEST
 		std::cout << "'Drink' detected...proceeding to 'Drink' function." << std::endl;
 #endif
 		//drink from item
-		drinkSomething(curSentence, curPlayer, curRoom);
+		drinkSomething(curSentence, curPlayer, curDungeon);
     }
-    else if(verbInSentence(curSentence, drop) == true)
+    else if(verbInSentence(curSentence, "drop") == true)
     {
 #ifdef NOISYTEST
 		std::cout << "'drop' detected...proceeding to 'drop' function." << std::endl;
 #endif
 		//drop item in inventory
-		dropSomething(curSentence, curPlayer, curRoom);
+		dropSomething(curSentence, curPlayer, curDungeon);
     }
-    else if(verbInSentence(curSentence, look) == true)
+    else if(verbInSentence(curSentence, "look") == true)
     {
 #ifdef NOISYTEST
 		std::cout << "'look' detected...proceeding to 'look' function." << std::endl;
 #endif
-		//look around room
-		lookAtStuff(curSentence, curPlayer, curRoom);
+		//look around Dungeon
+		lookAtStuff(curSentence, curPlayer, curDungeon);
     }
-    else if(verbInSentence(curSentence, help) == true)
+    else if(verbInSentence(curSentence, "help") == true)
     {
         //print help stuffs
 #ifdef NOISYTEST
@@ -84,10 +84,10 @@ void Parser::parser(Room& curRoom, Player& curPlayer, playerString& curSentence)
 #endif
     std::cout << "All verbs you can use: go, use, take, open, talk, drink, drop, \n";
     std::cout << "look, help, inventory, fill, move, cross, unlock, investigate, \n";
-    std::cout << "smell, sneak, attack, ring, say, block, touch. " << std::endl;
+    std::cout << "smell, sneak, attack, ring, say, block, touch, exit. " << std::endl;
 
     }
-    else if(verbInSentence(curSentence, inventory) == true)
+    else if(verbInSentence(curSentence, "inventory") == true)
     {
 #ifdef NOISYTEST
 		std::cout << "'inventory' detected...displaying items in inventory:" << std::endl;
@@ -95,102 +95,110 @@ void Parser::parser(Room& curRoom, Player& curPlayer, playerString& curSentence)
 		//print inventory
 	//	curPlayer.lookBag(); buggy at this point.
     }
-    else if(verbInSentence(curSentence, fills) == true)
+    else if(verbInSentence(curSentence, "fill") == true)
     {
 #ifdef NOISYTEST
 		std::cout << "'fill' detected...proceeding to 'fill' function." << std::endl;
 #endif
 		//fill flask with water
-		fillObject(curSentence, curPlayer, curRoom);
+		fillObject(curSentence, curPlayer, curDungeon);
     }
-    else if(verbInSentence(curSentence, moves) == true)
+    else if(verbInSentence(curSentence, "move") == true)
     {
 #ifdef NOISYTEST
 		std::cout << "'move' detected...proceeding to 'move' function." << std::endl;
 #endif
 		//move object
-		moveStuff(curSentence, curPlayer, curRoom);
+		moveStuff(curSentence, curPlayer, curDungeon);
     }
-    else if(verbInSentence(curSentence, cross) == true)
+    else if(verbInSentence(curSentence, "cross") == true)
     {
 #ifdef NOISYTEST
 		std::cout << "'cross' detected...proceeding to 'cross' function." << std::endl;
 #endif
 		//cross somewhere
-		crossObject(curSentence, curPlayer, curRoom);
+		crossObject(curSentence, curPlayer, curDungeon);
     }
-    else if(verbInSentence(curSentence, unlock) == true)
+    else if(verbInSentence(curSentence, "unlock") == true)
     {
 #ifdef NOISYTEST
 		std::cout << "'unlock' detected...proceeding to 'unlock' function." << std::endl;
 #endif
 		//unlock object
-		unlockObject(curSentence, curPlayer, curRoom);
+		unlockObject(curSentence, curPlayer, curDungeon);
     }
-    else if(verbInSentence(curSentence, investigate) == true)
+    else if(verbInSentence(curSentence, "investigate") == true)
     {
 #ifdef NOISYTEST
 		std::cout << "'investigate' detected...proceeding to 'investigate' function." << std::endl;
 #endif
-		//investigate room
-		investigateStuff(curSentence, curPlayer, curRoom);
+		//investigate Dungeon
+		investigateStuff(curSentence, curPlayer, curDungeon);
     }
-    else if(verbInSentence(curSentence, smell) == true)
+    else if(verbInSentence(curSentence, "smell") == true)
     {
 #ifdef NOISYTEST
 		std::cout << "'smell' detected...proceeding to 'smell' function." << std::endl;
 #endif
 		//smell
-		smellStuff(curSentence, curPlayer, curRoom);
+		smellStuff(curSentence, curPlayer, curDungeon);
     }
-    else if(verbInSentence(curSentence, sneak) == true)
+    else if(verbInSentence(curSentence, "sneak") == true)
     {
 #ifdef NOISYTEST
 		std::cout << "'sneak' detected...proceeding to 'sneak' function." << std::endl;
 #endif
 		//sneak around
-		sneakSomewhere(curSentence, curPlayer, curRoom);
+		sneakSomewhere(curSentence, curPlayer, curDungeon);
     }
-    else if(verbInSentence(curSentence, attack) == true)
+    else if(verbInSentence(curSentence, "attack") == true)
     {
 #ifdef NOISYTEST
 		std::cout << "'attack' detected...proceeding to 'attack' function." << std::endl;
 #endif
 		//attack enemy
-		attackSomething(curSentence, curPlayer, curRoom);
+		attackSomething(curSentence, curPlayer, curDungeon);
     }
-    else if(verbInSentence(curSentence, ring) == true)
+    else if(verbInSentence(curSentence, "ring") == true)
     {
 #ifdef NOISYTEST
 		std::cout << "'ring' detected...proceeding to 'ring' function." << std::endl;
 #endif
 		//ring something
-		ringObject(curSentence, curPlayer, curRoom);
+		ringObject(curSentence, curPlayer, curDungeon);
     }
-    else if(verbInSentence(curSentence, say) == true)
+    else if(verbInSentence(curSentence, "say") == true)
     {
 #ifdef NOISYTEST
 		std::cout << "'say' detected...proceeding to 'say' function." << std::endl;
 #endif
 		//say something
-		saySomething(curSentence, curPlayer, curRoom);
+		saySomething(curSentence, curPlayer, curDungeon);
     }
-    else if(verbInSentence(curSentence, block) == true)
+    else if(verbInSentence(curSentence, "block") == true)
     {
 #ifdef NOISYTEST
 		std::cout << "'block' detected...proceeding to 'block' function." << std::endl;
 #endif
 		//block attack
-		blockSomething(curSentence, curPlayer, curRoom);
+		blockSomething(curSentence, curPlayer, curDungeon);
     }
-    else if(verbInSentence(curSentence, touch) == true)
+    else if(verbInSentence(curSentence, "touch") == true)
     {
 #ifdef NOISYTEST
 		std::cout << "'touch' detected...proceeding to 'touch' function." << std::endl;
 #endif
 		//touch something
-		touchSomething(curSentence, curPlayer, curRoom);
+		touchSomething(curSentence, curPlayer, curDungeon);
     }
+    else if(verbInSentence(curSentence, "exit") == true)
+    {
+#ifdef NOISYTEST
+		std::cout << "'exit' detected...proceeding to 'exit' function." << std::endl;
+#endif
+		exit(0);
+    }
+
 	else
 	{
 		//entered wrong verb
@@ -220,50 +228,50 @@ bool Parser::verbInSentence(playerString& curSentence, std::string stringToCompa
 }
 
 //for verb go
-void Parser::findNextRoom(playerString& curSentence, Room& curRoom, Player& curPlayer)
+void Parser::findNextDungeon(playerString& curSentence, Dungeon& curDungeon, Player& curPlayer)
 {
 
 #ifdef NOISYTEST
-    std::cout << "'GO' function > proceeding to look for room name to go to." << std::endl;
+    std::cout << "'GO' function > proceeding to look for Dungeon name to go to." << std::endl;
 #endif // NOISYTEST
 
-	bool roomFound = false;
+	bool DungeonFound = false;
 
-	//iterate through vector of strings to find room names
+	//iterate through vector of strings to find Dungeon names
 	for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
 	{
 	    /* test for string
 	    if(*i == "west")
         {
-            std::cout << "west room found" << std::endl;
-            roomFound = true;
+            std::cout << "west Dungeon found" << std::endl;
+            DungeonFound = true;
 			break;
         }
         */
-		//check if any string matches the room names
-		//room should return true or false if name is found or not
+		//check if any string matches the Dungeon names
+		//Dungeon should return true or false if name is found or not
 
 		std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-		if (curRoom.checkRoomNames((*i)) == true)
+		if (curDungeon.checkRoomNames((*i)) == true)
 		{
-			std::cout << "You have entered: " << (*i) << "Room." << std::endl;
+			std::cout << "You have entered: " << (*i) << "Dungeon." << std::endl;
 
-			//set current room to room name found here.
-		//	curPlayer.setCurrentLocation(*i); //setting current room;
+			//set current Dungeon to Dungeon name found here.
+		//	curPlayer.setCurrentLocation(*i); //setting current Dungeon;
 
-			roomFound = true;
+			DungeonFound = true;
 			break;
 		}
 
 	}
-	if (roomFound == false)
+	if (DungeonFound == false)
 	{
-		std::cout << "Invalid room." << std::endl;
+		std::cout << "Invalid Dungeon." << std::endl;
 	}
 }
 
 //for verb use
-void Parser::searchItemToUse(playerString& curSentence, Player& curPlayer, Room& curRoom)
+void Parser::searchItemToUse(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
 {
 #ifdef NOISYTEST
     std::cout << "'Use' function > proceeding to use object." << std::endl;
@@ -302,7 +310,7 @@ void Parser::searchItemToUse(playerString& curSentence, Player& curPlayer, Room&
 }
 
 //for verb take
-void Parser::takeItemInRoom(playerString& curSentence, Player& curPlayer, Room& curRoom)
+void Parser::takeItemInDungeon(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
 {
 #ifdef NOISYTEST
     std::cout << "'take' function > proceeding to take object." << std::endl;
@@ -312,14 +320,14 @@ void Parser::takeItemInRoom(playerString& curSentence, Player& curPlayer, Room& 
 	//iterate through vector of strings to find item name
 	for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
 	{
-		//check if item is in room
+		//check if item is in Dungeon
 		std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-		if (curRoom.checkItemInRoom((*i)) == true)
+		if (curDungeon.checkItemInRoom((*i)) == true)
 		{
-			//item is in room, pick up item and place in player inventory
+			//item is in Dungeon, pick up item and place in player inventory
 			curPlayer.pickUpItem(*i);
-			//remove item from the room
-	//		curRoom.removeItem(*i);
+			//remove item from the Dungeon
+	//		curDungeon.removeItem(*i);
 			cout << "You picked up " << (*i) << endl;
 			itemTaken = true;
 			break;
@@ -334,7 +342,7 @@ void Parser::takeItemInRoom(playerString& curSentence, Player& curPlayer, Room& 
 }
 
 //for verb open
-void Parser::openObject(playerString& curSentence, Player& curPlayer, Room& curRoom)
+void Parser::openObject(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
 {
 
 #ifdef NOISYTEST
@@ -349,7 +357,7 @@ void Parser::openObject(playerString& curSentence, Player& curPlayer, Room& curR
 		//check if any string matches the names
 
 		std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-		if (curRoom.checkItemInRoom((*i)) == true)
+		if (curDungeon.checkItemInRoom((*i)) == true)
 		{
 			std::cout << "You have opened " << (*i) << std::endl;
 
@@ -366,7 +374,7 @@ void Parser::openObject(playerString& curSentence, Player& curPlayer, Room& curR
 }
 
 //for verb talk
-void Parser::talkToNPC(playerString& curSentence, Player& curPlayer, Room& curRoom)
+void Parser::talkToNPC(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
 {
 #ifdef NOISYTEST
     std::cout << "'talk' function > proceeding to talk to Sphinx." << std::endl;
@@ -379,7 +387,7 @@ void Parser::talkToNPC(playerString& curSentence, Player& curPlayer, Room& curRo
 	{
 		//check if any string matches the names
 		std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-		if (curRoom.checkItemInRoom((*i)) == true)
+		if (curDungeon.checkItemInRoom((*i)) == true)
 		{
 			std::cout << (*i) << ": riddle riddle riddle riddle... " << std::endl;
 
@@ -395,7 +403,7 @@ void Parser::talkToNPC(playerString& curSentence, Player& curPlayer, Room& curRo
 }
 
 //for verb drink
-void Parser::drinkSomething(playerString& curSentence, Player& curPlayer, Room& curRoom)
+void Parser::drinkSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
 {
 #ifdef NOISYTEST
     std::cout << "'drink' function > proceeding to drink something." << std::endl;
@@ -425,7 +433,7 @@ void Parser::drinkSomething(playerString& curSentence, Player& curPlayer, Room& 
 }
 
 //for verb drop
-void Parser::dropSomething(playerString& curSentence, Player& curPlayer, Room& curRoom)
+void Parser::dropSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
 {
 #ifdef NOISYTEST
     std::cout << "'drop' function > proceeding to drop something." << std::endl;
@@ -456,7 +464,7 @@ void Parser::dropSomething(playerString& curSentence, Player& curPlayer, Room& c
 }
 
 //for verb look
-void Parser::lookAtStuff(playerString& curSentence, Player& curPlayer, Room& curRoom)
+void Parser::lookAtStuff(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
 {
 #ifdef NOISYTEST
     std::cout << "'look' function > proceeding to look at something." << std::endl;
@@ -464,9 +472,9 @@ void Parser::lookAtStuff(playerString& curSentence, Player& curPlayer, Room& cur
 
 	bool looking = false;
 
-    if(curSentence.size() < 2)
+    if(curSentence.size() == 1)
     {
-        std::cout << "repeats long form explanation of the room..." << std::endl;
+        std::cout << "repeats long form explanation of the Dungeon..." << std::endl;
         looking = true;
     }
     else
@@ -474,12 +482,13 @@ void Parser::lookAtStuff(playerString& curSentence, Player& curPlayer, Room& cur
         //iterate through vector of strings to find names
         for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
         {
-            //check if item is in room
+            //check if item is in Dungeon
             std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-            if (curRoom.checkItemInRoom((*i)) == true)
+            if (curDungeon.checkItemInRoom((*i)) == true)
             {
+
                 //look at item
-                curRoom.lookItems(*i);
+                curDungeon.lookItems(*i);
                 looking = true;
                 break;
             }
@@ -493,7 +502,7 @@ void Parser::lookAtStuff(playerString& curSentence, Player& curPlayer, Room& cur
 }
 
 //for verb fill
-void Parser::fillObject(playerString& curSentence, Player& curPlayer, Room& curRoom)
+void Parser::fillObject(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
 {
 #ifdef NOISYTEST
     std::cout << "'fill' function > proceeding to fill object." << std::endl;
@@ -522,7 +531,7 @@ void Parser::fillObject(playerString& curSentence, Player& curPlayer, Room& curR
 }
 
 //for verb move
-void Parser::moveStuff(playerString& curSentence, Player& curPlayer, Room& curRoom)
+void Parser::moveStuff(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
 {
 #ifdef NOISYTEST
     std::cout << "'move' function > proceeding to move object." << std::endl;
@@ -533,9 +542,9 @@ void Parser::moveStuff(playerString& curSentence, Player& curPlayer, Room& curRo
     //iterate through vector of strings to find names
     for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
     {
-        //check if item is in room
+        //check if item is in Dungeon
         std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-        if (curRoom.checkItemInRoom((*i)) == true)
+        if (curDungeon.checkItemInRoom((*i)) == true)
         {
             //move item
             std::cout << "you have moved " << (*i) << endl;
@@ -551,7 +560,7 @@ void Parser::moveStuff(playerString& curSentence, Player& curPlayer, Room& curRo
 }
 
 //for verb cross
-void Parser::crossObject(playerString& curSentence, Player& curPlayer, Room& curRoom)
+void Parser::crossObject(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
 {
 #ifdef NOISYTEST
     std::cout << "'cross' function > proceeding to cross object." << std::endl;
@@ -562,9 +571,9 @@ void Parser::crossObject(playerString& curSentence, Player& curPlayer, Room& cur
     //iterate through vector of strings to find names
     for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
     {
-        //check if object is in room
+        //check if object is in Dungeon
         std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-        if (curRoom.checkItemInRoom((*i)) == true)
+        if (curDungeon.checkItemInRoom((*i)) == true)
         {
             //cross object
             std::cout << "you have crossed the " << (*i) << endl;
@@ -580,7 +589,7 @@ void Parser::crossObject(playerString& curSentence, Player& curPlayer, Room& cur
 }
 
 //for verb unlock
-void Parser::unlockObject(playerString& curSentence, Player& curPlayer, Room& curRoom)
+void Parser::unlockObject(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
 {
 #ifdef NOISYTEST
     std::cout << "'unlock' function > proceeding to unlock object." << std::endl;
@@ -594,9 +603,9 @@ void Parser::unlockObject(playerString& curSentence, Player& curPlayer, Room& cu
         //iterate through vector of strings to find names
         for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
         {
-            //check if object is in room
+            //check if object is in Dungeon
             std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-            if (curRoom.checkItemInRoom((*i)) == true)
+            if (curDungeon.checkItemInRoom((*i)) == true)
             {
                 //unlock item
                 std::cout << "you have unlocked " << (*i) << endl;
@@ -616,19 +625,19 @@ void Parser::unlockObject(playerString& curSentence, Player& curPlayer, Room& cu
 }
 
 //for verb investigate
-void Parser::investigateStuff(playerString& curSentence, Player& curPlayer, Room& curRoom)
+void Parser::investigateStuff(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
 {
   //same as look smell???
 }
 
 //for verb smell
-void Parser::smellStuff(playerString& curSentence, Player& curPlayer, Room& curRoom)
+void Parser::smellStuff(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
 {
   //same as investigate and look smell??
 }
 
 //for verb sneak
-void Parser::sneakSomewhere(playerString& curSentence, Player& curPlayer, Room& curRoom)
+void Parser::sneakSomewhere(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
 {
 #ifdef NOISYTEST
     std::cout << "'sneak' function > proceeding to sneak around." << std::endl;
@@ -639,9 +648,9 @@ void Parser::sneakSomewhere(playerString& curSentence, Player& curPlayer, Room& 
     //iterate through vector of strings to find names
     for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
     {
-        //check if object is in room
+        //check if object is in Dungeon
         std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-        if (curRoom.checkItemInRoom((*i)) == true)
+        if (curDungeon.checkItemInRoom((*i)) == true)
         {
             //sneak around
             std::cout << "you have sneaked around the " << (*i) << endl;
@@ -657,7 +666,7 @@ void Parser::sneakSomewhere(playerString& curSentence, Player& curPlayer, Room& 
 }
 
 //for verb attack
-void Parser::attackSomething(playerString& curSentence, Player& curPlayer, Room& curRoom)
+void Parser::attackSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
 {
 #ifdef NOISYTEST
     std::cout << "'attack' function > proceeding to attack enemy." << std::endl;
@@ -668,9 +677,9 @@ void Parser::attackSomething(playerString& curSentence, Player& curPlayer, Room&
     //iterate through vector of strings to find names
     for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
     {
-        //check if enemy is in room
+        //check if enemy is in Dungeon
         std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-        if (curRoom.checkItemInRoom((*i)) == true)
+        if (curDungeon.checkItemInRoom((*i)) == true)
         {
             //attacking enemy
             std::cout << "you have attacked the " << (*i) << endl;
@@ -687,7 +696,7 @@ void Parser::attackSomething(playerString& curSentence, Player& curPlayer, Room&
 }
 
 //for verb ring
-void Parser::ringObject(playerString& curSentence, Player& curPlayer, Room& curRoom)
+void Parser::ringObject(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
 {
 #ifdef NOISYTEST
     std::cout << "'ring' function > proceeding to ring." << std::endl;
@@ -698,9 +707,9 @@ void Parser::ringObject(playerString& curSentence, Player& curPlayer, Room& curR
     //iterate through vector of strings to find names
     for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
     {
-        //check if object is in room
+        //check if object is in Dungeon
         std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-        if (curRoom.checkItemInRoom((*i)) == true)
+        if (curDungeon.checkItemInRoom((*i)) == true)
         {
             //ringing object
             std::cout << "you have ringed the " << (*i) << endl;
@@ -717,13 +726,13 @@ void Parser::ringObject(playerString& curSentence, Player& curPlayer, Room& curR
 }
 
 //for verb say
-void Parser::saySomething(playerString& curSentence, Player& curPlayer, Room& curRoom)
+void Parser::saySomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
 {
 //say something???
 }
 
 //for verb block
-void Parser::blockSomething(playerString& curSentence, Player& curPlayer, Room& curRoom)
+void Parser::blockSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
 {
 #ifdef NOISYTEST
     std::cout << "'block' function > proceeding to block attack." << std::endl;
@@ -734,9 +743,9 @@ void Parser::blockSomething(playerString& curSentence, Player& curPlayer, Room& 
     //iterate through vector of strings to find names
     for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
     {
-        //check if enemy is in room
+        //check if enemy is in Dungeon
         std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-        if (curRoom.checkItemInRoom((*i)) == true)
+        if (curDungeon.checkItemInRoom((*i)) == true)
         {
             //blocking attack
             std::cout << "you have blocked the attack from " << (*i) << endl;
@@ -753,7 +762,7 @@ void Parser::blockSomething(playerString& curSentence, Player& curPlayer, Room& 
 }
 
 //for verb touch
-void Parser::touchSomething(playerString& curSentence, Player& curPlayer, Room& curRoom)
+void Parser::touchSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
 {
-    searchItemToUse(curSentence, curPlayer, curRoom);
+    searchItemToUse(curSentence, curPlayer, curDungeon);
 }

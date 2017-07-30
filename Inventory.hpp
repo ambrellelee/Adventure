@@ -1,18 +1,22 @@
 #ifndef INVENTORY_HPP
 #define INVENTORY_HPP
 
-#include<vector>
-#include<iostream>
-#include<string>
 #include <algorithm>
+#include <vector>
+#include <iterator>
+#include <iostream>
+#include <string>
+#include "Item.hpp"
 
 class Inventory
 {
 	private:
 		std::vector<std::string> stuff;		//stores items
 		std::string containerName;
+        std::string Name;
 
 	public:
+	    Inventory();
 		Inventory(std::string newName);
 		void setName(std::string);
 		std::string getName();

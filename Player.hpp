@@ -7,9 +7,6 @@
 #include "Inventory.hpp"
 
 
-//add methods to find location in game
-//add methods to move player through game
-
 class Player
 {
 	private:
@@ -22,7 +19,7 @@ class Player
 		Room *currentLocation;
 		Room *lastLocation;
 		Inventory *bag;
-
+        std::vector<Inventory> allInventory;
 	public:
 		//Constructors
 		Player();
@@ -42,7 +39,7 @@ class Player
 		int getStamina();
 		int getScore();
 		Room* getCurrentLocation();
-        Room* getLastLocation();
+          Room* getLastLocation();
 
 		//add inventory method
 		void move();
@@ -52,10 +49,11 @@ class Player
 		void pickUpItem(std::string);
 		void dropItem(std::string);
 
-		//
+	//
 		bool itemInInventory(std:: string pItem);
 		bool useItem(std:: string pItem);
 		void removeItem(std::string pItem);
+
 };
 
 #endif

@@ -8,11 +8,11 @@ Feature::Feature(std::string newName, std::vector<std::string> newDesc)
 
 Feature::Feature(std::string featName, std::vector<std::string> fDescs, std::vector<std::string> interactions, std::vector<bool> actions)
 {
-	fName = featName;
-	fDesc = fDescs;
-	interactionDesc = interactions;
-	nextAction = actions;
-	interactionNum = 0;
+        fName = featName;
+        fDesc = fDescs;
+        interactionDesc = interactions;
+        nextAction = actions;
+        interactionNum = 0;
 }
 
 
@@ -45,7 +45,6 @@ std::vector<std::string> Feature::getInteractionDesc()
 {
 	return interactionDesc;
 }
-
 std::vector<bool> Feature::getActions()
 {
 	return nextAction;
