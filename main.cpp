@@ -77,6 +77,8 @@ main()
     Parser par;
     newGame(d, p);
 
+    d.printRooms();
+
     bool quit = false;
     while(!quit)
     {
@@ -100,7 +102,6 @@ main()
                 input = playerInput();
             }
             par.parser(d, p, input);
-        //    exit(0);
         }
         /************************************************************************
         else if(choice == 2)

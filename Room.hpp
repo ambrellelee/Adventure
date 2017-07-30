@@ -43,7 +43,7 @@ class Room
 		bool canProceedForward;
 
         std::vector<Item> allItems;  //temp item vector
-
+        Item *newItem;
 	public:
 		//Constructors
 		Room();
@@ -78,6 +78,9 @@ class Room
 		void addItem(Item);
 		bool findName(std::string rName);
         void iinRoom(std::string rName);
+        void currentItem(std::string rName);
+        std::string findItemDesc(std::string rItem);
+        std::string findItemUDesc(std::string rItem);
 };
 
 #endif

@@ -34,6 +34,7 @@ Room::Room()
 {
 	rName = "no name";
 	rType = "no type";
+	newItem = new Item;
 }
 
 Room::Room(std::string newName, std::vector<std::string> description, std::string tType, std::vector<std::string> exits)
@@ -48,6 +49,7 @@ Room::Room(std::string newName, std::vector<std::string> description, std::strin
 Room::~Room()
 {
 	inRoom.empty();
+//	delete newItem;
 }
 /************************************************************************
 //setItem
@@ -270,6 +272,31 @@ void Room::iinRoom(std::string rName)
         ii->getItemDesc(rName);
     }
 }
+
+void Room::currentItem(std::string rName)
+{
+    int position = 0;
+
+    for(vectorItems::iterator i = allItems.begin(); i != allItems.end(); ++i)
+    {
+        if(i->findIName(rName)==true)
+        {
+            newItem = &(allItems[position]);
+        }
+        position++;
+    }
+
+
+}
+std::string Room::findItemDesc(std::string rItem)
+{
+    return newItem->getDesc();
+}
+std::string Room::findItemUDesc(std::string rItem)
+{
+    return newItem->getUDesc();
+}
+
 /*************************************************************************
 void Room::printAllData()
 {

@@ -47,11 +47,12 @@ class Item
     public:
         //Constructors
         Item();
-
         void setItems(std::ifstream& readFile);
         void printItemInfo();
         std::string getName();
         bool findIName(std::string iName);
         void getItemDesc(std::string iName);
+        std::string getDesc();
+        std::string getUDesc();
 };
 #endif

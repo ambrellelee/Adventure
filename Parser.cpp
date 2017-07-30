@@ -325,7 +325,8 @@ void Parser::takeItemInDungeon(playerString& curSentence, Player& curPlayer, Dun
 		if (curDungeon.checkItemInRoom((*i)) == true)
 		{
 			//item is in Dungeon, pick up item and place in player inventory
-			curPlayer.pickUpItem(*i);
+			curDungeon.setCurItem(*i);
+			curPlayer.pickUpItem(curDungeon, *i);
 			//remove item from the Dungeon
 	//		curDungeon.removeItem(*i);
 			cout << "You picked up " << (*i) << endl;

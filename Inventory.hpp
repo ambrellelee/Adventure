@@ -11,12 +11,15 @@
 class Inventory
 {
 	private:
-		std::vector<std::string> stuff;		//stores items
-		std::string containerName;
+	//	std::vector<std::string> stuff;		//stores items
+	//	std::string containerName;
         std::string Name;
+        std::string desc;
+        std::string udesc;
 
 	public:
 	    Inventory();
+/*************************************************
 		Inventory(std::string newName);
 		void setName(std::string);
 		std::string getName();
@@ -24,6 +27,11 @@ class Inventory
 		void removeInventory(std::string);
 		void viewInventory();
 		bool inInventory(std::string);
+**************************************************/
+
+
+		void setInventory(std::string iName, std::string idesc, std::string iudesc);
+
 };
 
 #endif

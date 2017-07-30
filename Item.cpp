@@ -73,3 +73,12 @@ void Item::getItemDesc(std::string iName)
         cout << endl;
     }
 }
+
+std::string Item::getDesc()
+{
+    return desc;
+}
+std::string Item::getUDesc()
+{
+    return udesc;
+}

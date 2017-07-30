@@ -5,7 +5,7 @@
 #include<iostream>
 #include "Room.hpp"
 #include "Inventory.hpp"
-
+#include "Dungeon.hpp"
 
 class Player
 {
@@ -46,7 +46,7 @@ class Player
 		void addToBag(std::string);
 		void removeFromBag(std::string);
 		void lookBag();
-		void pickUpItem(std::string);
+		void pickUpItem(Dungeon& d, std::string);
 		void dropItem(std::string);
 
 	//

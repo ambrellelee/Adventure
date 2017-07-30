@@ -7,8 +7,9 @@
 //Constructors
 Player::Player()
 {
-	hitPoints = 0;
-	stamina = 0;
+    pName = "default";
+	hitPoints = 100;
+	stamina = 100;
 	score = 0;
 }
 
@@ -122,11 +123,12 @@ Player::~Player()
 }
 
 //hardcoded comparsion for now refine later
-void Player::pickUpItem(std::string thing)
+void Player::pickUpItem(Dungeon& d, std::string thing)
 {
-    std::cout << "picked up item, add to bag" << std::endl;
+    std::cout << "picked up "<< thing << " adding to bag" << std::endl;
+    Inventory inv;
+    inv.setInventory(thing, d.getItemDesc(thing),d.getItemUDesc(thing));
 
-//	addToBag(thing);  //buggy at this point
 }
 
 void Player::dropItem(std::string thing)

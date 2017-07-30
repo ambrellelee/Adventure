@@ -15,7 +15,6 @@ typedef std::vector<std::string> playerWords;
 Dungeon::Dungeon()
 {
 	newRoom = new Room;
-	newPlayer = new Player;
 }
 
 void Dungeon::setGameDescription(std::string newDesc)
@@ -56,9 +55,9 @@ int Dungeon::showMenu()
         else
         {
             go = true;
-            return 2;
         }
     }
+    return 2;
 }
 
 void Dungeon::playGame()
@@ -70,7 +69,6 @@ void Dungeon::playGame()
 Dungeon::~Dungeon()
 {
 	delete newRoom;
-	delete newPlayer;
 }
 void Dungeon::readRooms(std::ifstream& readFile)
 {
@@ -138,3 +136,17 @@ void Dungeon::lookItems(std::string rItem)
        i->iinRoom(rItem);
     }
 }
+
+void Dungeon::setCurItem(std::string rItem)
+{
+    newRoom->currentItem(rItem);
+}
+std::string Dungeon::getItemDesc(std::string rItem)
+{
+    return newRoom->findItemDesc(rItem);
+}
+std::string Dungeon::getItemUDesc(std::string rItem)
+{
+    return newRoom->findItemUDesc(rItem);
+}
+
