@@ -3,6 +3,7 @@
 
 #include<string>
 #include<iostream>
+#include<vector>
 #include "Room.hpp"
 #include "Inventory.hpp"
 
@@ -23,7 +24,7 @@ class Player
 	public:
 		//Constructors
 		Player();
-		Player(int hPoints, int pStamina, double pScore); 	
+		Player(std::string newName, int hPoints, int pStamina, double pScore); 	
 		~Player();	
 
 		//Set Values	
@@ -40,20 +41,25 @@ class Player
 		int getScore();
 		Room* getCurrentLocation();
           Room* getLastLocation();
+		void printPlayerInfo();
 	
-		//add inventory method
 		void move();
+		void subtractHitPoints(int help);
+		void addStamina(int sustenance);
 		void addToBag(Item thing);
 		void removeFromBag(std::string thing);
 		void lookBag();		
+		bool hasItem(std::string);
 		void pickUpItem(std::string);
 		void dropItem(std::string);
+		
 	
-	//
 		bool itemInInventory(std:: string pItem);
 		bool useItem(std:: string pItem);
 		void removeItem(std::string pItem);
-
+	
+		void savePlayer(std::ofstream& savePlayerFile);
+		void loadPlayer(std::ifstream& loadPlayerFile);
 };
 		
 #endif

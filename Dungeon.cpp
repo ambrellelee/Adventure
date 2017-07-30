@@ -49,7 +49,7 @@ int Dungeon::showMenu()
         else if (playerInput < 1 || playerInput > 3)
         {
             std::cout << "Please enter a valid option." <<std::endl;
-	    std::cin.clear(); // reset failbit
+		  std::cin.clear(); // reset failbit
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //skip bad input
         }
         else
@@ -105,4 +105,14 @@ void Dungeon::sendParse(Player& curP, playerWords& curSentence)
 void Dungeon::setCurrentRoom(int i)
 {
     newRoom = &(allRooms[i]);
+}
+
+void Dungeon::saveGame()
+{
+
+}
+
+void Dungeon::loadGame()
+{
+
 }

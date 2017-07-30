@@ -35,9 +35,11 @@ class Dungeon
 		void readRooms(std::ifstream& readFile);
         	void setCurrentRoom(Room& currRoom);
         	void setCurrentRoom(int i);
-       	 	void printRooms();
-       	 	void printCurLocation();
+       	void printRooms();
+        	void printCurLocation();
         	void sendParse(Player& curP, playerWords& curSentence);
+		void saveGame();
+		void loadGame();
 };
 
 #endif 

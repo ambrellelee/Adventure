@@ -151,7 +151,24 @@ bool Room::checkRoomNames(std::string rName)
 //hardcoded comparison for now to show it works until we have item working
 bool Room::checkItemInRoom(std::string rItem)
 {
-    if(rItem == "sword")
+	bool itemPresent;
+	
+	for(int i = 0; i < inRoom.size(); i++)
+	{
+		if(inRoom[i].iName == rItem)
+		{
+			itemPresent = true;
+		}
+		else
+		{
+			itemPresent = false;
+		}
+	}
+	
+	return itemPresent;
+}
+	
+/*    if(rItem == "sword")
     {
 #ifdef NOISYTEST
         std::cout << rItem << " taken from room." << std::endl;
@@ -174,8 +191,8 @@ bool Room::checkItemInRoom(std::string rItem)
     }
     else
         return false;
-
-}
+	
+}*/
 
 void Room::setRooms(std::ifstream& readFile)
 {

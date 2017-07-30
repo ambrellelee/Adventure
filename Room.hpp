@@ -20,29 +20,13 @@ class Room
 		std::vector<std::string> rDescription;
 		Room *north, *south, *east, *west;
         	std::string rType;
-		/*struct Item                   //holds information about items in room
-		{
-			std::string iName;
-			std::string iDesc;
-			std::string useDesc;
-			int waterLevel;
-			bool available;
-			Item(std::string newItemName, std::string newItemDesc, std::string newUseDesc, int water, bool addable)
-			{
-				iName = newItemName;
-				iDesc = newItemDesc;
-				useDesc = newUseDesc;
-				waterLevel = water;
-				available = addable;
-			}
-		};*/
 		std::vector<Item> inRoom;      //vector holding structs of items in the room
-          	std::vector<Item> dropped;	//vector holding structs of items that the player dropped in the room
-          	std::vector<std::string> exitVec;		//vector holding exits
+         	std::vector<Item> dropped;	//vector holding structs of items that the player dropped in the room
+         	std::vector<std::string> exitVec;		//vector holding exits
 		std::vector<std::string> interactions;	// vector holding descriptions for interactions that occur in the room
 		bool canProceedForward;
 
-		       std::vector<std::string> itemInRoom;  //temp item vector
+		std::vector<std::string> itemInRoom;  //temp item vector
 
 	public:
 		//Constructors
