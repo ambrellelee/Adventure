@@ -1,4 +1,5 @@
 #include "Room.hpp"
+#include "Item.hpp"
 #include "Feature.hpp"
 #include <vector>
 #include <string>
@@ -8,8 +9,6 @@
 
 using namespace std;
 typedef std::vector<std::string> Container;
-typedef vector<Item> vectorItems;
-
 /*Methods to check for interactivity will be in Features class
 -Need to add methods to add and remove items from room to inventory/from inventory to room
 -Add methods for features in room once Features class is finished
@@ -34,7 +33,6 @@ Room::Room()
 {
 	rName = "no name";
 	rType = "no type";
-	newItem = new Item;
 }
 
 Room::Room(std::string newName, std::vector<std::string> description, std::string tType, std::vector<std::string> exits)
@@ -49,15 +47,14 @@ Room::Room(std::string newName, std::vector<std::string> description, std::strin
 Room::~Room()
 {
 	inRoom.empty();
-//	delete newItem;
 }
-/************************************************************************
+
 //setItem
 void Room::setItem(std::string newItemName, std::string newItemDesc, std::string newUseDesc, int water, int waterMax, bool addable, int featSource, int interactionGet)
 {
 	inRoom.push_back(Item(newItemName, newItemDesc, newUseDesc, water, waterMax, addable, featSource, interactionGet));
 }
-**************************************************************************/
+
 //Set Values Methods
 void Room::setName(std::string newName)
 {
@@ -124,31 +121,11 @@ void Room::addItem(Item thing)
 	std::vector<Item>::iterator i = std::find(inRoom.begin(), inRoom.end(), thing);
 	inRoom.erase(i);
 }*/
-/***********************************************************
 void Room::lookItems(std::string rItem)
 {
     std::cout << "return item description here..." << std::endl;
-  //  vector <int>:: iterator i = allItems.begin();
-    for(vectorItems::iterator i = allItems.begin(); i != allItems.end(); ++i)
-    {
-        if(i->getName() == rItem)
-        {
-            cout << "this is working found it!!!!!!!!!!!!!!" << endl;
-        }
-   //     cout << i->getName() << endl;
-    }
-    /*
-    i = find(allItems.begin(), allItems.end(), rItem);
-    if(i != allItems.end())
-    {
-        int nPosition = distance(allItems.begin(), i);
-        cout << "Item name: " << *i;
-        cout << "vector position " << nPosition << endl;
-    }
-    /
+
 }
-***********************************************************/
-/******************************************************************
 //hardcoded comparison for now to show it works.
 bool Room::checkRoomNames(std::string rName)
 {
@@ -194,7 +171,6 @@ bool Room::checkItemInRoom(std::string rItem)
 
 }
 
-*************************************************************************************/
 void Room::setRooms(std::ifstream& readFile)
 {
     std::string blank = "";
@@ -214,11 +190,10 @@ void Room::setRooms(std::ifstream& readFile)
     int numOfItems = 0; //read in number of exit doors in the room
     std::string curItem = "";
     readFile >> blank >> numOfItems;
-    Item loadItem;
     for(i = 0; i !=numOfItems; i++)
     {
-        loadItem.setItems(readFile);
-        allItems.push_back(loadItem);
+        readFile >> blank >> curItem;
+        itemInRoom.push_back(curItem); //changed to inRoom from itemInRoom, which isn't declared. Is this ok?
     }
 }
 void Room::printRoomInfo()
@@ -229,18 +204,10 @@ void Room::printRoomInfo()
 	for(std::string::size_type i = 0; i != description.size(); i++)
     {
         cout << description[i];
-        /***********
-        if(description[i] == '%')
+        if(description[i] == '.')
         {
             cout << endl;
         }
-        **************/
-    }
-    cout << endl;
-    cout << "All items in the room are: " << endl;
-    for(vectorItems::iterator i = allItems.begin(); i != allItems.end(); ++i)
-    {
-        i->printItemInfo();
     }
 	cout << endl;
 	cout << "The door you see that you can to go to are " ;
@@ -252,52 +219,6 @@ void Room::printRoomInfo()
 	cout << "What do you want to do ? " << endl;
 }
 
-
-bool Room::findName(std::string rItem)
-{
-    for(vectorItems::iterator i = allItems.begin(); i != allItems.end(); ++i)
-    {
-        if(i->findIName(rItem)==true)
-        {
-            return true;
-        }
-    }
-    return false;
-}
-
-void Room::iinRoom(std::string rName)
-{
-    for(vectorItems::iterator ii = allItems.begin(); ii != allItems.end(); ++ii)
-    {
-        ii->getItemDesc(rName);
-    }
-}
-
-void Room::currentItem(std::string rName)
-{
-    int position = 0;
-
-    for(vectorItems::iterator i = allItems.begin(); i != allItems.end(); ++i)
-    {
-        if(i->findIName(rName)==true)
-        {
-            newItem = &(allItems[position]);
-        }
-        position++;
-    }
-
-
-}
-std::string Room::findItemDesc(std::string rItem)
-{
-    return newItem->getDesc();
-}
-std::string Room::findItemUDesc(std::string rItem)
-{
-    return newItem->getUDesc();
-}
-
-/*************************************************************************
 void Room::printAllData()
 {
         cout << "Room Name: " << rName << endl;
@@ -380,13 +301,18 @@ void Room::printAllData()
         }
 
         if (canProceedForward == true)
+	{
                 cout << "Can leave room now" << endl;
+
+	        std::cout << "---------------------------------------------------------------" << std::endl;
+	        std::cout << "~~~~~~~~~~~~   End of demo, thanks for watching.  ~~~~~~~~~~~~~" << std::endl;
+	        std::cout << "---------------------------------------------------------------" << std::endl;
+	}
         else
                 cout << "Can not leave room now" << endl;
 
 }
-************************************************************************/
-/*************************************************************************
+
 Room::Room(std::string roomFile, int thisRoomNum)
 {
         fstream inputFile;
@@ -598,4 +524,4 @@ Room::Room(std::string roomFile, int thisRoomNum)
 
         inputFile.close();
 }
-*************************************************************************/
+

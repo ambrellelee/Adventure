@@ -1,9 +1,10 @@
 #ifndef PARSER_HPP
 #define PARSER_HPP
 
-#include "Dungeon.hpp"
-#include "Player.hpp"
-#include "Inventory.hpp"
+#include"Dungeon.hpp"
+#include"Room.hpp"
+#include"Player.hpp"
+#include"Inventory.hpp"
 #include "Feature.hpp"
 #include<vector>
 #include<string>
@@ -42,30 +43,30 @@ class Parser
 */
 	public:
 
-		void parser(Dungeon& curDungeon, Player& curPlayer, playerString& curSentence);
+		void parser(Room& curRoom, Player& curPlayer, playerString& curSentence);
 		bool verbInSentence(playerString& curSentence, std::string stringToCompare);
 
 		//perform the verbs
-		void findNextDungeon(playerString& curSentence, Dungeon& curDungeon, Player& curPlayer);
-		void searchItemToUse(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
-		void takeItemInDungeon(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
-		void openObject(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
-		void talkToNPC(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
-		void drinkSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
-		void dropSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
-		void lookAtStuff(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
-		void fillObject(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
-		void moveStuff(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
-		void crossObject(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
-		void unlockObject(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
-		void investigateStuff(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
-		void smellStuff(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
-		void sneakSomewhere(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
-		void attackSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
-		void ringObject(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
-		void saySomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
-		void blockSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
-		void touchSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
+		void findNextRoom(playerString& curSentence, Room& curRoom, Player& curPlayer);
+		void searchItemToUse(playerString& curSentence, Player& curPlayer, Room& curRoom);
+		void takeItemInRoom(playerString& curSentence, Player& curPlayer, Room& curRoom);
+		void openObject(playerString& curSentence, Player& curPlayer, Room& curRoom);
+		void talkToNPC(playerString& curSentence, Player& curPlayer, Room& curRoom);
+		void drinkSomething(playerString& curSentence, Player& curPlayer, Room& curRoom);
+		void dropSomething(playerString& curSentence, Player& curPlayer, Room& curRoom);
+		void lookAtStuff(playerString& curSentence, Player& curPlayer, Room& curRoom);
+		void fillObject(playerString& curSentence, Player& curPlayer, Room& curRoom);
+		void moveStuff(playerString& curSentence, Player& curPlayer, Room& curRoom);
+		void crossObject(playerString& curSentence, Player& curPlayer, Room& curRoom);
+		void unlockObject(playerString& curSentence, Player& curPlayer, Room& curRoom);
+		void investigateStuff(playerString& curSentence, Player& curPlayer, Room& curRoom);
+		void smellStuff(playerString& curSentence, Player& curPlayer, Room& curRoom);
+		void sneakSomewhere(playerString& curSentence, Player& curPlayer, Room& curRoom);
+		void attackSomething(playerString& curSentence, Player& curPlayer, Room& curRoom);
+		void ringObject(playerString& curSentence, Player& curPlayer, Room& curRoom);
+		void saySomething(playerString& curSentence, Player& curPlayer, Room& curRoom);
+		void blockSomething(playerString& curSentence, Player& curPlayer, Room& curRoom);
+		void touchSomething(playerString& curSentence, Player& curPlayer, Room& curRoom);
 
 };
 

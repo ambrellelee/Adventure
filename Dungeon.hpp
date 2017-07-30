@@ -4,6 +4,8 @@
 #include <string.h>
 #include <iostream>
 #include "Room.hpp"
+#include "Player.hpp"
+#include "Parser.hpp"
 
 //start adding functions
 //add method to display game description
@@ -12,6 +14,7 @@ class Dungeon
 {
 	private:
 		Room *newRoom;
+		Player *newPlayer;
 		std::string gameDesc;
 		int playerInput;
 		typedef std::vector<std::string> playerWords;
@@ -29,17 +32,10 @@ class Dungeon
 
 		Dungeon(std::vector<Room> rooms);
 		void readRooms(std::ifstream& readFile);
-        void setCurrentRoom(Room& currRoom);
-        void setCurrentRoom(int i);
-        void printRooms();
-        void printCurLocation();
- //       void sendParse(Player& curP, playerWords& curSentence);
-        bool checkRoomNames(std::string rName);
-        bool checkItemInRoom(std::string rItem);
-        void lookItems(std::string rItem);		//look at an item in the room
-        std::string getItemDesc(std::string rItem);
-        std::string getItemUDesc(std::string rItem);
-        void setCurItem(std::string rItem);
+        	void setCurrentRoom(Room& currRoom);
+        	void setCurrentRoom(int i);
+       	 	void printRooms();
+       	 	void printCurLocation();
 };
 
 #endif

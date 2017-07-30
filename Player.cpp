@@ -3,13 +3,11 @@
 //Finish move, drop, and pickup methods
 //add in identifier to end the game
 
-//typedef vector<Inventory> vectorInventory;
 //Constructors
 Player::Player()
 {
-    pName = "default";
-	hitPoints = 100;
-	stamina = 100;
+	hitPoints = 0;
+	stamina = 0;
 	score = 0;
 }
 
@@ -123,12 +121,10 @@ Player::~Player()
 }
 
 //hardcoded comparsion for now refine later
-void Player::pickUpItem(Dungeon& d, std::string thing)
+void Player::pickUpItem(std::string thing)
 {
-    std::cout << "picked up "<< thing << " adding to bag" << std::endl;
-    Inventory inv;
-    inv.setInventory(thing, d.getItemDesc(thing),d.getItemUDesc(thing));
-
+    std::cout << "picked up item, add to bag" << std::endl;
+//	addToBag(thing);  //buggy at this point
 }
 
 void Player::dropItem(std::string thing)

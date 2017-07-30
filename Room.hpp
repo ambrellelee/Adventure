@@ -3,7 +3,7 @@
 #include <fstream>
 #include <vector>
 #include <iostream>
-#include <string>
+#include<string>
 #include "Inventory.hpp"
 #include "Feature.hpp"
 #include "Item.hpp"
@@ -42,8 +42,8 @@ class Room
 		std::vector<std::string> interactions;	// vector holding descriptions for interactions that occur in the room
 		bool canProceedForward;
 
-        std::vector<Item> allItems;  //temp item vector
-        Item *newItem;
+		       std::vector<std::string> itemInRoom;  //temp item vector
+
 	public:
 		//Constructors
 		Room();
@@ -67,20 +67,15 @@ class Room
 		std::vector<std::string> getExits();
 
 		bool canProceed(std::string exitName);		//Finds whether an exit is valid or not
-//		void lookItems(std::string rItem);		//look at an item in the room
+		void lookItems(std::string rItem);		//look at an item in the room
 
-//		bool checkRoomNames(std::string rName);    //Find if parameter match any room names
-//		bool checkItemInRoom(std::string rItem);  //check if item is in room
+		bool checkRoomNames(std::string rName);    //Find if parameter match any room names
+		bool checkItemInRoom(std::string rItem);  //check if item is in room
 		void removeItem(std::string rItem);
 		void setRooms(std::ifstream& readFile);
 		void printRoomInfo();
 		void printAllData();
-		void addItem(Item);
-		bool findName(std::string rName);
-        void iinRoom(std::string rName);
-        void currentItem(std::string rName);
-        std::string findItemDesc(std::string rItem);
-        std::string findItemUDesc(std::string rItem);
+
 };
 
 #endif

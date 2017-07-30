@@ -240,17 +240,8 @@ void Parser::findNextDungeon(playerString& curSentence, Dungeon& curDungeon, Pla
 	//iterate through vector of strings to find Dungeon names
 	for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
 	{
-	    /* test for string
-	    if(*i == "west")
-        {
-            std::cout << "west Dungeon found" << std::endl;
-            DungeonFound = true;
-			break;
-        }
-        */
 		//check if any string matches the Dungeon names
 		//Dungeon should return true or false if name is found or not
-
 		std::transform(i->begin(), i->end(), i->begin(), ::tolower);
 		if (curDungeon.checkRoomNames((*i)) == true)
 		{
@@ -325,8 +316,7 @@ void Parser::takeItemInDungeon(playerString& curSentence, Player& curPlayer, Dun
 		if (curDungeon.checkItemInRoom((*i)) == true)
 		{
 			//item is in Dungeon, pick up item and place in player inventory
-			curDungeon.setCurItem(*i);
-			curPlayer.pickUpItem(curDungeon, *i);
+			curPlayer.pickUpItem(*i);
 			//remove item from the Dungeon
 	//		curDungeon.removeItem(*i);
 			cout << "You picked up " << (*i) << endl;
@@ -609,6 +599,7 @@ void Parser::unlockObject(playerString& curSentence, Player& curPlayer, Dungeon&
             if (curDungeon.checkItemInRoom((*i)) == true)
             {
                 //unlock item
+                curPlayer.useItem(*i);
                 std::cout << "you have unlocked " << (*i) << endl;
                 unlocked = true;
                 break;
@@ -685,6 +676,7 @@ void Parser::attackSomething(playerString& curSentence, Player& curPlayer, Dunge
             //attacking enemy
             std::cout << "you have attacked the " << (*i) << endl;
             //curPlayer.attacking....?
+
             attacked = true;
             break;
         }

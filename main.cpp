@@ -76,6 +76,7 @@ main()
     Player p;   //create player
     Parser par;
     newGame(d, p);
+    Room myRoom = Room("one.txt", 0);
 
     d.printRooms();
 
@@ -85,6 +86,7 @@ main()
         int choice = d.showMenu();
         if(choice ==  1)
         {
+
             d.setCurrentRoom(0);
             d.printCurLocation();
 
@@ -103,13 +105,6 @@ main()
             }
             par.parser(d, p, input);
         }
-        /************************************************************************
-        else if(choice == 2)
-        {
-        Room myRoom = Room("one.txt", 0);
-            myRoom.printAllData();
-        }
-        *************************************************************************/
         else
         {
             quit = true;
