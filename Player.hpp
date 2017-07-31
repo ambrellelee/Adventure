@@ -52,12 +52,11 @@ class Player
 		bool hasItem(std::string);
 		void pickUpItem(std::string);
 		void dropItem(std::string);
-		
-	
 		bool itemInInventory(std:: string pItem);
 		bool useItem(std:: string pItem);
 		void removeItem(std::string pItem);
-	
+		void viewBagItem(std::string);
+		
 		void savePlayer(std::ofstream& savePlayerFile);
 		void loadPlayer(std::ifstream& loadPlayerFile);
 };

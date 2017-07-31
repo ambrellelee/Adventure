@@ -15,8 +15,6 @@ class Room
 		unsigned int roomNumber;
 		std::string description;
 		std::vector<std::string> doors;
-
-		std::string rName;
 		std::vector<std::string> rDescription;
 		Room *north, *south, *east, *west;
         	std::string rType;
@@ -27,6 +25,8 @@ class Room
 		bool canProceedForward;
 
 		std::vector<std::string> itemInRoom;  //temp item vector
+
+		 
 
 	public:
 		//Constructors
@@ -45,6 +45,7 @@ class Room
 		void setExits(std::string newExit);
 
 		//Get Values
+		std::string rName;
 		std::string getName();
 		std::string getType();
 		std::vector<std::string> getDescription();
@@ -60,7 +61,7 @@ class Room
 		void setRooms(std::ifstream& readFile);
 		void printRoomInfo();
 		void printAllData();
-
+		void printItemDescription(std::string);
 };
 
 #endif

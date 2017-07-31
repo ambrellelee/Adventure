@@ -107,12 +107,45 @@ void Dungeon::setCurrentRoom(int i)
     newRoom = &(allRooms[i]);
 }
 
-void Dungeon::saveGame()
+void Dungeon::setCurrRoom(std::string newRoomName)
+{
+	for( int i = 0; i < allRooms.size(); i++)
+	{
+		if(allRooms[i].rName == newRoomName)
+		{
+			newRoom = &allRooms[i];
+			break;
+		}
+	}
+}
+
+bool Dungeon::findRoom(std::string roomName)
+{
+	bool roomFound;	
+
+	for(int i = 0; i < allRooms.size(); i++)
+	{
+		if(allRooms[i].rName == roomName)
+		{
+			roomFound = true;
+			break;
+		}
+		else
+		{
+			roomFound = false;
+		}
+	}
+	
+	return roomFound;
+}
+
+
+bool Dungeon::canOpen(std::string itemName)
 {
 
 }
 
-void Dungeon::loadGame()
+void Dungeon::useItem(std::string)
 {
 
 }

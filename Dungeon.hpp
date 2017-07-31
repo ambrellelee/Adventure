@@ -33,13 +33,14 @@ class Dungeon
 	
 		Dungeon(std::vector<Room> rooms);
 		void readRooms(std::ifstream& readFile);
-        	void setCurrentRoom(Room& currRoom);
+        	void setCurrRoom(std::string);
         	void setCurrentRoom(int i);
        	void printRooms();
         	void printCurLocation();
         	void sendParse(Player& curP, playerWords& curSentence);
-		void saveGame();
-		void loadGame();
+		bool findRoom(std::string);
+		bool canOpen(std::string);
+		void useItem(std::string);
 };
 
 #endif 

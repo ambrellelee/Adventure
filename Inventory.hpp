@@ -20,6 +20,7 @@ class Inventory
 		void removeInventory(std::string);
 		void viewInventory();
 		bool inInventory(std::string thing);
+		void viewItem(std::string);
 };
 
 #endif

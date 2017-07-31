@@ -70,3 +70,15 @@ bool Inventory::inInventory(std::string thing)
 	
 	return hasItem;
 }
+
+void Inventory::viewItem(std::string itemName)
+{
+	for(int i = 0; i < stuff.size(); i++)
+	{
+		if(stuff[i].iName == itemName)
+		{
+			std::cout << stuff[i].iDesc << std::endl;
+		}	
+	}
+}
+	

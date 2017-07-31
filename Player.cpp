@@ -246,6 +246,12 @@ void Player::removeItem(std::string pItem)
     removeFromBag(pItem);
 
 }
+
+void Player::viewBagItem(std::string itemName)
+{
+	bag -> viewItem(itemName);
+}
+
 /*
 void Player::savePlayer(std::ofstream& savePlayerFile)
 {
