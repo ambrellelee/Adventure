@@ -23,6 +23,7 @@ class Feature
 		std::vector<std::string> getFeatureDesc();
 		std::vector<std::string> getInteractionDesc();
 		std::vector<bool> getActions();
+	
 };
 
 #endif
