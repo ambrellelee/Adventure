@@ -45,7 +45,3 @@ std::vector<std::string> Feature::getInteractionDesc()
 {
 	return interactionDesc;
 }
-std::vector<bool> Feature::getActions()
-{
-	return nextAction;
-}

@@ -15,34 +15,14 @@ class Room
 		unsigned int roomNumber;
 		std::string description;
 		std::vector<std::string> doors;
-
-		std::string rName;
 		std::vector<std::string> rDescription;
 		Room *north, *south, *east, *west;
-        	std::string rType;
-		/*struct Item                   //holds information about items in room
-		{
-			std::string iName;
-			std::string iDesc;
-			std::string useDesc;
-			int waterLevel;
-			bool available;
-			Item(std::string newItemName, std::string newItemDesc, std::string newUseDesc, int water, bool addable)
-			{
-				iName = newItemName;
-				iDesc = newItemDesc;
-				useDesc = newUseDesc;
-				waterLevel = water;
-				available = addable;
-			}
-		};*/
+        std::string rType;
 		std::vector<Item> inRoom;      //vector holding structs of items in the room
         std::vector<Item> dropped;	//vector holding structs of items that the player dropped in the room
         std::vector<std::string> exitVec;		//vector holding exits
 		std::vector<std::string> interactions;	// vector holding descriptions for interactions that occur in the room
 		bool canProceedForward;
-
-		       std::vector<std::string> itemInRoom;  //temp item vector
 
 	public:
 		//Constructors
@@ -61,6 +41,7 @@ class Room
 		void setExits(std::string newExit);
 
 		//Get Values
+		std::string rName;
 		std::string getName();
 		std::string getType();
 		std::vector<std::string> getDescription();
@@ -72,10 +53,10 @@ class Room
 		bool checkRoomNames(std::string rName);    //Find if parameter match any room names
 		bool checkItemInRoom(std::string rItem);  //check if item is in room
 		void removeItem(std::string rItem);
-		void setRooms(std::ifstream& readFile);
+		void addItem(Item);
 		void printRoomInfo();
 		void printAllData();
-
+		void printItemDescription(std::string);
 };
 
 #endif

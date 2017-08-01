@@ -16,30 +16,6 @@ using std::endl;
 using std::string;
 using std::cin;
 
-void newGame(Dungeon& newD, Player& newP)
-{
-    std::ifstream readFile("rooms.txt");
-    if(readFile)
-    {
-        newD.readRooms(readFile);  //load rooms from file on dungeon
-    }
-    else
-    {
-        std::cout << "failed to load rooms" << std::endl;
-    }
-    readFile.close();
-    std::ifstream readFile2("room2.txt");
-    if(readFile2)
-    {
-        newD.readRooms(readFile2);  //load rooms from file on dungeon
-    }
-    else
-    {
-        std::cout << "failed to load rooms" << std::endl;
-    }
-    readFile2.close();
-}
-
 std::vector<string> split(const string& s)
 {
 	std::vector<string> temp;
@@ -74,19 +50,14 @@ main()
 {
     Dungeon d;  //create dungeon
     Player p;   //create player
-    Parser par;
-    newGame(d, p);
-    Room myRoom = Room("one.txt", 0);
-
-    d.printRooms();
-
+    Parser par; //create parser
+    d.playGame();
     bool quit = false;
     while(!quit)
     {
         int choice = d.showMenu();
         if(choice ==  1)
         {
-
             d.setCurrentRoom(0);
             d.printCurLocation();
 
@@ -96,14 +67,12 @@ main()
                 input = playerInput();
             }
             par.parser(d, p, input);
-            d.setCurrentRoom(1);
-            d.printCurLocation();
-            input.clear();
-            while(input.size() == 0)
-            {
-                input = playerInput();
-            }
-            par.parser(d, p, input);
+
+        }
+        else if(choice == 2)
+        {
+        Room myRoom = Room("one.txt", 0);
+            myRoom.printRoomInfo();
         }
         else
         {

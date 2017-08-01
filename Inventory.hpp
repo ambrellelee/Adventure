@@ -1,27 +1,27 @@
 #ifndef INVENTORY_HPP
 #define INVENTORY_HPP
 
-#include <algorithm>
-#include <vector>
-#include <iterator>
+#include<vector>
 #include<iostream>
 #include<string>
 #include "Item.hpp"
+#include<algorithm>
 
 class Inventory
 {
 	private:
-		std::vector<std::string> stuff;		//stores items
+		std::vector<Item> stuff;		//stores items
 		std::string containerName;
 
 	public:
 		Inventory(std::string newName);
 		void setName(std::string);
 		std::string getName();
-		void addInventory(std::string);
+		void addInventory(Item thing);
 		void removeInventory(std::string);
 		void viewInventory();
-		bool inInventory(std::string);
+		bool inInventory(std::string thing);
+		void viewItem(std::string);
 };
 
 #endif

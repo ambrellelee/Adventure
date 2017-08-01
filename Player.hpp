@@ -3,6 +3,7 @@
 
 #include<string>
 #include<iostream>
+#include<vector>
 #include "Room.hpp"
 #include "Inventory.hpp"
 
@@ -17,44 +18,47 @@ class Player
 		int maxStamina;	//what do we want this value to be?
 		double score;
 		Room *currentLocation;
-		Room *lastLocation;		
-		Inventory *bag; 
+		Room *lastLocation;
+		Inventory *bag;
 
 	public:
 		//Constructors
 		Player();
-		Player(int hPoints, int pStamina, double pScore); 	
-		~Player();	
+		Player(std::string newName, int hPoints, int pStamina, double pScore);
+		~Player();
 
-		//Set Values	
+		//Set Values
 		void setName(std::string playerName);
 		void setHitPoints(int playerHitPoints);
 		void setStamina(int playerStamina);
 		void setScore(double playerScore);
 		void setCurrentLocation(Room*);
-	
+
 		//Get Values
 		std::string getName();
 		int getHitPoints();
 		int getStamina();
 		int getScore();
 		Room* getCurrentLocation();
-          Room* getLastLocation();
-	
-		//add inventory method
+        Room* getLastLocation();
+		void printPlayerInfo();
+
 		void move();
-		void addToBag(std::string);
-		void removeFromBag(std::string);
-		void lookBag();		
+		void subtractHitPoints(int help);
+		void addStamina(int sustenance);
+		void addToBag(std::string itemName);
+		void removeFromBag(std::string thing);
+		void lookBag();
+		bool hasItem(std::string);
 		void pickUpItem(std::string);
 		void dropItem(std::string);
-	
-	//
 		bool itemInInventory(std:: string pItem);
 		bool useItem(std:: string pItem);
 		void removeItem(std::string pItem);
+		void viewBagItem(std::string);
 
+		void savePlayer(std::ofstream& savePlayerFile);
+		void loadPlayer(std::ifstream& loadPlayerFile);
 };
-		
+
 #endif
-	

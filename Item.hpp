@@ -1,6 +1,9 @@
 #ifndef ITEM_HPP
 #define ITEM_HPP
 
+#include<string>
+#include<iostream>
+
 struct Item                   //holds information about items in room
 {
         std::string iName;
@@ -24,4 +27,13 @@ struct Item                   //holds information about items in room
         }
 };
 
+struct findItem
+{
+	const std::string iName;
+	findItem(const std::string& iName) : iName(iName) {}
+	bool operator() (const Item& i) const
+	{
+		return i.iName == iName;
+	}
+};
 #endif

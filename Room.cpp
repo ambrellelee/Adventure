@@ -110,114 +110,91 @@ bool Room::canProceed(std::string exitName)
 
 	return exitPresent;
 }
-/*
+
 void Room::addItem(Item thing)
 {
 	dropped.push_back(thing);
 }
-*/
-/*void Room::removeItem(Item thing)
+
+void Room::removeItem(std::string rItem)
 {
-	std::vector<Item>::iterator i = std::find(inRoom.begin(), inRoom.end(), thing);
+	std::vector<Item>::iterator i = std::find_if(inRoom.begin(), inRoom.end(), findItem(rItem));
 	inRoom.erase(i);
-}*/
+}
+
 void Room::lookItems(std::string rItem)
 {
-    std::cout << "return item description here..." << std::endl;
-
+	for( int i = 0; i< inRoom.size(); i++)
+	{
+		if(inRoom[i].iName == rItem)
+		{
+			std::cout << inRoom[i].iDesc << std::endl;
+		}
+	}
 }
-//hardcoded comparison for now to show it works.
-bool Room::checkRoomNames(std::string rName)
-{
-    //compare to vector of rooms
-    //temp room name list
 
-    if(rName == "court")
-    {
-#ifdef NOISYTEST
-        std::cout << rName << " room found!" << std::endl;
-#endif
-        return true;
-    }
-    else
-        return false;
-}
-//hardcoded comparison for now to show it works until we have item working
 bool Room::checkItemInRoom(std::string rItem)
 {
-    if(rItem == "sword")
-    {
-#ifdef NOISYTEST
-        std::cout << rItem << " taken from room." << std::endl;
-#endif
-        return true;
-    }
-    else if(rItem == "chest")
-    {
-#ifdef NOISYTEST
-        std::cout << rItem << " is in the room." << std::endl;
-#endif
-        return true;
-    }
-    else if(rItem == "sphinx")
-    {
-#ifdef NOISYTEST
-        std::cout << rItem << " is in the room." << std::endl;
-#endif
-        return true;
-    }
-    else
-        return false;
+	bool itemPresent;
 
+	for(int i = 0; i < inRoom.size(); i++)
+	{
+		if(inRoom[i].iName == rItem)
+		{
+			itemPresent = true;
+		}
+		else
+		{
+			itemPresent = false;
+		}
+	}
+
+	return itemPresent;
 }
 
-void Room::setRooms(std::ifstream& readFile)
-{
-    std::string blank = "";
-    int exitDoors = 0; //read in number of exit doors in the room
-    std::string curDoor = "";
-    readFile >> blank >> roomNumber; //get the room number
-    readFile >> blank >> rName;
-    readFile >> blank;
-    std::getline(readFile, description); //read the description line
-    readFile >> blank >> exitDoors; //get the number of exit doors.
-    int i;
-    for(i = 0; i != exitDoors; i++)
-    {
-        readFile >> blank >> curDoor;
-        doors.push_back(curDoor); //get the door name
-    }
-    int numOfItems = 0; //read in number of exit doors in the room
-    std::string curItem = "";
-    readFile >> blank >> numOfItems;
-    for(i = 0; i !=numOfItems; i++)
-    {
-        readFile >> blank >> curItem;
-        itemInRoom.push_back(curItem); //changed to inRoom from itemInRoom, which isn't declared. Is this ok?
-    }
-}
 void Room::printRoomInfo()
 {
-	cout << "Room number: "<< roomNumber << endl;
-	cout << "Room name: " + rName << endl;
-	cout << "Room desccription: " <<  endl;
-	for(std::string::size_type i = 0; i != description.size(); i++)
-    {
-        cout << description[i];
-        if(description[i] == '.')
-        {
-            cout << endl;
+	cout << "Room Name: " << rName << endl;
+        cout << "Room Type: " << rType << endl;
+        cout << "Room Descriptions:" << endl;
+
+        for (int i = 0; i < rDescription.size(); i++) {
+                cout << rDescription[i] << endl;
         }
-    }
+        cout << "The door you see that you can to go to are " ;
+        cout << "Exits:" << endl;
+
+        for (int i = 0; i < exitVec.size(); i++) {
+                cout << exitVec[i] << endl;
+        }
+
+        cout << "Items:" << endl;
+
+        for (int i = 0; i < inRoom.size(); i++)
+        {
+                cout << "Item number " << (i+1) << endl;
+
+                cout << "Item name: " << inRoom[i].iName << endl;
+                cout << "Item description: " << inRoom[i].iDesc << endl;
+                cout << "Item use text: " << inRoom[i].useDesc << endl;
+                cout << "Water in item: " << inRoom[i].waterLevel << endl;
+                cout << "Max. water capacity: " << inRoom[i].maxWater << endl;
+
+                if (inRoom[i].available == true)
+                        cout << "Player can pick up item now" << endl;
+                else
+                        cout << "Player cannot take item now" << endl;
+
+                cout << "Item taken from feature at index " << inRoom[i].featureSource  << endl;
+                cout << "Item can be taken at interaction number " << inRoom[i].whenCanTake << endl;
+        }
+
 	cout << endl;
-	cout << "The door you see that you can to go to are " ;
-	for (Container::size_type i = 0; i != doors.size(); i++)//print doors
-	{
-		cout << " -->" << doors[i] << " --> ";
-	}
 	cout << endl;
 	cout << "What do you want to do ? " << endl;
 }
+/****************************************************************************
+//not needed
 
 void Room::printAllData()
 {
@@ -301,17 +278,17 @@ void Room::printAllData()
         }
 
         if (canProceedForward == true)
-	{
-                cout << "Can leave room now" << endl;
+        {
+             cout << "Can leave room now" << endl;
+             std::cout << "Thanks you for playing~ Good-Bye~" << std::endl;
+             exit(0);
+        }
 
-	        std::cout << "---------------------------------------------------------------" << std::endl;
-	        std::cout << "~~~~~~~~~~~~   End of demo, thanks for watching.  ~~~~~~~~~~~~~" << std::endl;
-	        std::cout << "---------------------------------------------------------------" << std::endl;
-	}
         else
                 cout << "Can not leave room now" << endl;
 
 }
+****************************************************************************/
 
 Room::Room(std::string roomFile, int thisRoomNum)
 {
@@ -524,4 +501,3 @@ Room::Room(std::string roomFile, int thisRoomNum)
 
         inputFile.close();
 }
-

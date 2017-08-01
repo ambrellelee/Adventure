@@ -15,7 +15,6 @@ typedef std::vector<std::string> playerWords;
 Dungeon::Dungeon()
 {
 	newRoom = new Room;
-	newPlayer = new Player;
 }
 
 void Dungeon::setGameDescription(std::string newDesc)
@@ -48,7 +47,7 @@ int Dungeon::showMenu()
         else if (playerInput < 1 || playerInput > 3)
         {
             std::cout << "Please enter a valid option." <<std::endl;
-	    std::cin.clear(); // reset failbit
+            std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //skip bad input
         }
         else
@@ -61,37 +60,102 @@ int Dungeon::showMenu()
 
 void Dungeon::playGame()
 {
-	//readRoom();
-
+	Room myRoom = Room("one.txt", 0);
+	allRooms.push_back(myRoom);
 }
 
 Dungeon::~Dungeon()
 {
 	delete newRoom;
-	delete newPlayer;
-}
-void Dungeon::readRooms(std::ifstream& readFile)
-{
-    while(!readFile.eof()) //loop until end
-    {
-        Room load;
-        load.setRooms(readFile); //set up the variables of the room.
-        allRooms.push_back(load); //push room into dungeon
-    }
 }
 
-void Dungeon::printRooms()
+void Dungeon::setCurrentRoom(int i)
 {
-    for(vectorRooms::iterator i = allRooms.begin(); i != allRooms.end(); ++i)
-    {
-        i->printRoomInfo();
-    }
+    newRoom = &(allRooms[i]);
+}
+
+void Dungeon::setCurrRoom(std::string newRoomName)
+{
+	for( int i = 0; i < allRooms.size(); i++)
+	{
+		if(allRooms[i].rName == newRoomName)
+		{
+			newRoom = &allRooms[i];
+			break;
+		}
+	}
+}
+
+bool Dungeon::findRoom(std::string roomName)
+{
+	bool roomFound;
+
+	for(int i = 0; i < allRooms.size(); i++)
+	{
+		if(allRooms[i].rName == roomName)
+		{
+			roomFound = true;
+			break;
+		}
+		else
+		{
+			roomFound = false;
+		}
+	}
+
+	return roomFound;
+}
+
+bool Dungeon::canOpen(std::string itemName)
+{
+
+}
+
+void Dungeon::useItem(std::string)
+{
+
 }
 void Dungeon::printCurLocation()
 {
     newRoom->printRoomInfo();
 }
-void Dungeon::setCurrentRoom(int i)
+/**************************************
+ Yu's add
+**************************************/
+bool Dungeon::findItemInRoom(std::string iName)
 {
-    newRoom = &(allRooms[i]);
+    bool itemFound;
+
+    for(int i = 0; i < allRooms.size(); i++)
+    {
+        if(newRoom->checkItemInRoom(iName) == true)
+        {
+            itemFound = true;
+            break;
+        }
+        else
+        {
+            itemFound = false;
+        }
+    }
+    return itemFound;
+}
+
+bool Dungeon::canProceedCheck(std::string roomName)
+{
+    bool canProceed = false;
+    if(newRoom->canProceed(roomName) == true)
+    {
+        canProceed = true;
+    }
+    return canProceed;
+}
+
+void Dungeon::lookItem(std::string)
+{
+
+}
+void Dungeon::look()
+{
+    newRoom->printRoomInfo();
 }
