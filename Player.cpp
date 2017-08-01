@@ -108,14 +108,6 @@ void Player::printPlayerInfo()
      std::cout << "Score: " << score << std::endl;
 }
 
-/*void move(exitName)
-{
-	if(canProceed == True)
-	{
-			
-}
-*/
-
 void Player::subtractHitPoints(int help)
 {
 	hitPoints -= help;
@@ -175,8 +167,7 @@ Player::~Player()
 //hardcoded comparsion for now refine later
 void Player::pickUpItem(std::string thing)
 {
-    std::cout << "picked up item, add to bag" << std::endl;
-//	addToBag(thing);  //buggy at this point
+	addToBag(thing);  
 }
 
 void Player::dropItem(std::string thing)
@@ -184,9 +175,11 @@ void Player::dropItem(std::string thing)
 	removeFromBag(thing);
 }
 
-bool Player::itemInInventory(std:: string pItem)
+bool Player::itemInInventory(std:: string thing)
 {
-    if(pItem == "sword")
+	return bag->inInventory(thing);	
+
+/*	if(pItem == "sword")
     {
 #ifdef NOISYTEST
         std::cout << pItem << " is in inventory." << std::endl;
@@ -209,7 +202,9 @@ bool Player::itemInInventory(std:: string pItem)
     }
     else
         return false;
+*/
 }
+
 
 bool Player::useItem(std:: string pItem)
 {

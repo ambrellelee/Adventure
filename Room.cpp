@@ -148,7 +148,7 @@ bool Room::checkRoomNames(std::string rName)
     else
         return false;
 }
-//hardcoded comparison for now to show it works until we have item working
+
 bool Room::checkItemInRoom(std::string rItem)
 {
 	bool itemPresent;

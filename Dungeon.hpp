@@ -40,6 +40,8 @@ class Dungeon
         	void sendParse(Player& curP, playerWords& curSentence);
 		bool findRoom(std::string);
 		bool canOpen(std::string);
+		bool itemInRoom(std::string);
+		void getItemInfo(std::string);
 		void useItem(std::string);
 };
 

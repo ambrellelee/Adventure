@@ -145,6 +145,16 @@ bool Dungeon::canOpen(std::string itemName)
 
 }
 
+bool Dungeon::itemInRoom(std::string itemName)
+{
+	return newRoom->checkItemInRoom(itemName);	
+}
+
+void Dungeon::getItemInfo(std::string itemName)
+{
+	newRoom->lookItems(itemName);
+}
+
 void Dungeon::useItem(std::string)
 {
 
