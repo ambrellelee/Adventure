@@ -243,17 +243,13 @@ void Parser::findNextDungeon(playerString& curSentence, Dungeon& curDungeon, Pla
 		//check if any string matches the Dungeon names
 		//Dungeon should return true or false if name is found or not
 		std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-		if (curDungeon.checkRoomNames((*i)) == true)
+		if (curDungeon.findRoom((*i)) == true)
 		{
+			curDungeon.setCurrRoom(*i);
 			std::cout << "You have entered: " << (*i) << "Dungeon." << std::endl;
-
-			//set current Dungeon to Dungeon name found here.
-		//	curPlayer.setCurrentLocation(*i); //setting current Dungeon;
-
 			DungeonFound = true;
 			break;
 		}
-
 	}
 	if (DungeonFound == false)
 	{
@@ -274,14 +270,14 @@ void Parser::searchItemToUse(playerString& curSentence, Player& curPlayer, Dunge
 	for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
 	{
 		//check if item is in player inventory
-        std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-		if (curPlayer.itemInInventory((*i)) == true)
+        	std::transform(i->begin(), i->end(), i->begin(), ::tolower);
+		if (curPlayer.hasItem((*i)) == true)
 		{
 			//use item in player inventory if it can be used
 			if(curPlayer.useItem(*i) == true)
 			{
 				cout << "You used " << (*i) << endl;
-//				curPlayer.removeItem((*i));//remove item from player inventory
+				curPlayer.removeItem((*i));//remove item from player inventory
 				itemFound = true;
 				break;
 			}
@@ -318,7 +314,7 @@ void Parser::takeItemInDungeon(playerString& curSentence, Player& curPlayer, Dun
 			//item is in Dungeon, pick up item and place in player inventory
 			curPlayer.pickUpItem(*i);
 			//remove item from the Dungeon
-	//		curDungeon.removeItem(*i);
+			
 			cout << "You picked up " << (*i) << endl;
 			itemTaken = true;
 			break;
@@ -407,7 +403,7 @@ void Parser::drinkSomething(playerString& curSentence, Player& curPlayer, Dungeo
 	{
 		//check if item is in inventory
 		std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-		if (curPlayer.itemInInventory((*i)) == true)
+		if (curPlayer.hasItem((*i)) == true)
 		{
 		    //use the item
 			curPlayer.useItem(*i);
@@ -437,10 +433,10 @@ void Parser::dropSomething(playerString& curSentence, Player& curPlayer, Dungeon
 	{
 		//check if item is in inventory
 		std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-		if (curPlayer.itemInInventory((*i)) == true)
+		if (curPlayer.hasItem((*i)) == true)
 		{
 		    //use the item
-			curPlayer.dropItem(*i);
+			curPlayer.removeFromBag(*i);
 #ifdef NOISYTEST
     std::cout << "dropped " << (*i) << std::endl;
 #endif // NOISYTEST
@@ -506,7 +502,7 @@ void Parser::fillObject(playerString& curSentence, Player& curPlayer, Dungeon& c
     {
         //check if item is in inventory
         std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-        if (curPlayer.itemInInventory((*i)) == true)
+        if (curPlayer.hasItem((*i)) == true)
         {
             //fill
             curPlayer.useItem(*i);
@@ -589,7 +585,7 @@ void Parser::unlockObject(playerString& curSentence, Player& curPlayer, Dungeon&
 	bool unlocked = false;
 
     //first check for key in player inventory
-    if(curPlayer.itemInInventory("key") == true)
+    if(curPlayer.hasItem("key") == true)
     {
         //iterate through vector of strings to find names
         for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
