@@ -14,8 +14,8 @@ class Dungeon
 {
 	private:
 		Room *newRoom;
-		Player *newPlayer;
-		Parser *newParser;
+	//	Player *newPlayer;
+	//	Parser *newParser;
 		std::string gameDesc;
 		int playerInput;
 		typedef std::vector<std::string> playerWords;
@@ -45,6 +45,7 @@ class Dungeon
 		void useItem(std::string);
 		void viewCurRoom();
 		Item returnItem(std::string);
+		bool useExit(std::string);
 };
 
 #endif 
