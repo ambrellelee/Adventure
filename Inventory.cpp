@@ -18,7 +18,7 @@ void Inventory::addInventory(Item thing)
 {
 	if(inInventory(thing.iName))
 	{
-		std::cout << thing << " is already in your inventory." << std::endl;
+		std::cout << thing.iName << " is already in your inventory." << std::endl;
 	}
 	else
 	{

@@ -15,7 +15,6 @@ class Room
 		unsigned int roomNumber;
 		std::string description;
 		std::vector<std::string> doors;
-		std::vector<std::string> rDescription;
 		Room *north, *south, *east, *west;
         	std::string rType;
 		std::vector<Item> inRoom;      //vector holding structs of items in the room
@@ -46,6 +45,7 @@ class Room
 
 		//Get Values
 		std::string rName;
+		std::vector<std::string> rDescription;
 		std::string getName();
 		std::string getType();
 		std::vector<std::string> getDescription();
@@ -59,9 +59,12 @@ class Room
 		void removeItem(std::string rItem);
 		void addItem(Item);
 		void setRooms(std::ifstream& readFile);
+		void printRoomDesc();
 		void printRoomInfo();
 		void printAllData();
 		void printItemDescription(std::string);
+		bool canUseFeature(std::string);
+		Item getItemInRoom(std::string);
 };
 
 #endif

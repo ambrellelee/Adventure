@@ -139,10 +139,9 @@ bool Dungeon::findRoom(std::string roomName)
 	return roomFound;
 }
 
-
-bool Dungeon::canOpen(std::string itemName)
+bool Dungeon::canOpen(std::string featureName)
 {
-
+	return newRoom->canUseFeature(featureName); //still working on this in the room class
 }
 
 bool Dungeon::itemInRoom(std::string itemName)
@@ -155,7 +154,17 @@ void Dungeon::getItemInfo(std::string itemName)
 	newRoom->lookItems(itemName);
 }
 
-void Dungeon::useItem(std::string)
+/*void Dungeon::useItem(std::string)
 {
 
+}*/
+
+void Dungeon::viewCurRoom()
+{
+	 newRoom->printRoomDesc();
+}
+
+Item Dungeon::returnItem(std::string itemName)
+{
+	return newRoom->getItemInRoom(itemName);
 }

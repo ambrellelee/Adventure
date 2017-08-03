@@ -10,9 +10,7 @@
 using namespace std;
 typedef std::vector<std::string> Container;
 /*Methods to check for interactivity will be in Features class
--Need to add methods to add and remove items from room to inventory/from inventory to room
 -Add methods for features in room once Features class is finished
--Add method to look at item in a room
 */
 
 bool setBool(string input)
@@ -194,6 +192,38 @@ bool Room::checkItemInRoom(std::string rItem)
 	
 }*/
 
+/*bool Room::canUseFeature(std::string itemName)
+{
+	canUse = false;
+	for(int i = 0; i <roomFeatures.size(); i++)
+	{
+		if(itemName = roomFeatures[i].fName)
+		{
+			if(i)
+		}
+	}
+}*/
+
+Item Room::getItemInRoom(std::string itemName)
+{
+	
+	/*if(checkItemInRoom(itemName) == true)
+		std::vector<Item>::iterator i = std::find_if(inRoom.begin(), inRoom.end(), findItem(itemName));
+
+		return inRoom(*i);
+	*/
+	for(int i =0; i < inRoom.size(); i++)
+	{
+		if(itemName == inRoom[i].iName)
+		{
+			return inRoom[i];
+		}
+	}
+	//return NULL;
+}
+
+
+
 void Room::setRooms(std::ifstream& readFile)
 {
     std::string blank = "";
@@ -219,6 +249,19 @@ void Room::setRooms(std::ifstream& readFile)
         itemInRoom.push_back(curItem); //changed to inRoom from itemInRoom, which isn't declared. Is this ok?
     }
 }
+
+void Room::printRoomDesc()
+{
+	for(std::string::size_type i = 0; i !=description.size(); i++)
+	{
+		cout<< description[i];
+		if(description[i] == ',')
+		{
+			cout << endl;
+		}
+	}
+}
+
 void Room::printRoomInfo()
 {
 	cout << "Room number: "<< roomNumber << endl;

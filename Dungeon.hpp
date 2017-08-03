@@ -43,6 +43,8 @@ class Dungeon
 		bool itemInRoom(std::string);
 		void getItemInfo(std::string);
 		void useItem(std::string);
+		void viewCurRoom();
+		Item returnItem(std::string);
 };
 
 #endif 

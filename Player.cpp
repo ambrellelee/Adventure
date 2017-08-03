@@ -165,10 +165,10 @@ Player::~Player()
 }
 
 //hardcoded comparsion for now refine later
-void Player::pickUpItem(std::string thing)
+/*void Player::pickUpItem(std::string thing)
 {
 	addToBag(thing);  
-}
+}*/
 
 void Player::dropItem(std::string thing)
 {
