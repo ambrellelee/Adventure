@@ -43,10 +43,9 @@ class Player
         Room* getLastLocation();
 		void printPlayerInfo();
 
-		void move();
 		void subtractHitPoints(int help);
 		void addStamina(int sustenance);
-		void addToBag(std::string itemName);
+		void addToBag(Item thing);
 		void removeFromBag(std::string thing);
 		void lookBag();
 		bool hasItem(std::string);

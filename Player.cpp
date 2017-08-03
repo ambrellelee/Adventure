@@ -108,14 +108,6 @@ void Player::printPlayerInfo()
      std::cout << "Score: " << score << std::endl;
 }
 
-/*void move(exitName)
-{
-	if(canProceed == True)
-	{
-
-}
-*/
-
 void Player::subtractHitPoints(int help)
 {
 	hitPoints -= help;
@@ -147,10 +139,10 @@ void Player::addStamina(int sustenance)
 	}
 }
 
-void Player::addToBag(std::string itemName)
+void Player::addToBag(Item thing)
 {
     //find the item name and pull the whole item then add to inventory
-//	bag->addInventory(thing);
+	bag->addInventory(thing);
 }
 
 void Player::removeFromBag(std::string thing)
@@ -172,53 +164,6 @@ Player::~Player()
 {
 	delete bag;
 }
-/**************************************************
-Yu's removal
-
-//hardcoded comparsion for now refine later
-void Player::pickUpItem(std::string thing)
-{
-    std::cout << "picked up item, add to bag" << std::endl;
-//	addToBag(thing);  //buggy at this point
-}
-
-void Player::dropItem(std::string thing)
-{
-	removeFromBag(thing);
-}
-
-bool Player::itemInInventory(std:: string pItem)
-{
-    if(pItem == "sword")
-    {
-#ifdef NOISYTEST
-        std::cout << pItem << " is in inventory." << std::endl;
-#endif
-        return true;
-    }
-    else if(pItem == "water")
-    {
-#ifdef NOISYTEST
-        std::cout << pItem << " is in inventory." << std::endl;
-#endif
-        return true;
-    }
-    else if(pItem == "potion")
-    {
-#ifdef NOISYTEST
-        std::cout << pItem << " is in inventory." << std::endl;
-#endif
-        return true;
-    }
-    else
-        return false;
-}
-
-void Player::viewBagItem(std::string itemName)
-{
-	bag -> viewItem(itemName);
-}
-*****************************************************************/
 
 /*********************************
  Yu's edit
@@ -237,15 +182,11 @@ bool Player::useItem(std:: string pItem)
     return itemUse;
 }
 
-void Player::removeItem(std::string pItem)
+
+void Player::viewBagItem(std::string itemName)
 {
-#ifdef NOISYTEST
-        std::cout << pItem << " removed from inventory." << std::endl;
-#endif
-    removeFromBag(pItem);
-
+	bag -> viewItem(itemName);
 }
-
 
 /*
 void Player::savePlayer(std::ofstream& savePlayerFile)

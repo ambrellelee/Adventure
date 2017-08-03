@@ -53,6 +53,7 @@ main()
     Parser par; //create parser
     d.playGame();
     bool quit = false;
+    bool done = false;
     while(!quit)
     {
         int choice = d.showMenu();
@@ -62,16 +63,23 @@ main()
             d.printCurLocation();
 
             std::vector<string> input;
-            while(input.size() == 0)
-            {
-                input = playerInput();
-            }
-            par.parser(d, p, input);
+ //           while(!done)
+  //          {
+                while(input.size() == 0)
+                {
+                    input = playerInput();
+ //                   if(input[0] == "done")
+ //                   {
+  //                      done = true;
+ //                   }
+                }
+                par.parser(d, p, input);
+ //           }
 
         }
         else if(choice == 2)
         {
-        Room myRoom = Room("one.txt", 0);
+            Room myRoom = Room("one.txt", 0);
             myRoom.printRoomInfo();
         }
         else

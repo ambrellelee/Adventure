@@ -53,15 +53,19 @@ int Dungeon::showMenu()
         else
         {
             go = true;
-            return 3;
         }
     }
+    return 3;
 }
 
 void Dungeon::playGame()
 {
-	Room myRoom = Room("one.txt", 0);
-	allRooms.push_back(myRoom);
+    const char* files[]= {"one.txt","two.txt","three.txt","four.txt","five.txt","six.txt","seven.txt","eight.txt"};
+    for(size_t i= 0; i < 8; i++)
+    {
+        Room myRoom = Room(files[i], 0);
+        allRooms.push_back(myRoom);
+    }
 }
 
 Dungeon::~Dungeon()
@@ -76,7 +80,7 @@ void Dungeon::setCurrentRoom(int i)
 
 void Dungeon::setCurrRoom(std::string newRoomName)
 {
-	for( int i = 0; i < allRooms.size(); i++)
+	for(size_t  i = 0; i < allRooms.size(); i++)
 	{
 		if(allRooms[i].rName == newRoomName)
 		{
@@ -90,7 +94,7 @@ bool Dungeon::findRoom(std::string roomName)
 {
 	bool roomFound;
 
-	for(int i = 0; i < allRooms.size(); i++)
+	for(size_t i = 0; i < allRooms.size(); i++)
 	{
 		if(allRooms[i].rName == roomName)
 		{
@@ -106,56 +110,47 @@ bool Dungeon::findRoom(std::string roomName)
 	return roomFound;
 }
 
-bool Dungeon::canOpen(std::string itemName)
+bool Dungeon::canOpen(std::string featureName)
 {
-
+    return newRoom->canUseFeature(featureName); //still working on this in the room class
 }
 
-void Dungeon::useItem(std::string)
-{
-
-}
 void Dungeon::printCurLocation()
 {
     newRoom->printRoomInfo();
 }
+
+//new functions
+bool Dungeon::itemInRoom(std::string itemName)
+{
+	return newRoom->checkItemInRoom(itemName);
+}
+
+void Dungeon::getItemInfo(std::string itemName)
+{
+    newRoom->lookItems(itemName);
+}
+
+Item Dungeon::returnItem(std::string itemName)
+{
+	return newRoom->getItemInRoom(itemName);
+}
+
+void Dungeon::viewCurRoom()
+{
+	 newRoom->printRoomDesc();
+}
+
+bool Dungeon::useExit(std::string exitName)
+{
+	return newRoom->canProceed(exitName);
+}
 /**************************************
  Yu's add
 **************************************/
-bool Dungeon::findItemInRoom(std::string iName)
+bool Dungeon::useItem(std::string)
 {
-    bool itemFound;
-
-    for(int i = 0; i < allRooms.size(); i++)
-    {
-        if(newRoom->checkItemInRoom(iName) == true)
-        {
-            itemFound = true;
-            break;
-        }
-        else
-        {
-            itemFound = false;
-        }
-    }
-    return itemFound;
+    return true;
 }
 
-bool Dungeon::canProceedCheck(std::string roomName)
-{
-    bool canProceed = false;
-    if(newRoom->canProceed(roomName) == true)
-    {
-        canProceed = true;
-    }
-    return canProceed;
-}
 
-void Dungeon::lookItem(std::string)
-{
-
-}
-void Dungeon::look()
-{
-    newRoom->printRoomInfo();
-}

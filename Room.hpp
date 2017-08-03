@@ -3,7 +3,7 @@
 #include <fstream>
 #include <vector>
 #include <iostream>
-#include<string>
+#include <string>
 #include "Inventory.hpp"
 #include "Feature.hpp"
 #include "Item.hpp"
@@ -57,6 +57,11 @@ class Room
 		void printRoomInfo();
 		void printAllData();
 		void printItemDescription(std::string);
+
+		//newly added functions
+		 Item getItemInRoom(std::string itemName);
+		 void printRoomDesc();
+		 bool canUseFeature(std::string);
 };
 
 #endif

@@ -245,10 +245,11 @@ void Parser::findNextDungeon(playerString& curSentence, Dungeon& curDungeon, Pla
 		std::transform(i->begin(), i->end(), i->begin(), ::tolower);
 		if (curDungeon.findRoom((*i)) == true)
 		{
-		    if(curDungeon.canProceedCheck(*i) == true)
+		    if(curDungeon.useExit(*i) == true)
             {
                 curDungeon.setCurrRoom(*i);
                 std::cout << "You have entered: " << (*i) << "Dungeon." << std::endl;
+                curDungeon.printCurLocation();
                 DungeonFound = true;
                 break;
             }
@@ -281,7 +282,7 @@ void Parser::searchItemToUse(playerString& curSentence, Player& curPlayer, Dunge
 		if (curPlayer.hasItem((*i)) == true)
 		{
 			//use item in player inventory if it can be used
-			if(curPlayer.useItem(*i) == true)
+			if(curPlayer.hasItem(*i) == true)
 			{
 				cout << "You used " << (*i) << endl;
 				curPlayer.removeFromBag((*i));//remove item from player inventory
@@ -316,10 +317,11 @@ void Parser::takeItemInDungeon(playerString& curSentence, Player& curPlayer, Dun
 	{
 		//check if item is in Dungeon
 		std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-		if (curDungeon.findItemInRoom((*i)) == true)
+		if (curDungeon.itemInRoom((*i)) == true)
 		{
 			//item is in Dungeon, pick up item and place in player inventory
-			curPlayer.addToBag(*i);
+			Item temp = curDungeon.returnItem(*i);
+			curPlayer.addToBag(temp);
 			//remove item from the Dungeon
 
 			cout << "You picked up " << (*i) << endl;
@@ -351,7 +353,7 @@ void Parser::openObject(playerString& curSentence, Player& curPlayer, Dungeon& c
 		//check if any string matches the names
 
 		std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-		if (curDungeon.findItemInRoom(*i) == true)
+		if (curDungeon.itemInRoom(*i) == true)
 		{
 		    if(curDungeon.canOpen(*i) == true)
             {
@@ -387,7 +389,7 @@ void Parser::talkToNPC(playerString& curSentence, Player& curPlayer, Dungeon& cu
 	{
 		//check if any string matches the names
 		std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-		if (curDungeon.findItemInRoom((*i)) == true)
+		if (curDungeon.itemInRoom((*i)) == true)
 		{
 
             curDungeon.useItem(*i);
@@ -421,8 +423,10 @@ void Parser::drinkSomething(playerString& curSentence, Player& curPlayer, Dungeo
 		if (curPlayer.hasItem((*i)) == true)
 		{
 		    //use the item
-			curPlayer.useItem(*i);
-
+			curPlayer.hasItem(*i);
+			std::cout << "You have drinked " << *i << std::endl;
+            curPlayer.addStamina(10);
+            std::cout << "Your stamina have increased by 10." << std::endl;
 			drinked = true;
 			break;
 		}
@@ -476,7 +480,7 @@ void Parser::lookAtStuff(playerString& curSentence, Player& curPlayer, Dungeon& 
 
     if(curSentence.size() == 1)
     {
-        curDungeon.look();
+        curDungeon.viewCurRoom();
 //        std::cout << "repeats long form explanation of the Dungeon..." << std::endl;
         looking = true;
     }
@@ -487,10 +491,10 @@ void Parser::lookAtStuff(playerString& curSentence, Player& curPlayer, Dungeon& 
         {
             //check if item is in Dungeon
             std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-            if (curDungeon.findItemInRoom((*i)) == true)
+            if (curDungeon.itemInRoom((*i)) == true)
             {
                 //look at item
-                curDungeon.lookItem(*i);
+                curDungeon.getItemInfo(*i);
                 looking = true;
                 break;
             }
@@ -520,7 +524,7 @@ void Parser::fillObject(playerString& curSentence, Player& curPlayer, Dungeon& c
         if (curPlayer.hasItem((*i)) == true)
         {
             //fill
-            curPlayer.useItem(*i);
+            curPlayer.hasItem(*i);
             filled = true;
             break;
         }
@@ -546,7 +550,7 @@ void Parser::moveStuff(playerString& curSentence, Player& curPlayer, Dungeon& cu
     {
         //check if item is in Dungeon
         std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-        if (curDungeon.findItemInRoom((*i)) == true)
+        if (curDungeon.itemInRoom((*i)) == true)
         {
             //move item
             curDungeon.useItem(*i);
@@ -576,7 +580,7 @@ void Parser::crossObject(playerString& curSentence, Player& curPlayer, Dungeon& 
     {
         //check if object is in Dungeon
         std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-        if (curDungeon.findItemInRoom((*i)) == true)
+        if (curDungeon.itemInRoom((*i)) == true)
         {
             //cross object
             curDungeon.useItem(*i);
@@ -609,10 +613,10 @@ void Parser::unlockObject(playerString& curSentence, Player& curPlayer, Dungeon&
         {
             //check if object is in Dungeon
             std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-            if (curDungeon.findItemInRoom((*i)) == true)
+            if (curDungeon.itemInRoom((*i)) == true)
             {
                 //unlock item
-                curPlayer.useItem(*i);
+                curPlayer.hasItem(*i);
                 std::cout << "you have unlocked " << (*i) << endl;
                 unlocked = true;
                 break;
@@ -655,7 +659,7 @@ void Parser::sneakSomewhere(playerString& curSentence, Player& curPlayer, Dungeo
     {
         //check if object is in Dungeon
         std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-        if (curDungeon.findItemInRoom((*i)) == true)
+        if (curDungeon.itemInRoom((*i)) == true)
         {
             //sneak around
             curDungeon.useItem(*i);
@@ -685,7 +689,7 @@ void Parser::attackSomething(playerString& curSentence, Player& curPlayer, Dunge
     {
         //check if enemy is in Dungeon
         std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-        if (curDungeon.findItemInRoom((*i)) == true)
+        if (curDungeon.itemInRoom((*i)) == true)
         {
             //attacking enemy
             std::cout << "you have attacked the " << (*i) << endl;
@@ -716,7 +720,7 @@ void Parser::ringObject(playerString& curSentence, Player& curPlayer, Dungeon& c
     {
         //check if object is in Dungeon
         std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-        if (curDungeon.findItemInRoom((*i)) == true)
+        if (curDungeon.itemInRoom((*i)) == true)
         {
             //ringing object
             std::cout << "you have ringed the " << (*i) << endl;
@@ -752,7 +756,7 @@ void Parser::blockSomething(playerString& curSentence, Player& curPlayer, Dungeo
     {
         //check if enemy is in Dungeon
         std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-        if (curDungeon.findItemInRoom((*i)) == true)
+        if (curDungeon.itemInRoom((*i)) == true)
         {
             //blocking attack
             std::cout << "you have blocked the attack from " << (*i) << endl;

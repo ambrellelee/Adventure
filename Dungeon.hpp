@@ -3,6 +3,8 @@
 
 #include <string.h>
 #include <iostream>
+#include <vector>
+#include <iterator>
 #include "Room.hpp"
 #include "Player.hpp"
 
@@ -15,9 +17,9 @@ class Dungeon
 		Room *newRoom;
 		std::string gameDesc;
 		int playerInput;
-		typedef std::vector<std::string> playerWords;
 		std::vector<Room> allRooms; //vector of rooms
 
+        std::vector<std::string> fileNames;
 	public:
 		Dungeon();
 		int showMenu();
@@ -35,12 +37,14 @@ class Dungeon
         void printCurLocation();
 		bool findRoom(std::string);
 		bool canOpen(std::string);
-		void useItem(std::string);
+		bool useItem(std::string);
 
-		bool findItemInRoom(std::string iName);
-		bool canProceedCheck(std::string roomName);
-		void lookItem(std::string);
-		void look();
+		//newly added functions
+		bool itemInRoom(std::string iName);
+        void getItemInfo(std::string);
+		Item returnItem(std::string itemName);
+		void viewCurRoom();
+		bool useExit(std::string exitName);
 };
 
 #endif

@@ -8,7 +8,6 @@
 #include <sstream>
 
 using namespace std;
-typedef std::vector<std::string> Container;
 /*Methods to check for interactivity will be in Features class
 -Need to add methods to add and remove items from room to inventory/from inventory to room
 -Add methods for features in room once Features class is finished
@@ -101,7 +100,7 @@ bool Room::canProceed(std::string exitName)
 {
 	bool exitPresent = false;
 
-	for(int i = 0; i < exitVec.size(); i++)
+	for(size_t i = 0; i < exitVec.size(); i++)
 	{
 		if (exitVec[i] == exitName)
 		exitPresent = true;
@@ -124,7 +123,7 @@ void Room::removeItem(std::string rItem)
 
 void Room::lookItems(std::string rItem)
 {
-	for( int i = 0; i< inRoom.size(); i++)
+	for( size_t i = 0; i< inRoom.size(); i++)
 	{
 		if(inRoom[i].iName == rItem)
 		{
@@ -137,7 +136,7 @@ bool Room::checkItemInRoom(std::string rItem)
 {
 	bool itemPresent;
 
-	for(int i = 0; i < inRoom.size(); i++)
+	for(size_t i = 0; i < inRoom.size(); i++)
 	{
 		if(inRoom[i].iName == rItem)
 		{
@@ -158,19 +157,19 @@ void Room::printRoomInfo()
         cout << "Room Type: " << rType << endl;
         cout << "Room Descriptions:" << endl;
 
-        for (int i = 0; i < rDescription.size(); i++) {
+        for (size_t i = 0; i < rDescription.size(); i++) {
                 cout << rDescription[i] << endl;
         }
         cout << "The door you see that you can to go to are " ;
         cout << "Exits:" << endl;
 
-        for (int i = 0; i < exitVec.size(); i++) {
+        for (size_t i = 0; i < exitVec.size(); i++) {
                 cout << exitVec[i] << endl;
         }
 
         cout << "Items:" << endl;
 
-        for (int i = 0; i < inRoom.size(); i++)
+        for (size_t i = 0; i < inRoom.size(); i++)
         {
                 cout << "Item number " << (i+1) << endl;
 
@@ -500,4 +499,47 @@ Room::Room(std::string roomFile, int thisRoomNum)
         }
 
         inputFile.close();
+}
+
+
+/****************************
+ newly added functions
+ ***************************/
+
+Item Room::getItemInRoom(std::string itemName)
+{
+     for(size_t i =0; i < inRoom.size(); i++)
+     {
+          if(itemName == inRoom[i].iName)
+           {
+               return inRoom[i];
+          }
+     }
+}
+
+void Room::printRoomDesc()
+{
+	for(std::string::size_type i = 0; i !=description.size(); i++)
+	{
+		cout<< description[i];
+		if(description[i] == ',')
+		{
+			cout << endl;
+		}
+	}
+}
+
+bool Room::canUseFeature(std::string itemName)
+{
+//	bool canUse = false;
+	/*
+	for(int i = 0; i <roomFeatures.size(); i++)
+	{
+		if(itemName = roomFeatures[i].fName)
+		{
+			if(i)
+		}
+	}
+	*/
+	return true;
 }
