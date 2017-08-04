@@ -24,6 +24,8 @@ north
 @@
 False
 @@
+3
+@@
 guts
 @@
 The innards of the monster in the court yard.

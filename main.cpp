@@ -53,7 +53,7 @@ main()
     Parser par; //create parser
     d.playGame();
     bool quit = false;
-    bool done = false;
+
     while(!quit)
     {
         int choice = d.showMenu();
@@ -63,18 +63,15 @@ main()
             d.printCurLocation();
 
             std::vector<string> input;
- //           while(!done)
-  //          {
+            for(int i = 0; i < 50; i++)
+            {
+                input.clear();
                 while(input.size() == 0)
                 {
                     input = playerInput();
- //                   if(input[0] == "done")
- //                   {
-  //                      done = true;
- //                   }
                 }
                 par.parser(d, p, input);
- //           }
+            }
 
         }
         else if(choice == 2)

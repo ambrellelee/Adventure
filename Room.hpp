@@ -14,9 +14,9 @@ class Room
 		std::vector<Feature> roomFeatures;
 		unsigned int roomNumber;
 		std::string description;
-		std::vector<std::string> doors;
+//		std::vector<std::string> doors;
 		std::vector<std::string> rDescription;
-		Room *north, *south, *east, *west;
+
         std::string rType;
 		std::vector<Item> inRoom;      //vector holding structs of items in the room
         std::vector<Item> dropped;	//vector holding structs of items that the player dropped in the room
@@ -25,6 +25,7 @@ class Room
 		bool canProceedForward;
 
 	public:
+
 		//Constructors
 		Room();
 		Room(std::string newName, std::vector<std::string> rDescription, std::string tType, std::vector<std::string> exits);

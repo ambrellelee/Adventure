@@ -11,13 +11,13 @@ Player::Player()
 	score = 0;
 }
 
-Player::Player(std::string newName, int hPoints, int pStamina, double pScore)
+Player::Player(std::string newName, int hPoints, int pStamina, double pScore, Inventory pInvent)
 {
 	pName = newName;
 	hitPoints = hPoints;
 	stamina = pStamina;
 	score = pScore;
-	bag = new Inventory("bag");
+	bag = pInvent;
 }
 
 //set values
@@ -139,30 +139,30 @@ void Player::addStamina(int sustenance)
 	}
 }
 
-void Player::addToBag(Item thing)
+void Player::addToBag(Item& thing)
 {
     //find the item name and pull the whole item then add to inventory
-	bag->addInventory(thing);
+	bag.addInventory(thing);
 }
 
 void Player::removeFromBag(std::string thing)
 {
-	bag->removeInventory(thing);
+	bag.removeInventory(thing);
 }
 
 void Player::lookBag()
 {
-	 bag->viewInventory();
+	 bag.viewInventory();
 }
 
 bool Player::hasItem(std::string item)
 {
-	return bag->inInventory(item);
+	return bag.inInventory(item);
 }
 
 Player::~Player()
 {
-	delete bag;
+	//delete bag;
 }
 
 /*********************************
@@ -171,7 +171,7 @@ Player::~Player()
 bool Player::useItem(std:: string pItem)
 {
     bool itemUse;
-    if(bag->inInventory(pItem) == true)
+    if(bag.inInventory(pItem) == true)
     {
         itemUse = true;
     }
@@ -185,7 +185,7 @@ bool Player::useItem(std:: string pItem)
 
 void Player::viewBagItem(std::string itemName)
 {
-	bag -> viewItem(itemName);
+	bag.viewItem(itemName);
 }
 
 /*

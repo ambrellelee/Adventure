@@ -22,8 +22,6 @@ north
 @@
 True
 @@
-0
-@@
 2
 @@
 fight book

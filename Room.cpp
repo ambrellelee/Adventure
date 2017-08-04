@@ -103,8 +103,10 @@ bool Room::canProceed(std::string exitName)
 	for(size_t i = 0; i < exitVec.size(); i++)
 	{
 		if (exitVec[i] == exitName)
-		exitPresent = true;
-		break;
+        {
+            exitPresent = true;
+            break;
+        }
 	}
 
 	return exitPresent;
@@ -136,19 +138,42 @@ bool Room::checkItemInRoom(std::string rItem)
 {
 	bool itemPresent;
 
+    std::vector<string> temp;
+
 	for(size_t i = 0; i < inRoom.size(); i++)
 	{
+        //split string into vector
+        //http://code.runnable.com/VHb0hWMZp-ws1gAr/splitting-a-string-into-a-vector-for-c%2B%2B
+        std::stringstream ss(inRoom[i].iName);
+        std::string tok;
+
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+
+            if(temp[j] == rItem)
+            {
+                temp.clear();
+                return true;
+            }
+            else
+            {
+                itemPresent = false;
+            }
+
+        }
+        /*
 		if(inRoom[i].iName == rItem)
 		{
-			itemPresent = true;
+			return true;                                  //a little change to return true
 		}
-		else
-		{
-			itemPresent = false;
-		}
+		*/
+        temp.clear();
 	}
-
-	return itemPresent;
+	return itemPresent;;
 }
 
 void Room::printRoomInfo()
@@ -508,25 +533,38 @@ Room::Room(std::string roomFile, int thisRoomNum)
 
 Item Room::getItemInRoom(std::string itemName)
 {
+     Item tempItem = Item("", "", "", 0, 0, 0, 0, 0);
+     std::vector<string> temp;
      for(size_t i =0; i < inRoom.size(); i++)
      {
-          if(itemName == inRoom[i].iName)
-           {
-               return inRoom[i];
-          }
+        //split string into vector
+        //http://code.runnable.com/VHb0hWMZp-ws1gAr/splitting-a-string-into-a-vector-for-c%2B%2B
+        std::stringstream ss(inRoom[i].iName);
+        std::string tok;
+
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == itemName)
+            {
+                tempItem = inRoom[i];
+                temp.clear();
+            }
+            temp.clear();
+        }
      }
+     return tempItem;
 }
 
 void Room::printRoomDesc()
 {
-	for(std::string::size_type i = 0; i !=description.size(); i++)
-	{
-		cout<< description[i];
-		if(description[i] == ',')
-		{
-			cout << endl;
-		}
-	}
+    for (size_t i = 0; i < rDescription.size(); i++)
+    {
+        cout << rDescription[i] << endl;
+    }
 }
 
 bool Room::canUseFeature(std::string itemName)

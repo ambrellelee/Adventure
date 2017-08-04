@@ -60,12 +60,14 @@ int Dungeon::showMenu()
 
 void Dungeon::playGame()
 {
-    const char* files[]= {"one.txt","two.txt","three.txt","four.txt","five.txt","six.txt","seven.txt","eight.txt"};
-    for(size_t i= 0; i < 8; i++)
+
+    const char* files[]= {"one.txt","two.txt","four.txt","five.txt","eight.txt"};
+    for(size_t i= 0; i < 5; i++)
     {
-        Room myRoom = Room(files[i], 0);
+        Room myRoom = Room(files[i], i);
         allRooms.push_back(myRoom);
     }
+
 }
 
 Dungeon::~Dungeon()
@@ -77,7 +79,10 @@ void Dungeon::setCurrentRoom(int i)
 {
     newRoom = &(allRooms[i]);
 }
-
+/***********************************
+ moved down to bottom, revised.
+ **********************************/
+ /*
 void Dungeon::setCurrRoom(std::string newRoomName)
 {
 	for(size_t  i = 0; i < allRooms.size(); i++)
@@ -89,7 +94,11 @@ void Dungeon::setCurrRoom(std::string newRoomName)
 		}
 	}
 }
-
+*/
+/************************
+ not needed anymore
+ ***********************/
+ /*
 bool Dungeon::findRoom(std::string roomName)
 {
 	bool roomFound;
@@ -109,7 +118,7 @@ bool Dungeon::findRoom(std::string roomName)
 
 	return roomFound;
 }
-
+*/
 bool Dungeon::canOpen(std::string featureName)
 {
     return newRoom->canUseFeature(featureName); //still working on this in the room class
@@ -153,4 +162,99 @@ bool Dungeon::useItem(std::string)
     return true;
 }
 
+void Dungeon::setCurrRoom(std::string newRoomName)
+{
+    if(newRoom->rName == allRooms[0].rName)
+    {
+        if(newRoomName == "east")
+        {
+            newRoom = &allRooms[1];
+        }
+    }
+    else if(newRoom->rName == allRooms[1].rName)
+    {
+        if(newRoomName == "north")
+        {
+            newRoom = &allRooms[2];
 
+        }
+        if(newRoomName == "west")
+        {
+            newRoom = &allRooms[0];
+        }
+    }
+    else if(newRoom->rName == allRooms[2].rName)
+    {
+        if(newRoomName == "south")
+        {
+            newRoom = &allRooms[1];
+        }
+        else if(newRoomName == "north")
+        {
+            newRoom = &allRooms[3];
+        }
+    }
+    else if(newRoom->rName == allRooms[3].rName)
+    {
+        if(newRoomName == "south")
+        {
+            newRoom = &allRooms[2];
+        }
+        else if(newRoomName == "north")
+        {
+            newRoom = &allRooms[4];
+        }
+    }
+    else if(newRoom->rName == allRooms[4].rName)
+    {
+        if(newRoomName == "south")
+        {
+            newRoom = &allRooms[3];
+        }
+        else if(newRoomName == "east")
+        {
+            newRoom = &allRooms[0];
+        }
+    }
+    /*
+    if(newRoom->rName == allRooms[5].rName)
+    {
+        south = &allRooms[4];
+        north = &allRooms[6];
+        if(newRoomName == "south")
+        {
+            newRoom = south;
+        }
+        else if(newRoomName == "north")
+        {
+            newRoom = north;
+        }
+    }
+    if(newRoom->rName == allRooms[6].rName)
+    {
+        south = &allRooms[5];
+        north = &allRooms[7];
+        if(newRoomName == "south")
+        {
+            newRoom = south;
+        }
+        else if(newRoomName == "north")
+        {
+            newRoom = north;
+        }
+    }
+    if(newRoom->rName == allRooms[7].rName)
+    {
+        south = &allRooms[6];
+        east = &allRooms[0];
+        if(newRoomName == "south")
+        {
+            newRoom = south;
+        }
+        else if(newRoomName == "east")
+        {
+            newRoom = east;
+        }
+    }
+    */
+}

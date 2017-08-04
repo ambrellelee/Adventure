@@ -16,7 +16,7 @@ briefly about how they keep going, but find it best not to focus on it.
 Map Room
 @
 normal
-1
+2
 @@
 south
 @@

@@ -23,8 +23,6 @@ north
 @@
 False
 @@
-0
-@@
 3
 @@
 painting

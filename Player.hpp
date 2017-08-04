@@ -19,12 +19,12 @@ class Player
 		double score;
 		Room *currentLocation;
 		Room *lastLocation;
-		Inventory *bag;
+		Inventory bag;
 
 	public:
 		//Constructors
 		Player();
-		Player(std::string newName, int hPoints, int pStamina, double pScore);
+		Player(std::string newName, int hPoints, int pStamina, double pScore, Inventory pInvent);
 		~Player();
 
 		//Set Values
@@ -45,7 +45,7 @@ class Player
 
 		void subtractHitPoints(int help);
 		void addStamina(int sustenance);
-		void addToBag(Item thing);
+		void addToBag(Item& thing);
 		void removeFromBag(std::string thing);
 		void lookBag();
 		bool hasItem(std::string);
