@@ -11,32 +11,32 @@ Player::Player()
 	score = 0;
 }
 
-Player::Player(std::string newName, int hPoints, int pStamina, double pScore)
+Player::Player(std::string newName, int hPoints, int pStamina, double pScore, Inventory pInvent)
 {
 	pName = newName;
 	hitPoints = hPoints;
 	stamina = pStamina;
 	score = pScore;
-	bag = new Inventory("bag");
+	bag = pInvent;
 }
 
 //set values
 void Player::setName(std::string playerName)
 {
 	pName = playerName;
-} 
+}
 
 
 void Player::setHitPoints(int playerHitPoints)
 {
 	hitPoints = playerHitPoints;
-	
+
 	if(hitPoints >= maxHitPoints)
-	{	
+	{
 		std::cout << "You have been hit too many times. You have lost." << std::endl;
 		exit(0);
 	}
-}	
+}
 
 void Player::setStamina(int playerStamina)
 {
@@ -48,7 +48,7 @@ void Player::setStamina(int playerStamina)
 		exit(0);
      }
      else if(stamina > maxStamina)
-     {    
+     {
         stamina = maxStamina;
      }
 
@@ -127,7 +127,7 @@ void Player::subtractHitPoints(int help)
 void Player::addStamina(int sustenance)
 {
 	stamina += sustenance;
-	
+
 	if(stamina > maxStamina)
 	{
 		stamina = maxStamina;
@@ -136,114 +136,81 @@ void Player::addStamina(int sustenance)
 	else if(stamina <= 0)
 	{
 		std::cout << "You have expired due to lack of sustenance." << std::endl;
-	}	
+	}
 }
 
 void Player::addToBag(Item& thing)
 {
-	bag->addInventory(thing);
+    //find the item name and pull the whole item then add to inventory
+	bag.addInventory(thing);
 }
 
 void Player::removeFromBag(std::string thing)
 {
-	bag->removeInventory(thing);
+	bag.removeInventory(thing);
 }
 
 void Player::lookBag()
 {
-	 bag->viewInventory();
+	 bag.viewInventory();
 }
 
 bool Player::hasItem(std::string item)
 {
-	return bag->inInventory(item);
+	return bag.inInventory(item);
 }
 
 Player::~Player()
 {
-	delete bag;
+	//delete bag;
 }
 
-//hardcoded comparsion for now refine later
-/*void Player::pickUpItem(std::string thing)
-{
-	addToBag(thing);  
-}*/
-
-/*void Player::dropItem(std::string thing)
-{
-	removeFromBag(thing);
-}*/
-
-bool Player::itemInInventory(std:: string thing)
-{
-	return bag->inInventory(thing);	
-
-/*	if(pItem == "sword")
-    {
-#ifdef NOISYTEST
-        std::cout << pItem << " is in inventory." << std::endl;
-#endif
-        return true;
-    }
-    else if(pItem == "water")
-    {
-#ifdef NOISYTEST
-        std::cout << pItem << " is in inventory." << std::endl;
-#endif
-        return true;
-    }
-    else if(pItem == "potion")
-    {
-#ifdef NOISYTEST
-        std::cout << pItem << " is in inventory." << std::endl;
-#endif
-        return true;
-    }
-    else
-        return false;
-*/
-}
-
-
+/*********************************
+ Yu's edit
+*********************************/
 bool Player::useItem(std:: string pItem)
 {
-    if(pItem == "sword")
+    bool itemUse;
+    if(bag.inInventory(pItem) == true)
     {
-#ifdef NOISYTEST
-        std::cout << "Using " << pItem << " from inventory." << std::endl;
-#endif
-        return true;
+        itemUse = true;
     }
-    else if(pItem == "water")
-    {
-#ifdef NOISYTEST
-        std::cout << "filling/Drinking " << pItem << " from inventory." << std::endl;
-#endif
-        return true;
-    }
-   else if(pItem == "potion")
-   {
-#ifdef NOISYTEST
-        std::cout << "Drinking " << pItem << " from inventory." << std::endl;
-#endif
-        return true;
-   }
     else
-        return false;
-
+    {
+        itemUse = false;
+    }
+    return itemUse;
 }
-/*void Player::removeItem(std::string pItem)
-{
-#ifdef NOISYTEST
-        std::cout << pItem << " removed from inventory." << std::endl;
-#endif
-    removeFromBag(pItem);
 
-}*/
 
 void Player::viewBagItem(std::string itemName)
 {
-	bag -> viewItem(itemName);
+	bag.viewItem(itemName);
 }
 
+/*
+void Player::savePlayer(std::ofstream& savePlayerFile)
+{
+	savePlayerFile << "name" << pName << std::endl;
+	savePlayerFile << "hitPoints" << hitPoints << std::endl;
+	savePlayerFile << "stamina" << stamina << std::endl;
+	savePlayerFile << "score" << score << std::endl;
+	for(int i = 0; i < bag->size(); i++)
+	{
+		savePlayerFile << bag[i] <<std::endl;
+	}
+
+}
+
+
+void Player::loadPlayer(std::ifstream& loadPlayerFile)
+{
+	std::string info;
+
+	loadPlayerFile >> info >> pName;
+	loadPlayerFile >> info >> hitPoints;
+	loadPlayerFile >> info >> stamina;
+	loadPlayerFile >> info >> score;
+	//inFile >> info >> bag;
+}
+*/

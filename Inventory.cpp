@@ -1,5 +1,9 @@
 #include "Inventory.hpp"
 
+Inventory::Inventory()
+{
+}
+
 Inventory::Inventory(std::string newName)
 {
 	containerName = newName;
@@ -35,11 +39,11 @@ void Inventory::removeInventory(std::string item)
 	}
 	else
 	{
-		std::vector<Item>::iterator i = std::find_if(stuff.begin(), stuff.end(), findItem(item)); 		
+		std::vector<Item>::iterator i = std::find_if(stuff.begin(), stuff.end(), findItem(item));
 		stuff.erase(i);
 		std::cout << "You have removed << item << from your inventory." << std::endl;
 
-	}	
+	}
 }
 
 void Inventory::viewInventory()
@@ -47,13 +51,13 @@ void Inventory::viewInventory()
 	std::cout << "You currently have " << stuff.size() << "items in your inventory." << std::endl;
 	for(int i = 0; i < stuff.size(); i++)
 	{
-		std::cout << i+1 << ":" << stuff[i].iName <<std::endl;	
+		std::cout << i+1 << ":" << stuff[i].iName <<std::endl;
 	}
 }
 
 bool Inventory::inInventory(std::string thing)
 {
-	bool hasItem; 
+	bool hasItem;
 
 	for(int i = 0; i < stuff.size(); i++)
 	{
@@ -67,7 +71,7 @@ bool Inventory::inInventory(std::string thing)
 			hasItem = false;
 		}
 	}
-	
+
 	return hasItem;
 }
 
@@ -78,7 +82,6 @@ void Inventory::viewItem(std::string itemName)
 		if(stuff[i].iName == itemName)
 		{
 			std::cout << stuff[i].iDesc << std::endl;
-		}	
+		}
 	}
 }
-	

@@ -5,6 +5,8 @@
 #include<iostream>
 #include<string>
 #include "Item.hpp"
+#include<algorithm>
+#include<list>
 
 class Inventory
 {
@@ -13,6 +15,7 @@ class Inventory
 		std::string containerName;
 
 	public:
+		Inventory();
 		Inventory(std::string newName);
 		void setName(std::string);
 		std::string getName();

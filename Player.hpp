@@ -18,37 +18,36 @@ class Player
 		int maxStamina;	//what do we want this value to be?
 		double score;
 		Room *currentLocation;
-		Room *lastLocation;		
-		Inventory *bag; 
+		Room *lastLocation;
+		Inventory bag;
 
 	public:
 		//Constructors
 		Player();
-		Player(std::string newName, int hPoints, int pStamina, double pScore); 	
-		~Player();	
+		Player(std::string newName, int hPoints, int pStamina, double pScore, Inventory pInvent);
+		~Player();
 
-		//Set Values	
+		//Set Values
 		void setName(std::string playerName);
 		void setHitPoints(int playerHitPoints);
 		void setStamina(int playerStamina);
 		void setScore(double playerScore);
 		void setCurrentLocation(Room*);
-	
+
 		//Get Values
 		std::string getName();
 		int getHitPoints();
 		int getStamina();
 		int getScore();
 		Room* getCurrentLocation();
-          Room* getLastLocation();
+        Room* getLastLocation();
 		void printPlayerInfo();
-	
-		void move();
+
 		void subtractHitPoints(int help);
 		void addStamina(int sustenance);
 		void addToBag(Item& thing);
 		void removeFromBag(std::string thing);
-		void lookBag();		
+		void lookBag();
 		bool hasItem(std::string);
 		void pickUpItem(std::string);
 		void dropItem(std::string);
@@ -56,7 +55,9 @@ class Player
 		bool useItem(std:: string pItem);
 		void removeItem(std::string pItem);
 		void viewBagItem(std::string);
+
+		void savePlayer(std::ofstream& savePlayerFile);
+		void loadPlayer(std::ifstream& loadPlayerFile);
 };
-		
+
 #endif
-	
