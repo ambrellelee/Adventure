@@ -139,7 +139,7 @@ void Player::addStamina(int sustenance)
 	}	
 }
 
-void Player::addToBag(Item thing)
+void Player::addToBag(Item& thing)
 {
 	bag->addInventory(thing);
 }
@@ -170,10 +170,10 @@ Player::~Player()
 	addToBag(thing);  
 }*/
 
-void Player::dropItem(std::string thing)
+/*void Player::dropItem(std::string thing)
 {
 	removeFromBag(thing);
-}
+}*/
 
 bool Player::itemInInventory(std:: string thing)
 {
@@ -233,43 +233,17 @@ bool Player::useItem(std:: string pItem)
         return false;
 
 }
-void Player::removeItem(std::string pItem)
+/*void Player::removeItem(std::string pItem)
 {
 #ifdef NOISYTEST
         std::cout << pItem << " removed from inventory." << std::endl;
 #endif
     removeFromBag(pItem);
 
-}
+}*/
 
 void Player::viewBagItem(std::string itemName)
 {
 	bag -> viewItem(itemName);
 }
 
-/*
-void Player::savePlayer(std::ofstream& savePlayerFile)
-{
-	savePlayerFile << "name" << pName << std::endl;
-	savePlayerFile << "hitPoints" << hitPoints << std::endl;
-	savePlayerFile << "stamina" << stamina << std::endl;
-	savePlayerFile << "score" << score << std::endl;
-	for(int i = 0; i < bag->size(); i++)
-	{
-		savePlayerFile << bag[i] <<std::endl;
-	}
-
-}
-
-
-void Player::loadPlayer(std::ifstream& loadPlayerFile)
-{
-	std::string info;
-	
-	loadPlayerFile >> info >> pName;
-	loadPlayerFile >> info >> hitPoints;
-	loadPlayerFile >> info >> stamina;
-	loadPlayerFile >> info >> score;
-	//inFile >> info >> bag;
-}
-*/

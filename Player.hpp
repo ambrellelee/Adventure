@@ -46,7 +46,7 @@ class Player
 		void move();
 		void subtractHitPoints(int help);
 		void addStamina(int sustenance);
-		void addToBag(Item thing);
+		void addToBag(Item& thing);
 		void removeFromBag(std::string thing);
 		void lookBag();		
 		bool hasItem(std::string);
@@ -56,9 +56,6 @@ class Player
 		bool useItem(std:: string pItem);
 		void removeItem(std::string pItem);
 		void viewBagItem(std::string);
-		
-		void savePlayer(std::ofstream& savePlayerFile);
-		void loadPlayer(std::ifstream& loadPlayerFile);
 };
 		
 #endif

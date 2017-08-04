@@ -14,7 +14,7 @@ std::string Inventory::getName()
 	return containerName;
 }
 
-void Inventory::addInventory(Item thing)
+void Inventory::addInventory(Item& thing)
 {
 	if(inInventory(thing.iName))
 	{
