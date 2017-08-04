@@ -102,10 +102,11 @@ bool Room::canProceed(std::string exitName)
 	for(int i = 0; i < exitVec.size(); i++)
 	{
 		if (exitVec[i] == exitName)
-		exitPresent = true;
-		break;
+		{
+			exitPresent = true;
+			break;
+		}
 	}
-
 	return exitPresent;
 }
 
@@ -131,7 +132,7 @@ void Room::lookItems(std::string rItem)
 	}
 }
 //hardcoded comparison for now to show it works.
-bool Room::checkRoomNames(std::string rName)
+/*bool Room::checkRoomNames(std::string rName)
 {
     //compare to vector of rooms
     //temp room name list
@@ -145,7 +146,7 @@ bool Room::checkRoomNames(std::string rName)
     }
     else
         return false;
-}
+}*/
 
 bool Room::checkItemInRoom(std::string rItem)
 {
