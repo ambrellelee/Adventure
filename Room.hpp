@@ -60,9 +60,21 @@ class Room
 		void printItemDescription(std::string);
 
 		//newly added functions
-		 Item getItemInRoom(std::string itemName);
-		 void printRoomDesc();
-		 bool canUseFeature(std::string);
+        Item getItemInRoom(std::string itemName);
+        void printRoomDesc();
+        bool canUseFeature(std::string);
+
+
+		 //////////////NEW//////////////////////
+        std::string getOldRoom();
+        bool getExitStatus();
+        bool getAvailability(std::string availability);
+        void featureInteraction(std::string);
+        bool finRoom(std::string);
+        void featureIDescription(std::string);
+        std::vector<std::string> usedFeatures;
+        void getItemIDesc(std::string);
+        void featureDescription(std::string);
 };
 
 #endif

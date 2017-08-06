@@ -13,6 +13,7 @@ Feature::Feature(std::string featName, std::vector<std::string> fDescs, std::vec
         interactionDesc = interactions;
         nextAction = actions;
         interactionNum = 0;
+        lookingNum=0;
 }
 
 
@@ -44,4 +45,27 @@ std::vector<std::string> Feature::getFeatureDesc()
 std::vector<std::string> Feature::getInteractionDesc()
 {
 	return interactionDesc;
+}
+std::vector<bool> Feature::getActions()
+{
+	return nextAction;
+}
+
+void Feature::setInteractionNum()
+{
+    ++interactionNum;
+}
+size_t Feature::getinteractionNum()
+{
+    return interactionNum;
+}
+size_t Feature::getLookingNum()
+{
+
+    if(lookingNum > fDesc.size())
+    {
+        lookingNum = 0;
+    }
+    ++lookingNum;
+    return lookingNum-1;
 }

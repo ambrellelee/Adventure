@@ -21,6 +21,9 @@ class Dungeon
 
         std::vector<std::string> fileNames;
 
+        ////////////NEW//////////////
+        std::string oldRoomDirection;
+
 	public:
 		Dungeon();
 		int showMenu();
@@ -38,7 +41,7 @@ class Dungeon
         void printCurLocation();
 		bool findRoom(std::string);
 		bool canOpen(std::string);
-		bool useItem(std::string);
+		void useItem(std::string);
 
 		//newly added functions
 		bool itemInRoom(std::string iName);
@@ -46,6 +49,17 @@ class Dungeon
 		Item returnItem(std::string itemName);
 		void viewCurRoom();
 		bool useExit(std::string exitName);
+
+		//Yu's test on needed functions...
+		bool featureInRoom(std::string fName);
+
+		////////////////NEW//////////////////
+		bool checkRoomExitStatus(std::string exitStatus);
+        bool itemAvailability(std::string availability);
+        void validInteraction(std::string);
+        void fIDesc(std::string);
+        void getItemInteractDesc(std::string);
+        void fDesc(std::string);
 };
 
 #endif

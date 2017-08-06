@@ -168,21 +168,6 @@ Player::~Player()
 /*********************************
  Yu's edit
 *********************************/
-bool Player::useItem(std:: string pItem)
-{
-    bool itemUse;
-    if(bag.inInventory(pItem) == true)
-    {
-        itemUse = true;
-    }
-    else
-    {
-        itemUse = false;
-    }
-    return itemUse;
-}
-
-
 void Player::viewBagItem(std::string itemName)
 {
 	bag.viewItem(itemName);
