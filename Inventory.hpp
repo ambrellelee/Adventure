@@ -12,18 +12,18 @@ class Inventory
 {
 	private:
 		std::vector<Item> stuff;		//stores items
-		std::string containerName;
+		std::string containerName;	//names inventory
 
 	public:
 		Inventory();
 		Inventory(std::string newName);
 		void setName(std::string);
 		std::string getName();
-		void addInventory(Item& thing);
-		void removeInventory(std::string);
-		void viewInventory();
-		bool inInventory(std::string thing);
-		void viewItem(std::string);
+		void addInventory(Item& thing);		//adds an item to player's inventory
+		void removeInventory(std::string);		//removes an item from the player's inventory
+		void viewInventory();				//displays list of items in player's inventory
+		bool inInventory(std::string thing);	//checks to see if an item is in player's inventory
+		void viewItem(std::string);			//displays item's info
 };
 
 #endif

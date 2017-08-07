@@ -13,6 +13,7 @@ void Inventory::setName(std::string newName)
 {
 	containerName = newName;
 }
+
 std::string Inventory::getName()
 {
 	return containerName;

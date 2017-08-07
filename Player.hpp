@@ -27,37 +27,31 @@ class Player
 		Player(std::string newName, int hPoints, int pStamina, double pScore, Inventory pInvent);
 		~Player();
 
-		//Set Values
+		//Get and Set Values
 		void setName(std::string playerName);
-		void setHitPoints(int playerHitPoints);
-		void setStamina(int playerStamina);
-		void setScore(double playerScore);
-		void setCurrentLocation(Room*);
-
-		//Get Values
 		std::string getName();
+		void setHitPoints(int playerHitPoints);
 		int getHitPoints();
+		void setStamina(int playerStamina);
 		int getStamina();
+		void setScore(double playerScore);
 		int getScore();
-		Room* getCurrentLocation();
-        Room* getLastLocation();
-		void printPlayerInfo();
+		//void setCurrentLocation(Room*);
 
+		//Room* getCurrentLocation();
+          //Room* getLastLocation();
+		
+		//Player Functionality Methods
+		void printPlayerInfo();
 		void subtractHitPoints(int help);
 		void addStamina(int sustenance);
 		void addToBag(Item& thing);
 		void removeFromBag(std::string thing);
-		void lookBag();
-		bool hasItem(std::string);
-		void pickUpItem(std::string);
-		void dropItem(std::string);
-		bool itemInInventory(std:: string pItem);
-		bool useItem(std:: string pItem);
-		void removeItem(std::string pItem);
-		void viewBagItem(std::string);
+		void lookBag();					//prints list of all items
+		bool hasItem(std::string);			//checks to see if the item is in the player's inventory
+		bool useItem(std::string pItem);		//does the same thing as hasItem?
+		void viewBagItem(std::string);		//prints out information for specific item
 
-		void savePlayer(std::ofstream& savePlayerFile);
-		void loadPlayer(std::ifstream& loadPlayerFile);
 };
 
 #endif

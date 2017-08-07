@@ -3,7 +3,7 @@
 #include <fstream>
 #include <vector>
 #include <iostream>
-#include<string>
+#include <string>
 #include "Inventory.hpp"
 #include "Feature.hpp"
 #include "Item.hpp"
@@ -14,20 +14,17 @@ class Room
 		std::vector<Feature> roomFeatures;
 		unsigned int roomNumber;
 		std::string description;
-		std::vector<std::string> doors;
-		Room *north, *south, *east, *west;
-        	std::string rType;
+//		std::vector<std::string> doors;
+		std::vector<std::string> rDescription;
+          std::string rType;
 		std::vector<Item> inRoom;      //vector holding structs of items in the room
-         	std::vector<Item> dropped;	//vector holding structs of items that the player dropped in the room
-         	std::vector<std::string> exitVec;		//vector holding exits
+		std::vector<Item> dropped;	//vector holding structs of items that the player dropped in the room
+		std::vector<std::string> exitVec;		//vector holding exits
 		std::vector<std::string> interactions;	// vector holding descriptions for interactions that occur in the room
 		bool canProceedForward;
 
-		std::vector<std::string> itemInRoom;  //temp item vector
-
-		 
-
 	public:
+
 		//Constructors
 		Room();
 		Room(std::string newName, std::vector<std::string> rDescription, std::string tType, std::vector<std::string> exits);
@@ -36,35 +33,44 @@ class Room
 		//Destructor
 		~Room();
 
-		//Set Values
+		//Get and Set Values
+		std::string rName;
 		void setName(std::string newName);
+		std::string getName();
 		void setType(std::string tType);
+		std::string getType();
 		void setDescription(std::string rdesc);
+		std::vector<std::string> getDescription();
 		void setItem(std::string, std::string, std::string, int, int, bool, int, int);
 		void setExits(std::string newExit);
-
-		//Get Values
-		std::string rName;
-		std::vector<std::string> rDescription;
-		std::string getName();
-		std::string getType();
-		std::vector<std::string> getDescription();
 		std::vector<std::string> getExits();
 
+		//Room Functionality methods
 		bool canProceed(std::string exitName);		//Finds whether an exit is valid or not
-		void lookItems(std::string rItem);		//look at an item in the room
-
-		bool checkRoomNames(std::string rName);    //Find if parameter match any room names
-		bool checkItemInRoom(std::string rItem);  //check if item is in room
-		void removeItem(std::string rItem);
-		void addItem(Item);
-		void setRooms(std::ifstream& readFile);
-		void printRoomDesc();
+		void lookItems(std::string rItem);			//look at an item in the room
+		bool checkRoomNames(std::string rName);      //Find if parameter match any room names
+		bool checkItemInRoom(std::string rItem);	//check if item is in room
+		void removeItem(std::string rItem);		//removes an item from the room when it is added to player's bagg
+		void addItem(Item);						//places an item in the room when player drops it
 		void printRoomInfo();
-		void printAllData();
+		//void printAllData();
 		void printItemDescription(std::string);
+
+		//newly added functions
+		Item getItemInRoom(std::string itemName);
+		void printRoomDesc();
 		bool canUseFeature(std::string);
-		Item getItemInRoom(std::string);
+
+		 //////////////NEW//////////////////////
+		std::string getOldRoom();
+		bool getExitStatus();
+		bool getAvailability(std::string availability);
+		void featureInteraction(std::string);
+		bool finRoom(std::string);
+		void featureIDescription(std::string);
+		std::vector<std::string> usedFeatures;
+		void getItemIDesc(std::string);
+		void featureDescription(std::string);
 };
 
 #endif

@@ -1,51 +1,63 @@
 #ifndef DUNGEON_HPP
-#define DUNGEON_HPP 
+#define DUNGEON_HPP
 
 #include <string.h>
 #include <iostream>
+#include <vector>
+#include <iterator>
 #include "Room.hpp"
 #include "Player.hpp"
-#include "Parser.hpp"
-
-//start adding functions
-//add method to display game description
 
 class Dungeon
 {
 	private:
 		Room *newRoom;
-	//	Player *newPlayer;
-	//	Parser *newParser;
 		std::string gameDesc;
 		int playerInput;
-		typedef std::vector<std::string> playerWords;
 		std::vector<Room> allRooms; //vector of rooms
+
+        std::vector<std::string> fileNames;
+
+        ////////////NEW//////////////
+        std::string oldRoomDirection;
 
 	public:
 		Dungeon();
-		int showMenu();
 		void setGameDescription(std::string);
-		std::string showGameDescription();
-		void initializeRooms();
+          std::string showGameDescription();
+		int showMenu();
+		//void initializeRooms();
 		void playGame();
-		
-		~Dungeon();
-	
+
 		Dungeon(std::vector<Room> rooms);
-		void readRooms(std::ifstream& readFile);
-        	void setCurrRoom(std::string);
-        	void setCurrentRoom(int i);
-       	void printRooms();
-        	void printCurLocation();
-        	void sendParse(Player& curP, playerWords& curSentence);
-		bool findRoom(std::string);
+		void setCurrRoom(std::string);	//needs work
+		void setCurrentRoom(int i);		//sets room number
+       	//void printRooms();
+		void printCurLocation();
+		//bool findRoom(std::string);
 		bool canOpen(std::string);
-		bool itemInRoom(std::string);
-		void getItemInfo(std::string);
 		void useItem(std::string);
+		void removeRoomItem(std::string);
+
+		//newly added functions
+		bool itemInRoom(std::string iName);
+		void getItemInfo(std::string);
+		Item returnItem(std::string itemName);
 		void viewCurRoom();
-		Item returnItem(std::string);
-		bool useExit(std::string);
+		bool useExit(std::string exitName);
+
+		//Yu's test on needed functions...
+		bool featureInRoom(std::string fName);
+
+		////////////////NEW//////////////////
+		bool checkRoomExitStatus(std::string exitStatus);
+		bool itemAvailability(std::string availability);
+		void validInteraction(std::string);
+		void fIDesc(std::string);
+		void getItemInteractDesc(std::string);
+		void fDesc(std::string);
+
+		~Dungeon();
 };
 
-#endif 
+#endif

@@ -8,10 +8,6 @@
 #include <sstream>
 
 using namespace std;
-typedef std::vector<std::string> Container;
-/*Methods to check for interactivity will be in Features class
--Add methods for features in room once Features class is finished
-*/
 
 bool setBool(string input)
 {
@@ -41,7 +37,7 @@ Room::Room(std::string newName, std::vector<std::string> description, std::strin
 	exitVec = exits;
 }
 
-//Destructors
+//Destructor
 Room::~Room()
 {
 	inRoom.empty();
@@ -53,10 +49,15 @@ void Room::setItem(std::string newItemName, std::string newItemDesc, std::string
 	inRoom.push_back(Item(newItemName, newItemDesc, newUseDesc, water, waterMax, addable, featSource, interactionGet));
 }
 
-//Set Values Methods
+//Get and Set Methods
 void Room::setName(std::string newName)
 {
 	rName = newName;
+}
+
+std::string Room::getName()
+{
+     return rName;
 }
 
 void Room::setType(std::string tType)
@@ -64,30 +65,24 @@ void Room::setType(std::string tType)
 	rType = tType;
 }
 
-void Room::setDescription(std::string rdesc)
-{
-	rDescription.push_back(rdesc);
-}
-
-void Room::setExits(std::string newExit)
-{
-	exitVec.push_back(newExit);
-}
-
-//Get Values Methods
-std::string Room::getName()
-{
-     return rName;
-}
-
 std::string Room::getType()
 {
      return rType;
 }
 
+void Room::setDescription(std::string rdesc)
+{
+	rDescription.push_back(rdesc);
+}
+
 std::vector<std::string> Room::getDescription()
 {
-	return rDescription;
+     return rDescription;
+}
+
+void Room::setExits(std::string newExit)
+{
+	exitVec.push_back(newExit);
 }
 
 std::vector<std::string> Room::getExits()
@@ -99,14 +94,15 @@ bool Room::canProceed(std::string exitName)
 {
 	bool exitPresent = false;
 
-	for(int i = 0; i < exitVec.size(); i++)
+	for(size_t i = 0; i < exitVec.size(); i++)
 	{
 		if (exitVec[i] == exitName)
-		{
-			exitPresent = true;
-			break;
-		}
+        {
+            exitPresent = true;
+            break;
+        }
 	}
+
 	return exitPresent;
 }
 
@@ -122,169 +118,116 @@ void Room::removeItem(std::string rItem)
 }
 
 void Room::lookItems(std::string rItem)
-{	
-	for( int i = 0; i< inRoom.size(); i++)
+{
+	for( size_t i = 0; i< inRoom.size(); i++)
 	{
 		if(inRoom[i].iName == rItem)
-		{ 
+		{
 			std::cout << inRoom[i].iDesc << std::endl;
 		}
 	}
 }
-//hardcoded comparison for now to show it works.
-/*bool Room::checkRoomNames(std::string rName)
-{
-    //compare to vector of rooms
-    //temp room name list
-
-    if(rName == "court")
-    {
-#ifdef NOISYTEST
-        std::cout << rName << " room found!" << std::endl;
-#endif
-        return true;
-    }
-    else
-        return false;
-}*/
 
 bool Room::checkItemInRoom(std::string rItem)
 {
 	bool itemPresent;
-	
-	for(int i = 0; i < inRoom.size(); i++)
+
+    std::vector<string> temp;
+
+	for(size_t i = 0; i < inRoom.size(); i++)
 	{
-		if(inRoom[i].iName == rItem)
-		{
-			itemPresent = true;
-		}
-		else
-		{
-			itemPresent = false;
-		}
+        //split string into vector
+        //http://code.runnable.com/VHb0hWMZp-ws1gAr/splitting-a-string-into-a-vector-for-c%2B%2B
+        std::stringstream ss(inRoom[i].iName);
+        std::string tok;
+
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+
+            if(temp[j] == rItem)
+            {
+                temp.clear();
+                return true;
+            }
+            else
+            {
+                itemPresent = false;
+            }
+
+        }
+        temp.clear();
 	}
-	
-	return itemPresent;
-}
-	
-/*    if(rItem == "sword")
-    {
-#ifdef NOISYTEST
-        std::cout << rItem << " taken from room." << std::endl;
-#endif
-        return true;
-    }
-    else if(rItem == "chest")
-    {
-#ifdef NOISYTEST
-        std::cout << rItem << " is in the room." << std::endl;
-#endif
-        return true;
-    }
-    else if(rItem == "sphinx")
-    {
-#ifdef NOISYTEST
-        std::cout << rItem << " is in the room." << std::endl;
-#endif
-        return true;
-    }
-    else
-        return false;
-	
-}*/
-
-/*bool Room::canUseFeature(std::string itemName)
-{
-	canUse = false;
-	for(int i = 0; i <roomFeatures.size(); i++)
-	{
-		if(itemName = roomFeatures[i].fName)
-		{
-			if(i)
-		}
-	}
-}*/
-
-Item Room::getItemInRoom(std::string itemName)
-{
-	
-	/*if(checkItemInRoom(itemName) == true)
-		std::vector<Item>::iterator i = std::find_if(inRoom.begin(), inRoom.end(), findItem(itemName));
-
-		return inRoom(*i);
-	*/
-	for(int i =0; i < inRoom.size(); i++)
-	{
-		if(itemName == inRoom[i].iName)
-		{
-			return inRoom[i];
-		}
-	}
-	//return NULL;
-}
-
-
-
-void Room::setRooms(std::ifstream& readFile)
-{
-    std::string blank = "";
-    int exitDoors = 0; //read in number of exit doors in the room
-    std::string curDoor = "";
-    readFile >> blank >> roomNumber; //get the room number
-    readFile >> blank >> rName;
-    readFile >> blank;
-    std::getline(readFile, description); //read the description line
-    readFile >> blank >> exitDoors; //get the number of exit doors.
-    int i;
-    for(i = 0; i != exitDoors; i++)
-    {
-        readFile >> blank >> curDoor;
-        doors.push_back(curDoor); //get the door name
-    }
-    int numOfItems = 0; //read in number of exit doors in the room
-    std::string curItem = "";
-    readFile >> blank >> numOfItems;
-    for(i = 0; i !=numOfItems; i++)
-    {
-        readFile >> blank >> curItem;
-        itemInRoom.push_back(curItem); //changed to inRoom from itemInRoom, which isn't declared. Is this ok?
-    }
-}
-
-void Room::printRoomDesc()
-{
-	for(std::string::size_type i = 0; i !=description.size(); i++)
-	{
-		cout<< description[i];
-		if(description[i] == ',')
-		{
-			cout << endl;
-		}
-	}
+	return itemPresent;;
 }
 
 void Room::printRoomInfo()
 {
-	cout << "Room number: "<< roomNumber << endl;
-	cout << "Room name: " + rName << endl;
-	cout << "Room desccription: " <<  endl;
-	for(std::string::size_type i = 0; i != description.size(); i++)
-    {
-        cout << description[i];
-        if(description[i] == '.')
-        {
-            cout << endl;
+	cout << "Room Name: " << rName << endl;
+        cout << "Room Type: " << rType << endl;
+        cout << "Room Descriptions:" << endl;
+
+        for (size_t i = 0; i < rDescription.size(); i++) {
+                cout << rDescription[i] << endl;
         }
-    }
+        cout << "The door you see that you can to go to are " ;
+        cout << "Exits:" << endl;
+
+        cout << "++++++++++++++++++++++++++" << endl;
+        for (size_t i = 0; i < exitVec.size(); i++) {
+                cout << "+++    --->  " << exitVec[i] << "      +++ " << endl;
+        }
+        cout << "++++++++++++++++++++++++++" << endl;
+
+        cout << "Items:" << endl;
+
+        for (size_t i = 0; i < inRoom.size(); i++)
+        {
+                cout << "Item number " << (i+1) << endl;
+
+                cout << "Item name: " << inRoom[i].iName << endl;
+                cout << "Item description: " << inRoom[i].iDesc << endl;
+                cout << "Item use text: " << inRoom[i].useDesc << endl;
+                cout << "Water in item: " << inRoom[i].waterLevel << endl;
+                cout << "Max. water capacity: " << inRoom[i].maxWater << endl;
+
+                if (inRoom[i].available == true)
+                        cout << "Player can pick up item now" << endl;
+                else
+                        cout << "Player cannot take item now" << endl;
+
+                cout << "Item taken from feature at index " << inRoom[i].featureSource  << endl;
+                cout << "Item can be taken at interaction number " << inRoom[i].whenCanTake << endl;
+                cout << "------------------------------------------------------------------------" << endl;
+        }
+        ///////////////////////////////////////////////////////////////////////////////
+        vector<string> fDescTest;
+        vector<string> interactionDescTest;
+        vector<bool> canLeaveTest;
+        cout <<"\n******************************************************************************"<<endl;
+        cout << "Features:" << endl;
+
+        for (size_t i = 0; i < roomFeatures.size(); i++)
+        {
+                cout << "Feature number " << i << endl;
+                cout << "Feature name: " << roomFeatures[i].getName() << endl;
+                fDescTest = roomFeatures[i].getFeatureDesc();
+
+                cout << fDescTest[0] << endl;
+                interactionDescTest = roomFeatures[i].getInteractionDesc();
+                canLeaveTest = roomFeatures[i].getActions();
+                cout << "------------------------------------------------------------------------" << endl;
+        }
+
 	cout << endl;
-	cout << "The door you see that you can to go to are " ;
-	for (Container::size_type i = 0; i != doors.size(); i++)//print doors
-	{
-		cout << " -->" << doors[i] << " --> ";
-	}
 	cout << endl;
 	cout << "What do you want to do ? " << endl;
 }
+/****************************************************************************
+//not needed
 
 void Room::printAllData()
 {
@@ -378,6 +321,7 @@ void Room::printAllData()
                 cout << "Can not leave room now" << endl;
 
 }
+****************************************************************************/
 
 Room::Room(std::string roomFile, int thisRoomNum)
 {
@@ -591,3 +535,258 @@ Room::Room(std::string roomFile, int thisRoomNum)
         inputFile.close();
 }
 
+
+/****************************
+ newly added functions
+ ***************************/
+
+Item Room::getItemInRoom(std::string itemName)
+{
+     Item tempItem = Item("", "", "", 0, 0, 0, 0, 0);
+     std::vector<string> temp;
+     for(size_t i =0; i < inRoom.size(); i++)
+     {
+        //split string into vector
+        //http://code.runnable.com/VHb0hWMZp-ws1gAr/splitting-a-string-into-a-vector-for-c%2B%2B
+        std::stringstream ss(inRoom[i].iName);
+        std::string tok;
+
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == itemName)
+            {
+                tempItem = inRoom[i];
+                temp.clear();
+            }
+            temp.clear();
+        }
+     }
+     return tempItem;
+}
+
+void Room::printRoomDesc()
+{
+    for (size_t i = 0; i < rDescription.size(); i++)
+    {
+        cout << rDescription[i] << endl;
+    }
+}
+
+bool Room::canUseFeature(std::string fName)
+{
+    std::vector<std::string> openableFeatures;
+    openableFeatures.push_back("chest");
+    openableFeatures.push_back("box");
+    openableFeatures.push_back("vault");
+    openableFeatures.push_back("case");
+
+    bool useF = true;
+
+    for(size_t i = 0; i < openableFeatures.size(); i++)
+    {
+        if(fName == openableFeatures[i])
+        {
+//            cout << "this feature is on the openable list "<< endl;
+            break;
+        }
+        else
+        {
+ //           cout << "This feature is not one of the openable feature" << endl;
+            useF = false;
+        }
+    }
+    for(size_t i = 0; i < usedFeatures.size(); i++)
+    {
+        if(usedFeatures[i] == fName)
+        {
+            useF = false;
+        }
+    }
+
+	return useF;
+}
+
+/////////////////NEW///////////////////
+string Room::getOldRoom()
+{
+    return exitVec[0];
+}
+
+bool Room::getExitStatus()
+{
+    return canProceedForward;
+}
+//see if an item can be taken
+bool Room::getAvailability(std::string availability)
+{
+    bool available = false;
+    std::vector<string> temp;
+    for(size_t i = 0; i < inRoom.size(); i++)
+	{
+        std::stringstream ss(inRoom[i].iName);
+        std::string tok;
+
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == availability)
+            {
+                available = inRoom[i].available;
+            }
+        }
+        temp.clear();
+        size_t x = inRoom[i].whenCanTake;
+        if(x == roomFeatures[inRoom[i].featureSource].getinteractionNum())
+        {
+            available = true;
+        }
+
+	}
+	return available;
+}
+//valid cmd interact with a feature increments interaction number
+void Room::featureInteraction(std::string fName)
+{
+    usedFeatures.push_back(fName);
+    std::vector<string> temp;
+    for(size_t i = 0; i < roomFeatures.size(); i++)
+    {
+        std::stringstream ss(roomFeatures[i].getName());
+        std::string tok;
+
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == fName)
+            {
+
+                if(roomFeatures[i].getinteractionNum() > (roomFeatures[i].getInteractionDesc()).size()-2)
+                {
+                    cout << "No more interaction descriptions." << endl;
+                }
+                else
+                {
+                    cout << "int #: " << roomFeatures[i].getinteractionNum() << "\tdesc #: " << (roomFeatures[i].getInteractionDesc()).size() << endl;
+                    roomFeatures[i].setInteractionNum();
+                }
+            }
+        }
+        temp.clear();
+    }
+}
+//check if feature is in the room
+bool Room::finRoom(std::string fName)
+{
+    bool found = false;
+    std::vector<string> temp;
+    for(size_t i = 0; i < roomFeatures.size(); i++)
+    {
+        std::stringstream ss(roomFeatures[i].getName());
+        std::string tok;
+
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == fName)
+            {
+                found = true;
+            }
+        }
+        temp.clear();
+    }
+    return found;
+}
+//prints feature interaction description
+void Room::featureIDescription(std::string fDesc)
+{
+    std::vector<string> temp;
+    std::vector<std::string> FeatureDesc;
+    for(size_t i = 0; i < roomFeatures.size(); i++)
+    {
+        std::stringstream ss(roomFeatures[i].getName());
+        std::string tok;
+
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == fDesc)
+            {
+                FeatureDesc = roomFeatures[i].getInteractionDesc();
+                cout << FeatureDesc[roomFeatures[inRoom[i].featureSource].getinteractionNum()] << endl;
+                //break;
+            }
+        }
+        temp.clear();
+    }
+
+}
+//print item interaction description
+ void Room::getItemIDesc(std::string iDesc)
+ {
+    std::vector<string> temp;
+    std::vector<std::string> FeatureDesc;
+    for(size_t i = 0; i < inRoom.size(); i++)
+    {
+        std::stringstream ss(inRoom[i].iName);
+        std::string tok;
+
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == iDesc)
+            {
+                FeatureDesc = roomFeatures[inRoom[i].featureSource].getInteractionDesc();
+                cout << FeatureDesc[roomFeatures[inRoom[i].featureSource].getinteractionNum()] << endl;
+              //  break;
+            }
+        }
+        temp.clear();
+    }
+ }
+
+ //prints feature description
+void Room::featureDescription(std::string fDesc)
+{
+    std::vector<string> temp;
+    std::vector<std::string> FeatureDesc;
+    for(size_t i = 0; i < roomFeatures.size(); i++)
+    {
+        std::stringstream ss(roomFeatures[i].getName());
+        std::string tok;
+
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == fDesc)
+            {
+                FeatureDesc = roomFeatures[i].getFeatureDesc();
+                cout << FeatureDesc[roomFeatures[inRoom[i].featureSource].getLookingNum()] << endl;
+                //break;
+            }
+        }
+        temp.clear();
+    }
+
+}
