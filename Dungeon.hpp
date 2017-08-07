@@ -26,8 +26,9 @@ class Dungeon
 		void setGameDescription(std::string);
           std::string showGameDescription();
 		int showMenu();
-		//void initializeRooms();
+		void instructions();
 		void playGame();
+		void help();
 
 		Dungeon(std::vector<Room> rooms);
 		void setCurrRoom(std::string);	//needs work

@@ -58,6 +58,11 @@ int Dungeon::showMenu()
     return 3;
 }
 
+void Dungeon::instructions()
+{
+	std::cout << "Navigate through the Dungeon using text commands. Type \"help\" for a list of commands that may be used/" << std::endl; 
+}
+
 void Dungeon::playGame()
 {
 
@@ -68,6 +73,11 @@ void Dungeon::playGame()
         allRooms.push_back(myRoom);
     }
 
+}
+
+void Dungeon::help()
+{
+	cout << "look \n" << "take \n" << "use \n" << "go \n" << "inventory \n" << "savegame \n" << "loadgame \n" << endl; 
 }
 
 void Dungeon::setCurrentRoom(int i)
