@@ -19,7 +19,6 @@ class Room
           std::string rType;
 		std::vector<Item> inRoom;      //vector holding structs of items in the room
 		std::vector<Item> dropped;	//vector holding structs of items that the player dropped in the room
-		std::vector<std::string> exitVec;		//vector holding exits
 		std::vector<std::string> interactions;	// vector holding descriptions for interactions that occur in the room
 		bool canProceedForward;
 
@@ -35,6 +34,7 @@ class Room
 
 		//Get and Set Values
 		std::string rName;
+		std::vector<std::string> exitVec;       //vector holding exits
 		void setName(std::string newName);
 		std::string getName();
 		void setType(std::string tType);
@@ -50,7 +50,7 @@ class Room
 		void lookItems(std::string rItem);			//look at an item in the room
 		bool checkRoomNames(std::string rName);      //Find if parameter match any room names
 		bool checkItemInRoom(std::string rItem);	//check if item is in room
-		void removeItem(std::string rItem);		//removes an item from the room when it is added to player's bagg
+		void removeItem(std::string rItem);		//removes an item from the room when it is added to player's bag
 		void addItem(Item);						//places an item in the room when player drops it
 		void printRoomInfo();
 		//void printAllData();

@@ -77,7 +77,7 @@ void Dungeon::playGame()
 
 void Dungeon::help()
 {
-	cout << "look \n" << "take \n" << "use \n" << "go \n" << "inventory \n" << "savegame \n" << "loadgame \n" << endl; 
+	cout << "Allowed commands:\n" "look \n" "take \n" "use \n" "go \n" "inventory \n" "drink \n" "attack \n" "savegame \n" "loadgame \n" << endl; 
 }
 
 void Dungeon::setCurrentRoom(int i)
@@ -182,7 +182,19 @@ void Dungeon::fDesc(std::string fdesc)
 ////////////////////////////////////////////////////////////////////////////
 void Dungeon::setCurrRoom(std::string newRoomName)
 {
-    if(newRoom->rName == allRooms[0].rName)
+	for (int i = 1; i < allRooms.size(); i++)
+	{
+		if(newRoom->exitVec[0] == newRoomName)
+		{
+			newRoom = &allRooms[i-1];
+		}	 
+		else if(newRoom->exitVec[1] == newRoomName)
+		{
+			newRoom = &allRooms[i+1];
+		}
+	}
+}
+	/*if(newRoom->rName == allRooms[0].rName)
     {
         if(newRoomName == "east")
         {
@@ -233,7 +245,7 @@ void Dungeon::setCurrRoom(std::string newRoomName)
         {
             newRoom = &allRooms[0];
         }
-    }
+    }*/
     /*
     if(newRoom->rName == allRooms[5].rName)
     {
@@ -276,7 +288,7 @@ void Dungeon::setCurrRoom(std::string newRoomName)
     }
 
     */
-}
+
 
 Dungeon::~Dungeon()
 {

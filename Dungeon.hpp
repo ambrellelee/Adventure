@@ -32,7 +32,7 @@ class Dungeon
 
 		Dungeon(std::vector<Room> rooms);
 		void setCurrRoom(std::string);	//needs work
-		void setCurrentRoom(int i);		//sets room number
+		void setCurrentRoom(int i);		
        	//void printRooms();
 		void printCurLocation();
 		//bool findRoom(std::string);
