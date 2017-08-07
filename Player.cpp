@@ -173,6 +173,11 @@ bool Player::useItem(std::string pItem)
 	return canUse;
 }
 
+bool Player::canDrink(std::string pItem)
+{
+	return bag.drinkable(pItem);
+}
+
 Player::~Player()
 {
 	//delete bag;

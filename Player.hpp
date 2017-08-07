@@ -51,7 +51,7 @@ class Player
 		bool hasItem(std::string);			//checks to see if the item is in the player's inventory
 		bool useItem(std::string pItem);		//does the same thing as hasItem?
 		void viewBagItem(std::string);		//prints out information for specific item
-
+		bool canDrink(std::string);
 };
 
 #endif

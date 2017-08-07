@@ -86,3 +86,24 @@ void Inventory::viewItem(std::string itemName)
 		}
 	}
 }
+
+bool Inventory::drinkable(std::string itemName)
+{
+	bool canDrink;
+
+	if(inInventory(itemName))
+	{
+		for(int i; i < stuff.size(); i++)
+		{
+			if(stuff[i].iName == itemName && stuff[i].waterLevel > 0)
+			{
+				canDrink = true;
+			}
+			else
+			{
+				canDrink = false;
+			}
+		}
+	}
+	return canDrink;
+}	
