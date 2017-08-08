@@ -12,10 +12,12 @@ class Feature
 		std::vector<std::string> interactionDesc;		
 		int interactionNum;
 		std::vector<bool> nextAction;		
-
+		std::vector<std::vector<std::string> > verbs;
+	
 	public:
 		Feature(std::string, std::vector<std::string>);
 		Feature(std::string featName, std::vector<std::string> fDescs, std::vector<std::string> interactions, std::vector<bool> actions);
+		Feature(std::string featName, std::vector<std::string> fDescs, std::vector<std::string> interactions, std::vector<bool> actions, std::vector<std::vector<std::string> > fVerbs);
 		void setName(std::string);
 		void setFeatureDesc(std::string);
 		void setInteractionDesc(std::string);
