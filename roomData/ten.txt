@@ -1,0 +1,75 @@
+2
+@@
+As I enter the room, I see...not much. It is very dark in this area. One thing's
+clear, it smells terrible. There is a distinct smell of sulphur in here. I can
+also hear geysers, which I see in a pit in the centre of the room. If the
+humidity is any indication, that water must be rather hot. There would seem to
+be a large statue in front of you, but you can't make out much about it.
+@@
+I'm back in that horrible-smelling room. I can still hear the sound of water
+being expelled as though it is from a geyser. The form of the statue is still
+barely visible.
+@@
+Geyser Room
+@@
+normal
+@@
+2
+@@
+west
+@@
+north
+@@
+False
+@@
+0
+@@
+2
+@@
+darkAlcove
+@@
+3
+@@
+It's so dark I can't see much of anything. I could illuminate it by lighting
+a torch inside, so long as I don't have to be worried about the heat of the
+flame...
+@@
+I can see in the alcove now! The rear part of it looks like a switch that could
+be pushed
+@@
+The now-illuminated alcove remains undisturbed, the back part was a switch that
+I have now pressed.
+@@
+Using the heatless torch I found earlier, I illuminate the alcove by lighting 
+the torch inside it. I can see the alcove much better now, and notice that the
+back looks like a pressure-sensitive panel
+@@
+I push the back of the alcove. As I do so, I hear the sound of a series of 
+mechanisms going off. It sounds like something is breaking and I get worried.
+As I look over I see the statue fall forward. Thanks to the light from the
+alcove, I can see that it has fallen on the geysers. The force of the geysers
+pushes the statue up, but I should be able to walk across it like a bridge.
+@@
+False
+@@
+True
+@@
+illuminate
+@@
+push
+@@
+geysers
+@@
+2
+@@
+They look just like I would expect geysers to look. You can feel their heat
+just being near them.
+@@
+Those awful geysers are still there. No way am I touching those again!
+@@
+I reach and and touch the water. It hurts badly! I'm not doing that again!
+@@
+False
+@@
+touch
+@@@

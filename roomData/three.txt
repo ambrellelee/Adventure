@@ -14,9 +14,10 @@ The table reamains, unmoved. The lanterns burn as brightly as ever. I wonder
 briefly about how they keep going, but find it best not to focus on it.
 @@
 Map Room
-@
+@@
 normal
-1
+@@
+2
 @@
 south
 @@
@@ -36,7 +37,7 @@ Somehow, the food shows all signs of being safe and ready to eat!
 @@
 0
 @@
-False
+True
 @@
 0
 @@
@@ -75,6 +76,9 @@ together. Then, I place the sack in my bag.
 @@
 False
 @@
+take
+get
+@@
 glass case
 @@
 3
@@ -95,4 +99,9 @@ I reach into the case and grab the map. I fold it neatly and put it in my bag.
 False
 @@
 False
+@@
+open
+@@
+get
+take
 @@@

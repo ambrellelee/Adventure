@@ -24,13 +24,13 @@ north
 @@
 False
 @@
+1
+@@
 guts
 @@
 The innards of the monster in the court yard.
 @@
-The creature's guts are full of fluid. The odor is quite pungent andreminds you of dog food.
-@@
-0
+The creature's guts are full of fluid. The odor is quite pungent and reminds you of dog food.
 @@
 1
 @@
@@ -56,6 +56,11 @@ The fountain is empty now, still apparently without any source of water.
 I gather up the water in my flask, which is full now.
 @@
 False
+@@
+take
+get
+collect
+fill
 @@
 monster guard
 @@
@@ -83,4 +88,9 @@ shudder at the memory, wiping my hand clean on my pants.
 True
 @@
 False
+@@
+attack
+@@
+get
+take
 @@@
