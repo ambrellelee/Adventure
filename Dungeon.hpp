@@ -18,7 +18,6 @@ class Dungeon
 		std::string gameDesc;
 		int playerInput;
 		std::vector<Room> allRooms; //vector of rooms
-
         std::vector<std::string> fileNames;
 
         ////////////NEW//////////////
@@ -26,22 +25,23 @@ class Dungeon
 
 	public:
 		Dungeon();
-		int showMenu();
 		void setGameDescription(std::string);
 		std::string showGameDescription();
-		void initializeRooms();
-		void playGame();
-
-		~Dungeon();
+        int showMenu();
+        void instructions();
+        void playGame();
+        void help();
 
 		Dungeon(std::vector<Room> rooms);
-        void setCurrRoom(std::string);
+        void setCurrRoom(std::string);  //needs work
         void setCurrentRoom(int i);
-       	void printRooms();
+//       	void printRooms();
         void printCurLocation();
-		bool findRoom(std::string);
+//		bool findRoom(std::string);
 		bool canOpen(std::string);
+		//probably not needed since we are not using any item in room, most item in room need to be taken and used in player inventory.
 		void useItem(std::string);
+        void removeRoomItem(std::string);
 
 		//newly added functions
 		bool itemInRoom(std::string iName);
@@ -60,6 +60,8 @@ class Dungeon
         void fIDesc(std::string);
         void getItemInteractDesc(std::string);
         void fDesc(std::string);
+
+        ~Dungeon();
 };
 
 #endif

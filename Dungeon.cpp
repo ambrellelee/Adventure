@@ -61,8 +61,9 @@ int Dungeon::showMenu()
 void Dungeon::playGame()
 {
 
-    const char* files[]= {"one.txt","two.txt","four.txt","five.txt","eight.txt"};
-    for(size_t i= 0; i < 5; i++)
+    const char* files[]= {"one.txt", "two.txt", "three.txt", "four.txt", "five.txt", "six.txt", "seven.txt", "eight.txt",
+                          "nine.txt", "ten.txt", "eleven.txt", "twelve.txt", "thirteen.txt", "fourteen.txt", "fifteen.txt"};
+    for(size_t i= 0; i < 15; i++)
     {
         Room myRoom = Room(files[i], i);
         allRooms.push_back(myRoom);
@@ -70,55 +71,16 @@ void Dungeon::playGame()
 
 }
 
-Dungeon::~Dungeon()
+void Dungeon::help()
 {
-	delete newRoom;
+	cout << "Allowed commands:\n" "look \n" "take \n" "use \n" "go \n" "inventory \n" "drink \n" "attack \n" "savegame \n" "loadgame \n" << endl;
 }
 
 void Dungeon::setCurrentRoom(int i)
 {
     newRoom = &(allRooms[i]);
 }
-/***********************************
- moved down to bottom, revised.
- **********************************/
- /*
-void Dungeon::setCurrRoom(std::string newRoomName)
-{
-	for(size_t  i = 0; i < allRooms.size(); i++)
-	{
-		if(allRooms[i].rName == newRoomName)
-		{
-			newRoom = &allRooms[i];
-			break;
-		}
-	}
-}
-*/
-/************************
- not needed anymore
- ***********************/
- /*
-bool Dungeon::findRoom(std::string roomName)
-{
-	bool roomFound;
 
-	for(size_t i = 0; i < allRooms.size(); i++)
-	{
-		if(allRooms[i].rName == roomName)
-		{
-			roomFound = true;
-			break;
-		}
-		else
-		{
-			roomFound = false;
-		}
-	}
-
-	return roomFound;
-}
-*/
 bool Dungeon::canOpen(std::string featureName)
 {
     return newRoom->canUseFeature(featureName); //still working on this in the room class
@@ -154,15 +116,22 @@ bool Dungeon::useExit(std::string exitName)
 {
 	return newRoom->canProceed(exitName);
 }
+
+void Dungeon::removeRoomItem(std::string itemName)
+{
+	newRoom->removeItem(itemName);
+}
+
 /**************************************
  Yu's add
 **************************************/
-
+//maybe use item is not needed
+/*
 void Dungeon::useItem(std::string)
 {
     cout << "using item..." <<endl;
 }
-
+*/
 bool Dungeon::featureInRoom(std::string fName)
 {
     return newRoom->finRoom(fName);
@@ -211,6 +180,19 @@ void Dungeon::fDesc(std::string fdesc)
 ////////////////////////////////////////////////////////////////////////////
 void Dungeon::setCurrRoom(std::string newRoomName)
 {
+    for (size_t i = 1; i < allRooms.size(); i++)
+	{
+		if(newRoom->exitVec[0] == newRoomName)
+		{
+			newRoom = &allRooms[i-1];
+		}
+		else if(newRoom->exitVec[1] == newRoomName)
+		{
+			newRoom = &allRooms[i+1];
+		}
+	}
+
+    /*
     if(newRoom->rName == allRooms[0].rName)
     {
         if(newRoomName == "east")
@@ -263,7 +245,7 @@ void Dungeon::setCurrRoom(std::string newRoomName)
             newRoom = &allRooms[0];
         }
     }
-    /*
+
     if(newRoom->rName == allRooms[5].rName)
     {
         south = &allRooms[4];
@@ -304,4 +286,8 @@ void Dungeon::setCurrRoom(std::string newRoomName)
         }
     }
     */
+}
+Dungeon::~Dungeon()
+{
+	delete newRoom;
 }

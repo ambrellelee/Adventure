@@ -20,12 +20,17 @@ Player::Player(std::string newName, int hPoints, int pStamina, double pScore, In
 	bag = pInvent;
 }
 
-//set values
+//Get and Set Methods
 void Player::setName(std::string playerName)
 {
 	pName = playerName;
 }
 
+std::string Player::getName()
+{
+     return pName;
+	std::cout << pName << std::endl;
+}
 
 void Player::setHitPoints(int playerHitPoints)
 {
@@ -36,6 +41,12 @@ void Player::setHitPoints(int playerHitPoints)
 		std::cout << "You have been hit too many times. You have lost." << std::endl;
 		exit(0);
 	}
+}
+
+int Player::getHitPoints()
+{
+     return hitPoints;
+	std::cout << hitPoints << std::endl;
 }
 
 void Player::setStamina(int playerStamina)
@@ -54,40 +65,27 @@ void Player::setStamina(int playerStamina)
 
 }
 
-void Player::setScore(double playerScore)
-{
-	score = playerScore;
-}
-
-void Player::setCurrentLocation(Room* position)
-{
-	lastLocation = currentLocation;
-	currentLocation = position;
-}
-
-//get values
-std::string Player::getName()
-{
-     return pName;
-	std::cout << pName << std::endl;
-}
-
-int Player::getHitPoints()
-{
-     return hitPoints;
-	std::cout << hitPoints << std::endl;
-}
-
 int Player::getStamina()
 {
      return stamina;
 	std::cout << stamina << std::endl;
 }
 
+void Player::setScore(double playerScore)
+{
+	score = playerScore;
+}
+
 int Player::getScore()
 {
 	return score;
 	std::cout << score << std::endl;
+}
+/*
+void Player::setCurrentLocation(Room* position)
+{
+	lastLocation = currentLocation;
+	currentLocation = position;
 }
 
 Room* Player::getCurrentLocation()
@@ -99,7 +97,7 @@ Room* Player::getLastLocation()
 {
 	return lastLocation;
 }
-
+*/
 void Player::printPlayerInfo()
 {
 	std::cout << "Name:" << pName << std::endl;
@@ -159,6 +157,27 @@ bool Player::hasItem(std::string item)
 {
 	return bag.inInventory(item);
 }
+
+bool Player::useItem(std::string pItem)
+{
+	bool canUse;
+
+	if(hasItem(pItem))
+	{
+		canUse = true;
+	}
+	else
+	{
+		canUse = false;
+	}
+	return canUse;
+}
+
+bool Player::canDrink(std::string pItem)
+{
+	return bag.drinkable(pItem);
+}
+
 
 Player::~Player()
 {

@@ -22,6 +22,8 @@ north
 @@
 True
 @@
+0
+@@
 2
 @@
 fight book
@@ -41,6 +43,8 @@ on the shelf, noticing the book fall apart as I do so.
 @@
 False
 @@
+read
+@@
 magic book
 @@
 2
@@ -54,8 +58,10 @@ The remains of the magic book are where I left them.
 I grab the book and open it. As I flip through the pages, I finally find one
 with a legible paragraph. It says "...but the true magic against such fiends
 is their own lust for wealth. I was astonished to find th[illegible]" Hm...
-not exactly the tome of fire spells I'd hope for. Regardless, the thing is
+not exactly the tome of fire spells I'd hoped for. Regardless, the thing is
 falling apart on me. I put it back on the shelf.
 @@
 False
+@@
+read
 @@@

@@ -13,6 +13,7 @@ void Inventory::setName(std::string newName)
 {
 	containerName = newName;
 }
+
 std::string Inventory::getName()
 {
 	return containerName;
@@ -49,7 +50,7 @@ void Inventory::removeInventory(std::string item)
 void Inventory::viewInventory()
 {
 	std::cout << "You currently have " << stuff.size() << "items in your inventory." << std::endl;
-	for(int i = 0; i < stuff.size(); i++)
+	for(size_t i = 0; i < stuff.size(); i++)
 	{
 		std::cout << i+1 << ":" << stuff[i].iName <<std::endl;
 	}
@@ -59,7 +60,7 @@ bool Inventory::inInventory(std::string thing)
 {
 	bool hasItem;
 
-	for(int i = 0; i < stuff.size(); i++)
+	for(size_t i = 0; i < stuff.size(); i++)
 	{
 		if(stuff[i].iName == thing)
 		{
@@ -77,11 +78,32 @@ bool Inventory::inInventory(std::string thing)
 
 void Inventory::viewItem(std::string itemName)
 {
-	for(int i = 0; i < stuff.size(); i++)
+	for(size_t i = 0; i < stuff.size(); i++)
 	{
 		if(stuff[i].iName == itemName)
 		{
 			std::cout << stuff[i].iDesc << std::endl;
 		}
 	}
+}
+
+bool Inventory::drinkable(std::string itemName)
+{
+	bool canDrink;
+
+	if(inInventory(itemName))
+	{
+		for(size_t i; i < stuff.size(); i++)
+		{
+			if(stuff[i].iName == itemName && stuff[i].waterLevel > 0)
+			{
+				canDrink = true;
+			}
+			else
+			{
+				canDrink = false;
+			}
+		}
+	}
+	return canDrink;
 }

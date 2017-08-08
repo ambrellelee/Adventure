@@ -93,6 +93,11 @@ False
 @@
 False
 @@
+open
+@@
+get
+take
+@@
 box
 @@
 3
@@ -111,6 +116,11 @@ should be fired
 False
 @@
 False
+@@
+open
+@@
+get
+take
 @@
 vault
 @@
@@ -132,4 +142,9 @@ I continually grab handfuls of coins, transfering them to my bag as I do so.
 False
 @@
 False
+@@
+crack
+@@
+get
+take
 @@@

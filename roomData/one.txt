@@ -79,11 +79,16 @@ False
 @@
 False
 @@
+open
+@@
+get
+take
+@@
 silhouette
 @@
 6
 @@
-It quite distinctly the silhouette of a man. Strange, considering there seems
+It is quite distinctly the silhouette of a man. Strange, considering there seems
 to be no source casting a shadow.
 @@
 It speaks! It offered help in a way that didn't feel particularly warm. Even so,
@@ -133,4 +138,18 @@ True
 False
 @@
 True
+@@
+talk
+greet
+say
+@@
+ask
+request
+@@
+take
+get
+@@
+block
+@@
+attack
 @@@
