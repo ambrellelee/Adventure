@@ -266,6 +266,8 @@ void Room::printAllData()
         vector<string> fDescTest;
         vector<string> interactionDescTest;
         vector<bool> canLeaveTest;
+        vector<vector<string> > verbTest;
+
 
         cout << "Features:" << endl;
 
@@ -276,6 +278,8 @@ void Room::printAllData()
                 fDescTest = roomFeatures[i].getFeatureDesc();
                 interactionDescTest = roomFeatures[i].getInteractionDesc();
                 canLeaveTest = roomFeatures[i].getActions();
+		verbTest = roomFeatures[i].getVerbs();
+
 
                 cout << "Descriptions read upon 'look' command used (changes after player interacts with and thus changes the feature" << endl;
 
@@ -304,6 +308,17 @@ void Room::printAllData()
                         else
                                 cout << "action for " << j << " is false" << endl;
                 }
+		
+                for (int j = 0; j < verbTest.size(); j++)
+                {
+                        cout << "Potential verbs for interaction number " << j << endl;
+
+                        for (int k = 0; k < verbTest[j].size(); k++)
+                        {
+                                cout << verbTest[j][k] << endl;
+                        }
+                }
+
         }
 
         if (canProceedForward == true)
@@ -464,7 +479,10 @@ Room::Room(std::string roomFile, int thisRoomNum)
         vector<bool> canLeave;
         bool canLeaveNow;
         int numberFeatures;
+        vector<vector<string> > verbs;
+        vector<string> verbRow;
 
+	
         getline(inputFile, line);
         stringstream numFeatures(line);
         numFeatures >> numberFeatures;
@@ -520,11 +538,30 @@ Room::Room(std::string roomFile, int thisRoomNum)
                         canLeave.push_back(canLeaveNow);
                 }
 
-                Feature myFeat = Feature(featName, fDesc, interactionDesc, canLeave);
+                for (int j = 0; j < (numDesc-1); j++)
+                {
+                        while ((line != "@@") && (line != "@@@")) {
+                                verbRow.push_back(line);
+
+                                getline(inputFile, line);
+
+                        }
+                        getline(inputFile, line);
+                        verbs.push_back(verbRow);
+                        verbRow.clear();
+                }		
+		
+                Feature myFeat = Feature(featName, fDesc, interactionDesc, canLeave, verbs);
                 roomFeatures.push_back(myFeat);
                 fDesc.clear();
                 interactionDesc.clear();
                 canLeave.clear();
+		for (int j = 0; j < verbs.size(); j++)
+                {
+                        verbs[j].clear();
+                }
+                verbs.clear();
+
         }
 
         inputFile.close();
