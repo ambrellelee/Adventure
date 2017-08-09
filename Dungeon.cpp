@@ -61,8 +61,7 @@ int Dungeon::showMenu()
 void Dungeon::playGame()
 {
 
-    const char* files[]= {"one.txt", "two.txt", "three.txt", "four.txt", "five.txt", "six.txt", "seven.txt", "eight.txt",
-                          "nine.txt", "ten.txt", "eleven.txt", "twelve.txt", "thirteen.txt", "fourteen.txt", "fifteen.txt"};
+    const char* files[]= {"one.txt", "two.txt", "three.txt", "four.txt", "five.txt", "six.txt", "seven.txt", "eight.txt", "nine.txt", "ten.txt", "eleven.txt", "twelve.txt", "thirteen.txt", "fourteen.txt", "fifteen.txt"};
     for(size_t i= 0; i < 15; i++)
     {
         Room myRoom = Room(files[i], i);
@@ -142,8 +141,8 @@ bool Dungeon::featureInRoom(std::string fName)
 bool Dungeon::checkRoomExitStatus(std::string exitStatus)
 {
     bool eStat = false;
-    oldRoomDirection = newRoom->getOldRoom();
-    if(oldRoomDirection == exitStatus)
+  //  oldRoomDirection = newRoom->getOldRoom();
+    if(newRoom->exitVec[0] == exitStatus)
     {
         eStat= true;
     }

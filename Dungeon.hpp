@@ -21,7 +21,7 @@ class Dungeon
         std::vector<std::string> fileNames;
 
         ////////////NEW//////////////
-        std::string oldRoomDirection;
+     //   std::string oldRoomDirection;
 
 	public:
 		Dungeon();

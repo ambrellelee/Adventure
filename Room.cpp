@@ -676,7 +676,8 @@ string Room::getOldRoom()
 bool Room::getExitStatus()
 {
     std::vector<bool> tempActions;
-    cout << "printing out all bools in tempAction vector: " << endl;
+    bool canProceedForward = false;
+//    cout << "printing out all bools in tempAction vector: " << endl;
     for(size_t i = 0; i < roomFeatures.size(); i++)
     {
         tempActions = roomFeatures[i].getActions();
@@ -684,7 +685,6 @@ bool Room::getExitStatus()
         {
  //           cout << "current interaction# for " <<roomFeatures[i].getName()<< " is: " << roomFeatures[i].getinteractionNum()<<endl;
             canProceedForward = true;
-            return true;
         }
     }
 

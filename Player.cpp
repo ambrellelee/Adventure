@@ -178,6 +178,11 @@ bool Player::canDrink(std::string pItem)
 	return bag.drinkable(pItem);
 }
 
+void Player::fill(int liquid)
+{
+     bag.fillFlask(liquid);
+}
+
 
 Player::~Player()
 {

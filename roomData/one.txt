@@ -143,7 +143,6 @@ talk
 greet
 say
 @@
-talk
 ask
 request
 @@

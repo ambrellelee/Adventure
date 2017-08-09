@@ -43,6 +43,7 @@ class Parser
 		void saySomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void blockSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void touchSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
+		void pull(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 
 };
 

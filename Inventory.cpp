@@ -58,21 +58,16 @@ void Inventory::viewInventory()
 
 bool Inventory::inInventory(std::string thing)
 {
-	bool hasItem;
+	bool hasItem = false;
 
 	for(size_t i = 0; i < stuff.size(); i++)
 	{
 		if(stuff[i].iName == thing)
 		{
-
 			hasItem = true;
-		}
-		else
-		{
-			hasItem = false;
+			break;
 		}
 	}
-
 	return hasItem;
 }
 
@@ -89,21 +84,34 @@ void Inventory::viewItem(std::string itemName)
 
 bool Inventory::drinkable(std::string itemName)
 {
-	bool canDrink;
+	bool canDrink = false;
 
 	if(inInventory(itemName))
 	{
-		for(size_t i; i < stuff.size(); i++)
+		for(size_t i = 0; i < stuff.size(); i++)
 		{
 			if(stuff[i].iName == itemName && stuff[i].waterLevel > 0)
 			{
 				canDrink = true;
-			}
-			else
-			{
-				canDrink = false;
+				break;
 			}
 		}
-	}
+    }
 	return canDrink;
 }
+void Inventory::fillFlask(int water)
+{
+      for(size_t i; i < stuff.size(); i++)
+      {
+           if(stuff[i].iName == "flask")
+          {
+                stuff[i].waterLevel += water;
+
+                if(stuff[i].waterLevel > stuff[i].maxWater)
+               {
+                    stuff[i].waterLevel = stuff[i].maxWater;
+               }
+          }
+     }
+ }
+

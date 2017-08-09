@@ -52,6 +52,7 @@ class Player
 		bool useItem(std:: string pItem);
 		void viewBagItem(std::string);
 		bool canDrink(std::string);
+        void fill(int);
 
 		void savePlayer(std::ofstream& savePlayerFile);
 		void loadPlayer(std::ifstream& loadPlayerFile);
