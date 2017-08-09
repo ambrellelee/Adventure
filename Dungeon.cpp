@@ -80,12 +80,13 @@ void Dungeon::setCurrentRoom(int i)
 {
     newRoom = &(allRooms[i]);
 }
-
+// remove
+/*
 bool Dungeon::canOpen(std::string featureName)
 {
     return newRoom->canUseFeature(featureName); //still working on this in the room class
 }
-
+*/
 void Dungeon::printCurLocation()
 {
     newRoom->printRoomInfo();
@@ -191,102 +192,17 @@ void Dungeon::setCurrRoom(std::string newRoomName)
 			newRoom = &allRooms[i+1];
 		}
 	}
-
-    /*
-    if(newRoom->rName == allRooms[0].rName)
-    {
-        if(newRoomName == "east")
-        {
-            newRoom = &allRooms[1];
-        }
-    }
-    else if(newRoom->rName == allRooms[1].rName)
-    {
-        if(newRoomName == "north")
-        {
-            newRoom = &allRooms[2];
-
-        }
-        if(newRoomName == "west")
-        {
-            newRoom = &allRooms[0];
-        }
-    }
-    else if(newRoom->rName == allRooms[2].rName)
-    {
-        if(newRoomName == "south")
-        {
-            newRoom = &allRooms[1];
-        }
-        else if(newRoomName == "north")
-        {
-            newRoom = &allRooms[3];
-        }
-    }
-    else if(newRoom->rName == allRooms[3].rName)
-    {
-        if(newRoomName == "south")
-        {
-            newRoom = &allRooms[2];
-        }
-        else if(newRoomName == "north")
-        {
-            newRoom = &allRooms[4];
-        }
-    }
-    else if(newRoom->rName == allRooms[4].rName)
-    {
-        if(newRoomName == "south")
-        {
-            newRoom = &allRooms[3];
-        }
-        else if(newRoomName == "east")
-        {
-            newRoom = &allRooms[0];
-        }
-    }
-
-    if(newRoom->rName == allRooms[5].rName)
-    {
-        south = &allRooms[4];
-        north = &allRooms[6];
-        if(newRoomName == "south")
-        {
-            newRoom = south;
-        }
-        else if(newRoomName == "north")
-        {
-            newRoom = north;
-        }
-    }
-    if(newRoom->rName == allRooms[6].rName)
-    {
-        south = &allRooms[5];
-        north = &allRooms[7];
-        if(newRoomName == "south")
-        {
-            newRoom = south;
-        }
-        else if(newRoomName == "north")
-        {
-            newRoom = north;
-        }
-    }
-    if(newRoom->rName == allRooms[7].rName)
-    {
-        south = &allRooms[6];
-        east = &allRooms[0];
-        if(newRoomName == "south")
-        {
-            newRoom = south;
-        }
-        else if(newRoomName == "east")
-        {
-            newRoom = east;
-        }
-    }
-    */
 }
+
+
+////////////////// 8/8- additions /////////////////
+bool Dungeon::verbCheck(std::string feature, std::string verbs)
+{
+    return newRoom->canUseFeature(feature, verbs);
+}
+
+
+
 Dungeon::~Dungeon()
 {
 	delete newRoom;

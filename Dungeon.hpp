@@ -38,7 +38,7 @@ class Dungeon
 //       	void printRooms();
         void printCurLocation();
 //		bool findRoom(std::string);
-		bool canOpen(std::string);
+    //bool canOpen(std::string);
 		//probably not needed since we are not using any item in room, most item in room need to be taken and used in player inventory.
 		void useItem(std::string);
         void removeRoomItem(std::string);
@@ -50,16 +50,19 @@ class Dungeon
 		void viewCurRoom();
 		bool useExit(std::string exitName);
 
-		//Yu's test on needed functions...
 		bool featureInRoom(std::string fName);
 
-		////////////////NEW//////////////////
+		/////////////////-8/6-additions//////////////////
 		bool checkRoomExitStatus(std::string exitStatus);
         bool itemAvailability(std::string availability);
         void validInteraction(std::string);
         void fIDesc(std::string);
         void getItemInteractDesc(std::string);
         void fDesc(std::string);
+
+        ////////////////// 8/8- additions /////////////////
+        bool verbCheck(std::string, std::string);
+
 
         ~Dungeon();
 };

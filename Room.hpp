@@ -60,10 +60,10 @@ class Room
 		//newly added functions
         Item getItemInRoom(std::string itemName);
         void printRoomDesc();
-        bool canUseFeature(std::string);
+        bool canUseFeature(std::string, std::string);
 
 
-		 //////////////NEW//////////////////////
+		 ////////////// 8/6 additions//////////////////////
         std::string getOldRoom();
         bool getExitStatus();
         bool getAvailability(std::string availability);
@@ -73,6 +73,12 @@ class Room
         std::vector<std::string> usedFeatures;
         void getItemIDesc(std::string);
         void featureDescription(std::string);
+
+
+        ////////////////////// 8/8 additions ///////////////
+        std::vector<std::vector<std::string> > verbsList;
+        std::vector<std::string> split(const std::string& s);
+
 };
 
 #endif

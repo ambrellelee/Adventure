@@ -455,13 +455,16 @@ void Parser::drinkSomething(playerString& curSentence, Player& curPlayer, Dungeo
 		std::transform(i->begin(), i->end(), i->begin(), ::tolower);
 		if (curPlayer.hasItem((*i)) == true)
 		{
-		    //use the item
-			curPlayer.hasItem(*i);
-			std::cout << "You have drinked " << *i << std::endl;
-            curPlayer.addStamina(10);
-            std::cout << "Your stamina have increased by 10." << std::endl;
-			drinked = true;
-			break;
+		    if(curPlayer.canDrink(*i) == true)
+            {
+                //use the item
+                curPlayer.hasItem(*i);
+                std::cout << "You have drinked " << *i << std::endl;
+                curPlayer.addStamina(10);
+                std::cout << "Your stamina have increased by 10." << std::endl;
+                drinked = true;
+                break;
+            }
 		}
 
 	}
@@ -732,10 +735,9 @@ void Parser::attackSomething(playerString& curSentence, Player& curPlayer, Dunge
         {
             if (curDungeon.verbCheck(*i, "attack") == true)
             {
+                 curDungeon.fIDesc(*i);
                 //attacking enemy
                 curDungeon.validInteraction(*i);
-                //   curDungeon.fIDesc(*i);
-            //      std::cout << "you have attacked the " << (*i) << endl;
                 attacked = true;
                 break;
             }

@@ -626,42 +626,48 @@ void Room::printRoomDesc()
         cout << rDescription[i] << endl;
     }
 }
-
-bool Room::canUseFeature(std::string fName)
+/*********************
+ revised 8/8
+ *******************/
+bool Room::canUseFeature(std::string fName, std::string verb)
 {
-    std::vector<std::string> openableFeatures;
-    openableFeatures.push_back("chest");
-    openableFeatures.push_back("box");
-    openableFeatures.push_back("vault");
-    openableFeatures.push_back("case");
+    bool allowed = false;
+    std::vector<string> temp;
 
-    bool useF = true;
-
-    for(size_t i = 0; i < openableFeatures.size(); i++)
+    for(size_t i = 0; i < roomFeatures.size(); i++)
     {
-        if(fName == openableFeatures[i])
-        {
-//            cout << "this feature is on the openable list "<< endl;
-            break;
-        }
-        else
-        {
- //           cout << "This feature is not one of the openable feature" << endl;
-            useF = false;
-        }
-    }
-    for(size_t i = 0; i < usedFeatures.size(); i++)
-    {
-        if(usedFeatures[i] == fName)
-        {
-            useF = false;
-        }
-    }
+        std::stringstream ss(roomFeatures[i].getName());
+        std::string tok;
 
-	return useF;
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == fName)
+            {
+                verbsList = roomFeatures[i].getVerbs();
+                for(size_t j = 0; j < verbsList[roomFeatures[i].getinteractionNum()].size(); j++)
+                {
+                    if(roomFeatures[i].getinteractionNum() >= verbsList.size())
+                    {
+                        break;
+                    }
+                    if(verbsList[roomFeatures[i].getinteractionNum()][j] == verb)
+                    {
+                        allowed = true;
+                    }
+                }
+                verbsList.clear();
+            }
+        }
+        temp.clear();
+    }
+    return allowed;
 }
 
-/////////////////NEW///////////////////
+/////////////////  8/6 additions ///////////////////
 string Room::getOldRoom()
 {
     return exitVec[0];
@@ -674,14 +680,9 @@ bool Room::getExitStatus()
     for(size_t i = 0; i < roomFeatures.size(); i++)
     {
         tempActions = roomFeatures[i].getActions();
-        /*
-        for(size_t x = 0; x < tempActions.size(); x++)
-        {
-            cout << tempActions[x] << endl;
-        }*/
         if(tempActions[roomFeatures[i].getinteractionNum()] == true)
         {
-            cout << "current interaction# for " <<roomFeatures[i].getName()<< " is: " << roomFeatures[i].getinteractionNum()<<endl;
+ //           cout << "current interaction# for " <<roomFeatures[i].getName()<< " is: " << roomFeatures[i].getinteractionNum()<<endl;
             canProceedForward = true;
             return true;
         }
@@ -725,6 +726,7 @@ void Room::featureInteraction(std::string fName)
 {
     usedFeatures.push_back(fName);
     std::vector<string> temp;
+
     for(size_t i = 0; i < roomFeatures.size(); i++)
     {
         std::stringstream ss(roomFeatures[i].getName());
@@ -738,14 +740,14 @@ void Room::featureInteraction(std::string fName)
         {
             if(temp[j] == fName)
             {
-                if(roomFeatures[i].getinteractionNum()+1 >= (roomFeatures[i].getInteractionDesc()).size())
+                if(roomFeatures[i].getinteractionNum()+1 > (roomFeatures[i].getInteractionDesc()).size())
                 {
                     cout << "No more interaction descriptions." << endl;
                     break;
                 }
                 else
                 {
-                    cout << "int #: " << roomFeatures[i].getinteractionNum() << "\tdesc #: " << (roomFeatures[i].getInteractionDesc()).size() << endl;
+  //                  cout << "int #: " << roomFeatures[i].getinteractionNum() << "\tdesc #: " << (roomFeatures[i].getInteractionDesc()).size() << endl;
                     roomFeatures[i].setInteractionNum();
                 }
             }
@@ -822,7 +824,7 @@ void Room::featureIDescription(std::string fDesc)
                 }
                 else
                 {
-                    cout << "int #: " << roomFeatures[i].getinteractionNum() << "\tdesc #: " << (roomFeatures[i].getInteractionDesc()).size() << endl;
+ //                   cout << "int #: " << roomFeatures[i].getinteractionNum() << "\tdesc #: " << (roomFeatures[i].getInteractionDesc()).size() << endl;
                     FeatureDesc = roomFeatures[i].getInteractionDesc();
                     cout << FeatureDesc[roomFeatures[inRoom[i].featureSource].getinteractionNum()] << endl;
                     break;
@@ -854,9 +856,6 @@ void Room::featureIDescription(std::string fDesc)
         {
             if(temp[j] == iDesc)
             {
-
-                cout << "int #: " << roomFeatures[i].getinteractionNum() << "\tdesc #: " << (roomFeatures[i].getInteractionDesc()).size() << endl;
-
                 FeatureDesc = roomFeatures[inRoom[i].featureSource].getInteractionDesc();
                 cout << FeatureDesc[roomFeatures[inRoom[i].featureSource].getinteractionNum()] << endl;
               //  break;
@@ -887,11 +886,32 @@ void Room::featureDescription(std::string fDesc)
             if(temp[j] == fDesc)
             {
                 FeatureDesc = roomFeatures[i].getFeatureDesc();
-                cout << FeatureDesc[roomFeatures[inRoom[i].featureSource].getinteractionNum()] << endl;
+                cout << FeatureDesc[roomFeatures[i].getinteractionNum()] << endl;
                 //break;
             }
         }
         temp.clear();
     }
 
+}
+
+
+////////////////////// 8/8 additions ///////////////
+
+
+std::vector<string> Room::split(const string& s)
+{
+	std::vector<string> temp;
+
+	//split string into vector
+	//http://code.runnable.com/VHb0hWMZp-ws1gAr/splitting-a-string-into-a-vector-for-c%2B%2B
+	std::stringstream ss(s);
+	std::string tok;
+
+	while(getline(ss, tok, ' '))
+    {
+        temp.push_back(tok);
+    }
+
+	return temp;
 }
