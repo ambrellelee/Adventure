@@ -28,18 +28,10 @@ void Parser::parser(Dungeon& curDungeon, Player& curPlayer, playerString& curSen
 		//search for item name in inventory and if it exist, use it.
 		searchItemToUse(curSentence, curPlayer, curDungeon);
 	}
-	else if (verbInSentence(curSentence, "take") == true)
+	else if (verbInSentence(curSentence, "take") || verbInSentence(curSentence, "get") || verbInSentence(curSentence, "pick") == true)
 	{
 #ifdef NOISYTEST
-		std::cout << "'Take' detected...proceeding to 'Take' function." << std::endl;
-#endif
-		//search for item in Dungeon to take if exist
-		takeItemInDungeon(curSentence, curPlayer, curDungeon);
-	}
-	else if (verbInSentence(curSentence, "pick") == true)
-	{
-#ifdef NOISYTEST
-		std::cout << "'pick up' detected...proceeding to 'pick up' function." << std::endl;
+		std::cout << "'Take' 'get' 'pick up' detected...proceeding to 'Take' function." << std::endl;
 #endif
 		//search for item in Dungeon to take if exist
 		takeItemInDungeon(curSentence, curPlayer, curDungeon);
@@ -52,7 +44,7 @@ void Parser::parser(Dungeon& curDungeon, Player& curPlayer, playerString& curSen
 		//Open object in the Dungeon
 		openObject(curSentence, curPlayer, curDungeon);
     }
-    else if(verbInSentence(curSentence, "talk") == true)
+    else if(verbInSentence(curSentence, "talk") || verbInSentence(curSentence, "greet") || verbInSentence(curSentence, "say") == true )
     {
 #ifdef NOISYTEST
 		std::cout << "'Talk' detected...proceeding to 'Talk' function." << std::endl;
@@ -396,7 +388,7 @@ void Parser::openObject(playerString& curSentence, Player& curPlayer, Dungeon& c
 		std::transform(i->begin(), i->end(), i->begin(), ::tolower);
 		if (curDungeon.featureInRoom(*i) == true)
 		{
-		    if(curDungeon.canOpen(*i) == true)
+		    if(curDungeon.verbCheck(*i, "open") == true)
             {
                 curDungeon.fIDesc(*i);   //prints the feature's 1st interaction description
                 curDungeon.validInteraction(*i); //sets feature interactionNum to +1
@@ -429,19 +421,17 @@ void Parser::talkToNPC(playerString& curSentence, Player& curPlayer, Dungeon& cu
 	{
 		//check if any string matches the names
 		std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-		if(*i == "monster" || *i == "guard" || *i == "dragon" || *i == "dog" || *i == "swordsman")
-        {
-            break;
-        }
 		if (curDungeon.featureInRoom(*i) == true)
 		{
-			std::cout << (*i) << ": print item description or interaction here... \n" << std::endl;
-            curDungeon.fIDesc(*i);
-            curDungeon.validInteraction(*i); //sets feature interactionNum to +1
-			talked = true;
-			break;
-		}
-
+		    if(curDungeon.verbCheck(*i,"talk") ==  true)
+            {
+                std::cout << (*i) << ": print item description or interaction here... \n" << std::endl;
+                curDungeon.fIDesc(*i);
+                curDungeon.validInteraction(*i); //sets feature interactionNum to +1
+                talked = true;
+                break;
+            }
+        }
 	}
 	if (talked == false)
 	{
@@ -733,25 +723,21 @@ void Parser::attackSomething(playerString& curSentence, Player& curPlayer, Dunge
 #endif // NOISYTEST
 
 	bool attacked = false;
-    const char* attackableList[]= {"monster","demonic","swordsman","dog","guard"};
     //iterate through vector of strings to find names
     for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
     {
         //check if enemy is in Dungeon
         std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-        for(int x = 0; x < 5; x++)
+        if(curDungeon.featureInRoom(*i) == true)
         {
-            if((*i) == attackableList[x])
+            if (curDungeon.verbCheck(*i, "attack") == true)
             {
-                if (curDungeon.featureInRoom(*i) == true)
-                {
-                    //attacking enemy
-                    curDungeon.validInteraction(*i);
-                 //   curDungeon.fIDesc(*i);
-              //      std::cout << "you have attacked the " << (*i) << endl;
-                    attacked = true;
-                    break;
-                }
+                //attacking enemy
+                curDungeon.validInteraction(*i);
+                //   curDungeon.fIDesc(*i);
+            //      std::cout << "you have attacked the " << (*i) << endl;
+                attacked = true;
+                break;
             }
         }
     }
