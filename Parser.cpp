@@ -729,18 +729,26 @@ void Parser::attackSomething(playerString& curSentence, Player& curPlayer, Dunge
     //iterate through vector of strings to find names
     for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
     {
-        //check if enemy is in Dungeon
-        std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-        if(curDungeon.featureInRoom(*i) == true)
+        if(curPlayer.hasItem("sword") == true)
         {
-            if (curDungeon.verbCheck(*i, "attack") == true)
+            //check if enemy is in Dungeon
+            std::transform(i->begin(), i->end(), i->begin(), ::tolower);
+            if(curDungeon.featureInRoom(*i) == true)
             {
-                 curDungeon.fIDesc(*i);
-                //attacking enemy
-                curDungeon.validInteraction(*i);
-                attacked = true;
-                break;
+                if (curDungeon.verbCheck(*i, "attack") == true)
+                {
+                     curDungeon.fIDesc(*i);
+                    //attacking enemy
+                    curDungeon.validInteraction(*i);
+                    attacked = true;
+                    break;
+                }
             }
+        }
+        else
+        {
+            std::cout << "You are missing a weapon." << std::endl;
+            break;
         }
     }
 
