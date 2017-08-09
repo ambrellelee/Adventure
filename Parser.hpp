@@ -27,6 +27,7 @@ class Parser
 		void takeItemInDungeon(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void openObject(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void talkToNPC(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
+		void askNPC(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void drinkSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void dropSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void lookAtStuff(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);

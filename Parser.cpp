@@ -2,7 +2,7 @@
 #include<iostream>
 #include<algorithm>
 
-#define NOISYTEST //turn test comments on or off
+//#define NOISYTEST //turn test comments on or off
 
 using std::transform;
 using std::vector;
@@ -52,6 +52,15 @@ void Parser::parser(Dungeon& curDungeon, Player& curPlayer, playerString& curSen
 		//talk to NPC in the Dungeon
 		talkToNPC(curSentence, curPlayer, curDungeon);
     }
+    else if(verbInSentence(curSentence, "ask") || verbInSentence(curSentence, "request") == true )
+    {
+#ifdef NOISYTEST
+		std::cout << "'ask' 'request' detected...proceeding to 'ask' function." << std::endl;
+#endif
+		//ask NPC in the Dungeon
+		askNPC(curSentence, curPlayer, curDungeon);
+    }
+
     else if(verbInSentence(curSentence, "drink") == true)
     {
 #ifdef NOISYTEST
@@ -439,6 +448,37 @@ void Parser::talkToNPC(playerString& curSentence, Player& curPlayer, Dungeon& cu
 	}
 }
 
+//for verbs ask, request
+void Parser::askNPC(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
+{
+#ifdef NOISYTEST
+    std::cout << "'ask' function > proceeding to ask" << std::endl;
+#endif // NOISYTEST
+
+	bool asked = false;
+
+	//iterate through vector of strings to find names
+	for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
+	{
+		//check if any string matches the names
+		std::transform(i->begin(), i->end(), i->begin(), ::tolower);
+		if (curDungeon.featureInRoom(*i) == true)
+		{
+		    if(curDungeon.verbCheck(*i,"ask") ==  true)
+            {
+ //               std::cout << (*i) << ": print item description or interaction here... \n" << std::endl;
+                curDungeon.fIDesc(*i);
+                curDungeon.validInteraction(*i); //sets feature interactionNum to +1
+                asked = true;
+                break;
+            }
+        }
+	}
+	if (asked == false)
+	{
+		std::cout << "You cannot ask or request that."  << std::endl;
+	}
+}
 //for verb drink
 void Parser::drinkSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
 {
@@ -808,13 +848,19 @@ void Parser::blockSomething(playerString& curSentence, Player& curPlayer, Dungeo
     {
         //check if enemy is in Dungeon
         std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-        if (curDungeon.itemInRoom(*i) == true)
+        if (curDungeon.featureInRoom(*i) == true)
         {
-            //blocking attack
-            std::cout << "you have blocked the attack from " << (*i) << endl;
-            //curPlayer.blocking....?
-            blocked = true;
-            break;
+            if (curDungeon.verbCheck(*i, "block") == true)
+            {
+               // curDungeon.fIDesc(*i);
+               curDungeon.validInteraction(*i);
+                curDungeon.fDesc(*i);
+                //blocking enemy
+
+                //std::cout << "you have blocked the attack from " << (*i) << endl;
+                blocked = true;
+                break;
+            }
         }
     }
 
