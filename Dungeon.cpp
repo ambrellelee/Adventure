@@ -58,16 +58,12 @@ int Dungeon::showMenu()
     return 3;
 }
 
-void Dungeon::instructions()
-{
-	std::cout << "Navigate through the Dungeon using text commands. Type \"help\" for a list of commands that may be used/" << std::endl; 
-}
-
 void Dungeon::playGame()
 {
 
-    const char* files[]= {"one.txt","two.txt","four.txt","five.txt","eight.txt"};
-    for(size_t i= 0; i < 5; i++)
+    const char* files[]= {"one.txt", "two.txt", "three.txt", "four.txt", "five.txt", "six.txt", "seven.txt", "eight.txt",
+                          "nine.txt", "ten.txt", "eleven.txt", "twelve.txt", "thirteen.txt", "fourteen.txt", "fifteen.txt"};
+    for(size_t i= 0; i < 15; i++)
     {
         Room myRoom = Room(files[i], i);
         allRooms.push_back(myRoom);
@@ -77,7 +73,7 @@ void Dungeon::playGame()
 
 void Dungeon::help()
 {
-	cout << "Allowed commands:\n" "look \n" "take \n" "use \n" "go \n" "inventory \n" "drink \n" "attack \n" "savegame \n" "loadgame \n" << endl; 
+	cout << "Allowed commands:\n" "look \n" "take \n" "use \n" "go \n" "inventory \n" "talk \n" "drink \n" "attack \n" "block \n""open \n" "savegame \n" "loadgame \n" << endl;
 }
 
 void Dungeon::setCurrentRoom(int i)
@@ -87,7 +83,7 @@ void Dungeon::setCurrentRoom(int i)
 
 bool Dungeon::canOpen(std::string featureName)
 {
-    return newRoom->canUseFeature(featureName); 
+    return newRoom->canUseFeature(featureName); //still working on this in the room class
 }
 
 void Dungeon::printCurLocation()
@@ -125,15 +121,17 @@ void Dungeon::removeRoomItem(std::string itemName)
 {
 	newRoom->removeItem(itemName);
 }
+
 /**************************************
  Yu's add
 **************************************/
-
+//maybe use item is not needed
+/*
 void Dungeon::useItem(std::string)
 {
     cout << "using item..." <<endl;
 }
-
+*/
 bool Dungeon::featureInRoom(std::string fName)
 {
     return newRoom->finRoom(fName);
@@ -182,19 +180,20 @@ void Dungeon::fDesc(std::string fdesc)
 ////////////////////////////////////////////////////////////////////////////
 void Dungeon::setCurrRoom(std::string newRoomName)
 {
-	for (int i = 1; i < allRooms.size(); i++)
+    for (size_t i = 1; i < allRooms.size(); i++)
 	{
 		if(newRoom->exitVec[0] == newRoomName)
 		{
 			newRoom = &allRooms[i-1];
-		}	 
+		}
 		else if(newRoom->exitVec[1] == newRoomName)
 		{
 			newRoom = &allRooms[i+1];
 		}
 	}
-}
-	/*if(newRoom->rName == allRooms[0].rName)
+
+    /*
+    if(newRoom->rName == allRooms[0].rName)
     {
         if(newRoomName == "east")
         {
@@ -245,8 +244,8 @@ void Dungeon::setCurrRoom(std::string newRoomName)
         {
             newRoom = &allRooms[0];
         }
-    }*/
-    /*
+    }
+
     if(newRoom->rName == allRooms[5].rName)
     {
         south = &allRooms[4];
@@ -286,12 +285,9 @@ void Dungeon::setCurrRoom(std::string newRoomName)
             newRoom = east;
         }
     }
-
     */
-
-
+}
 Dungeon::~Dungeon()
 {
-     delete newRoom;
+	delete newRoom;
 }
-

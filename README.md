@@ -11,6 +11,11 @@ Take - Adds an item to player's bag
 Use - Uses items from player's inventory
 Go - Moves player to new rooms
 Inventory - Displays items the player has in their bag
+Talk - Converses with non-player characters
+Drink - Drinks from a water source and increases player's stamina level
+Attack - Fights enemies
+Block - Blocks an attack from an enemy
+Open - Opens containers throughout the game
 Help
 Savegame - Saves current game
 Loadgame - Loads past game from stopping point
