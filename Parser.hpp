@@ -32,18 +32,19 @@ class Parser
 		void dropSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void lookAtStuff(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void fillObject(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
-		void moveStuff(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void crossObject(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void unlockObject(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
-		void investigateStuff(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
-		void smellStuff(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void sneakSomewhere(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void attackSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void ringObject(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
-		void saySomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void blockSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void touchSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void pull(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
+		void illuminate(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
+		void push(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
+		void read(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
+		void removeing(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);       ///////  <<<<<----- do this one in room 13
+		void payBribe(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);         ////// <<<<<< --- do this one in room 15
 
 };
 

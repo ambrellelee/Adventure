@@ -36,7 +36,7 @@ void Parser::parser(Dungeon& curDungeon, Player& curPlayer, playerString& curSen
 		//search for item in Dungeon to take if exist
 		takeItemInDungeon(curSentence, curPlayer, curDungeon);
 	}
-	else if(verbInSentence(curSentence, "open") == true)
+	else if(verbInSentence(curSentence, "open") || verbInSentence(curSentence, "crack") || verbInSentence(curSentence, "break") == true)
     {
 #ifdef NOISYTEST
 		std::cout << "'Open' detected...proceeding to 'Open' function." << std::endl;
@@ -69,7 +69,7 @@ void Parser::parser(Dungeon& curDungeon, Player& curPlayer, playerString& curSen
 		//drink from item
 		drinkSomething(curSentence, curPlayer, curDungeon);
     }
-    else if(verbInSentence(curSentence, "drop") == true)
+    else if(verbInSentence(curSentence, "drop") || verbInSentence(curSentence, "feed") == true)
     {
 #ifdef NOISYTEST
 		std::cout << "'drop' detected...proceeding to 'drop' function." << std::endl;
@@ -77,7 +77,7 @@ void Parser::parser(Dungeon& curDungeon, Player& curPlayer, playerString& curSen
 		//drop item in inventory
 		dropSomething(curSentence, curPlayer, curDungeon);
     }
-    else if(verbInSentence(curSentence, "look") == true)
+    else if(verbInSentence(curSentence, "look") || verbInSentence(curSentence, "investigate") || verbInSentence(curSentence, "smell") || verbInSentence(curSentence, "study") == true)
     {
 #ifdef NOISYTEST
 		std::cout << "'look' detected...proceeding to 'look' function." << std::endl;
@@ -102,21 +102,13 @@ void Parser::parser(Dungeon& curDungeon, Player& curPlayer, playerString& curSen
 		//print inventory
         curPlayer.lookBag();
     }
-    else if(verbInSentence(curSentence, "fill") || verbInSentence(curSentence, "collect") == true)
+    else if(verbInSentence(curSentence, "fill") || verbInSentence(curSentence, "collect")  || verbInSentence(curSentence, "scoop") == true)
     {
 #ifdef NOISYTEST
 		std::cout << "'fill' detected...proceeding to 'fill' function." << std::endl;
 #endif
 		//fill flask with water
 		fillObject(curSentence, curPlayer, curDungeon);
-    }
-    else if(verbInSentence(curSentence, "move") == true)
-    {
-#ifdef NOISYTEST
-		std::cout << "'move' detected...proceeding to 'move' function." << std::endl;
-#endif
-		//move object
-		moveStuff(curSentence, curPlayer, curDungeon);
     }
     else if(verbInSentence(curSentence, "cross") == true)
     {
@@ -133,22 +125,6 @@ void Parser::parser(Dungeon& curDungeon, Player& curPlayer, playerString& curSen
 #endif
 		//unlock object
 		unlockObject(curSentence, curPlayer, curDungeon);
-    }
-    else if(verbInSentence(curSentence, "investigate") == true)
-    {
-#ifdef NOISYTEST
-		std::cout << "'investigate' detected...proceeding to 'investigate' function." << std::endl;
-#endif
-		//investigate Dungeon
-		investigateStuff(curSentence, curPlayer, curDungeon);
-    }
-    else if(verbInSentence(curSentence, "smell") == true)
-    {
-#ifdef NOISYTEST
-		std::cout << "'smell' detected...proceeding to 'smell' function." << std::endl;
-#endif
-		//smell
-		smellStuff(curSentence, curPlayer, curDungeon);
     }
     else if(verbInSentence(curSentence, "sneak") == true)
     {
@@ -174,13 +150,22 @@ void Parser::parser(Dungeon& curDungeon, Player& curPlayer, playerString& curSen
 		//ring something
 		ringObject(curSentence, curPlayer, curDungeon);
     }
-    else if(verbInSentence(curSentence, "say") == true)
+    else if(verbInSentence(curSentence, "man") == true)
     {
 #ifdef NOISYTEST
 		std::cout << "'say' detected...proceeding to 'say' function." << std::endl;
 #endif
-		//say something
-		saySomething(curSentence, curPlayer, curDungeon);
+        if(curDungeon.featureInRoom("sphinx")== true)
+        {
+            //in replay to sphinx
+            curDungeon.fIDesc("sphinx");
+            curDungeon.validInteraction("sphinx");
+        }
+        else
+        {
+            cout << "tell your answer to sphinx? sphinx not in this room." << endl;
+        }
+
     }
     else if(verbInSentence(curSentence, "block") == true)
     {
@@ -215,6 +200,34 @@ void Parser::parser(Dungeon& curDungeon, Player& curPlayer, playerString& curSen
 		//pull lever
 		pull(curSentence, curPlayer, curDungeon);
     }
+    //illuminate
+    else if(verbInSentence(curSentence, "illuminate") == true)
+    {
+#ifdef NOISYTEST
+		std::cout << "'illuminate' detected...proceeding to 'illuminate' function." << std::endl;
+#endif
+		//illuminate
+		illuminate(curSentence, curPlayer, curDungeon);
+    }
+    //push
+    else if(verbInSentence(curSentence, "push") || verbInSentence(curSentence, "move") == true)
+    {
+#ifdef NOISYTEST
+		std::cout << "'push' detected...proceeding to 'push' function." << std::endl;
+#endif
+		//push
+		push(curSentence, curPlayer, curDungeon);
+    }
+     //read
+    else if(verbInSentence(curSentence, "read") || verbInSentence(curSentence, "inspect") == true)
+    {
+#ifdef NOISYTEST
+		std::cout << "'read' detected...proceeding to 'read' function." << std::endl;
+#endif
+		//push
+		read(curSentence, curPlayer, curDungeon);
+    }
+    //for exit
     else if(verbInSentence(curSentence, "exit") == true)
     {
 #ifdef NOISYTEST
@@ -406,7 +419,7 @@ void Parser::openObject(playerString& curSentence, Player& curPlayer, Dungeon& c
 		std::transform(i->begin(), i->end(), i->begin(), ::tolower);
 		if (curDungeon.featureInRoom(*i) == true)
 		{
-		    if(curDungeon.verbCheck(*i, "open") == true)
+		    if(curDungeon.verbCheck(*i, "open") || curDungeon.verbCheck(*i, "crack") || curDungeon.verbCheck(*i, "break") == true)
             {
                 curDungeon.fIDesc(*i);   //prints the feature's 1st interaction description
                 curDungeon.validInteraction(*i); //sets feature interactionNum to +1
@@ -549,6 +562,14 @@ void Parser::dropSomething(playerString& curSentence, Player& curPlayer, Dungeon
 			dropped = true;
 			break;
 		}
+		else if(curDungeon.featureInRoom(*i) == true)
+        {
+            curPlayer.removeFromBag("guts");
+            curDungeon.fIDesc(*i);
+            curDungeon.validInteraction(*i);
+            dropped = true;
+            break;
+        }
 	}
 	if (dropped == false)
 	{
@@ -614,11 +635,11 @@ void Parser::fillObject(playerString& curSentence, Player& curPlayer, Dungeon& c
     for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
     {
 
-        if(curDungeon.featureInRoom("water") || curDungeon.featureInRoom("fountain") == true)
+        if(curDungeon.featureInRoom("water") || curDungeon.featureInRoom("fountain") || curDungeon.featureInRoom("basin")== true)
         {
             //check if item is in inventory
             std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-            if (curPlayer.hasItem(*i) == true)
+            if (curPlayer.hasItem("flask")== true)
             {
                 //fill
                 curPlayer.fill(10);
@@ -629,7 +650,7 @@ void Parser::fillObject(playerString& curSentence, Player& curPlayer, Dungeon& c
         }
         else
         {
-            cout << "There is no water fountain in the room to collect water from." << endl;
+            cout << "There is no water in the room to collect water from." << endl;
         }
 
     }
@@ -637,36 +658,6 @@ void Parser::fillObject(playerString& curSentence, Player& curPlayer, Dungeon& c
 	if (filled == false)
 	{
 		std::cout << "You cannot fill that."  << std::endl;
-	}
-}
-
-//for verb move
-void Parser::moveStuff(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
-{
-#ifdef NOISYTEST
-    std::cout << "'move' function > proceeding to move object." << std::endl;
-#endif // NOISYTEST
-
-	bool moved = false;
-
-    //iterate through vector of strings to find names
-    for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
-    {
-        //check if item is in Dungeon
-        std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-        if (curDungeon.itemInRoom(*i) == true)
-        {
-            //move item
-//            curDungeon.useItem(*i);
-            std::cout << "you have moved " << (*i) << endl;
-            moved = true;
-            break;
-        }
-    }
-
-	if (moved == false)
-	{
-		std::cout << "You cannot move that."  << std::endl;
 	}
 }
 
@@ -710,17 +701,18 @@ void Parser::unlockObject(playerString& curSentence, Player& curPlayer, Dungeon&
 	bool unlocked = false;
 
     //first check for key in player inventory
-    if(curPlayer.hasItem("key") == true)
+    if(curPlayer.hasItem("key") || curPlayer.hasItem("mirrorKey")== true)
     {
         //iterate through vector of strings to find names
         for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
         {
             //check if object is in Dungeon
             std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-            if (curDungeon.itemInRoom(*i) == true)
+            if (curDungeon.featureInRoom(*i) == true)
             {
                 //unlock item
-                ///curPlayer.hasItem(*i);
+                curDungeon.fIDesc(*i);
+            //    curDungeon.validInteraction(*i);
                 std::cout << "you have unlocked " << (*i) << endl;
                 unlocked = true;
                 break;
@@ -737,18 +729,6 @@ void Parser::unlockObject(playerString& curSentence, Player& curPlayer, Dungeon&
 	}
 }
 
-//for verb investigate
-void Parser::investigateStuff(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
-{
-  //same as look smell???
-}
-
-//for verb smell
-void Parser::smellStuff(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
-{
-  //same as investigate and look smell??
-}
-
 //for verb sneak
 void Parser::sneakSomewhere(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
 {
@@ -763,11 +743,11 @@ void Parser::sneakSomewhere(playerString& curSentence, Player& curPlayer, Dungeo
     {
         //check if object is in Dungeon
         std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-        if (curDungeon.itemInRoom(*i) == true)
+        if (curDungeon.featureInRoom(*i) == true)
         {
             //sneak around
-//            curDungeon.useItem(*i);
-            std::cout << "you have sneaked around the " << (*i) << endl;
+            curDungeon.fIDesc(*i);
+            curDungeon.validInteraction(*i);
             sneaked = true;
             break;
         }
@@ -798,7 +778,7 @@ void Parser::attackSomething(playerString& curSentence, Player& curPlayer, Dunge
             {
                 if (curDungeon.verbCheck(*i, "attack") == true)
                 {
-                     curDungeon.fIDesc(*i);
+                    curDungeon.fIDesc(*i);
                     //attacking enemy
                     curDungeon.validInteraction(*i);
                     attacked = true;
@@ -833,7 +813,7 @@ void Parser::ringObject(playerString& curSentence, Player& curPlayer, Dungeon& c
     {
         //check if object is in Dungeon
         std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-        if (curDungeon.itemInRoom(*i) == true)
+        if (curDungeon.featureInRoom(*i) == true)
         {
             //ringing object
             std::cout << "you have ringed the " << (*i) << endl;
@@ -847,12 +827,6 @@ void Parser::ringObject(playerString& curSentence, Player& curPlayer, Dungeon& c
 	{
 		std::cout << "You cannot ring that."  << std::endl;
 	}
-}
-
-//for verb say
-void Parser::saySomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
-{
-//say something???
 }
 
 //for verb block
@@ -910,7 +884,7 @@ void Parser::pull(playerString& curSentence, Player& curPlayer, Dungeon& curDung
             if (curDungeon.verbCheck(*i, "pull") == true)
             {
                // curDungeon.fIDesc(*i);
-                curDungeon.validInteraction(*i);
+             //   curDungeon.validInteraction(*i);
                 curDungeon.fDesc(*i);
                 pulled = true;
                 break;
@@ -926,5 +900,115 @@ void Parser::pull(playerString& curSentence, Player& curPlayer, Dungeon& curDung
 //for verb touch
 void Parser::touchSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
 {
-    searchItemToUse(curSentence, curPlayer, curDungeon);
+    bool touched = false;
+
+    //iterate through vector of strings to find names
+    for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
+    {
+        //check if enemy is in Dungeon
+        std::transform(i->begin(), i->end(), i->begin(), ::tolower);
+        if (curDungeon.featureInRoom(*i) == true)
+        {
+            if (curDungeon.verbCheck(*i, "touch") == true)
+            {
+               // curDungeon.fIDesc(*i);
+             //   curDungeon.validInteraction(*i);
+                curDungeon.fIDesc(*i);
+                touched = true;
+                break;
+            }
+        }
+    }
+
+	if (touched == false)
+	{
+		std::cout << "You cannot touch that."  << std::endl;
+	}
+}
+
+//for verb illuminate
+void Parser::illuminate(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
+{
+     bool illuminated = false;
+
+    //iterate through vector of strings to find names
+    for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
+    {
+        //check if enemy is in Dungeon
+        std::transform(i->begin(), i->end(), i->begin(), ::tolower);
+        if (curDungeon.featureInRoom(*i) == true)
+        {
+            if (curDungeon.verbCheck(*i, "illuminate") == true)
+            {
+               // curDungeon.fIDesc(*i);
+                curDungeon.fIDesc(*i);
+                curDungeon.validInteraction(*i);
+                illuminated = true;
+                break;
+            }
+        }
+    }
+
+	if (illuminated == false)
+	{
+		std::cout << "You cannot illuminate that."  << std::endl;
+	}
+}
+
+//for verb push
+void Parser::push(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
+{
+     bool pushed = false;
+
+    //iterate through vector of strings to find names
+    for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
+    {
+        //check if enemy is in Dungeon
+        std::transform(i->begin(), i->end(), i->begin(), ::tolower);
+        if (curDungeon.featureInRoom(*i) == true)
+        {
+            if (curDungeon.verbCheck(*i, "push") || curDungeon.verbCheck(*i, "move") == true)
+            {
+               // curDungeon.fIDesc(*i);
+                curDungeon.fIDesc(*i);
+                curDungeon.validInteraction(*i);
+                pushed = true;
+                break;
+            }
+        }
+    }
+
+	if (pushed == false)
+	{
+		std::cout << "You cannot push that."  << std::endl;
+	}
+}
+
+//for verb read
+void Parser::read(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
+{
+     bool reading = false;
+
+    //iterate through vector of strings to find names
+    for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
+    {
+        //check if enemy is in Dungeon
+        std::transform(i->begin(), i->end(), i->begin(), ::tolower);
+        if (curDungeon.featureInRoom(*i) == true)
+        {
+            if (curDungeon.verbCheck(*i, "read") || curDungeon.verbCheck(*i, "inspect") == true)
+            {
+               // curDungeon.fIDesc(*i);
+                curDungeon.fIDesc(*i);
+               // curDungeon.validInteraction(*i);
+                reading = true;
+                break;
+            }
+        }
+    }
+
+	if (reading == false)
+	{
+		std::cout << "You cannot read that."  << std::endl;
+	}
 }
