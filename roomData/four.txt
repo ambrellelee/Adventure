@@ -89,9 +89,9 @@ open it up and notice there is something inside.
 I reach into the chest and pull out the armor. It could fit in my seemingly 
 bottomless bag, so that's where I put it.
 @@
-False
+true
 @@
-False
+True
 @@
 open
 @@
@@ -113,9 +113,9 @@ The lid of the box slides off easily. There's a key in there!
 I reach into the box and get the key. Whoever runs security for this place
 should be fired
 @@
-False
+true
 @@
-False
+true
 @@
 open
 @@
@@ -139,9 +139,9 @@ notice it's full of some enticing treasure!
 @@
 I continually grab handfuls of coins, transfering them to my bag as I do so.
 @@
-False
+true
 @@
-False
+true
 @@
 crack
 @@

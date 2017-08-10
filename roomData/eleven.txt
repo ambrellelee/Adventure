@@ -44,7 +44,7 @@ False
 @@
 2
 @@
-weakBox
+weakbox
 @@
 3
 @@

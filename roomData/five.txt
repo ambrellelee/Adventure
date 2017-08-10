@@ -41,7 +41,7 @@ harmed, or else all attacks will be for naught..." Maybe that will come in
 handy. This book is clearly much too weak to take with me though. I put it back
 on the shelf, noticing the book fall apart as I do so.
 @@
-False
+True
 @@
 read
 @@
@@ -61,7 +61,7 @@ is their own lust for wealth. I was astonished to find th[illegible]" Hm...
 not exactly the tome of fire spells I'd hoped for. Regardless, the thing is
 falling apart on me. I put it back on the shelf.
 @@
-False
+True
 @@
 read
 @@@

@@ -24,7 +24,7 @@ False
 @@
 2
 @@
-basin
+water basin
 @@
 2
 @@
@@ -40,7 +40,7 @@ False
 collect
 scoop
 @@
-strangeBook
+strange book
 @@
 2
 @@
