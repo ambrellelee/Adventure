@@ -66,8 +66,17 @@ void Parser::parser(Dungeon& curDungeon, Player& curPlayer, playerString& curSen
 #ifdef NOISYTEST
 		std::cout << "'Drink' detected...proceeding to 'Drink' function." << std::endl;
 #endif
-		//drink from item
+		//drink from inventory
 		drinkSomething(curSentence, curPlayer, curDungeon);
+    }
+    else if(verbInSentence(curSentence, "eat") == true)
+    {
+#ifdef NOISYTEST
+		std::cout << "'eat' detected...proceeding to 'eat' function." << std::endl;
+#endif
+		//eat from inventory
+
+		cout << "eating food~ Yum~Yum~Yum~~~~~~" << endl;
     }
     else if(verbInSentence(curSentence, "drop") || verbInSentence(curSentence, "feed") == true)
     {
@@ -521,7 +530,6 @@ void Parser::drinkSomething(playerString& curSentence, Player& curPlayer, Dungeo
 		    if(curPlayer.canDrink(*i) == true)
             {
                 //use the item
-                curPlayer.hasItem(*i);
                 std::cout << "You have drinked " << *i << std::endl;
                 curPlayer.addStamina(10);
                 std::cout << "Your stamina have increased by 10." << std::endl;
@@ -533,7 +541,7 @@ void Parser::drinkSomething(playerString& curSentence, Player& curPlayer, Dungeo
 	}
 	if (drinked == false)
 	{
-		std::cout << "You cannot drink to that."  << std::endl;
+		std::cout << "You cannot drink that."  << std::endl;
 	}
 }
 
