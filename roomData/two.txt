@@ -85,9 +85,9 @@ briefly look down at my hand afterwards. The sight and smell of the bits
 stuck to my hand remind me of the time I ate dog food as a child. I
 shudder at the memory, wiping my hand clean on my pants.
 @@
-False
-@@
 True
+@@
+False
 @@
 attack
 @@
