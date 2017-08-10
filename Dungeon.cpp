@@ -184,19 +184,19 @@ void Dungeon::setCurrRoom(std::string newRoomName)
 	{
 		if(allRooms[i].getName() == newRoom->getName()) 
 		{
-			//mainly for entry since room1 only have 1 exitVec
+			//for entry room since it only has one exit
 			if(newRoom->exitVec.size() == 1 && newRoom->exitVec[0] == newRoomName) 
 			{
 				newRoom = &allRooms[i+1];
 				break;
 			}
 			//the rest of the room that have more than 1 exitVec
-			if(newRoom->exitVec.size() > 1 && newRoom->exitVec[0] == newRoomName) 
+			if(newRoom->exitVec[0] == newRoomName) 
 			{
 				newRoom = &allRooms[i-1];
 				break;
 			}
-			if(newRoom->exitVec.size() > 1 && newRoom->exitVec[1] == newRoomName) 
+			else if( newRoom->exitVec[1] == newRoomName) 
 			{
 				newRoom = &allRooms[i+1];
 				break;
