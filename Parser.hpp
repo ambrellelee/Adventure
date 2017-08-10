@@ -43,8 +43,10 @@ class Parser
 		void illuminate(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void push(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void read(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
-		void removeing(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);       ///////  <<<<<----- do this one in room 13
+		void removing(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);       ///////  <<<<<----- do this one in room 13
 		void payBribe(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);         ////// <<<<<< --- do this one in room 15
+		void saveGame(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
+		void loadGame(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 
 };
 

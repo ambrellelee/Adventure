@@ -668,16 +668,11 @@ bool Room::canUseFeature(std::string fName, std::string verb)
 }
 
 /////////////////  8/6 additions ///////////////////
-string Room::getOldRoom()
-{
-    return exitVec[0];
-}
 
 bool Room::getExitStatus()
 {
     std::vector<bool> tempActions;
-    bool canProceedForward = false;
-//    cout << "printing out all bools in tempAction vector: " << endl;
+
     for(size_t i = 0; i < roomFeatures.size(); i++)
     {
         tempActions = roomFeatures[i].getActions();
@@ -686,6 +681,7 @@ bool Room::getExitStatus()
  //           cout << "current interaction# for " <<roomFeatures[i].getName()<< " is: " << roomFeatures[i].getinteractionNum()<<endl;
             canProceedForward = true;
         }
+        tempActions.clear();
     }
 
     return canProceedForward;
@@ -816,7 +812,6 @@ void Room::featureIDescription(std::string fDesc)
         {
             if(temp[j] == fDesc)
             {
-
                 if(roomFeatures[i].getinteractionNum() >= (roomFeatures[i].getInteractionDesc()).size())
                 {
                     cout << "No more interaction descriptions." << endl;
@@ -826,12 +821,9 @@ void Room::featureIDescription(std::string fDesc)
                 {
  //                   cout << "int #: " << roomFeatures[i].getinteractionNum() << "\tdesc #: " << (roomFeatures[i].getInteractionDesc()).size() << endl;
                     FeatureDesc = roomFeatures[i].getInteractionDesc();
-                    cout << FeatureDesc[roomFeatures[inRoom[i].featureSource].getinteractionNum()] << endl;
+                    cout << FeatureDesc[roomFeatures[i].getinteractionNum()] << endl;
                     break;
                 }
-
-
-
             }
         }
         temp.clear();

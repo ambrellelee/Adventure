@@ -64,7 +64,6 @@ class Room
 
 
 		 ////////////// 8/6 additions//////////////////////
-        std::string getOldRoom();
         bool getExitStatus();
         bool getAvailability(std::string availability);
         void featureInteraction(std::string);
