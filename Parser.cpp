@@ -251,9 +251,9 @@ void Parser::parser(Dungeon& curDungeon, Player& curPlayer, playerString& curSen
 #endif
         int i = 0;;
         std::stringstream(curSentence[1]) >> i;
-        if( i >= 0 && i < 15)
+        if( i >= 1 && i <= 15)
         {
-            curDungeon.setCurrentRoom(i);
+            curDungeon.setCurrentRoom(i-1);
             curDungeon.printCurLocation();
         }
 		else
