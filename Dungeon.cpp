@@ -178,18 +178,30 @@ void Dungeon::fDesc(std::string fdesc)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-void Dungeon::setCurrRoom(std::string direction)
+void Dungeon::setCurrRoom(std::string newRoomName)
 {
-    for (size_t i = 2; i < allRooms.size(); i++)
+	for(size_t i = 0; i <allRooms.size(); i++)
 	{
-		if(newRoom->exitVec[0] == direction)
+		if(allRooms[i].getName() == newRoom->getName()) 
 		{
-			newRoom = &(allRooms[i-1]);
-		}
-		else if(newRoom->exitVec[1] == direction)
-		{
-			newRoom = &(allRooms[i+1]);
-		}
+			//mainly for entry since room1 only have 1 exitVec
+			if(newRoom->exitVec.size() == 1 && newRoom->exitVec[0] == newRoomName) 
+			{
+				newRoom = &allRooms[i+1];
+				break;
+			}
+			//the rest of the room that have more than 1 exitVec
+			if(newRoom->exitVec.size() > 1 && newRoom->exitVec[0] == newRoomName) 
+			{
+				newRoom = &allRooms[i-1];
+				break;
+			}
+			if(newRoom->exitVec.size() > 1 && newRoom->exitVec[1] == newRoomName) 
+			{
+				newRoom = &allRooms[i+1];
+				break;
+			}		
+		}	  
 	}
 }
 
