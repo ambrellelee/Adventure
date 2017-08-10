@@ -53,7 +53,9 @@ main()
     Parser par; //create parser
     d.playGame();
     bool quit = false;
-
+    //for testing, load player inventory with every item needed to interact
+    Item tempItem = Item("sword", "", "", 0, 0, 0, 0, 0);
+    p.addToBag(tempItem);
     while(!quit)
     {
         int choice = d.showMenu();
@@ -76,8 +78,7 @@ main()
         }
         else if(choice == 2)
         {
-            Room myRoom = Room("one.txt", 0);
-            myRoom.printRoomInfo();
+            cout << "Loading saved game..." << endl;
         }
         else
         {

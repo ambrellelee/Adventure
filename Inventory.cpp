@@ -42,14 +42,14 @@ void Inventory::removeInventory(std::string item)
 	{
 		std::vector<Item>::iterator i = std::find_if(stuff.begin(), stuff.end(), findItem(item));
 		stuff.erase(i);
-		std::cout << "You have removed << item << from your inventory." << std::endl;
+		std::cout << "You have removed " << item << " from your inventory." << std::endl;
 
 	}
 }
 
 void Inventory::viewInventory()
 {
-	std::cout << "You currently have " << stuff.size() << "items in your inventory." << std::endl;
+	std::cout << "You currently have " << stuff.size() << " items in your inventory." << std::endl;
 	for(size_t i = 0; i < stuff.size(); i++)
 	{
 		std::cout << i+1 << ":" << stuff[i].iName <<std::endl;
@@ -59,14 +59,26 @@ void Inventory::viewInventory()
 bool Inventory::inInventory(std::string thing)
 {
 	bool hasItem = false;
-
+    std::vector<std::string> temp;
 	for(size_t i = 0; i < stuff.size(); i++)
 	{
-		if(stuff[i].iName == thing)
-		{
-			hasItem = true;
-			break;
+        //split string into vector
+        //http://code.runnable.com/VHb0hWMZp-ws1gAr/splitting-a-string-into-a-vector-for-c%2B%2B
+        std::stringstream ss(stuff[i].iName);
+        std::string tok;
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == thing)
+            {
+                hasItem = true;
+                break;
+            }
 		}
+		temp.clear();
 	}
 	return hasItem;
 }

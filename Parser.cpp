@@ -258,7 +258,7 @@ void Parser::parser(Dungeon& curDungeon, Player& curPlayer, playerString& curSen
         }
 		else
         {
-            cout << "Room 0~14 allowed"<<endl;
+            cout << "Room 1~15 allowed"<<endl;
         }
     }
 	else
@@ -394,12 +394,16 @@ void Parser::takeItemInDungeon(playerString& curSentence, Player& curPlayer, Dun
                     curDungeon.getItemInteractDesc(*i);
                     //item is in Dungeon, pick up item and place in player inventory
                     Item temp = curDungeon.returnItem(*i);
+
  //                   cout << "You picked up " << temp.iName << endl;
 //                    cout << temp.iDesc << endl;
                     curPlayer.addToBag(temp);
-                    //remove item from the Dungeon
-                    //valid interaction - not working, validInteraction is checking feature list not item list...**************************************************<<------
+                    if(temp.iName == "armor")
+                    {
+                        curPlayer.setHitPoints(5);
+                    }
                     curDungeon.validInteraction(*i); //sets feature interactionNum to +1
+                    //remove item from the Dungeon
                     curDungeon.removeRoomItem(*i);
                     itemTaken = true;
                     break;

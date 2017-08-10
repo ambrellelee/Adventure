@@ -7,6 +7,7 @@
 #include "Item.hpp"
 #include<algorithm>
 #include<list>
+#include <sstream>
 
 class Inventory
 {

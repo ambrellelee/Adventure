@@ -5,10 +5,11 @@
 //Constructors
 Player::Player()
 {
-	pName = "no name";
-	hitPoints = 0;
+	pName = "Player 1";
+	hitPoints = 10;
 	stamina = 3;
 	score = 0;
+	maxHitPoints = 20;
 }
 
 Player::Player(std::string newName, int hPoints, int pStamina, double pScore, Inventory pInvent)
@@ -34,9 +35,9 @@ std::string Player::getName()
 
 void Player::setHitPoints(int playerHitPoints)
 {
-	hitPoints = playerHitPoints;
+	hitPoints += playerHitPoints;
 
-	if(hitPoints >= maxHitPoints)
+	if(hitPoints == 0)
 	{
 		std::cout << "You have been hit too many times. You have lost." << std::endl;
 		exit(0);
@@ -182,7 +183,6 @@ void Player::fill(int liquid)
 {
      bag.fillFlask(liquid);
 }
-
 
 Player::~Player()
 {

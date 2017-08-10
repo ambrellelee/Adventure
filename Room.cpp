@@ -118,18 +118,39 @@ void Room::addItem(Item thing)
 
 void Room::removeItem(std::string rItem)
 {
-	std::vector<Item>::iterator i = std::find_if(inRoom.begin(), inRoom.end(), findItem(rItem));
-	inRoom.erase(i);
+    std::vector<string> temp;
+    string targetItem;
+	for( size_t i = 0; i< inRoom.size(); i++)
+	{
+	    temp = split(inRoom[i].iName);
+	    for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == rItem)
+            {
+                targetItem = inRoom[i].iName;
+                std::vector<Item>::iterator i = std::find_if(inRoom.begin(), inRoom.end(), findItem(targetItem));
+                inRoom.erase(i);
+cout << "removing " << targetItem << " from room" <<endl;
+                break;
+            }
+        }
+	}
+
 }
 
 void Room::lookItems(std::string rItem)
 {
+    std::vector<string> temp;
 	for( size_t i = 0; i< inRoom.size(); i++)
 	{
-		if(inRoom[i].iName == rItem)
-		{
-			std::cout << inRoom[i].iDesc << std::endl;
-		}
+	    temp = split(inRoom[i].iName);
+	    for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == rItem)
+            {
+                std::cout << inRoom[i].iDesc << std::endl;
+            }
+        }
 	}
 }
 
@@ -601,7 +622,6 @@ Item Room::getItemInRoom(std::string itemName)
         //http://code.runnable.com/VHb0hWMZp-ws1gAr/splitting-a-string-into-a-vector-for-c%2B%2B
         std::stringstream ss(inRoom[i].iName);
         std::string tok;
-
         while(getline(ss, tok, ' '))
         {
             temp.push_back(tok);
@@ -610,11 +630,11 @@ Item Room::getItemInRoom(std::string itemName)
         {
             if(temp[j] == itemName)
             {
+                cout << inRoom[i].iName << endl;
                 tempItem = inRoom[i];
-                temp.clear();
             }
-            temp.clear();
         }
+        temp.clear();
      }
      return tempItem;
 }
