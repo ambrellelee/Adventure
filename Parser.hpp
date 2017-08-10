@@ -9,6 +9,7 @@
 #include<string>
 #include<algorithm>
 #include<iostream>
+#include <sstream>
 
 class Parser
 {
@@ -29,6 +30,7 @@ class Parser
 		void talkToNPC(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void askNPC(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void drinkSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
+		void eatSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void dropSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void lookAtStuff(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void fillObject(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);

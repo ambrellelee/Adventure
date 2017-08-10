@@ -244,7 +244,23 @@ void Parser::parser(Dungeon& curDungeon, Player& curPlayer, playerString& curSen
 #endif
 		exit(0);
     }
-
+    else if(verbInSentence(curSentence, "jump") == true)
+    {
+#ifdef NOISYTEST
+		std::cout << "'dev Jump' detected...Jumping to room." << std::endl;
+#endif
+        int i = 0;;
+        std::stringstream(curSentence[1]) >> i;
+        if( i >= 0 && i < 15)
+        {
+            curDungeon.setCurrentRoom(i);
+            curDungeon.printCurLocation();
+        }
+		else
+        {
+            cout << "Room 0~14 allowed"<<endl;
+        }
+    }
 	else
 	{
 		//entered wrong verb
@@ -384,6 +400,7 @@ void Parser::takeItemInDungeon(playerString& curSentence, Player& curPlayer, Dun
                     //remove item from the Dungeon
                     //valid interaction - not working, validInteraction is checking feature list not item list...**************************************************<<------
                     curDungeon.validInteraction(*i); //sets feature interactionNum to +1
+                    curDungeon.removeRoomItem(*i);
                     itemTaken = true;
                     break;
                 }
@@ -430,10 +447,30 @@ void Parser::openObject(playerString& curSentence, Player& curPlayer, Dungeon& c
 		{
 		    if(curDungeon.verbCheck(*i, "open") || curDungeon.verbCheck(*i, "crack") || curDungeon.verbCheck(*i, "break") == true)
             {
-                curDungeon.fIDesc(*i);   //prints the feature's 1st interaction description
-                curDungeon.validInteraction(*i); //sets feature interactionNum to +1
-                objectOpened = true;
-                break;
+                if(*i == "vault")
+                {
+                    if(curPlayer.hasItem("key") == true)
+                    {
+                        curDungeon.fIDesc(*i);   //prints the feature's 1st interaction description
+                        curDungeon.validInteraction(*i); //sets feature interactionNum to +1
+                        objectOpened = true;
+                        curPlayer.removeFromBag("key");
+                        break;
+                    }
+                    else
+                    {
+                        cout << "You are missing key" << endl;
+                        break;
+                    }
+                }
+                else
+                {
+                    curDungeon.fIDesc(*i);   //prints the feature's 1st interaction description
+                    curDungeon.validInteraction(*i); //sets feature interactionNum to +1
+                    objectOpened = true;
+                    break;
+                }
+
             }
             else
             {
