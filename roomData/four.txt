@@ -108,7 +108,7 @@ It's an open box, there's something shiny inside!
 @@
 The box is empty
 @@
-The lid of the box slides off easily. There's a key in there!
+The lid of the box slides off easily. There's a TREASURE KEY in there!
 @@
 I reach into the box and get the key. Whoever runs security for this place
 should be fired

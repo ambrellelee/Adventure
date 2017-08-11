@@ -55,7 +55,7 @@ greet
 pay
 bribe
 @@
-Monster
+monster
 @@
 2
 @@

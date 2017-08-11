@@ -57,8 +57,7 @@ I gather up the water in my flask, which is full now.
 @@
 False
 @@
-take
-get
+scoop
 collect
 fill
 @@

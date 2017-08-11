@@ -217,8 +217,8 @@ void Room::printRoomInfo()
                 cout << "Item name: " << inRoom[i].iName << endl;
                 cout << "Item description: " << inRoom[i].iDesc << endl;
                 cout << "Item use text: " << inRoom[i].useDesc << endl;
-                cout << "Water in item: " << inRoom[i].waterLevel << endl;
-                cout << "Max. water capacity: " << inRoom[i].maxWater << endl;
+ //               cout << "Water in item: " << inRoom[i].waterLevel << endl;
+ //               cout << "Max. water capacity: " << inRoom[i].maxWater << endl;
 
                 if (inRoom[i].available == true)
                         cout << "Player can pick up item now" << endl;
@@ -247,7 +247,7 @@ void Room::printRoomInfo()
 
                 cout << fDescTest[0] << endl;
                 interactionDescTest = roomFeatures[i].getInteractionDesc();
-                cout << "List of verbs that can be used on this feature are: ";
+                cout << "List of verbs that can be used on this feature are: " << endl;
                 for(size_t j = 0; j < verbTest.size(); j++)
                 {
                     cout << "Potential verbs for interaction number " << j << endl;
@@ -256,6 +256,7 @@ void Room::printRoomInfo()
                     {
                         cout << verbTest[j][k] << ", ";
                     }
+                    cout << endl;
                 }
                 cout << endl;
                 canLeaveTest = roomFeatures[i].getActions();
@@ -630,7 +631,7 @@ Item Room::getItemInRoom(std::string itemName)
         {
             if(temp[j] == itemName)
             {
-                cout << inRoom[i].iName << endl;
+ //               cout << inRoom[i].iName << endl;
                 tempItem = inRoom[i];
             }
         }
@@ -645,6 +646,15 @@ void Room::printRoomDesc()
     {
         cout << rDescription[i] << endl;
     }
+    cout << "The door you see that you can to go to are " ;
+    cout << "Exits:" << endl;
+
+    cout << "++++++++++++++++++++++++++" << endl;
+    for (size_t i = 0; i < exitVec.size(); i++)
+    {
+        cout << "+++    --->  " << exitVec[i] << "      +++ " << endl;
+    }
+    cout << "++++++++++++++++++++++++++" << endl;
 }
 /*********************
  revised 8/8
@@ -696,10 +706,25 @@ bool Room::getExitStatus()
     for(size_t i = 0; i < roomFeatures.size(); i++)
     {
         tempActions = roomFeatures[i].getActions();
-        if(tempActions[roomFeatures[i].getinteractionNum()] == true)
+        if(tempActions.size() == 1)
         {
- //           cout << "current interaction# for " <<roomFeatures[i].getName()<< " is: " << roomFeatures[i].getinteractionNum()<<endl;
-            canProceedForward = true;
+            if(roomFeatures[i].getinteractionNum() > 0 && tempActions[0] == true)
+            {
+                canProceedForward = true;
+                break;
+            }
+ //           else if(roomFeatures[i].getinteractionNum()> 0 && tempActions[0] == false)
+ //           {
+
+ //           }
+        }
+        else
+        {
+            if(tempActions[roomFeatures[i].getinteractionNum()] == true)
+            {
+                canProceedForward = true;
+                break;
+            }
         }
         tempActions.clear();
     }
@@ -798,7 +823,6 @@ bool Room::finRoom(std::string fName)
     {
         std::stringstream ss(roomFeatures[i].getName());
         std::string tok;
-
         while(getline(ss, tok, ' '))
         {
             temp.push_back(tok);

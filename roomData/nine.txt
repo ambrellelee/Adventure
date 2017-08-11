@@ -24,7 +24,7 @@ False
 @@
 1
 @@
-mirrorKey
+mirror key
 @@
 A key I somehow got from the mirror.
 @@
@@ -73,7 +73,7 @@ investigate
 take
 get
 @@
-mirorLock
+mirror lock
 @@
 2
 @@

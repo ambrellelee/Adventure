@@ -61,18 +61,26 @@ main()
         int choice = d.showMenu();
         if(choice ==  1)
         {
+            bool backToMenu = false;
             d.setCurrentRoom(0);
             d.printCurLocation();
 
             std::vector<string> input;
-            for(int i = 0; i < 50; i++)
+            while(!backToMenu)
             {
                 input.clear();
                 while(input.size() == 0)
                 {
                     input = playerInput();
                 }
-                par.parser(d, p, input);
+                if(input[0] == "menu")
+                {
+                    backToMenu = true;
+                }
+                else
+                {
+                    par.parser(d, p, input);
+                }
             }
 
         }

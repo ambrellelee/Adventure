@@ -1,16 +1,16 @@
 2
 @@
-I enter the room and see DEAR LORD! An unnaturally large hound is racing
+I enter the room and see DEAR LORD! An unnaturally large HOUND is racing
 towards me, only to get stopped when it reaches the end of its leash. As I start
-to calm down, I notice the hound has a collar around its neck. That collar is
+to calm down, I notice the HOUND has a collar around its neck. That collar is
 connected to a chain, the only thing that stopped me from becoming the
 creature's lunch. I back as far away from it as I can, trying to ignore its
-piercing barks. As I do, I notice a picture on the wall. I can return to the 
+piercing barks. As I do, I notice a PICTURE on the wall. I can return to the 
 exit to the south. There's an exit on the west side of the room, but if I try
-to go through it the hound will get me. I can already tell there's no way I
+to go through it the HOUND will get me. I can already tell there's no way I
 can kill that thing before it kills me...
 @@
-I'm back in the hound room. The dog remains there, as does the picture. There
+I'm back in the HOUND room. The dog remains there, as does the picture. There
 is an exit to the south, where I came from when I first entered the room. 
 There's also the exit on the western side.
 @@
@@ -35,12 +35,12 @@ picture
 2
 @@
 It's a picture that seems to show someone giving something to a dog. Maybe I
-should inspect it more closely.
+should INSPECT it more closely.
 @@
-The picture remains there, with the same picture of someone offering guts to a
+The picture remains there, with the same picture of someone offering GUTS to a
 dog
 @@
-The picture shows a man giving the dog what looks like some entrails. It's kind
+The picture shows a man giving the dog what looks like some entrails(GUTS). It's kind
 of gross
 @@
 False

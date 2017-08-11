@@ -37,6 +37,7 @@ I scoop up the water in my flask
 @@
 False
 @@
+fill
 collect
 scoop
 @@
