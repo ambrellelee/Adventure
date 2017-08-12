@@ -36,26 +36,22 @@ class Player
 		int getStamina();
 		void setScore(double playerScore);
 		int getScore();
-//		void setCurrentLocation(Room*);
+		//void setCurrentLocation(Room*);
 
-//		Room* getCurrentLocation();
-//       Room* getLastLocation();
-
-        //Player Functionality Methods
+		//Room* getCurrentLocation();
+          //Room* getLastLocation();
+		
+		//Player Functionality Methods
 		void printPlayerInfo();
 		void subtractHitPoints(int help);
 		void addStamina(int sustenance);
 		void addToBag(Item& thing);
 		void removeFromBag(std::string thing);
-		void lookBag();
-		bool hasItem(std::string);
-		bool useItem(std:: string pItem);
-		void viewBagItem(std::string);
+		void lookBag();					//prints list of all items
+		bool hasItem(std::string);			//checks to see if the item is in the player's inventory
+		bool useItem(std::string pItem);		//does the same thing as hasItem?
+		void viewBagItem(std::string);		//prints out information for specific item
 		bool canDrink(std::string);
-		void fill(int);
-
-		void savePlayer(std::ofstream& savePlayerFile);
-		void loadPlayer(std::ifstream& loadPlayerFile);
 };
 
 #endif

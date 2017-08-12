@@ -29,7 +29,7 @@ void Player::setName(std::string playerName)
 std::string Player::getName()
 {
      return pName;
-	std::cout << pName << std::endl;
+     std::cout << pName << std::endl;
 }
 
 void Player::setHitPoints(int playerHitPoints)
@@ -46,7 +46,7 @@ void Player::setHitPoints(int playerHitPoints)
 int Player::getHitPoints()
 {
      return hitPoints;
-	std::cout << hitPoints << std::endl;
+     std::cout << hitPoints << std::endl;
 }
 
 void Player::setStamina(int playerStamina)
@@ -68,7 +68,7 @@ void Player::setStamina(int playerStamina)
 int Player::getStamina()
 {
      return stamina;
-	std::cout << stamina << std::endl;
+     std::cout << stamina << std::endl;
 }
 
 void Player::setScore(double playerScore)
@@ -78,11 +78,11 @@ void Player::setScore(double playerScore)
 
 int Player::getScore()
 {
-	return score;
-	std::cout << score << std::endl;
+     return score;
+     std::cout << score << std::endl;
 }
-/*
-void Player::setCurrentLocation(Room* position)
+
+/*void Player::setCurrentLocation(Room* position)
 {
 	lastLocation = currentLocation;
 	currentLocation = position;
@@ -178,7 +178,6 @@ bool Player::canDrink(std::string pItem)
 	return bag.drinkable(pItem);
 }
 
-
 Player::~Player()
 {
 	//delete bag;
@@ -191,37 +190,4 @@ void Player::viewBagItem(std::string itemName)
 {
 	bag.viewItem(itemName);
 }
-/***************************
-NEW
-****************************/
-void Player::fill(int liquid)
-{
-	bag.fillFlask(liquid);	
-} 
 
-/*
-void Player::savePlayer(std::ofstream& savePlayerFile)
-{
-	savePlayerFile << "name" << pName << std::endl;
-	savePlayerFile << "hitPoints" << hitPoints << std::endl;
-	savePlayerFile << "stamina" << stamina << std::endl;
-	savePlayerFile << "score" << score << std::endl;
-	for(int i = 0; i < bag->size(); i++)
-	{
-		savePlayerFile << bag[i] <<std::endl;
-	}
-
-}
-
-
-void Player::loadPlayer(std::ifstream& loadPlayerFile)
-{
-	std::string info;
-
-	loadPlayerFile >> info >> pName;
-	loadPlayerFile >> info >> hitPoints;
-	loadPlayerFile >> info >> stamina;
-	loadPlayerFile >> info >> score;
-	//inFile >> info >> bag;
-}
-*/
