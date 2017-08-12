@@ -25,7 +25,6 @@ class Inventory
 		bool inInventory(std::string thing);	//checks to see if an item is in player's inventory
 		void viewItem(std::string);			//displays item's info
 		bool drinkable(std::string);
-		void fillFlask(int);
 };
 
 #endif
