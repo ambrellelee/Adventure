@@ -3,11 +3,11 @@
 As I enter the room I notice sheer opulence of the room. Various treasures lie
 throughout the room, as do many other valueables. Basically, it looks like
 someone had gone through the rest of the dungeon and taken anything of value
-that wasn't nailed down. The most salient detail is a demonic knight standing
+that wasn't nailed down. The most salient detail is a demonic KNIGHT standing
 near the center of the room. It looks quite threatening, but doesn't seem to
-move at all. There is also a glowing panel on the wall with an indentation
+move at all. There is also a glowing PANEL on the wall with an indentation
 in the shape of a hand. The exit back to the south is still there. There's a 
-door to the west, but I'm not sure I can get to it without fighting that knight.
+door to the west, but I'm not sure I can get to it without fighting that KNIGHT.
 @@
 I'm back in the demonic swordsman's room, who still stand there amidst the 
 valuables. The panel is still there. Exits are to the south and the west.
@@ -33,12 +33,12 @@ knight
 4
 @@
 It stands poised and ready, but  motionless. There's no way I'm just darting
-past this guy if he chooses to attack. I should get rid of him.
+past this guy if he chooses to ATTACK. I should get rid of him.
 @@
 The knight has been wounded by my attack, but now he's swinging his sword at
-me. I'll need to block that thing.
+me. I'll need to BLOCK that thing.
 @@
-The knight is off balance. Now's my time to finish him off!
+The knight is off balance. Now's my time to finish him off!ATTACK!
 @@
 The knight stands immobile. Defeated, and no longer a threat
 @@
@@ -69,7 +69,7 @@ panel
 2
 @@
 It's a glowing green panel with the imprint of a hand in it. Maybe I should
-touch it.
+TOUCH it.
 @@
 The panel remains, but it has lost its glow.
 @@

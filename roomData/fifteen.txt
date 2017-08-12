@@ -1,8 +1,8 @@
 2
 @@
 As I enter this room, I notice that it is rather bare. That is, aside from a
-large monster blocking the exit. There's also an old man nearby, who looks like
-a begger. Still, this monster still seems more threatening. I could return to
+large monster blocking the exit. There's also an old BEGGAR nearby, who looks like
+a BEGGAR. Still, this monster still seems more threatening. I could return to
 the east, or exit to the south.
 @@
 I'm back in the room with the begger and the big monster. Both are still there,
@@ -24,23 +24,23 @@ False
 @@
 2
 @@
-begger
+beggar
 @@
 3
 @@
-He looks kind enough, maybe I should talk to him?
+He looks kind enough, maybe I should TALK to him?
 @@
-So he wants some money, maybe if I could give him some...
+So he wants some money, maybe if I could give him some GOLD COINS...
 @@
 He looks at me nicely. "You should be able to leave this place now boy, 
 assuming you make it past that over-valued guard there..."
 @@
-"Hello there boy," the old begger says as I approach him, "I may not look it,
+"Hello there boy," the old BEGGAR says as I approach him, "I may not look it,
 but I rule this place. It doesn't matter what you do, I'm keeping you forever
 until I can get back some wealth. Damned knight back there contaminated all my
 good with demonic energy!"
 @@
-I reach out and hand the man the gold I found in the valut. "Why thank you
+I reach out and hand the begger the gold I found in the valut. "Why thank you
 young boy!" the begger responds. I wonder how he presumes to know my gender
 when we haven't talked and he is clearly blind. Even so, he goes on. "You should
 be free to go now."

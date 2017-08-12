@@ -14,13 +14,11 @@ Dragon Room
 @@
 normal
 @@
-3
+2
 @@
 south
 @@
 north
-@@
-passageway
 @@
 False
 @@
