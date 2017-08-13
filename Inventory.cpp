@@ -42,15 +42,15 @@ void Inventory::removeInventory(std::string item)
 	{
 		std::vector<Item>::iterator i = std::find_if(stuff.begin(), stuff.end(), findItem(item));
 		stuff.erase(i);
-		std::cout << "You have removed << item << from your inventory." << std::endl;
+		std::cout << "You have removed " << item << " from your inventory." << std::endl;
 
 	}
 }
 
 void Inventory::viewInventory()
 {
-	std::cout << "You currently have " << stuff.size() << "items in your inventory." << std::endl;
-	for(int i = 0; i < stuff.size(); i++)
+	std::cout << "You currently have " << stuff.size() << " items in your inventory." << std::endl;
+	for(size_t i = 0; i < stuff.size(); i++)
 	{
 		std::cout << i+1 << ":" << stuff[i].iName <<std::endl;
 	}
@@ -58,27 +58,34 @@ void Inventory::viewInventory()
 
 bool Inventory::inInventory(std::string thing)
 {
-	bool hasItem;
-
-	for(int i = 0; i < stuff.size(); i++)
+	bool hasItem = false;
+    std::vector<std::string> temp;
+	for(size_t i = 0; i < stuff.size(); i++)
 	{
-		if(stuff[i].iName == thing)
-		{
-
-			hasItem = true;
+        //split string into vector
+        //http://code.runnable.com/VHb0hWMZp-ws1gAr/splitting-a-string-into-a-vector-for-c%2B%2B
+        std::stringstream ss(stuff[i].iName);
+        std::string tok;
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == thing)
+            {
+                hasItem = true;
+                break;
+            }
 		}
-		else
-		{
-			hasItem = false;
-		}
+		temp.clear();
 	}
-
 	return hasItem;
 }
 
 void Inventory::viewItem(std::string itemName)
 {
-	for(int i = 0; i < stuff.size(); i++)
+	for(size_t i = 0; i < stuff.size(); i++)
 	{
 		if(stuff[i].iName == itemName)
 		{
@@ -89,21 +96,49 @@ void Inventory::viewItem(std::string itemName)
 
 bool Inventory::drinkable(std::string itemName)
 {
-	bool canDrink;
+	bool canDrink = false;
 
 	if(inInventory(itemName))
 	{
-		for(int i; i < stuff.size(); i++)
+		for(size_t i = 0; i < stuff.size(); i++)
 		{
 			if(stuff[i].iName == itemName && stuff[i].waterLevel > 0)
 			{
 				canDrink = true;
+				break;
 			}
-			else
+		}
+    }
+	return canDrink;
+}
+void Inventory::fillFlask(int water)
+{
+      for(size_t i; i < stuff.size(); i++)
+      {
+           if(stuff[i].iName == "flask")
+          {
+                stuff[i].waterLevel += water;
+
+                if(stuff[i].waterLevel > stuff[i].maxWater)
+               {
+                    stuff[i].waterLevel = stuff[i].maxWater;
+               }
+          }
+     }
+ }
+
+void Inventory::decreaseFlask(int water)
+{
+	for(size_t i; i <stuff.size(); i++)
+	{
+		if(stuff[i].iName == "flask")
+		{
+			stuff[i].waterLevel -= water;
+			
+			if(stuff[i].waterLevel == 0)
 			{
-				canDrink = false;
+				std::cout << "Your flask is empty" << std::endl;
 			}
 		}
 	}
-	return canDrink;
-}	
+}

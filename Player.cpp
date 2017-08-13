@@ -5,10 +5,11 @@
 //Constructors
 Player::Player()
 {
-	pName = "no name";
-	hitPoints = 0;
+	pName = "Player 1";
+	hitPoints = 10;
 	stamina = 3;
 	score = 0;
+	maxHitPoints = 20;
 }
 
 Player::Player(std::string newName, int hPoints, int pStamina, double pScore, Inventory pInvent)
@@ -29,14 +30,14 @@ void Player::setName(std::string playerName)
 std::string Player::getName()
 {
      return pName;
-     std::cout << pName << std::endl;
+	std::cout << pName << std::endl;
 }
 
 void Player::setHitPoints(int playerHitPoints)
 {
-	hitPoints = playerHitPoints;
+	hitPoints += playerHitPoints;
 
-	if(hitPoints >= maxHitPoints)
+	if(hitPoints == 0)
 	{
 		std::cout << "You have been hit too many times. You have lost." << std::endl;
 		exit(0);
@@ -46,7 +47,7 @@ void Player::setHitPoints(int playerHitPoints)
 int Player::getHitPoints()
 {
      return hitPoints;
-     std::cout << hitPoints << std::endl;
+	std::cout << hitPoints << std::endl;
 }
 
 void Player::setStamina(int playerStamina)
@@ -68,7 +69,7 @@ void Player::setStamina(int playerStamina)
 int Player::getStamina()
 {
      return stamina;
-     std::cout << stamina << std::endl;
+	std::cout << stamina << std::endl;
 }
 
 void Player::setScore(double playerScore)
@@ -78,11 +79,11 @@ void Player::setScore(double playerScore)
 
 int Player::getScore()
 {
-     return score;
-     std::cout << score << std::endl;
+	return score;
+	std::cout << score << std::endl;
 }
-
-/*void Player::setCurrentLocation(Room* position)
+/*
+void Player::setCurrentLocation(Room* position)
 {
 	lastLocation = currentLocation;
 	currentLocation = position;
@@ -135,6 +136,17 @@ void Player::addStamina(int sustenance)
 	{
 		std::cout << "You have expired due to lack of sustenance." << std::endl;
 	}
+
+}
+
+void Player::subtractWater(int water)
+{
+	bag.decreaseFlask(water);
+}
+
+void Player::subtractStamina(int sustenance)
+{
+	stamina -= sustenance;
 }
 
 void Player::addToBag(Item& thing)
@@ -178,6 +190,11 @@ bool Player::canDrink(std::string pItem)
 	return bag.drinkable(pItem);
 }
 
+void Player::fill(int liquid)
+{
+     bag.fillFlask(liquid);
+}
+
 Player::~Player()
 {
 	//delete bag;
@@ -191,3 +208,29 @@ void Player::viewBagItem(std::string itemName)
 	bag.viewItem(itemName);
 }
 
+/*
+void Player::savePlayer(std::ofstream& savePlayerFile)
+{
+	savePlayerFile << "name" << pName << std::endl;
+	savePlayerFile << "hitPoints" << hitPoints << std::endl;
+	savePlayerFile << "stamina" << stamina << std::endl;
+	savePlayerFile << "score" << score << std::endl;
+	for(int i = 0; i < bag->size(); i++)
+	{
+		savePlayerFile << bag[i] <<std::endl;
+	}
+
+}
+
+
+void Player::loadPlayer(std::ifstream& loadPlayerFile)
+{
+	std::string info;
+
+	loadPlayerFile >> info >> pName;
+	loadPlayerFile >> info >> hitPoints;
+	loadPlayerFile >> info >> stamina;
+	loadPlayerFile >> info >> score;
+	//inFile >> info >> bag;
+}
+*/
