@@ -54,17 +54,6 @@ int Player::getHitPoints()
 void Player::setStamina(int playerStamina)
 {
 	stamina = playerStamina;
-
-	 if(stamina <= 0)
-     {
-          std::cout << "You do not have enough stamina left. You have expired." <<std::endl;
-		exit(0);
-     }
-     else if(stamina > maxStamina)
-     {
-        stamina = maxStamina;
-     }
-
 }
 
 int Player::getStamina()
@@ -143,6 +132,12 @@ void Player::subtractWater(int water)
 void Player::subtractStamina(int sustenance)
 {
     stamina -= sustenance;
+    std::cout << "Your current stamina is: " << stamina << std::endl;
+    if(stamina <= 0)
+    {
+        std::cout << "You do not have enough stamina left. You have expired." <<std::endl;
+		exit(0);
+    }
 }
 
 void Player::addToBag(Item& thing)
