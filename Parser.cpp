@@ -931,6 +931,7 @@ void Parser::attackSomething(playerString& curSentence, Player& curPlayer, Dunge
                     //attacking enemy
                     curDungeon.validInteraction(*i);
                     curDungeon.fDesc(*i);
+                    cout << "Lost 2 HP after Attack. " << endl;
                     curPlayer.subtractHitPoints(2);
                     attacked = true;
                     break;
@@ -971,6 +972,7 @@ void Parser::blockSomething(playerString& curSentence, Player& curPlayer, Dungeo
                 curDungeon.validInteraction(*i);
                 curDungeon.fDesc(*i);
                 curPlayer.subtractHitPoints(1);
+                cout << "Successfully blocked, but still lost 1 HP." << endl;
                 blocked = true;
                 break;
             }
@@ -1137,7 +1139,11 @@ void Parser::read(playerString& curSentence, Player& curPlayer, Dungeon& curDung
             if (curDungeon.verbCheck(*i, "read") || curDungeon.verbCheck(*i, "inspect") == true)
             {
                 curDungeon.fIDesc(*i);
-                curPlayer.setHitPoints(2);
+                if(*i == "read")
+                {
+                    curPlayer.setHitPoints(2);
+                    cout << "You have gained 2 HP." << endl;
+                }
                 curDungeon.validInteraction(*i);
                 reading = true;
                 break;

@@ -590,21 +590,15 @@ bool Room::getExitStatus()
             if(roomFeatures[i].getinteractionNum() > 0 && tempActions[0] == true)
             {
                 canProceedForward = true;
-                break;
             }
         }
-        else if(roomFeatures[i].getinteractionNum() > tempActions.size())
+        else if(tempActions.size() != 1 && roomFeatures[i].getinteractionNum() < tempActions.size())
         {
-            canProceedForward = true;
-            break;
+            canProceedForward = tempActions[roomFeatures[i].getinteractionNum()];
         }
-        else
+        else if(tempActions.size() != 1 && roomFeatures[i].getinteractionNum() >= tempActions.size())
         {
-            if(tempActions[roomFeatures[i].getinteractionNum()] == true)
-            {
-                canProceedForward = true;
-                break;
-            }
+            canProceedForward = tempActions[tempActions.size()-1];
         }
         tempActions.clear();
     }
@@ -841,4 +835,9 @@ void Room::showHints()
     }
     cout << "*Note: Some items may require interactions with features\nin the room before you can take them.*" << endl;
     cout << "*Always LOOK at capitalized keywords to find more hints on what to do..." << endl;
+}
+
+bool Room::getCanProceed()
+{
+    return canProceedForward;
 }

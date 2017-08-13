@@ -146,6 +146,10 @@ bool Dungeon::checkRoomExitStatus(std::string exitStatus)
     {
         eStat= true;
     }
+    else if(newRoom->getCanProceed() == true)
+    {
+        eStat = true;
+    }
     else
     {
         eStat = newRoom->getExitStatus();

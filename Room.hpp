@@ -62,7 +62,6 @@ class Room
         void printRoomDesc();
         bool canUseFeature(std::string, std::string);
 
-
 		 ////////////// 8/6 additions//////////////////////
         bool getExitStatus();
         bool getAvailability(std::string availability);
@@ -73,13 +72,13 @@ class Room
         void getItemIDesc(std::string);
         void featureDescription(std::string);
 
-
         ////////////////////// 8/8 additions ///////////////
         std::vector<std::vector<std::string> > verbsList;
         std::vector<std::string> split(const std::string& s);
 
         ////////////////////// 8/12 additions ///////////////
         void showHints();
+        bool getCanProceed();
 };
 
 #endif
