@@ -2,6 +2,7 @@
 #include "Player.hpp"
 #include "Item.hpp"
 #include "Room.hpp"
+#include "Parser.hpp"
 #include <iostream>
 #include <algorithm>
 #include <string>
@@ -14,30 +15,6 @@ using std::cout;
 using std::endl;
 using std::string;
 using std::cin;
-
-void newGame(Dungeon& newD, Player& newP)
-{
-    std::ifstream readFile("rooms.txt");
-    if(readFile)
-    {
-        newD.readRooms(readFile);  //load rooms from file on dungeon
-    }
-    else
-    {
-        std::cout << "failed to load rooms" << std::endl;
-    }
-    readFile.close();
-    std::ifstream readFile2("room2.txt");
-    if(readFile2)
-    {
-        newD.readRooms(readFile2);  //load rooms from file on dungeon
-    }
-    else
-    {
-        std::cout << "failed to load rooms" << std::endl;
-    }
-    readFile2.close();
-}
 
 std::vector<string> split(const string& s)
 {
@@ -69,42 +46,60 @@ vector<string> playerInput()
 
 }
 
-main()
+int main()
 {
     Dungeon d;  //create dungeon
     Player p;   //create player
-
-    newGame(d, p);
+    Parser par; //create parser
+    d.playGame();
     bool quit = false;
+    //for testing, load player inventory with every item needed to interact
+ //   Item tempItem = Item("coins", "", "", 0, 0, 0, 0, 0);
+  //  p.addToBag(tempItem);
     while(!quit)
     {
         int choice = d.showMenu();
         if(choice ==  1)
         {
+            system("CLS");
+            d.instructions();
+		  bool backToMenu = false;
             d.setCurrentRoom(0);
             d.printCurLocation();
 
             std::vector<string> input;
-            while(input.size() == 0)
+            while(!backToMenu)
             {
-                input = playerInput();
+                if(d.finishCheck() == true)
+                {
+                    backToMenu = true;
+                }
+                else
+                {
+                    input.clear();
+                    while(input.size() == 0)
+                    {
+                        input = playerInput();
+                    }
+                    if(input[0] == "menu")
+                    {
+                        backToMenu = true;
+                    }
+                    else if(input[0] == "go" && p.endCheck() == true)
+                    {
+                        std::cout << "You ran out of stamina to continue traveling..." << endl;
+                        backToMenu = true;
+                    }
+                    else
+                    {
+                        par.parser(d, p, input);
+                    }
+                }
             }
-            d.sendParse(p, input);
-            d.setCurrentRoom(1);
-            d.printCurLocation();
-            input.clear();
-            while(input.size() == 0)
-            {
-                input = playerInput();
-            }
-            d.sendParse(p, input);
-
-        //    exit(0);
         }
         else if(choice == 2)
         {
-        Room myRoom = Room("one.txt", 0);
-            myRoom.printAllData();
+            cout << "Loading saved game..." << endl;
         }
         else
         {

@@ -8,6 +8,9 @@
 #include "Room.hpp"
 #include "Player.hpp"
 
+//start adding functions
+//add method to display game description
+
 class Dungeon
 {
 	private:
@@ -15,50 +18,56 @@ class Dungeon
 		std::string gameDesc;
 		int playerInput;
 		std::vector<Room> allRooms; //vector of rooms
-
         std::vector<std::string> fileNames;
 
         ////////////NEW//////////////
-        std::string oldRoomDirection;
+        bool finishGame;
 
 	public:
 		Dungeon();
 		void setGameDescription(std::string);
-          std::string showGameDescription();
-		int showMenu();
-		void instructions();
-		void playGame();
-		void help();
+		std::string showGameDescription();
+        int showMenu();
+        void instructions();
+        void playGame();
+        void help();
 
 		Dungeon(std::vector<Room> rooms);
-		void setCurrRoom(std::string);	//needs work
-		void setCurrentRoom(int i);		
-       	//void printRooms();
-		void printCurLocation();
-		//bool findRoom(std::string);
-		bool canOpen(std::string);
+        void setCurrRoom(std::string);  //needs work
+        void setCurrentRoom(int i);
+//       	void printRooms();
+        void printCurLocation();
+//		bool findRoom(std::string);
+    //bool canOpen(std::string);
+		//probably not needed since we are not using any item in room, most item in room need to be taken and used in player inventory.
 		void useItem(std::string);
-		void removeRoomItem(std::string);
+        void removeRoomItem(std::string);
 
 		//newly added functions
 		bool itemInRoom(std::string iName);
-		void getItemInfo(std::string);
+        void getItemInfo(std::string);
 		Item returnItem(std::string itemName);
 		void viewCurRoom();
 		bool useExit(std::string exitName);
 
-		//Yu's test on needed functions...
 		bool featureInRoom(std::string fName);
 
-		////////////////NEW//////////////////
+		/////////////////-8/6-additions//////////////////
 		bool checkRoomExitStatus(std::string exitStatus);
-		bool itemAvailability(std::string availability);
-		void validInteraction(std::string);
-		void fIDesc(std::string);
-		void getItemInteractDesc(std::string);
-		void fDesc(std::string);
+        bool itemAvailability(std::string availability);
+        void validInteraction(std::string);
+        void fIDesc(std::string);
+        void getItemInteractDesc(std::string);
+        void fDesc(std::string);
 
-		~Dungeon();
+        ////////////////// 8/8- additions /////////////////
+        bool verbCheck(std::string, std::string);
+
+        ///////////////// 8/12 -addition /////////////////
+        void hints();
+        bool previousRooms(std::string);
+        bool finishCheck();
+        ~Dungeon();
 };
 
 #endif
