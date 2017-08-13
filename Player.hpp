@@ -36,10 +36,6 @@ class Player
 		int getStamina();
 		void setScore(double playerScore);
 		int getScore();
-//		void setCurrentLocation(Room*);
-
-//		Room* getCurrentLocation();
-//       Room* getLastLocation();
 
         //Player Functionality Methods
 		void printPlayerInfo();
@@ -54,6 +50,7 @@ class Player
 		void viewBagItem(std::string);		//prints out information for specific item
 		bool canDrink(std::string);
         void fill(int);
+        void subtractWater(int);
 
 		void savePlayer(std::ofstream& savePlayerFile);
 		void loadPlayer(std::ifstream& loadPlayerFile);

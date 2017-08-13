@@ -27,6 +27,7 @@ class Inventory
 		void viewItem(std::string);			//displays item's info
 		bool drinkable(std::string);
 		void fillFlask(int);
+		void decreaseFlask(int);
 };
 
 #endif

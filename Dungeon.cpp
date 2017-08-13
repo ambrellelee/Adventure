@@ -197,11 +197,18 @@ void Dungeon::setCurrRoom(std::string newRoomName)
 			}
 			else if(newRoom->exitVec[1] == newRoomName)
 			{
+			    if(newRoom->getType() == "final")
+                {
+                    cout << "Congratulations you have finished the game!" << endl;
+                    exit(0);
+                }
+                /*
 			    if(newRoom->getName() == allRooms[allRooms.size()-1].getName())
                 {
                     cout << "Congratulations you have finished the game!" << endl;
                     exit(0);
                 }
+                */
                 else
                 {
                     newRoom = &allRooms[i+1];

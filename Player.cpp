@@ -135,6 +135,11 @@ void Player::addStamina(int sustenance)
 	}
 }
 
+void Player::subtractWater(int water)
+{
+	bag.decreaseFlask(water);
+}
+
 void Player::subtractStamina(int sustenance)
 {
     stamina -= sustenance;

@@ -336,10 +336,6 @@ void Parser::findNextDungeon(playerString& curSentence, Dungeon& curDungeon, Pla
 		//check if any string matches the Dungeon names
 		//Dungeon should return true or false if name is found or not
 		std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-//		if(curDungeon.checkRoomType() == true)
- //       {
-
-  //      }
 		if (curDungeon.useExit(*i) == true)
 		{
 		    if(curDungeon.checkRoomExitStatus(*i) == true)
@@ -621,6 +617,7 @@ void Parser::drinkSomething(playerString& curSentence, Player& curPlayer, Dungeo
                     std::cout << "You have drinked " << *i << std::endl;
                     curPlayer.setHitPoints(10);
                     std::cout << "Your HP have been restored." << std::endl;
+                    curPlayer.removeFromBag(*i);
                     drinked = true;
                     break;
                 }
@@ -629,7 +626,7 @@ void Parser::drinkSomething(playerString& curSentence, Player& curPlayer, Dungeo
                     //use the item
                     std::cout << "You have drinked " << *i << std::endl;
                     curPlayer.addStamina(1);
-                    std::cout << "Your stamina have increased by 1." << std::endl;
+                    curPlayer.subtractWater(1);
                     drinked = true;
                     break;
                 }
@@ -644,11 +641,19 @@ void Parser::drinkSomething(playerString& curSentence, Player& curPlayer, Dungeo
                     //use the item
                     std::cout << "You have drinked water from your flask " << std::endl;
                     curPlayer.addStamina(1);
+                    curPlayer.subtractWater(1);
+                    drinked = true;
+                    break;
+                }
+                else
+                {
+                    std::cout << "No more water in flask, needs refill..." << endl;
                     drinked = true;
                     break;
                 }
             }
         }
+
 	}
 	if (drinked == false)
 	{

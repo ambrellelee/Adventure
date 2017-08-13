@@ -113,7 +113,7 @@ bool Inventory::drinkable(std::string itemName)
 }
 void Inventory::fillFlask(int water)
 {
-      for(size_t i; i < stuff.size(); i++)
+      for(size_t i = 0; i < stuff.size(); i++)
       {
            if(stuff[i].iName == "flask")
           {
@@ -127,3 +127,18 @@ void Inventory::fillFlask(int water)
      }
  }
 
+void Inventory::decreaseFlask(int water)
+{
+	for(size_t i = 0; i <stuff.size(); i++)
+	{
+		if(stuff[i].iName == "flask")
+		{
+			stuff[i].waterLevel -= water;
+			if(stuff[i].waterLevel <= 0)
+			{
+				std::cout << "Your flask is empty" << std::endl;
+				break;
+			}
+		}
+	}
+}
