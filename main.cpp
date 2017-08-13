@@ -54,13 +54,14 @@ main()
     d.playGame();
     bool quit = false;
     //for testing, load player inventory with every item needed to interact
-    Item tempItem = Item("sword", "", "", 0, 0, 0, 0, 0);
-    p.addToBag(tempItem);
+   // Item tempItem = Item("sword", "", "", 0, 0, 0, 0, 0);
+  //  p.addToBag(tempItem);
     while(!quit)
     {
         int choice = d.showMenu();
         if(choice ==  1)
         {
+            system("CLS");
             bool backToMenu = false;
             d.setCurrentRoom(0);
             d.printCurLocation();

@@ -4,8 +4,8 @@ Ugh...where am I? Face down on a stone floor and it's so blasted hot...As I get
 up I notice that I'm in a midieval style room made of stone. Their are no
 windows, the only sources of light are torches on the wall. There's a wooden
 CHEST a short distance from me. In the corner, there seems to be the SILHOUETTE
-of a person, but it's hard to focus on it. I'm so damn thirsty. There is a door
-on the eastern side of the room.
+of a person, but it's hard to focus on it maybe I should LOOK at it. I'm so damn thirsty. 
+There is a door on the eastern side of the room.
 @@
 I'm in the room I first woke up in. I see a wooden CHEST and the SILHOUETTE of
 a person. The room is lit by torches that show no signs of going out. An exit
@@ -105,9 +105,9 @@ to counter and ATTACK the SILHOUETTE.
 @@
 The silhouette stands motionless.
 @@
-I look towards the silhouette and say "hello." Upon doing so the silhouette
+I LOOK towards the silhouette and say "hello." Upon doing so the silhouette
 turns his head to look at me. "The road ahead is fraught with foes," says the
-shape in a flat, lifeless tone, "I can help."
+shape in a flat, lifeless tone, "I can help." 
 @@
 "Please, offer me what help you can." I say to the silhouette, immediately
 wondering why I bothered with manners towards something so clearly indifferent

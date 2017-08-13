@@ -63,6 +63,9 @@ class Dungeon
         ////////////////// 8/8- additions /////////////////
         bool verbCheck(std::string, std::string);
 
+        ///////////////// 8/12 -addition /////////////////
+        void hints();
+        bool previousRooms(std::string);
 
         ~Dungeon();
 };

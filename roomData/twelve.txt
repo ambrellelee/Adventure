@@ -10,7 +10,7 @@ exit to the south. There's an exit on the west side of the room, but if I try
 to go through it the HOUND will get me. I can already tell there's no way I
 can kill that thing before it kills me...
 @@
-I'm back in the HOUND room. The dog remains there, as does the picture. There
+I'm back in the HOUND room. The HOUND remains there, as does the picture. There
 is an exit to the south, where I came from when I first entered the room. 
 There's also the exit on the western side.
 @@
@@ -34,13 +34,13 @@ picture
 @@
 2
 @@
-It's a picture that seems to show someone giving something to a dog. Maybe I
+It's a picture that seems to show someone giving something to a HOUND. Maybe I
 should INSPECT it more closely.
 @@
 The picture remains there, with the same picture of someone offering GUTS to a
-dog
+HOUND
 @@
-The picture shows a man giving the dog what looks like some entrails(GUTS). It's kind
+The picture shows a man FEEDing the HOUND what looks like some entrails(GUTS). It's kind
 of gross
 @@
 False
@@ -51,14 +51,14 @@ hound
 @@
 2
 @@
-The dog barks at me ferociously, and tries its best to get me. I'd better do
+The HOUND barks at me ferociously, and tries its best to get me. I'd better do
 something to get past it but what? There's no way I can stab it before it gets
 me.
 @@
-The dog continues to grin happily at me. Apparently we're best buddies now.
+The HOUND continues to grin happily at me. Apparently we're best buddies now.
 @@
-I take the guts from my bag, noticing the hound pause and stare intently as I
-do so. Not wanting to get too close, I toss the entrails to the dog's feet. It
+I take the GUTS from my bag, noticing the hound pause and stare intently as I
+do so. Not wanting to get too close, I toss the entrails to the HOUND's feet. It
 eats them at an alarming speed. When done it turns towards me, finally snaps
 the chain holding it and...proceeds to lick my hands. It then looks at me with
 a big grin, licks the spot on my cloths where I wiped my hands earlier, and

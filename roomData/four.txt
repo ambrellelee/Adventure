@@ -3,8 +3,8 @@
 As I enter the room, I notice it is lit with the same lanterns I've become 
 accustomed to. The room is full of various statues and paintings, all of which
 are clearly too large for me to cover. Salient among these things is a BOX, a
-CHEST, and a VAULT. All of them would seem to be openable. Maybe I should take
-a look.
+CHEST, and a VAULT. All of them would seem to be OPENable. Maybe I should take
+a LOOK.
 @@
 I'm in the treasure room again. The box, the chest, and the vault are still
 there.
@@ -59,7 +59,7 @@ gold coins
 @@
 Some gold coins
 @@
-It's hard to say what good currency could do down here. Maybe if I have to bribe someone?
+It's hard to say what good currency could do down here. Maybe if I have to BRIBE someone?
 @@
 0
 @@

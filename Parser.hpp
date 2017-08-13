@@ -38,7 +38,6 @@ class Parser
 		void unlockObject(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void sneakSomewhere(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void attackSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
-		void ringObject(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void blockSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void touchSomething(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);
 		void pull(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon);

@@ -141,7 +141,6 @@ bool Dungeon::featureInRoom(std::string fName)
 bool Dungeon::checkRoomExitStatus(std::string exitStatus)
 {
     bool eStat = false;
-  //  oldRoomDirection = newRoom->getOldRoom();
     if(newRoom->exitVec[0] == exitStatus)
     {
         eStat= true;
@@ -201,7 +200,7 @@ void Dungeon::setCurrRoom(std::string newRoomName)
 			    if(newRoom->getName() == allRooms[allRooms.size()-1].getName())
                 {
                     cout << "Congratulations you have finished the game!" << endl;
-                    break;
+                    exit(0);
                 }
                 else
                 {
@@ -220,8 +219,25 @@ bool Dungeon::verbCheck(std::string feature, std::string verbs)
     return newRoom->canUseFeature(feature, verbs);
 }
 
+////////////////// 8/12- additions /////////////////
+void Dungeon::hints()
+{
+    newRoom->showHints();
+}
 
+bool Dungeon::previousRooms(std::string newRoomName)
+{
+    bool previouslyEnteredRoom = false;
+    if(newRoom->getName() != allRooms[0].getName())
+    {
+        if(newRoom->exitVec[0] == newRoomName)
+        {
+            previouslyEnteredRoom = true;
+        }
+    }
 
+    return previouslyEnteredRoom;
+}
 Dungeon::~Dungeon()
 {
 	delete newRoom;

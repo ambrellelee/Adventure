@@ -70,15 +70,15 @@ sphinx
 @@
 3
 @@
-The sphinx's eyes seem to have followed you since me since I entered the room.
+The SPHINX's eyes seem to have followed you since me since I entered the room.
 Maybe I should INVESTIGATE this thing more.
 @@
 The sphinx sits poised, waiting for an answer to "what walks on four
 legs, then two, and then three?" (hint: 3 letter answer.)
 @@
-The sphinx sits motionless.
+The SPHINX sits motionless.
 @@
-As I approach the sphinx, a voice calls out asking "what walks first on four
+As I approach the SPHINX, a voice calls out asking "what walks first on four
 legs, then two, and then three?" (hint: 3 letter answer.)
 @@
 The sphinx comes to life, only to move out of the way and return to stone.

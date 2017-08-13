@@ -5,8 +5,8 @@ make my way inside I notice a dark atmosphere, lit as much by the glow of a pit
 of lava as it is by the few lanterns hanging from the ceiling. The pit sits
 between me and the other sides of the room. The eas side would appear to have
 a door, but I know I can't jump far enough to get over the lava and to the
-platform in front of the door. There is an alcove nearby on the wall, with
-something that shines brightly. Next to it is a lever of some kind.
+platform in front of the door. There is an ALCOVE nearby on the wall, with
+something that shines brightly. Next to it is a LEVER of some kind.
 @@
 I'm back in the lava room. The lever and the alcove are still there on the
 south side of the room. THe lava looks as threatening as ever. It is still very
@@ -48,7 +48,7 @@ alcove
 @@
 2
 @@
-It's an alcove in the wall. There's a burning torch inside I could pick up.
+It's an ALCOVE in the wall. There's a burning TORCH inside I could TAKE.
 Strangely, I feel no heat from it.
 @@
 It's a stone alcove. It remains empty.
@@ -66,7 +66,7 @@ lever
 @@
 2
 @@
-It's a lever on the wall. Presumably, pulling it should do something
+It's a LEVER on the wall. Presumably, PULLing it should do something
 @@
 The lever has been pulled down. I sure am glad I pulled it!.
 @@

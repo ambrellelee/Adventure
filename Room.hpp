@@ -78,6 +78,8 @@ class Room
         std::vector<std::vector<std::string> > verbsList;
         std::vector<std::string> split(const std::string& s);
 
+        ////////////////////// 8/12 additions ///////////////
+        void showHints();
 };
 
 #endif

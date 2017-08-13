@@ -1,8 +1,8 @@
 2
 @@
 As I enter the room, I hear some rather strange breathing. Like snoring, but
-somehow intimidating. As I enter I see why, there is a sleeping dragon there.
-It has a wooden box and a passageway behind it. The dragon shows no signs of
+somehow intimidating. As I enter I see why, there is a sleeping DRAGON there.
+It has a wooden BOX and a passageway behind it. The DRAGON shows no signs of
 waking up. Even so, getting past this thing will be no easy task, I don't even
 have a ring that will make me inivsible...regardless, that passageway to the
 north would seem to be my way out of here.
@@ -47,7 +47,7 @@ weak box
 3
 @@
 It's a wooden box. There wouldn't seem to be any way to open it, but it looks
-fragile...
+fragile, I can probably BREAK it...
 @@
 The box is busted open. There's a potion inside!
 @@
@@ -56,7 +56,7 @@ The broken box remains on the floor
 I put my foot on the box...sweating bullets as I watch to see that the dragon
 remains asleep. I slowly increase the pressure I'm putting on the box until it
 breaks beneath my weight. As I withdraw my foot, I notice that there is a
-potion inside the box.
+POTION inside the box.
 @@
 I reach into the busted box slowly, ever cautious of the sleeping dragon. I
 grab the potion, slowly put it into my bag, and back away.
@@ -75,7 +75,8 @@ dragon
 @@
 2
 @@
-It is a large slumbering dragon. It looks fast asleep.
+It is a large slumbering dragon. It looks fast asleep, I can probably SNEAK by
+the sleeping DRAGON...
 @@
 The dragon continues to sleep. It really is a deep sleeper.
 @@

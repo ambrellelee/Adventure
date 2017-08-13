@@ -10,6 +10,7 @@ Player::Player()
 	stamina = 3;
 	score = 0;
 	maxHitPoints = 20;
+	maxStamina = 10;
 }
 
 Player::Player(std::string newName, int hPoints, int pStamina, double pScore, Inventory pInvent)
@@ -37,16 +38,16 @@ void Player::setHitPoints(int playerHitPoints)
 {
 	hitPoints += playerHitPoints;
 
-	if(hitPoints == 0)
-	{
-		std::cout << "You have been hit too many times. You have lost." << std::endl;
-		exit(0);
-	}
+    if(hitPoints >= maxHitPoints)
+    {
+        hitPoints = maxHitPoints;
+        std::cout << "Your HP is at MAX." << std::endl;
+    }
 }
 
 int Player::getHitPoints()
 {
-     return hitPoints;
+    return hitPoints;
 	std::cout << hitPoints << std::endl;
 }
 
@@ -111,15 +112,11 @@ void Player::subtractHitPoints(int help)
 {
 	hitPoints -= help;
 
-	if(hitPoints >= maxHitPoints)
+	if(hitPoints < 0)
 	{
+	    hitPoints = 0;
 		std::cout << "You have been hit too may times, you have died." << std::endl;
-	}
-
-	else if(hitPoints < 0)
-	{
-		hitPoints = 0;
-		std::cout << "You have zero hit points!" << std::endl;
+		exit(0);
 	}
 }
 
@@ -132,10 +129,15 @@ void Player::addStamina(int sustenance)
 		stamina = maxStamina;
 		std::cout << "You have your maximum level of stamina." << std::endl;
 	}
-	else if(stamina <= 0)
+	else
 	{
-		std::cout << "You have expired due to lack of sustenance." << std::endl;
+		std::cout << "Your stamina have increased by " << sustenance << std::endl;
 	}
+}
+
+void Player::subtractStamina(int sustenance)
+{
+    stamina -= sustenance;
 }
 
 void Player::addToBag(Item& thing)

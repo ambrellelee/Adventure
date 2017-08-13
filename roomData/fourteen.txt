@@ -38,7 +38,7 @@ past this guy if he chooses to ATTACK. I should get rid of him.
 The knight has been wounded by my attack, but now he's swinging his sword at
 me. I'll need to BLOCK that thing.
 @@
-The knight is off balance. Now's my time to finish him off!ATTACK!
+The knight is off balance. Now's my time to finish him off! ATTACK!
 @@
 The knight stands immobile. Defeated, and no longer a threat
 @@
