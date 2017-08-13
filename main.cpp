@@ -54,7 +54,7 @@ main()
     d.playGame();
     bool quit = false;
     //for testing, load player inventory with every item needed to interact
-   // Item tempItem = Item("sword", "", "", 0, 0, 0, 0, 0);
+ //   Item tempItem = Item("coins", "", "", 0, 0, 0, 0, 0);
   //  p.addToBag(tempItem);
     while(!quit)
     {
@@ -69,21 +69,32 @@ main()
             std::vector<string> input;
             while(!backToMenu)
             {
-                input.clear();
-                while(input.size() == 0)
-                {
-                    input = playerInput();
-                }
-                if(input[0] == "menu")
+                if(d.finishCheck() == true)
                 {
                     backToMenu = true;
                 }
                 else
                 {
-                    par.parser(d, p, input);
+                    input.clear();
+                    while(input.size() == 0)
+                    {
+                        input = playerInput();
+                    }
+                    if(input[0] == "menu")
+                    {
+                        backToMenu = true;
+                    }
+                    else if(input[0] == "go" && p.endCheck() == true)
+                    {
+                        std::cout << "You ran out of stamina to continue traveling..." << endl;
+                        backToMenu = true;
+                    }
+                    else
+                    {
+                        par.parser(d, p, input);
+                    }
                 }
             }
-
         }
         else if(choice == 2)
         {

@@ -21,7 +21,7 @@ class Dungeon
         std::vector<std::string> fileNames;
 
         ////////////NEW//////////////
-     //   std::string oldRoomDirection;
+        bool finishGame;
 
 	public:
 		Dungeon();
@@ -66,7 +66,7 @@ class Dungeon
         ///////////////// 8/12 -addition /////////////////
         void hints();
         bool previousRooms(std::string);
-
+        bool finishCheck();
         ~Dungeon();
 };
 

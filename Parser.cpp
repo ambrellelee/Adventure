@@ -323,60 +323,57 @@ bool Parser::verbInSentence(playerString& curSentence, std::string stringToCompa
 //for verb go
 void Parser::findNextDungeon(playerString& curSentence, Dungeon& curDungeon, Player& curPlayer)
 {
-
 #ifdef NOISYTEST
     std::cout << "'GO' function > proceeding to look for Dungeon name to go to." << std::endl;
 #endif // NOISYTEST
-
-	bool DungeonFound = false;
+    bool DungeonFound = false;
     bool prevRoom = false;
-	//iterate through vector of strings to find Dungeon names
-	for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
-	{
-		//check if any string matches the Dungeon names
-		//Dungeon should return true or false if name is found or not
-		std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-		if (curDungeon.useExit(*i) == true)
-		{
-		    if(curDungeon.checkRoomExitStatus(*i) == true)
+    //iterate through vector of strings to find Dungeon names
+    for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
+    {
+        std::transform(i->begin(), i->end(), i->begin(), ::tolower);
+        if (curDungeon.useExit(*i) == true)
+        {
+            if(curDungeon.checkRoomExitStatus(*i) == true)
             {
                 if(curDungeon.previousRooms(*i) == true)
                 {
                     prevRoom = true;
                 }
                 curDungeon.setCurrRoom(*i);
-                std::cout << "****************************************************************" << std::endl;
-                std::cout << "****            You have entered: " << (*i) << " Dungeon.          ****" << std::endl;
-                std::cout << "****************************************************************" << std::endl;
-                if(prevRoom == true)
+                if(curDungeon.finishCheck() == true)
                 {
-                    curDungeon.viewCurRoom();
+                    cout << "Congratulations you have finished the game!" << endl;
+                    DungeonFound = true;
                 }
                 else
                 {
-                    curDungeon.printCurLocation();
+                    std::cout << "****************************************************************" << std::endl;
+                    std::cout << "****            You have entered: " << (*i) << " Dungeon.          ****" << std::endl;
+                    std::cout << "****************************************************************" << std::endl;
+                    if(prevRoom == true)
+                    {
+                        curDungeon.viewCurRoom();
+                    }
+                    else
+                    {
+                        curDungeon.printCurLocation();
+                    }
+                    DungeonFound = true;
+                    curPlayer.subtractStamina(1);
+                    break;
                 }
-                DungeonFound = true;
-                curPlayer.subtractStamina(1);
-                break;
             }
             else
             {
                 cout << "You can not proceed to " << *i << " Dungeon yet.\nsome feature not activated." <<endl;
             }
-
-		}
-		/**************************************************************************************
-		else
-        {
-            std::cout << "Something is wrong. Can not go to " << (*i) << "Room." << std::endl;
         }
-        **************************************************************************************/
-	}
-	if (DungeonFound == false)
-	{
-		std::cout << "Invalid Dungeon." << std::endl;
-	}
+    }
+    if (DungeonFound == false)
+    {
+        std::cout << "Invalid Dungeon." << std::endl;
+    }
 }
 
 //for verb use

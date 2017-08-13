@@ -15,6 +15,7 @@ typedef std::vector<std::string> playerWords;
 Dungeon::Dungeon()
 {
 	newRoom = new Room;
+	finishGame = false;
 }
 
 void Dungeon::setGameDescription(std::string newDesc)
@@ -199,16 +200,9 @@ void Dungeon::setCurrRoom(std::string newRoomName)
 			{
 			    if(newRoom->getType() == "final")
                 {
-                    cout << "Congratulations you have finished the game!" << endl;
-                    exit(0);
+  //                  cout << "Congratulations you have finished the game!" << endl;
+                    finishGame = true;
                 }
-                /*
-			    if(newRoom->getName() == allRooms[allRooms.size()-1].getName())
-                {
-                    cout << "Congratulations you have finished the game!" << endl;
-                    exit(0);
-                }
-                */
                 else
                 {
                     newRoom = &allRooms[i+1];
@@ -218,7 +212,6 @@ void Dungeon::setCurrRoom(std::string newRoomName)
 		}
 	}
 }
-
 
 ////////////////// 8/8- additions /////////////////
 bool Dungeon::verbCheck(std::string feature, std::string verbs)
@@ -245,6 +238,12 @@ bool Dungeon::previousRooms(std::string newRoomName)
 
     return previouslyEnteredRoom;
 }
+
+bool Dungeon::finishCheck()
+{
+    return finishGame;
+}
+
 Dungeon::~Dungeon()
 {
 	delete newRoom;

@@ -21,6 +21,7 @@ class Player
 		Room *lastLocation;
 		Inventory bag;
 
+        bool gameOver;
 	public:
 		//Constructors
 		Player();
@@ -51,6 +52,8 @@ class Player
 		bool canDrink(std::string);
         void fill(int);
         void subtractWater(int);
+
+        bool endCheck();        //check if player game over
 
 		void savePlayer(std::ofstream& savePlayerFile);
 		void loadPlayer(std::ifstream& loadPlayerFile);

@@ -11,6 +11,7 @@ Player::Player()
 	score = 0;
 	maxHitPoints = 20;
 	maxStamina = 10;
+	gameOver = false;
 }
 
 Player::Player(std::string newName, int hPoints, int pStamina, double pScore, Inventory pInvent)
@@ -72,23 +73,7 @@ int Player::getScore()
 	return score;
 	std::cout << score << std::endl;
 }
-/*
-void Player::setCurrentLocation(Room* position)
-{
-	lastLocation = currentLocation;
-	currentLocation = position;
-}
 
-Room* Player::getCurrentLocation()
-{
-	return currentLocation;
-}
-
-Room* Player::getLastLocation()
-{
-	return lastLocation;
-}
-*/
 void Player::printPlayerInfo()
 {
 	std::cout << "Name:" << pName << std::endl;
@@ -105,7 +90,7 @@ void Player::subtractHitPoints(int help)
 	{
 	    hitPoints = 0;
 		std::cout << "You have been hit too may times, you have died." << std::endl;
-		exit(0);
+		gameOver = true;
 	}
 }
 
@@ -136,7 +121,7 @@ void Player::subtractStamina(int sustenance)
     if(stamina <= 0)
     {
         std::cout << "You do not have enough stamina left. You have expired." <<std::endl;
-		exit(0);
+		gameOver = true;
     }
 }
 
@@ -199,6 +184,10 @@ void Player::viewBagItem(std::string itemName)
 	bag.viewItem(itemName);
 }
 
+bool Player::endCheck()
+{
+    return gameOver;
+}
 /*
 void Player::savePlayer(std::ofstream& savePlayerFile)
 {
