@@ -593,7 +593,7 @@ bool Room::getExitStatus()
                 break;
             }
         }
-        else if(roomFeatures[i].getinteractionNum() >= tempActions.size())
+        else if(roomFeatures[i].getinteractionNum() > tempActions.size())
         {
             canProceedForward = true;
             break;
@@ -663,7 +663,6 @@ void Room::featureInteraction(std::string fName)
             {
                 if(roomFeatures[i].getinteractionNum()+1 > (roomFeatures[i].getInteractionDesc()).size())
                 {
-                    cout << "No more interaction descriptions." << endl;
                     break;
                 }
                 else
@@ -737,12 +736,10 @@ void Room::featureIDescription(std::string fDesc)
             {
                 if(roomFeatures[i].getinteractionNum() >= (roomFeatures[i].getInteractionDesc()).size())
                 {
-                    cout << "No more interaction descriptions." << endl;
                     break;
                 }
                 else
                 {
- //                   cout << "int #: " << roomFeatures[i].getinteractionNum() << "\tdesc #: " << (roomFeatures[i].getInteractionDesc()).size() << endl;
                     FeatureDesc = roomFeatures[i].getInteractionDesc();
                     cout << FeatureDesc[roomFeatures[i].getinteractionNum()] << endl;
                     break;
@@ -778,8 +775,6 @@ void Room::featureIDescription(std::string fDesc)
         }
         temp.clear();
     }
-    //successful interaction should increment interactionNum
-
  }
 
  //prints feature description
@@ -845,4 +840,5 @@ void Room::showHints()
         cout << "Item " << j+1 << ": " << inRoom[j].iName << endl;
     }
     cout << "*Note: Some items may require interactions with features\nin the room before you can take them.*" << endl;
+    cout << "*Always LOOK at capitalized keywords to find more hints on what to do..." << endl;
 }

@@ -25,14 +25,6 @@ void Parser::parser(Dungeon& curDungeon, Player& curPlayer, playerString& curSen
 		//Show items in the room to take. show features in room to interact with
 		curDungeon.hints();
 	}
-	else if(verbInSentence(curSentence, "use") == true)
-	{
-#ifdef NOISYTEST
-		std::cout << "'Use' detected...proceeding to 'Use' function." << std::endl;
-#endif
-		//search for item name in inventory and if it exist, use it.
-		searchItemToUse(curSentence, curPlayer, curDungeon);
-	}
 	else if (verbInSentence(curSentence, "take") || verbInSentence(curSentence, "get") || verbInSentence(curSentence, "pick") == true)
 	{
 #ifdef NOISYTEST
@@ -367,6 +359,7 @@ void Parser::findNextDungeon(playerString& curSentence, Dungeon& curDungeon, Pla
             else
             {
                 cout << "You can not proceed to " << *i << " Dungeon yet.\nsome feature not activated." <<endl;
+                DungeonFound = true;
             }
         }
     }
@@ -374,41 +367,6 @@ void Parser::findNextDungeon(playerString& curSentence, Dungeon& curDungeon, Pla
     {
         std::cout << "Invalid Dungeon." << std::endl;
     }
-}
-
-//for verb use
-void Parser::searchItemToUse(playerString& curSentence, Player& curPlayer, Dungeon& curDungeon)
-{
-#ifdef NOISYTEST
-    std::cout << "'Use' function > proceeding to use object." << std::endl;
-#endif // NOISYTEST
-
-	bool itemFound = false;
-
-	//iterate through vector of strings to find item name
-	for (playerString::iterator i = curSentence.begin(); i != curSentence.end(); ++i)
-	{
-		//check if item is in player inventory
-        std::transform(i->begin(), i->end(), i->begin(), ::tolower);
-		if (curPlayer.hasItem(*i) == true)
-		{
-			//use item in player inventory if it can be used
-            cout << "You used " << (*i) << endl;
-  //          curPlayer.removeFromBag((*i));//remove item from player inventory
-            itemFound = true;
-            break;
-		}
-		else if(curDungeon.featureInRoom(*i) == true)
-        {
-            cout << "Using feature in room " << endl;
-
-        }
-
-	}
-	if (itemFound == false)
-	{
-		std::cout << "Item not in inventory." << std::endl;
-	}
 }
 
 //for verb take
@@ -451,16 +409,19 @@ void Parser::takeItemInDungeon(playerString& curSentence, Player& curPlayer, Dun
                 else
                 {
                     cout << "You already have " << *i << " in the inventory. " << endl;
+                    itemTaken = true;
                     break;
                 }
             }
             else if(curPlayer.hasItem(*i) == true)
             {
                 cout << "You already have " << *i << " in the inventory. " << endl;
+                itemTaken = true;
             }
             else
             {
-                    cout << *i << " can not be taken from the room.\nOr feature need to be activated first." << endl;
+                cout << *i << " can not be taken from the room.\nOr feature need to be activated first." << endl;
+                itemTaken = true;
             }
 		}
 	}
@@ -504,6 +465,7 @@ void Parser::openObject(playerString& curSentence, Player& curPlayer, Dungeon& c
                     else
                     {
                         cout << "You are missing key" << endl;
+                        objectOpened = true;
                         break;
                     }
                 }
@@ -519,6 +481,7 @@ void Parser::openObject(playerString& curSentence, Player& curPlayer, Dungeon& c
             else
             {
                 std::cout << "You can not open " << (*i) << std::endl;
+                objectOpened = true;
             }
 		}
 
@@ -607,26 +570,23 @@ void Parser::drinkSomething(playerString& curSentence, Player& curPlayer, Dungeo
 		std::transform(i->begin(), i->end(), i->begin(), ::tolower);
 		if (curPlayer.hasItem(*i) == true)
 		{
-		    if(curPlayer.canDrink(*i) == true)
+            if(*i == "potion")
             {
-                if(*i == "potion")
-                {
-                    std::cout << "You have drinked " << *i << std::endl;
-                    curPlayer.setHitPoints(10);
-                    std::cout << "Your HP have been restored." << std::endl;
-                    curPlayer.removeFromBag(*i);
-                    drinked = true;
-                    break;
-                }
-                else
-                {
-                    //use the item
-                    std::cout << "You have drinked " << *i << std::endl;
-                    curPlayer.addStamina(1);
-                    curPlayer.subtractWater(1);
-                    drinked = true;
-                    break;
-                }
+                std::cout << "You have drinked " << *i << std::endl;
+                curPlayer.setHitPoints(10);
+                std::cout << "Your HP have been restored." << std::endl;
+                curPlayer.removeFromBag(*i);
+                drinked = true;
+                break;
+            }
+            else if(curPlayer.canDrink(*i) == true)
+            {
+                //use the item
+                std::cout << "You have drinked " << *i << std::endl;
+                curPlayer.addStamina(1);
+                curPlayer.subtractWater(1);
+                drinked = true;
+                break;
             }
 		}
 		else if(*i == "water")
@@ -650,7 +610,6 @@ void Parser::drinkSomething(playerString& curSentence, Player& curPlayer, Dungeo
                 }
             }
         }
-
 	}
 	if (drinked == false)
 	{
@@ -774,7 +733,7 @@ void Parser::lookAtStuff(playerString& curSentence, Player& curPlayer, Dungeon& 
             }
             else if(curPlayer.hasItem(*i) == true)
             {
-                curDungeon.getItemInfo(*i);
+                curPlayer.getItemInfo(*i);
                 looking = true;
                 break;
             }
@@ -834,12 +793,13 @@ void Parser::fillObject(playerString& curSentence, Player& curPlayer, Dungeon& c
             else
             {
                 cout << "There is no water in the room to collect water from." << endl;
+                filled = true;
             }
         }
     }
 	if (filled == false)
 	{
-		std::cout << "You cannot fill that. or you are missing flask"  << std::endl;
+		std::cout << "You cannot fill that. or you are missing flask."  << std::endl;
 	}
 }
 
@@ -903,6 +863,7 @@ void Parser::unlockObject(playerString& curSentence, Player& curPlayer, Dungeon&
                 else
                 {
                     cout << "Maybe you are using the wrong command on " << *i << endl;
+                    unlocked = true;
                 }
             }
         }
@@ -1083,7 +1044,6 @@ void Parser::touchSomething(playerString& curSentence, Player& curPlayer, Dungeo
                     touched = true;
                     break;
                 }
-
             }
         }
     }

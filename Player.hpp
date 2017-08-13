@@ -53,6 +53,7 @@ class Player
         void fill(int);
         void subtractWater(int);
 
+        void getItemInfo(std::string);    //print item desc
         bool endCheck();        //check if player game over
 
 		void savePlayer(std::ofstream& savePlayerFile);

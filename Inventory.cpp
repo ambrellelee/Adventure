@@ -142,3 +142,14 @@ void Inventory::decreaseFlask(int water)
 		}
 	}
 }
+
+void Inventory::getInfo(std::string itemName)
+{
+    for(size_t i = 0; i <stuff.size(); i++)
+	{
+		if(stuff[i].iName == itemName)
+		{
+		    std::cout << stuff[i].iDesc << std::endl;
+		}
+	}
+}

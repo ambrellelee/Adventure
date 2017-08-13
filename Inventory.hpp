@@ -28,6 +28,7 @@ class Inventory
 		bool drinkable(std::string);
 		void fillFlask(int);
 		void decreaseFlask(int);
+		void getInfo(std::string);
 };
 
 #endif
