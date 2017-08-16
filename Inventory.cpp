@@ -2,6 +2,7 @@
 
 Inventory::Inventory()
 {
+	containerName = "testName";
 }
 
 Inventory::Inventory(std::string newName)
@@ -152,4 +153,9 @@ void Inventory::getInfo(std::string itemName)
 		    std::cout << stuff[i].iDesc << std::endl;
 		}
 	}
+}
+
+void Inventory::clearInventory()
+{
+        stuff.clear();
 }
