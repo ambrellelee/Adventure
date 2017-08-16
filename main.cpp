@@ -98,7 +98,43 @@ main()
         }
         else if(choice == 2)
         {
+            system("CLS");
             cout << "Loading saved game..." << endl;
+            d.loadDungeon(&p);
+            cout << "Finished loading previously saved game.\n" <<endl;
+            bool backToMenu = false;
+            d.setCurrentRoom(0);
+            d.printCurLocation();
+
+            std::vector<string> input;
+            while(!backToMenu)
+            {
+                if(d.finishCheck() == true)
+                {
+                    backToMenu = true;
+                }
+                else
+                {
+                    input.clear();
+                    while(input.size() == 0)
+                    {
+                        input = playerInput();
+                    }
+                    if(input[0] == "menu")
+                    {
+                        backToMenu = true;
+                    }
+                    else if(input[0] == "go" && p.endCheck() == true)
+                    {
+                        std::cout << "You ran out of stamina to continue traveling..." << endl;
+                        backToMenu = true;
+                    }
+                    else
+                    {
+                        par.parser(d, p, input);
+                    }
+                }
+            }
         }
         else
         {

@@ -249,6 +249,9 @@ void Parser::parser(Dungeon& curDungeon, Player& curPlayer, playerString& curSen
 		std::cout << "'save' detected...proceeding to 'save' function." << std::endl;
 #endif
 		cout << "saving game...."<< endl;
+		curPlayer.savePlayer();
+		curDungeon.saveDungeon();
+		cout << "Current game status saved!" << endl;
     }
     //for load
     else if(verbInSentence(curSentence, "load") == true)
@@ -257,6 +260,8 @@ void Parser::parser(Dungeon& curDungeon, Player& curPlayer, playerString& curSen
 		std::cout << "'load' detected...proceeding to 'load' function." << std::endl;
 #endif
 		cout << "loading game...."<< endl;
+		curDungeon.loadDungeon(&curPlayer);
+		cout << "Finished loading previously saved game." <<endl;
     }
 
     //for exit
