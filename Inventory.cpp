@@ -1,4 +1,12 @@
 #include "Inventory.hpp"
+#include <vector>
+#include <string>
+#include <iostream>
+#include <string>
+#include "Item.hpp"
+#include <algorithm>
+#include <list>
+#include <sstream>
 
 Inventory::Inventory()
 {
