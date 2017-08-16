@@ -31,6 +31,10 @@ class Feature
         std::vector<bool> getActions();
         size_t getLookingNum();
 		std::vector<std::vector<std::string> > getVerbs();
+        size_t getExactLookingNum();
+        void setExactInteractionNum(size_t intNumValue);
+        void setExactLookingNum(size_t lookNumValue);
+
 };
 
 #endif
