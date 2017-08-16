@@ -82,3 +82,20 @@ std::vector<std::vector<std::string> > Feature::getVerbs()
          return verbs;
  }
 /***********************************/
+
+
+size_t Feature::getExactLookingNum()
+{
+        return lookingNum;
+}
+
+void Feature::setExactInteractionNum(size_t intNumValue)
+{
+        interactionNum = intNumValue;
+}
+
+void Feature::setExactLookingNum(size_t lookNumValue)
+{
+        lookingNum = lookNumValue;
+}
+
