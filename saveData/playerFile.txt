@@ -1,0 +1,43 @@
+Player 1
+10
+20
+3
+10
+0
+Mirror Room
+Lava Room
+4
+Test Thing
+First Test
+to Test
+2
+4
+False
+0
+1
+Another Thing
+Second Test
+test for multiple
+0
+0
+True
+1
+3
+Test Thing
+First Test
+to Test
+2
+4
+False
+0
+1
+Another Thing
+Second Test
+test for multiple
+0
+0
+True
+1
+3
+myInventory
+False

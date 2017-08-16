@@ -1,0 +1,93 @@
+2
+@@
+As I enter the room, I notice the oddly unfurnished nature of it. It's like the
+person moving in got started but gave up on their task almost immediately. 
+There's an ugly painting on the northern wall, some shelves, and a table. 
+That's it. The dust on the ground suggests the latter two have been moved 
+recently. There's also another place on the wall to hang a painting. The 
+existing painting could be placed there. There's an exit back to the south, but
+that's back the way I came. There's got to be another, right? Or else I'm in a 
+dungeon from which there's no exit. But how would the builders have gotten out 
+without an exit?
+@@
+I'm back in the room I had to esacape from. The painting, shelf, and table are
+still there. An exit is to the south and...maybe the north?
+@@
+Escape Room
+@@
+normal
+@@
+2
+@@
+south
+@@
+north
+@@
+False
+@@
+0
+@@
+3
+@@
+painting
+@@
+2
+@@
+It's an extremely ugly painting of an old woman. It looks like you could pick
+it up. There's even another place on the wall you could put it.
+@@
+The painting sits on the other part of the wall
+@@
+I pick up the painting and move it to the other spot. Hey, the old hanging spot
+had a door behind it!
+@@
+True
+@@
+move
+@@
+0
+@@
+0
+@@
+shelves
+@@
+2
+@@
+It's a set of book shelves covered in dust. I could move it if I needed to.
+@@
+The shelves sit in their new location, unused as ever.
+@@
+I push the shelves across the room. Nothing happens.
+@@
+False
+@@
+push
+move
+@@
+0
+@@
+0
+@@
+table
+@@
+2
+@@
+It's an old wooden table. I could move it easily.
+@@
+The table sits in its new place.
+@@
+I push the table a few feet to the right. Nothing happens.
+@@
+False
+@@
+push
+move
+@@
+0
+@@
+0
+@@
+6
+@@
+0
+@@

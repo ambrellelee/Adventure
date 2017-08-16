@@ -1,0 +1,93 @@
+2
+@@
+An intense wave of heat assaults me as I open the door to the next room. As I
+make my way inside I notice a dark atmosphere, lit as much by the glow of a pit
+of lava as it is by the few lanterns hanging from the ceiling. The pit sits
+between me and the other sides of the room. The eas side would appear to have
+a door, but I know I can't jump far enough to get over the lava and to the
+platform in front of the door. There is an alcove nearby on the wall, with
+something that shines brightly. Next to it is a lever of some kind.
+@@
+I'm back in the lava room. The lever and the alcove are still there on the
+south side of the room. THe lava looks as threatening as ever. It is still very
+hot.
+@@
+Lava Room
+@@
+normal
+@@
+2
+@@
+south
+@@
+east
+@@
+False
+@@
+1
+@@
+torch
+@@
+A torch that shows no signs of going out. The fire isn't hot to the touch and burns nothing.
+@@
+This could help light my way!
+@@
+0
+@@
+0
+@@
+True
+@@
+0
+@@
+0
+@@
+2
+@@
+alcove
+@@
+2
+@@
+It's an alcove in the wall. There's a burning torch inside I could pick up.
+Strangely, I feel no heat from it.
+@@
+It's a stone alcove. It remains empty.
+@@
+I reach in and grab the torch. Strangely enough, the flames don't seem to give
+off any heat. In one of my more reckless moments, I put my hand over the flame,
+and feel no pain. Similarly, it doesn't burn my bag, so I put the torch inside.
+@@
+False
+@@
+get
+take
+@@
+0
+@@
+0
+@@
+lever
+@@
+2
+@@
+It's a lever on the wall. Presumably, pulling it should do something
+@@
+The lever has been pulled down. I sure am glad I pulled it!.
+@@
+I grab the lever and start to pull. At first there's no give, but then I feel
+it start to move. Using much effort, I managed to pull the lever all the way
+down. As I do so, a bridge extends from the platform on my side of the room to
+the one in front of the eastern exit. I can leave now!
+@@
+True
+@@
+pull
+@@
+0
+@@
+0
+@@
+8
+@@
+0
+@@

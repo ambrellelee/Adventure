@@ -1,0 +1,166 @@
+2
+@@
+As I enter the room, I notice it is lit with the same lanterns I've become 
+accustomed to. The room is full of various statues and paintings, all of which
+are clearly too large for me to cover. Salient among these things is a box, a
+chest, and a vault. All of them would seem to be openable. Maybe I should take
+a look.
+@@
+I'm in the treasure room again. The box, the chest, and the vault are still
+there.
+@@
+Treasure Room
+@@
+normal
+@@
+2
+@@
+south
+@@
+north
+@@
+True
+@@
+3
+@@
+armor
+@@
+A suit of armor
+@@
+I could put this on to protect me...
+@@
+0
+@@
+0
+@@
+False
+@@
+0
+@@
+1
+@@
+treasure key
+@@
+It's a key, presumably to something in this dungeon...
+@@
+It probably unlocks something near where I found it
+@@
+0
+@@
+0
+@@
+False
+@@
+1
+@@
+1
+@@
+coins
+@@
+Some gold coins
+@@
+It's hard to say what good currency could do down here. Maybe if I have to bribe someone?
+@@
+0
+@@
+0
+@@
+False
+@@
+2
+@@
+1
+@@
+3
+@@
+chest
+@@
+3
+@@
+An ordinary wooden chest. Maybe there's something inside?
+@@
+The chest is open now. There is steel-plated armor inside!
+@@
+The chest is empty
+@@
+Once again I notice the chest is unlocked. Security sure is lax around here. I
+open it up and notice there is something inside.
+@@
+I reach into the chest and pull out the armor. It could fit in my seemingly 
+bottomless bag, so that's where I put it.
+@@
+False
+@@
+False
+@@
+open
+@@
+get
+take
+@@
+0
+@@
+0
+@@
+box
+@@
+3
+@@
+A plain wooden box. It looks like the lid would slide off rather easily...
+@@
+It's an open box, there's something shiny inside!
+@@
+The box is empty
+@@
+The lid of the box slides off easily. There's a key in there!
+@@
+I reach into the box and get the key. Whoever runs security for this place
+should be fired
+@@
+False
+@@
+False
+@@
+open
+@@
+get
+take
+@@
+0
+@@
+0
+@@
+vault
+@@
+3
+@@
+A rather well maintained vault. It has a combination based lock.
+@@
+With the door to the vault opened, I notice gold inside. I'm rich!
+@@
+The vault is empty
+@@
+I put my ear against the vault door, listening carefully. I slowly turn the 
+dial as appropriate, eventually finding the right numbers. And here my mom said
+I wasted those 10,000 hours I spent learning to crack safes...Regardless, I 
+notice it's full of some enticing treasure!
+@@
+I continually grab handfuls of coins, transfering them to my bag as I do so.
+@@
+False
+@@
+False
+@@
+crack
+@@
+get
+take
+@@
+0
+@@
+0
+@@
+4
+@@
+0
+@@

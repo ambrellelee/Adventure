@@ -1,0 +1,83 @@
+2
+@@
+I enter the room and see DEAR LORD! An unnaturally large hound is racing
+towards me, only to get stopped when it reaches the end of its leash. As I start
+to calm down, I notice the hound has a collar around its neck. That collar is
+connected to a chain, the only thing that stopped me from becoming the
+creature's lunch. I back as far away from it as I can, trying to ignore its
+piercing barks. As I do, I notice a picture on the wall. I can return to the 
+exit to the south. There's an exit on the west side of the room, but if I try
+to go through it the hound will get me. I can already tell there's no way I
+can kill that thing before it kills me...
+@@
+I'm back in the hound room. The dog remains there, as does the picture. There
+is an exit to the south, where I came from when I first entered the room. 
+There's also the exit on the western side.
+@@
+Guard Hound Room
+@@
+normal
+@@
+2
+@@
+south
+@@
+west
+@@
+False
+@@
+0
+@@
+2
+@@
+picture
+@@
+2
+@@
+It's a picture that seems to show someone giving something to a dog. Maybe I
+should inspect it more closely.
+@@
+The picture remains there, with the same picture of someone offering guts to a
+dog
+@@
+The picture shows a man giving the dog what looks like some entrails. It's kind
+of gross
+@@
+False
+@@
+inspect
+@@
+0
+@@
+0
+@@
+hound
+@@
+2
+@@
+The dog barks at me ferociously, and tries its best to get me. I'd better do
+something to get past it but what? There's no way I can stab it before it gets
+me.
+@@
+The dog continues to grin happily at me. Apparently we're best buddies now.
+@@
+I take the guts from my bag, noticing the hound pause and stare intently as I
+do so. Not wanting to get too close, I toss the entrails to the dog's feet. It
+eats them at an alarming speed. When done it turns towards me, finally snaps
+the chain holding it and...proceeds to lick my hands. It then looks at me with
+a big grin, licks the spot on my cloths where I wiped my hands earlier, and
+licks my face. Panting, the beast lies down and continues to look at me with a
+goofy grin on its face.
+@@
+True
+@@
+feed
+@@
+0
+@@
+0
+@@
+12
+@@
+0
+@@
