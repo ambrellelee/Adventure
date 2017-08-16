@@ -7,11 +7,19 @@ As a player you will use text commands to navigate through the fifteen dungeon r
 Commands used in the game
 
 Look - Obtains information on features and items in a room
-Take - Adds an item to player's bag 
+Take - Adds an item to player's bag
+Talk - Interacts with a NPC
+Open
+Drink / Eat - consumes food or drink to increase stamina
+Fill - Adds water to player's flask
 Use - Uses items from player's inventory
 Go - Moves player to new rooms
 Inventory - Displays items the player has in their bag
-Help
+Attack - Attacks an enemy
+Block - Blocks an attack from the enemy
+Hint
+Help - Displays possible commands to the player
+Instructions - Displays instructions for the game
 Savegame - Saves current game
 Loadgame - Loads past game from stopping point
 
