@@ -29,6 +29,7 @@ class Inventory
 		void fillFlask(int);
 		void decreaseFlask(int);
 		void getInfo(std::string);
+		void clearInventory();
 };
 
 #endif
