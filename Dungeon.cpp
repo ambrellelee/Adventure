@@ -1,4 +1,5 @@
 #include "Dungeon.hpp"
+#include "Room.hpp"
 #include <cctype>
 #include <limits>
 //add method to set exits to newRoom
@@ -16,6 +17,7 @@ Dungeon::Dungeon()
 {
 	newRoom = new Room;
 	finishGame = false;
+	gameDesc = "";
 }
 
 void Dungeon::setGameDescription(std::string newDesc)
@@ -251,4 +253,150 @@ bool Dungeon::finishCheck()
 Dungeon::~Dungeon()
 {
 	delete newRoom;
+}
+
+int Dungeon::saveDungeon()
+{
+        std::fstream outputFile;
+        std::string fileName = "saveData/DungeonData.txt";
+        const char* files[]= {"one.txt", "two.txt", "three.txt", "four.txt", "five.txt", "six.txt", "seven.txt", "eight.txt", "nine.txt", "ten.txt", "eleven.txt", "twelve.txt", "thirteen.txt", "fourteen.txt", "fifteen.txt"};
+
+        for(size_t i= 0; i < 15; i++)
+        {
+                allRooms[i].saveRoom(files[i]);
+        }
+
+        //std::vector<Room>::iterator it = allRooms.begin();
+        //it++;
+        //cout << it->getName() << endl;
+        //newRoom = &(*it);
+        //cout << newRoom->getName() << endl;
+        //it = NULL;
+
+        outputFile.open(fileName.c_str(), std::ios::out);
+        if (!outputFile)
+        {
+                cout << "ERROR: Could not open file: " << fileName << endl;
+                cout << "Terminating savegame command" << endl;
+                return 1;
+        }
+
+        outputFile << newRoom->getName() << endl;
+
+
+        if (finishGame)
+                outputFile << "True" << endl;
+        else
+                outputFile << "False" << endl;
+
+        if (gameDesc != "")
+                outputFile << gameDesc << endl << "@@";
+        else
+                outputFile << "BLANK" << endl;
+
+        outputFile.close();
+
+        return 0;
+}
+
+int Dungeon::loadDungeon(Player *myPlayer)
+{
+        std::fstream inputFile;
+        std::string fileName = "saveData/DungeonData.txt";
+        std::string newRoomName;
+        std::string line;
+        const char* files[]= {"one.txt", "two.txt", "three.txt", "four.txt", "five.txt", "six.txt", "seven.txt", "eight.txt", "nine.txt", "ten.txt", "eleven.txt", "twelve.txt", "thirteen.txt", "fourteen.txt", "fifteen.txt"};
+
+        for(size_t i= 0; i < 15; i++)
+        {
+                allRooms[i].loadRoom(files[i]);
+        }
+
+        inputFile.open(fileName.c_str(), std::ios::in);
+        if (!inputFile)
+        {
+                cout << "ERROR: Could not open file: " << fileName << endl;
+                cout << "Terminating savegame command" << endl;
+                return 1;
+        }
+
+        std::vector<Room>::iterator iter = allRooms.begin();
+
+        getline(inputFile, line);
+        myPlayer->loadPlayer();
+
+        while (iter != allRooms.end())
+        {
+                if (iter->getName() == line)
+                {
+                        newRoom = &(*iter);
+                }
+
+                if (iter->getName() == myPlayer->getCurLocName())
+                {
+                        myPlayer->setCurrentLocation((&(*iter)));
+                }
+
+                if (iter->getName() == myPlayer->getLastLocName())
+                {
+                        myPlayer->setLastLocation((&(*iter)));
+                }
+                iter++;
+        }
+
+        //myPlayer->setCurrentLocation(newRoom);
+        //myPlayer->setLastLocation(newRoom);
+        //cout << "newRoom Name " << newRoom->getName() << endl;
+        //myPlayer->savePlayer();
+
+        getline(inputFile, line);
+
+        if (line == "True")
+                finishGame = true;
+        else
+                finishGame = false;
+
+        getline(inputFile, line);
+
+        if (line == "BLANK")
+        {
+                gameDesc = "";
+        }
+        else
+        {
+                gameDesc = line;
+                getline(inputFile, line);
+                while (line != "@@")
+                {
+                        gameDesc += line;
+                        getline(inputFile, line);
+                }
+        }
+
+        inputFile.close();
+/*
+        iter = allRooms.begin();
+
+        while (iter != allRooms.end())
+        {
+                cout << iter->getName() << endl;
+                iter++;
+        }
+
+        cout << "New Room Value " << newRoom->getName() << endl;
+
+        if (finishGame)
+                cout << "Game finished" << endl;
+        else
+                cout << "Game not finished" << endl;
+
+        if (gameDesc == "")
+                cout << "BLANK" << endl;
+        else
+                cout << gameDesc << endl;
+
+        //Room *test = myPlayer->getCurrentLocation();
+        //cout << test->getName() << endl;
+*/
+        return 0;
 }
