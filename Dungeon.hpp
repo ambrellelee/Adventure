@@ -68,6 +68,9 @@ class Dungeon
         bool previousRooms(std::string);
         bool finishCheck();
         ~Dungeon();
+        int saveDungeon();
+        int loadDungeon(Player *myPlayer);
+
 };
 
 #endif
