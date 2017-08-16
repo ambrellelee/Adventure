@@ -363,7 +363,7 @@ void Parser::findNextDungeon(playerString& curSentence, Dungeon& curDungeon, Pla
             }
             else
             {
-                cout << "You can not proceed to " << *i << " Dungeon yet.\nsome feature not activated." <<endl;
+                cout << "You cannot proceed to " << *i << " Dungeon yet.\nsome feature not activated." <<endl;
                 DungeonFound = true;
             }
         }
@@ -425,14 +425,14 @@ void Parser::takeItemInDungeon(playerString& curSentence, Player& curPlayer, Dun
             }
             else
             {
-                cout << *i << " can not be taken from the room.\nOr feature need to be activated first." << endl;
+                cout << *i << " cannot be taken from the room.\nOr feature need to be activated first." << endl;
                 itemTaken = true;
             }
 		}
 	}
 	if (itemTaken == false)
 	{
-		std::cout << "Item can not be picked up." << std::endl;
+		std::cout << "Item cannot be picked up." << std::endl;
 	}
 
 }
@@ -485,7 +485,7 @@ void Parser::openObject(playerString& curSentence, Player& curPlayer, Dungeon& c
             }
             else
             {
-                std::cout << "You can not open " << (*i) << std::endl;
+                std::cout << "You cannot open " << (*i) << std::endl;
                 objectOpened = true;
             }
 		}
@@ -577,7 +577,7 @@ void Parser::drinkSomething(playerString& curSentence, Player& curPlayer, Dungeo
 		{
             if(*i == "potion")
             {
-                std::cout << "You have drinked " << *i << std::endl;
+                std::cout << "You drank " << *i << std::endl;
                 curPlayer.setHitPoints(10);
                 std::cout << "Your HP have been restored." << std::endl;
                 curPlayer.removeFromBag(*i);
@@ -587,7 +587,7 @@ void Parser::drinkSomething(playerString& curSentence, Player& curPlayer, Dungeo
             else if(curPlayer.canDrink(*i) == true)
             {
                 //use the item
-                std::cout << "You have drinked " << *i << std::endl;
+                std::cout << "You drank from " << *i << std::endl;
                 curPlayer.addStamina(1);
                 curPlayer.subtractWater(1);
                 drinked = true;
@@ -601,7 +601,7 @@ void Parser::drinkSomething(playerString& curSentence, Player& curPlayer, Dungeo
                 if(curPlayer.canDrink("flask") == true)
                 {
                     //use the item
-                    std::cout << "You have drinked water from your flask " << std::endl;
+                    std::cout << "You drank water from your flask " << std::endl;
                     curPlayer.addStamina(1);
                     curPlayer.subtractWater(1);
                     drinked = true;
@@ -638,7 +638,7 @@ void Parser::eatSomething(playerString& curSentence, Player& curPlayer, Dungeon&
 		if (curPlayer.hasItem(*i) == true)
 		{
             //use the item
-            std::cout << "You have ate " << *i << std::endl;
+            std::cout << "You have eaten " << *i << std::endl;
             curPlayer.addStamina(2);
             curPlayer.removeFromBag(*i);
             ate = true;
