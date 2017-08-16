@@ -6,9 +6,6 @@ Feature::Feature(std::string newName, std::vector<std::string> newDesc)
 	fDesc = newDesc;
 }
 
-/***********************************
- Newly added feature 2d vector 8/7
- ***********************************/
 Feature::Feature(std::string featName, std::vector<std::string> fDescs, std::vector<std::string> interactions, std::vector<bool> actions, std::vector<std::vector<std::string> > fVerbs)
 {
         fName = featName;
@@ -19,7 +16,6 @@ Feature::Feature(std::string featName, std::vector<std::string> fDescs, std::vec
         verbs = fVerbs;
         lookingNum=0;
 }
-/**************************************/
 
 void Feature::setName(std::string name)
 {
@@ -50,6 +46,7 @@ std::vector<std::string> Feature::getInteractionDesc()
 {
 	return interactionDesc;
 }
+
 std::vector<bool> Feature::getActions()
 {
 	return nextAction;
@@ -59,10 +56,12 @@ void Feature::setInteractionNum()
 {
     ++interactionNum;
 }
+
 size_t Feature::getinteractionNum()
 {
     return interactionNum;
 }
+
 size_t Feature::getLookingNum()
 {
 
@@ -74,14 +73,11 @@ size_t Feature::getLookingNum()
     return lookingNum-1;
 }
 
-/***********************************
- Newly added feature 2d vector 8/7
- ***********************************/
+// 2d vector 
 std::vector<std::vector<std::string> > Feature::getVerbs()
  {
          return verbs;
  }
-/***********************************/
 
 
 size_t Feature::getExactLookingNum()

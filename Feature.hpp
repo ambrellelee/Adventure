@@ -18,23 +18,24 @@ class Feature
 	public:
 		Feature(std::string, std::vector<std::string>);
 		Feature(std::string featName, std::vector<std::string> fDescs, std::vector<std::string> interactions, std::vector<bool> actions, std::vector<std::vector<std::string> > fVerbs);
+	
+		//public data member
+		std::vector<std::vector<std::string> > getVerbs();     //2d vector
 
 		//get and set methods
-        void setName(std::string);
-        std::string getName();
-        void setFeatureDesc(std::string);
-        std::vector<std::string> getFeatureDesc();
-        void setInteractionDesc(std::string);
-        std::vector<std::string> getInteractionDesc();
-        void setInteractionNum();
-        size_t getinteractionNum();
-        std::vector<bool> getActions();
-        size_t getLookingNum();
-		std::vector<std::vector<std::string> > getVerbs();
-        size_t getExactLookingNum();
-        void setExactInteractionNum(size_t intNumValue);
-        void setExactLookingNum(size_t lookNumValue);
-
+		void setName(std::string);
+		std::string getName();
+		void setFeatureDesc(std::string);
+		std::vector<std::string> getFeatureDesc();
+		void setInteractionDesc(std::string);
+		std::vector<std::string> getInteractionDesc();
+		void setInteractionNum();
+		size_t getinteractionNum();
+		size_t getLookingNum();
+		size_t getExactLookingNum();
+          void setExactInteractionNum(size_t intNumValue);
+          void setExactLookingNum(size_t lookNumValue);
+		std::vector<bool> getActions();
 };
 
 #endif

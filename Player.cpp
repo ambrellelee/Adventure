@@ -8,7 +8,6 @@
 #include <sstream>
 
 using namespace std;
-//Finish move; test drop and pickup methods
 
 //Constructors
 Player::Player()
@@ -20,9 +19,9 @@ Player::Player()
 	maxHitPoints = 20;
 	maxStamina = 10;
 	gameOver = false;
-        bag = Inventory("myInventory");
-        lastLocation = NULL;
-        currentLocation = NULL;
+     bag = Inventory("myInventory");
+     lastLocation = NULL;
+     currentLocation = NULL;
 
 }
 
@@ -37,7 +36,7 @@ Player::Player(std::string newName, int hPoints, int pStamina, double pScore, In
 	maxStamina = 10;
 	gameOver = false;
 	lastLocation = NULL;
-        currentLocation = NULL;
+     currentLocation = NULL;
 }
 
 //Get and Set Methods
@@ -117,7 +116,6 @@ Room *Player::getCurrentLocation()
 {
         return currentLocation;
 }
-
 
 void Player::printPlayerInfo()
 {
@@ -218,12 +216,8 @@ void Player::fill(int liquid)
 
 Player::~Player()
 {
-	//delete bag;
 }
 
-/*********************************
- Yu's edit
-*********************************/
 void Player::viewBagItem(std::string itemName)
 {
 	bag.viewItem(itemName);
@@ -236,32 +230,7 @@ bool Player::endCheck()
 {
     return gameOver;
 }
-/*
-void Player::savePlayer(std::ofstream& savePlayerFile)
-{
-	savePlayerFile << "name" << pName << std::endl;
-	savePlayerFile << "hitPoints" << hitPoints << std::endl;
-	savePlayerFile << "stamina" << stamina << std::endl;
-	savePlayerFile << "score" << score << std::endl;
-	for(int i = 0; i < bag->size(); i++)
-	{
-		savePlayerFile << bag[i] <<std::endl;
-	}
 
-}
-
-
-void Player::loadPlayer(std::ifstream& loadPlayerFile)
-{
-	std::string info;
-
-	loadPlayerFile >> info >> pName;
-	loadPlayerFile >> info >> hitPoints;
-	loadPlayerFile >> info >> stamina;
-	loadPlayerFile >> info >> score;
-	//inFile >> info >> bag;
-}
-*/
 int Player::savePlayer()
 {
         fstream outputFile;

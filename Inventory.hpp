@@ -12,8 +12,8 @@
 class Inventory
 {
 	private:
-		std::vector<Item> stuff;		//stores items
-		std::string containerName;	//names inventory
+		std::vector<Item> stuff;		//stores items in inventory
+		std::string containerName;	//names inventory container
 
 	public:
 		Inventory();
@@ -25,13 +25,14 @@ class Inventory
 		void viewInventory();				//displays list of items in player's inventory
 		bool inInventory(std::string thing);	//checks to see if an item is in player's inventory
 		void viewItem(std::string);			//displays item's info
-		bool drinkable(std::string);
+		bool drinkable(std::string);			//checks if item can be drank from
 		void fillFlask(int);
 		void decreaseFlask(int);
 		void getInfo(std::string);
 		void clearInventory();
-
 		std::vector<Item> getStuff();
+		
+		
 };
 
 #endif

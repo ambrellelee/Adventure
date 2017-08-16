@@ -8,11 +8,6 @@
 #include <sstream>
 
 using namespace std;
-/*Methods to check for interactivity will be in Features class
--Need to add methods to add and remove items from room to inventory/from inventory to room
--Add methods for features in room once Features class is finished
--Add method to look at item in a room
-*/
 
 bool setBool(string input)
 {
@@ -42,19 +37,18 @@ Room::Room(std::string newName, std::vector<std::string> description, std::strin
 	exitVec = exits;
 }
 
-//Destructors
+//Destructor
 Room::~Room()
 {
 	inRoom.empty();
 }
 
-//setItem
+//Get and Set Methods
 void Room::setItem(std::string newItemName, std::string newItemDesc, std::string newUseDesc, int water, int waterMax, bool addable, int featSource, int interactionGet)
 {
 	inRoom.push_back(Item(newItemName, newItemDesc, newUseDesc, water, waterMax, addable, featSource, interactionGet));
 }
 
-//Get and Set Methods
 void Room::setName(std::string newName)
 {
 	rName = newName;
@@ -95,6 +89,7 @@ std::vector<std::string> Room::getExits()
 	return exitVec;
 }
 
+//checks whether or not an exit exists
 bool Room::canProceed(std::string exitName)
 {
 	bool exitPresent = false;
@@ -111,11 +106,13 @@ bool Room::canProceed(std::string exitName)
 	return exitPresent;
 }
 
+//adds an Item to the room
 void Room::addItem(Item thing)
 {
 	dropped.push_back(thing);
 }
 
+//removes an item from the room
 void Room::removeItem(std::string rItem)
 {
     std::vector<string> temp;
@@ -138,6 +135,7 @@ cout << "removing " << targetItem << " from room" <<endl;
 
 }
 
+//lists at the items present in the room
 void Room::lookItems(std::string rItem)
 {
     std::vector<string> temp;
@@ -154,6 +152,7 @@ void Room::lookItems(std::string rItem)
 	}
 }
 
+//checks to see if a specific item is present in the room
 bool Room::checkItemInRoom(std::string rItem)
 {
 	bool itemPresent;
@@ -484,11 +483,6 @@ Room::Room(std::string roomFile, int thisRoomNum)
         inputFile.close();
 }
 
-
-/****************************
- newly added functions
- ***************************/
-
 Item Room::getItemInRoom(std::string itemName)
 {
      Item tempItem = Item("", "", "", 0, 0, 0, 0, 0);
@@ -535,9 +529,8 @@ void Room::printRoomDesc()
     }
     cout << "++++++++++++++++++++++++++" << endl;
 }
-/*********************
- revised 8/8
- *******************/
+
+//checks to see if the player can interact with the feature
 bool Room::canUseFeature(std::string fName, std::string verb)
 {
     bool allowed = false;
@@ -576,8 +569,7 @@ bool Room::canUseFeature(std::string fName, std::string verb)
     return allowed;
 }
 
-/////////////////  8/6 additions ///////////////////
-
+//checks to see if the player can go through the exit
 bool Room::getExitStatus()
 {
     std::vector<bool> tempActions;
@@ -605,6 +597,7 @@ bool Room::getExitStatus()
 
     return canProceedForward;
 }
+
 //see if an item can be taken
 bool Room::getAvailability(std::string availability)
 {
@@ -636,6 +629,7 @@ bool Room::getAvailability(std::string availability)
 	}
 	return available;
 }
+
 //valid cmd interact with a feature increments interaction number
 void Room::featureInteraction(std::string fName)
 {
@@ -686,6 +680,7 @@ void Room::featureInteraction(std::string fName)
         temp.clear();
     }
 }
+
 //check if feature is in the room
 bool Room::finRoom(std::string fName)
 {
@@ -710,6 +705,7 @@ bool Room::finRoom(std::string fName)
     }
     return found;
 }
+
 //prints feature interaction description
 void Room::featureIDescription(std::string fDesc)
 {
@@ -744,6 +740,7 @@ void Room::featureIDescription(std::string fDesc)
     }
 
 }
+
 //print item interaction description
  void Room::getItemIDesc(std::string iDesc)
  {
@@ -771,7 +768,7 @@ void Room::featureIDescription(std::string fDesc)
     }
  }
 
- //prints feature description
+//prints feature description
 void Room::featureDescription(std::string fDesc)
 {
     std::vector<string> temp;
@@ -799,8 +796,6 @@ void Room::featureDescription(std::string fDesc)
 
 }
 
-////////////////////// 8/8 additions ///////////////
-
 std::vector<string> Room::split(const string& s)
 {
 	std::vector<string> temp;
@@ -818,8 +813,6 @@ std::vector<string> Room::split(const string& s)
 	return temp;
 }
 
-
-////////////////////// 8/12 additions ///////////////
 void Room::showHints()
 {
     cout << "You have activated hints for this room. " << endl;
@@ -841,7 +834,6 @@ bool Room::getCanProceed()
 {
     return canProceedForward;
 }
-
 
 int Room::saveRoom(std::string outFileName)
 {

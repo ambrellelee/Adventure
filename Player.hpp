@@ -13,19 +13,19 @@ class Player
 	private:
 		std::string pName;		//player name
 		int hitPoints;
-		int maxHitPoints;	//what do we want this value to be?
+		int maxHitPoints;	
 		int stamina;
-		int maxStamina;	//what do we want this value to be?
+		int maxStamina;	
 		double score;
 		Room *currentLocation;
 		Room *lastLocation;
 		std::string curLocationName;
-                std::string lastLocationName;
+          std::string lastLocationName;
 		Inventory bag;
-
-        bool gameOver;
+		bool gameOver;
+	
 	public:
-		//Constructors
+		//Constructors and Destructor
 		Player();
 		Player(std::string newName, int hPoints, int pStamina, double pScore, Inventory pInvent);
 		~Player();
@@ -40,29 +40,31 @@ class Player
 		void setScore(double playerScore);
 		int getScore();
 		std::string getCurLocName();
-                std::string getLastLocName();
-                void setCurrentLocation(Room *curRoom);
-                void setLastLocation(Room *lastRoom);
-                Room *getCurrentLocation();
+		std::string getLastLocName();
+		void setCurrentLocation(Room *curRoom);
+          void setLastLocation(Room *lastRoom);
+          Room *getCurrentLocation();
 
-        //Player Functionality Methods
+          //Player Functionality Methods
 		void printPlayerInfo();
 		void subtractHitPoints(int help);
 		void addStamina(int sustenance);
 		void subtractStamina(int sustenance);
+		bool canDrink(std::string);			//checks to see if the player can drink from the item / feature
+		bool endCheck();					//check if player game over
+
+		//Related to Bag and Items
 		void addToBag(Item& thing);
-		void removeFromBag(std::string thing);
-		void lookBag();					//prints list of all items
-		bool hasItem(std::string);			//checks to see if the item is in the player's inventory
-		bool useItem(std::string pItem);		//does the same thing as hasItem?
-		void viewBagItem(std::string);		//prints out information for specific item
-		bool canDrink(std::string);
-        void fill(int);
-        void subtractWater(int);
+          void removeFromBag(std::string thing);
+          void lookBag();                         //prints list of all items
+          bool hasItem(std::string);              //checks to see if the item is in the player's inventory
+          bool useItem(std::string pItem);        //does the same thing as hasItem?
+          void viewBagItem(std::string);          //prints out information for specific item
+		void fill(int);
+		void subtractWater(int);                //decreases water level in flask
+          void getItemInfo(std::string);          //print item desc
 
-        void getItemInfo(std::string);    //print item desc
-        bool endCheck();        //check if player game over
-
+		//Save and Load methods
 		int savePlayer();
 		int loadPlayer();
 		void printLocs();

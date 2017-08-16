@@ -18,6 +18,7 @@ Inventory::Inventory(std::string newName)
 	containerName = newName;
 }
 
+//sets container name
 void Inventory::setName(std::string newName)
 {
 	containerName = newName;
@@ -28,6 +29,7 @@ std::string Inventory::getName()
 	return containerName;
 }
 
+//adds an item to inventory container
 void Inventory::addInventory(Item& thing)
 {
 	if(inInventory(thing.iName))
@@ -41,6 +43,7 @@ void Inventory::addInventory(Item& thing)
 	}
 }
 
+//removes and item from inventory container
 void Inventory::removeInventory(std::string item)
 {
 	if(stuff.empty())
@@ -56,6 +59,7 @@ void Inventory::removeInventory(std::string item)
 	}
 }
 
+//displays items in inventory container
 void Inventory::viewInventory()
 {
 	std::cout << "You currently have " << stuff.size() << " items in your inventory." << std::endl;
@@ -65,6 +69,7 @@ void Inventory::viewInventory()
 	}
 }
 
+//checks for an item in inventory container
 bool Inventory::inInventory(std::string thing)
 {
 	bool hasItem = false;
@@ -92,6 +97,7 @@ bool Inventory::inInventory(std::string thing)
 	return hasItem;
 }
 
+//displays item description
 void Inventory::viewItem(std::string itemName)
 {
 	for(size_t i = 0; i < stuff.size(); i++)
@@ -103,6 +109,7 @@ void Inventory::viewItem(std::string itemName)
 	}
 }
 
+//checks to see if an item can be drank from
 bool Inventory::drinkable(std::string itemName)
 {
 	bool canDrink = false;
@@ -120,6 +127,8 @@ bool Inventory::drinkable(std::string itemName)
     }
 	return canDrink;
 }
+
+//adds water to the flask
 void Inventory::fillFlask(int water)
 {
       for(size_t i = 0; i < stuff.size(); i++)
@@ -132,10 +141,11 @@ void Inventory::fillFlask(int water)
                {
                     stuff[i].waterLevel = stuff[i].maxWater;
                }
-          }
-     }
- }
+           }
+      }
+} 
 
+//subtracts water from flask
 void Inventory::decreaseFlask(int water)
 {
 	for(size_t i = 0; i <stuff.size(); i++)
@@ -152,6 +162,7 @@ void Inventory::decreaseFlask(int water)
 	}
 }
 
+
 void Inventory::getInfo(std::string itemName)
 {
     for(size_t i = 0; i <stuff.size(); i++)
@@ -167,6 +178,7 @@ void Inventory::clearInventory()
 {
         stuff.clear();
 }
+
 std::vector<Item> Inventory::getStuff()
 {
 	return stuff;
