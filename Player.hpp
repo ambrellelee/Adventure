@@ -19,6 +19,8 @@ class Player
 		double score;
 		Room *currentLocation;
 		Room *lastLocation;
+		std::string curLocationName;
+                std::string lastLocationName;
 		Inventory bag;
 
         bool gameOver;
