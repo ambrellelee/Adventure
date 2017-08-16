@@ -1,4 +1,19 @@
 #include "Inventory.hpp"
+#include <vector>
+#include <string>
+#include <iostream>
+#include <string>
+#include "Item.hpp"
+#include <algorithm>
+#include <list>
+#include <sstream>
+
+Inventory::Inventory()
+{
+	containerName = "testName";
+}
+
+
 
 Inventory::Inventory(std::string newName)
 {
@@ -14,9 +29,15 @@ std::string Inventory::getName()
 	return containerName;
 }
 
-void Inventory::addInventory(Item thing)
+std::vector<Item> Inventory::getStuff() 
 {
-	if(inInventory(thing))
+	return stuff;
+}
+
+
+void Inventory::addInventory(Item& thing)
+{
+	if(inInventory(thing.iName))
 	{
 		std::cout << thing.iName << " is already in your inventory." << std::endl;
 	}
@@ -27,7 +48,8 @@ void Inventory::addInventory(Item thing)
 	}
 }
 
-void Inventory::removeInventory(Item thing)
+
+void Inventory::removeInventory(std::string item)
 {
 	if(stuff.empty())
 	{
@@ -35,13 +57,11 @@ void Inventory::removeInventory(Item thing)
 	}
 	else
 	{
-		viewInventory();
-		
-		std::vector<Item>::iterator i = std::find(stuff.begin(), stuff.end(), thing); 		
+		std::vector<Item>::iterator i = std::find_if(stuff.begin(), stuff.end(), findItem(item));
 		stuff.erase(i);
-		std::cout << "You have removed << item << from your inventory." << std::endl;
+		std::cout << "You have removed " << item << " from your inventory." << std::endl;
 
-	}	
+	}
 }
 
 void Inventory::viewInventory()
@@ -49,26 +69,109 @@ void Inventory::viewInventory()
 	std::cout << "You currently have " << stuff.size() << "items in your inventory." << std::endl;
 	for(int i = 0; i < stuff.size(); i++)
 	{
-		std::cout << i+1 << ":" << stuff[i].getName() <<std::endl;	
+		std::cout << i+1 << ":" << stuff[i].iName <<std::endl;	
 	}
 }
 
-bool Inventory::inInventory(Item thing)
+bool Inventory::inInventory(std::string thing)
 {
-	bool hasItem; 
-
-	for(int i = 0; i < stuff.size(); i++)
+        bool hasItem = false;
+    std::vector<std::string> temp;
+	for(size_t i = 0; i < stuff.size(); i++)
 	{
-		if(stuff[i].getname() == thing)
-		{
-
-			hasItem = true;
+        //split string into vector
+         //http://code.runnable.com/VHb0hWMZp-ws1gAr/splitting-a-string-into-a-vector-for-c%2B%2B
+	std::stringstream ss(stuff[i].iName);
+        std::string tok;
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == thing)
+            {
+                hasItem = true;
+                break;
+            }
 		}
-		else
+		temp.clear();
+	}
+	return hasItem;
+}
+
+void Inventory::clearInventory()
+{
+	stuff.clear();
+}
+
+void Inventory::viewItem(std::string itemName)
+{
+	for(size_t i = 0; i < stuff.size(); i++)
+	{
+		if(stuff[i].iName == itemName)
 		{
-			hasItem = false;
+			std::cout << stuff[i].iDesc << std::endl;
 		}
 	}
-	
-	return hasItem;
+}
+
+bool Inventory::drinkable(std::string itemName)
+{
+	bool canDrink = false;
+
+	if(inInventory(itemName))
+	{
+		for(size_t i = 0; i < stuff.size(); i++)
+		{
+			if(stuff[i].iName == itemName && stuff[i].waterLevel > 0)
+			{
+				canDrink = true;
+				break;
+			}
+		}
+    }
+	return canDrink;
+}
+void Inventory::fillFlask(int water)
+{
+      for(size_t i = 0; i < stuff.size(); i++)
+      {
+           if(stuff[i].iName == "flask")
+          {
+                stuff[i].waterLevel += water;
+
+                if(stuff[i].waterLevel > stuff[i].maxWater)
+               {
+                    stuff[i].waterLevel = stuff[i].maxWater;
+               }
+          }
+     }
+ }
+
+void Inventory::decreaseFlask(int water)
+{
+	for(size_t i = 0; i <stuff.size(); i++)
+	{
+		if(stuff[i].iName == "flask")
+		{
+			stuff[i].waterLevel -= water;
+			if(stuff[i].waterLevel <= 0)
+			{
+				std::cout << "Your flask is empty" << std::endl;
+				break;
+			}
+		}
+	}
+}
+
+void Inventory::getInfo(std::string itemName)
+{
+    for(size_t i = 0; i <stuff.size(); i++)
+	{
+		if(stuff[i].iName == itemName)
+		{
+		    std::cout << stuff[i].iDesc << std::endl;
+		}
+	}
 }

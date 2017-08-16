@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 
 	directory = argv[1];
 	//dp = opendir(dir.c_str());
-	fullPath = directory + "/" + "one.txt";
+	fullPath = directory + "/" + "oneCopy.txt";
 
 	inputFile.open(fullPath.c_str(), ios::in);
 	if (!inputFile)
@@ -233,6 +233,8 @@ int main(int argc, char *argv[])
 	vector<bool> canLeave;
 	bool canLeaveNow;
 	int numberFeatures;
+	vector<vector<string> > verbs;
+	vector<string> verbRow;
 	
 	getline(inputFile, line);
         stringstream numFeatures(line);
@@ -291,19 +293,38 @@ int main(int argc, char *argv[])
                         canLeave.push_back(canLeaveNow);
                 }
 		
+		
+		for (int j = 0; j < (numDesc-1); j++)
+		{
+			while ((line != "@@") && (line != "@@@")) {
+				verbRow.push_back(line);
+
+				getline(inputFile, line);
+				//getline(inputFile, line);
+			}
+			getline(inputFile, line);
+			verbs.push_back(verbRow);
+			verbRow.clear();
+		}
 		//getline(inputFile, line);
 
-		Feature myFeat = Feature(featName, fDesc, interactionDesc, canLeave);
+		Feature myFeat = Feature(featName, fDesc, interactionDesc, canLeave, verbs);
 		roomFeatures.push_back(myFeat);
 		fDesc.clear();
 		interactionDesc.clear();
 		canLeave.clear();
+		for (int j = 0; j < verbs.size(); j++)
+		{
+			verbs[j].clear();
+		}
+		verbs.clear();
 	}
 	
 	//Feature::Feature(std::string featName, std::vector<std::string> fDescs, std::vector<std::string> interactions, std::vector<bool> actions)
 	vector<string> fDescTest;
         vector<string> interactionDescTest;
         vector<bool> canLeaveTest;
+	vector<vector<string> > verbTest;
 	
 	for (int i = 0; i < roomFeatures.size(); i++)
 	{
@@ -311,6 +332,7 @@ int main(int argc, char *argv[])
 		fDescTest = roomFeatures[i].getFeatureDesc();
 		interactionDescTest = roomFeatures[i].getInteractionDesc();
 		canLeaveTest = roomFeatures[i].getActions();
+		verbTest = roomFeatures[i].getVerbs();
 
 		for (int j = 0; j < fDescTest.size(); j++)
 		{
@@ -330,6 +352,15 @@ int main(int argc, char *argv[])
 				cout << "action for " << j << " is false" << endl;
                 }
 
+		for (int j = 0; j < verbTest.size(); j++)
+		{
+			cout << "For interaction number " << j << endl;
+
+			for (int k = 0; k < verbTest[j].size(); k++)
+			{
+				cout << verbTest[j][k] << endl;
+			}
+		}
 
 	}
 

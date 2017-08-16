@@ -1,0 +1,67 @@
+2
+@@
+I enter a room that was clearly once a library. The shelves are there, but it
+is clear that time has ravaged this place. The leather-bound tomes look to be
+falling apart, and they're all coated with dust. Only two books would seem to be
+intact. On one, I can make out the word "magic." On the other I can make out
+the word "fight." In addition to the exit back to the south, there's one to
+the north.
+@@
+I'm in the old library again. The magic book and the fight book are still on
+their shelves.
+@@
+Learning Room
+@@
+normal
+@@
+2
+@@
+south
+@@
+north
+@@
+True
+@@
+0
+@@
+2
+@@
+fight book
+@@
+2
+@@
+It's a leather-bound book. The only legible word on the spine is "fight." I 
+wonder what's inside
+@@
+The fight book's remnants are where I left them.
+@@
+I open up the book, thumbing through is pages until I find something intriguing.
+It reads "...and the switch must be hit before one with such power can be
+harmed, or else all attacks will be for naught..." Maybe that will come in
+handy. This book is clearly much too weak to take with me though. I put it back
+on the shelf, noticing the book fall apart as I do so.
+@@
+False
+@@
+read
+@@
+magic book
+@@
+2
+@@
+It's another leather-bound book. The spine bears the word "magic," as well as
+some others that are no longer decipherable. I wonder if any passages remain
+legible.
+@@
+The remains of the magic book are where I left them.
+@@
+I grab the book and open it. As I flip through the pages, I finally find one
+with a legible paragraph. It says "...but the true magic against such fiends
+is their own lust for wealth. I was astonished to find th[illegible]" Hm...
+not exactly the tome of fire spells I'd hoped for. Regardless, the thing is
+falling apart on me. I put it back on the shelf.
+@@
+False
+@@
+read
+@@@

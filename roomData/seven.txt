@@ -1,0 +1,59 @@
+2
+@@
+I enter what would appea to have been a lounge of sorts. The furniture is far
+too broken down to rest on. There's still a basin in the centre of the room
+with some water in it. There's also a book shelf with several books on it.
+One in particular looks...off somehow. There's no obvious new exit, but I could
+return to the south
+@@
+I'm back in that room with the basin of water in it. The exits haven't changed
+@@
+Fountain Room
+@@
+normal
+@@
+2
+@@
+south
+@@
+north
+@@
+False
+@@
+0
+@@
+2
+@@
+basin
+@@
+2
+@@
+It's a basin of water. Despite the run down nature of the room, the water
+inside looks clean.
+@@
+The basin is empty
+@@
+I scoop up the water in my flask
+@@
+False
+@@
+collect
+scoop
+@@
+strangeBook
+@@
+2
+@@
+At first glance it might look like a regular book on a book shelf, but further
+inspection casts doubt on that. It looks like it's connected to the shelf as a
+lever...
+@@
+The fake book is on the bookshelf, which is out of the way of the door.
+@@
+I try to grab a book, but as I pull it I hear the sound of a switch being
+pulled. The book shelf swings out of the way, revealing a new exit to the north.
+@@
+True
+@@
+pull
+@@@

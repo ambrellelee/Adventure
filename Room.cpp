@@ -8,7 +8,6 @@
 #include <sstream>
 
 using namespace std;
-
 /*Methods to check for interactivity will be in Features class
 -Need to add methods to add and remove items from room to inventory/from inventory to room
 -Add methods for features in room once Features class is finished
@@ -55,10 +54,15 @@ void Room::setItem(std::string newItemName, std::string newItemDesc, std::string
 	inRoom.push_back(Item(newItemName, newItemDesc, newUseDesc, water, waterMax, addable, featSource, interactionGet));
 }
 
-//Set Values Methods
+//Get and Set Methods
 void Room::setName(std::string newName)
 {
 	rName = newName;
+}
+
+std::string Room::getName()
+{
+     return rName;
 }
 
 void Room::setType(std::string tType)
@@ -66,25 +70,14 @@ void Room::setType(std::string tType)
 	rType = tType;
 }
 
-void Room::setDescription(std::string rdesc)
-{
-	rDescription.push_back(rdesc); 
-}
-
-void Room::setExits(std::string newExit)
-{
-	exitVec.push_back(newExit);
-}
-
-//Get Values Methods
-std::string Room::getName()
-{
-     return rName;
-}
-
 std::string Room::getType()
 {
      return rType;
+}
+
+void Room::setDescription(std::string rdesc)
+{
+	rDescription.push_back(rdesc);
 }
 
 std::vector<std::string> Room::getDescription()
@@ -92,220 +85,627 @@ std::vector<std::string> Room::getDescription()
 	return rDescription;
 }
 
+void Room::setExits(std::string newExit)
+{
+	exitVec.push_back(newExit);
+}
+
 std::vector<std::string> Room::getExits()
 {
-	return exitVec;	
+	return exitVec;
 }
 
 bool Room::canProceed(std::string exitName)
 {
 	bool exitPresent = false;
 
-	for(int i = 0; i < exitVec.size(); i++)
+	for(size_t i = 0; i < exitVec.size(); i++)
 	{
 		if (exitVec[i] == exitName)
-		exitPresent = true;
-		break;
+        {
+            exitPresent = true;
+            break;
+        }
 	}
 
 	return exitPresent;
 }
-/*
+
 void Room::addItem(Item thing)
 {
 	dropped.push_back(thing);
 }
-*/
-/*void Room::removeItem(Item thing)
-{
-	std::vector<Item>::iterator i = std::find(inRoom.begin(), inRoom.end(), thing);
-	inRoom.erase(i);
-}*/
 
-//hardcoded comparison for now to show it works.
-bool Room::checkRoomNames(std::string rName)
+void Room::removeItem(std::string rItem)
 {
-    //compare to vector of rooms
-    //temp room name list
+    std::vector<string> temp;
+    string targetItem;
+	for( size_t i = 0; i< inRoom.size(); i++)
+	{
+	    temp = split(inRoom[i].iName);
+	    for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == rItem)
+            {
+                targetItem = inRoom[i].iName;
+                std::vector<Item>::iterator i = std::find_if(inRoom.begin(), inRoom.end(), findItem(targetItem));
+                inRoom.erase(i);
+cout << "removing " << targetItem << " from room" <<endl;
+                break;
+            }
+        }
+	}
 
-    if(rName == "court")
-    {
-#ifdef NOISYTEST
-        std::cout << rName << " room found!" << std::endl;
-#endif
-        return true;
-    }
-    else
-        return false;
 }
-//hardcoded comparison for now to show it works until we have item working
+
+void Room::lookItems(std::string rItem)
+{
+    std::vector<string> temp;
+	for( size_t i = 0; i< inRoom.size(); i++)
+	{
+	    temp = split(inRoom[i].iName);
+	    for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == rItem)
+            {
+                std::cout << inRoom[i].iDesc << std::endl;
+            }
+        }
+	}
+}
+
 bool Room::checkItemInRoom(std::string rItem)
 {
-    if(rItem == "sword")
-    {
-#ifdef NOISYTEST
-        std::cout << rItem << " taken from room." << std::endl;
-#endif
-        return true;
-    }
-    else if(rItem == "chest")
-    {
-#ifdef NOISYTEST
-        std::cout << rItem << " is in the room." << std::endl;
-#endif
-        return true;
-    }
-    else if(rItem == "sphinx")
-    {
-#ifdef NOISYTEST
-        std::cout << rItem << " is in the room." << std::endl;
-#endif
-        return true;
-    }
-    else
-        return false;
+	bool itemPresent;
 
+    std::vector<string> temp;
+
+	for(size_t i = 0; i < inRoom.size(); i++)
+	{
+        //split string into vector
+        //http://code.runnable.com/VHb0hWMZp-ws1gAr/splitting-a-string-into-a-vector-for-c%2B%2B
+        std::stringstream ss(inRoom[i].iName);
+        std::string tok;
+
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+
+            if(temp[j] == rItem)
+            {
+                temp.clear();
+                return true;
+            }
+            else
+            {
+                itemPresent = false;
+            }
+
+        }
+        temp.clear();
+	}
+	return itemPresent;;
 }
 
-void Room::setRooms(std::ifstream& readFile)
-{
-    void Room::setRooms(std::ifstream& readFile)
-{
-    std::string blank = "";
-    int exitDoors = 0; //read in number of exit doors in the room
-    std::string curDoor = "";
-    readFile >> blank >> roomNumber; //get the room number
-    readFile >> blank >> rName;
-    readFile >> blank;
-    std::getline(readFile, description); //read the description line
-    readFile >> blank >> exitDoors; //get the number of exit doors.
-    int i;
-    for(i = 0; i != exitDoors; i++)
-    {
-        readFile >> blank >> curDoor;
-        doors.push_back(curDoor); //get the door name
-    }
-    int numOfItems = 0; //read in number of exit doors in the room
-    std::string curItem = "";
-    readFile >> blank >> numOfItems;
-    for(i = 0; i !=numOfItems; i++)
-    {
-        readFile >> blank >> curItem;
-        itemInRoom.push_back(curItem); //get the item name
-    }
-}
-}
 void Room::printRoomInfo()
 {
-	cout << "Room number: "<< roomNumber << endl;
-	cout << "Room name: " + rName << endl;
-	cout << "Room desccription: " <<  endl;
-	for(std::string::size_type i = 0; i != description.size(); i++)
-    {
-        cout << description[i];
-        if(description[i] == '.')
-        {
-            cout << endl;
-        }
+	cout << "Room Name: " << rName << endl;
+    cout << "Room Descriptions:" << endl;
+    cout << rDescription[0] << endl;
+    /*
+    for (size_t i = 0; i < rDescription.size(); i++) {
+        cout << rDescription[i] << endl;
     }
-	cout << endl;
-	cout << "The door you see that you can to go to are " ;
-	for (Container::size_type i = 0; i != doors.size(); i++)//print doors
-	{
-		cout << " -->" << doors[i] << " --> ";
-	}
-	cout << endl;
-	cout << "What do you want to do ? " << endl;
-}
+    */
+    cout << "The door you see that you can to go to are " ;
+    cout << "Exits:" << endl;
 
-void Room::printAllData()
-{
-        cout << "Room Name: " << rName << endl;
-        cout << "Room Type: " << rType << endl;
-        cout << "Room Descriptions:" << endl;
+    cout << "++++++++++++++++++++++++++" << endl;
+    for (size_t i = 0; i < exitVec.size(); i++) {
+        cout << "-------->  " << exitVec[i] << endl;
+    }
+    cout << "++++++++++++++++++++++++++" << endl;
+/*
+    cout << "Items:" << endl;
 
-        for (int i = 0; i < rDescription.size(); i++) {
-                cout << rDescription[i] << endl;
-        }
-
-        cout << "Exits:" << endl;
-
-        for (int i = 0; i < exitVec.size(); i++) {
-                cout << exitVec[i] << endl;
-        }
-
-        cout << "Items:" << endl;
-
-        for (int i = 0; i < inRoom.size(); i++)
-        {
-                cout << "Item number " << (i+1) << endl;
-
-                cout << "Item name: " << inRoom[i].iName << endl;
-                cout << "Item description: " << inRoom[i].iDesc << endl;
-                cout << "Item use text: " << inRoom[i].useDesc << endl;
-                cout << "Water in item: " << inRoom[i].waterLevel << endl;
-                cout << "Max. water capacity: " << inRoom[i].maxWater << endl;
-
-                if (inRoom[i].available == true)
-                        cout << "Player can pick up item now" << endl;
-                else
-                        cout << "Player cannot take item now" << endl;
-
-                cout << "Item taken from feature at index " << inRoom[i].featureSource  << endl;
-                cout << "Item can be taken at interaction number " << inRoom[i].whenCanTake << endl;
-        }
-
-
+        ///////////////////////////////////////////////////////////////////////////////
         vector<string> fDescTest;
         vector<string> interactionDescTest;
         vector<bool> canLeaveTest;
+        vector<vector<string> > verbTest;
 
+        cout <<"\n******************************************************************************"<<endl;
         cout << "Features:" << endl;
 
-        for (int i = 0; i < roomFeatures.size(); i++)
+        for (size_t i = 0; i < roomFeatures.size(); i++)
         {
                 cout << "Feature number " << i << endl;
                 cout << "Feature name: " << roomFeatures[i].getName() << endl;
                 fDescTest = roomFeatures[i].getFeatureDesc();
+                verbTest = roomFeatures[i].getVerbs();
+
+                cout << fDescTest[0] << endl;
                 interactionDescTest = roomFeatures[i].getInteractionDesc();
-                canLeaveTest = roomFeatures[i].getActions();
-
-                cout << "Descriptions read upon 'look' command used (changes after player interacts with and thus changes the feature" << endl;
-
-                for (int j = 0; j < fDescTest.size(); j++)
+                cout << "List of verbs that can be used on this feature are: " << endl;
+                for(size_t j = 0; j < verbTest.size(); j++)
                 {
-                        cout << "Description number " << j << ":" << endl;
-                        cout << fDescTest[j] << endl;
+                    cout << "Potential verbs for interaction number " << j << endl;
+
+                    for (size_t k = 0; k < verbTest[j].size(); k++)
+                    {
+                        cout << verbTest[j][k] << ", ";
+                    }
+                    cout << endl;
                 }
-
-                cout << "Text printed upon each successive interaction" << endl;
-                for (int j = 0; j < interactionDescTest.size(); j++)
-                {
-                        cout << "Interaction text " << j << ":" << endl;
-                        cout << interactionDescTest[j] << endl;
-                }
-
-
-                cout << "Bools returned to show whether player's ability to";
-                cout << " leave the room changes upon the interaction" << endl;
-                cout << "at the cooresponding index in the interaction array";
                 cout << endl;
-                for (int j = 0; j < canLeaveTest.size(); j++)
-                {
-                        if (canLeaveTest[j] == true)
-                                cout << "action for " << j << " is true" << endl;
-                        else
-                                cout << "action for " << j << " is false" << endl;
-                }
+                canLeaveTest = roomFeatures[i].getActions();
+                cout << "Exit status: " << canLeaveTest[roomFeatures[i].getinteractionNum()] << endl;
+                cout << "------------------------------------------------------------------------" << endl;
+        }
+
+	cout << endl;
+	cout << endl;
+*/
+	cout << "What do you want to do ? " << endl;
+}
+
+int Room::saveRoom(std::string outFileName)
+{
+        fstream outputFile;
+        std::string line;
+        std::string directory = "saveData";
+        std::string fileName;
+        std::string fullPath;
+        int numEntries;
+
+        fullPath = directory + "/" + outFileName;
+
+        outputFile.open(fullPath.c_str(), ios::out);
+        if (!outputFile)
+        {
+                cout << "ERROR: Could not open file: " << fullPath << endl;
+                cout << "Terminating savegame command" << endl;
+                return 1;
+        }
+
+        outputFile << rDescription.size() << endl;
+        outputFile << "@@" << endl;
+
+        for (int i = 0; i < rDescription.size(); i++)
+        {
+                outputFile << rDescription[i] << "@@" << endl;
+        }
+
+        outputFile << rName << endl << "@@" << endl;
+        outputFile << rType << endl << "@@" << endl;
+        outputFile << exitVec.size() << endl << "@@" << endl;
+
+        for (int i = 0; i < exitVec.size(); i++)
+        {
+                outputFile << exitVec[i] << endl << "@@" << endl;
         }
 
         if (canProceedForward == true)
-                cout << "Can leave room now" << endl;
+                outputFile << "True" << endl << "@@" << endl;
         else
-                cout << "Can not leave room now" << endl;
+                outputFile << "False" << endl << "@@" << endl;
 
+        outputFile << inRoom.size() << endl << "@@" << endl;
+
+        for (int i = 0; i < inRoom.size(); i++)
+        {
+                outputFile << inRoom[i].iName << endl << "@@" << endl;
+                outputFile << inRoom[i].iDesc << endl << "@@" << endl;
+                outputFile << inRoom[i].useDesc << endl << "@@" << endl;
+                outputFile << inRoom[i].waterLevel << endl << "@@" << endl;
+                outputFile << inRoom[i].maxWater << endl << "@@" << endl;
+
+                if (inRoom[i].available == true)
+                        outputFile << "True" << endl << "@@" << endl;
+                else
+                        outputFile << "False" << endl << "@@" << endl;
+
+                outputFile << inRoom[i].featureSource << endl << "@@" << endl;
+                outputFile << inRoom[i].whenCanTake << endl << "@@" << endl;
+
+        }
+
+        outputFile << roomFeatures.size() << endl << "@@" << endl;
+        vector<string> fDescTest;
+        vector<string> interactionDescTest;
+        vector<bool> canLeaveTest;
+        vector<vector<string> > verbTest;
+
+
+        for (int i = 0; i < roomFeatures.size(); i++)
+        {
+                outputFile << roomFeatures[i].getName() << endl << "@@" << endl;
+                fDescTest = roomFeatures[i].getFeatureDesc();
+                interactionDescTest = roomFeatures[i].getInteractionDesc();
+                canLeaveTest = roomFeatures[i].getActions();
+                verbTest = roomFeatures[i].getVerbs();
+
+                outputFile << fDescTest.size() << endl << "@@" << endl;
+                for (int j = 0; j < fDescTest.size(); j++)
+                {
+                        outputFile << fDescTest[j] << "@@" << endl;
+                }
+
+                for (int j = 0; j < interactionDescTest.size(); j++)
+                {
+                        outputFile << interactionDescTest[j] << "@@";
+                        outputFile << endl;
+                }
+
+                for (int j = 0; j < canLeaveTest.size(); j++)
+                {
+                        if (canLeaveTest[j] == true)
+                                outputFile << "True" << endl << "@@" << endl;
+                        else
+                                outputFile << "False" << endl << "@@" << endl;
+                }
+
+                for (int j = 0; j < verbTest.size(); j++)
+                {
+                        for (int k = 0; k < verbTest[j].size(); k++)
+                        {
+                                outputFile << verbTest[j][k] << endl;
+                        }
+
+                        outputFile << "@@" << endl;
+                }
+
+                outputFile << roomFeatures[i].getinteractionNum() << endl << "@@";
+		outputFile << endl;
+		outputFile << roomFeatures[i].getExactLookingNum() << endl << "@@";
+		outputFile << endl;
+
+		fDescTest.clear();
+                interactionDescTest.clear();
+                canLeaveTest.clear();
+                for (int j = 0; j < verbTest.size(); j++)
+                {
+                        verbTest[j].clear();
+                }
+                verbTest.clear();
+        }
+
+        outputFile << roomNumber << endl << "@@" << endl;
+
+        outputFile << dropped.size() << endl << "@@" << endl;
+
+        for (int i = 0; i < dropped.size(); i++)
+        {
+                outputFile << dropped[i].iName << endl << "@@" << endl;
+                outputFile << dropped[i].iDesc << endl << "@@" << endl;
+                outputFile << dropped[i].useDesc << endl << "@@" << endl;
+                outputFile << dropped[i].waterLevel << endl << "@@" << endl;
+                outputFile << dropped[i].maxWater << endl << "@@" << endl;
+
+                if (dropped[i].available == true)
+                        outputFile << "True" << endl << "@@" << endl;
+                else
+                        outputFile << "False" << endl << "@@" << endl;
+
+                outputFile << dropped[i].featureSource << endl << "@@" << endl;
+                outputFile << dropped[i].whenCanTake << endl << "@@" << endl;
+
+        }
+	
+	outputFile.close();
+        return 0;
 }
 
+int Room::loadRoom(std::string inFileName)
+{
+        fstream inputFile;
+        string line;
+        string fullMessage = "";
+        string directory = "saveData";
+        string fileName;
+        string fullPath;
+        string roomName;
+        string roomType;
+        int numExits;
+        vector<string> exits;
+        vector<Item> roomItems;
+        //bool canProceed;
+
+        vector<string> roomDescriptions;
+        int numRoomDescriptions;
+
+        fullPath = directory + "/" + inFileName;
+
+        inputFile.open(fullPath.c_str(), ios::in);
+        if (!inputFile)
+        {
+                cout << "ERROR: Could not open file: " << fullPath << endl;
+                cout << "Ending program" << endl;
+                return 1; //TODO: Change this to exit(1)
+        }
+
+        //roomNumber = thisRoomNum + 1; //set roomNumber data member
+
+        getline(inputFile, line);
+
+        stringstream numEntries(line);
+        numEntries >> numRoomDescriptions;
+       getline(inputFile, line);
+        getline(inputFile, line);
+
+
+        for (int i = 0; i < numRoomDescriptions; i++)
+        {
+                while (inputFile && line != "@@")
+                {
+                        fullMessage = fullMessage + line + "\n";
+                        getline(inputFile, line);
+                }
+                        getline (inputFile, line);
+                        roomDescriptions.push_back(fullMessage);
+                        fullMessage = "";
+
+        }
+
+        rDescription.clear();
+	rDescription = roomDescriptions;
+
+        roomName = line;
+        rName = roomName;               //set rName data member
+        getline(inputFile, line);
+        getline(inputFile, line);
+
+        roomType = line;
+        rType = roomType;               //set rType data member
+
+        getline(inputFile, line);
+        getline(inputFile, line);
+
+        stringstream numEx(line);
+        numEx >> numExits;
+        getline(inputFile, line);
+
+        for (int i = 0; i < numExits; i++)
+        {
+                getline(inputFile, line);
+                exits.push_back(line);
+                getline(inputFile, line);
+        }
+
+	exitVec.clear();
+        exitVec = exits;
+
+        getline(inputFile, line);
+
+        canProceedForward = setBool(line);
+
+        getline(inputFile, line);
+        getline(inputFile, line);
+        int numItems;
+        stringstream itemNum(line);
+        itemNum >> numItems;
+        getline(inputFile, line);
+        string iName, iDescription, iUse, waterLevel, maxWater, canGet;
+        string inFeature, interactionGet;
+        int waterNum, waterLimit, featNum, interactionNum;
+        bool canPickUp;
+
+
+        for (int i = 0; i < numItems; i++)
+        {
+                getline(inputFile, line);
+                iName = line;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                iDescription = line;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                iUse = line;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                stringstream wLevel(line);
+                wLevel >> waterNum;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                stringstream limit(line);
+                limit >> waterLimit;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                canPickUp = setBool(line);
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                stringstream fNum(line);
+                fNum >> featNum;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                stringstream intNum(line);
+                intNum >> interactionNum;
+
+                getline(inputFile, line);
+                Item newItem = Item(iName, iDescription, iUse, waterNum, waterLimit, canPickUp, featNum, interactionNum);
+                roomItems.push_back(newItem);
+
+
+        }
+
+        inRoom.clear();
+	inRoom = roomItems;
+
+        string featName;
+        vector<string> fDesc;
+        vector<string> interactionDesc;
+        int numDesc;
+        vector<bool> canLeave;
+        bool canLeaveNow;
+        int numberFeatures;
+        vector<vector<string> > verbs;
+        vector<string> verbRow;
+	size_t intNum;
+	size_t lookNum;
+
+        getline(inputFile, line);
+        stringstream numFeatures(line);
+        numFeatures >> numberFeatures;
+        getline(inputFile, line);
+        getline(inputFile, line);
+
+        roomFeatures.clear();
+
+        for (int i = 0; i < numberFeatures; i++)
+        {
+                fullMessage = "";
+                featName = line;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                stringstream descNumber(line);
+                descNumber >> numDesc;
+                getline(inputFile, line);
+                getline(inputFile, line);
+
+                for (int j = 0; j < numDesc; j++)
+                {
+                        while(line != "@@")
+                        {
+                                fullMessage = fullMessage + line + "\n";
+                                getline(inputFile, line);
+                        }
+
+                        getline(inputFile, line);
+                        fDesc.push_back(fullMessage);
+                        fullMessage = "";
+                }
+
+                for (int j = 0; j < (numDesc-1); j++)
+                {
+                        while(line != "@@")
+                        {
+                                fullMessage = fullMessage + line + "\n";
+                                getline(inputFile, line);
+                        }
+
+                        getline(inputFile, line);
+                        interactionDesc.push_back(fullMessage);
+                        fullMessage = "";
+                }
+
+                for (int j = 0; j < (numDesc-1); j++)
+                {
+                        canLeaveNow = setBool(line);
+
+                        getline(inputFile, line);
+                        getline(inputFile, line);
+                        canLeave.push_back(canLeaveNow);
+                }
+
+                for (int j = 0; j < (numDesc-1); j++)
+                {
+                        while ((line != "@@") && (line != "@@@")) {
+                                verbRow.push_back(line);
+
+                                getline(inputFile, line);
+
+                        }
+                        getline(inputFile, line);
+                        verbs.push_back(verbRow);
+                        verbRow.clear();
+                }
+
+		stringstream intNumber(line);
+                intNumber >> intNum;
+		getline(inputFile, line);
+		getline(inputFile, line);
+		stringstream lookNumber(line);
+		lookNumber >> lookNum;
+		getline(inputFile, line);
+		getline(inputFile, line);
+
+
+                Feature myFeat = Feature(featName, fDesc, interactionDesc, canLeave, verbs);
+                myFeat.setExactInteractionNum(intNum);
+		myFeat.setExactLookingNum(lookNum);
+		roomFeatures.push_back(myFeat);
+                fDesc.clear();
+                interactionDesc.clear();
+                canLeave.clear();
+                for (int j = 0; j < verbs.size(); j++)
+                {
+                        verbs[j].clear();
+                }
+                verbs.clear();
+
+        }
+
+        stringstream numRoom(line);
+        numRoom >> roomNumber;
+	getline(inputFile, line);
+	getline(inputFile, line);
+	int numDropped;
+        stringstream numItemsDropped(line);
+        numItemsDropped >> numDropped;
+	getline(inputFile, line);
+	dropped.clear();
+
+
+        for (int i = 0; i < numDropped; i++)
+        {
+                getline(inputFile, line);
+                iName = line;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                iDescription = line;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                iUse = line;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                stringstream wLevel(line);
+                wLevel >> waterNum;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                stringstream limit(line);
+                limit >> waterLimit;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                canPickUp = setBool(line);
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                stringstream fNum(line);
+                fNum >> featNum;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                stringstream intNum(line);
+                intNum >> interactionNum;
+
+                getline(inputFile, line);
+                Item newItem = Item(iName, iDescription, iUse, waterNum, waterLimit, canPickUp, featNum, interactionNum);
+                dropped.push_back(newItem);
+
+
+        }
+
+	inputFile.close();
+
+	
+	return 0;
+}
 Room::Room(std::string roomFile, int thisRoomNum)
 {
         fstream inputFile;
@@ -340,7 +740,7 @@ Room::Room(std::string roomFile, int thisRoomNum)
 
         stringstream numEntries(line);
         numEntries >> numRoomDescriptions;
-       getline(inputFile, line);
+        getline(inputFile, line);
         getline(inputFile, line);
 
 
@@ -453,6 +853,9 @@ Room::Room(std::string roomFile, int thisRoomNum)
         bool canLeaveNow;
         int numberFeatures;
 
+        vector<vector<string> > verbs;
+        vector<string> verbRow;
+
         getline(inputFile, line);
         stringstream numFeatures(line);
         numFeatures >> numberFeatures;
@@ -508,13 +911,387 @@ Room::Room(std::string roomFile, int thisRoomNum)
                         canLeave.push_back(canLeaveNow);
                 }
 
-                Feature myFeat = Feature(featName, fDesc, interactionDesc, canLeave);
+                for (int j = 0; j < (numDesc-1); j++)
+                {
+                    while ((line != "@@") && (line != "@@@"))
+                    {
+                        verbRow.push_back(line);
+                        getline(inputFile, line);
+                    }
+                    getline(inputFile, line);
+                    verbs.push_back(verbRow);
+                    verbRow.clear();
+                }
+
+                Feature myFeat = Feature(featName, fDesc, interactionDesc, canLeave, verbs);
                 roomFeatures.push_back(myFeat);
                 fDesc.clear();
                 interactionDesc.clear();
                 canLeave.clear();
+                for (size_t j = 0; j < verbs.size(); j++)
+                {
+                    verbs[j].clear();
+                }
+                verbs.clear();
         }
 
         inputFile.close();
 }
 
+
+/****************************
+ newly added functions
+ ***************************/
+
+Item Room::getItemInRoom(std::string itemName)
+{
+     Item tempItem = Item("", "", "", 0, 0, 0, 0, 0);
+     std::vector<string> temp;
+     for(size_t i =0; i < inRoom.size(); i++)
+     {
+        //split string into vector
+        //http://code.runnable.com/VHb0hWMZp-ws1gAr/splitting-a-string-into-a-vector-for-c%2B%2B
+        std::stringstream ss(inRoom[i].iName);
+        std::string tok;
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == itemName)
+            {
+ //               cout << inRoom[i].iName << endl;
+                tempItem = inRoom[i];
+            }
+        }
+        temp.clear();
+     }
+     return tempItem;
+}
+
+void Room::printRoomDesc()
+{
+    /*
+    for (size_t i = 0; i < rDescription.size(); i++)
+    {
+        cout << rDescription[i] << endl;
+    }
+    */
+    cout << rDescription[1] << endl;
+    cout << "The door you see that you can to go to are " ;
+    cout << "Exits:" << endl;
+
+    cout << "++++++++++++++++++++++++++" << endl;
+    for (size_t i = 0; i < exitVec.size(); i++)
+    {
+        cout << "------>  " << exitVec[i] << "      +++ " << endl;
+    }
+    cout << "++++++++++++++++++++++++++" << endl;
+}
+/*********************
+ revised 8/8
+ *******************/
+bool Room::canUseFeature(std::string fName, std::string verb)
+{
+    bool allowed = false;
+    std::vector<string> temp;
+
+    for(size_t i = 0; i < roomFeatures.size(); i++)
+    {
+        std::stringstream ss(roomFeatures[i].getName());
+        std::string tok;
+
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == fName)
+            {
+                verbsList = roomFeatures[i].getVerbs();
+                for(size_t j = 0; j < verbsList[roomFeatures[i].getinteractionNum()].size(); j++)
+                {
+                    if(roomFeatures[i].getinteractionNum() >= verbsList.size())
+                    {
+                        break;
+                    }
+                    if(verbsList[roomFeatures[i].getinteractionNum()][j] == verb)
+                    {
+                        allowed = true;
+                    }
+                }
+                verbsList.clear();
+            }
+        }
+        temp.clear();
+    }
+    return allowed;
+}
+
+/////////////////  8/6 additions ///////////////////
+
+bool Room::getExitStatus()
+{
+    std::vector<bool> tempActions;
+
+    for(size_t i = 0; i < roomFeatures.size(); i++)
+    {
+        tempActions = roomFeatures[i].getActions();
+        if(tempActions.size() == 1)
+        {
+            if(roomFeatures[i].getinteractionNum() > 0 && tempActions[0] == true)
+            {
+                canProceedForward = true;
+            }
+        }
+        else if(tempActions.size() != 1 && roomFeatures[i].getinteractionNum() < tempActions.size())
+        {
+            canProceedForward = tempActions[roomFeatures[i].getinteractionNum()];
+        }
+        else if(tempActions.size() != 1 && roomFeatures[i].getinteractionNum() >= tempActions.size())
+        {
+            canProceedForward = tempActions[tempActions.size()-1];
+        }
+        tempActions.clear();
+    }
+
+    return canProceedForward;
+}
+//see if an item can be taken
+bool Room::getAvailability(std::string availability)
+{
+    bool available = false;
+    std::vector<string> temp;
+    for(size_t i = 0; i < inRoom.size(); i++)
+	{
+        std::stringstream ss(inRoom[i].iName);
+        std::string tok;
+
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == availability)
+            {
+                available = inRoom[i].available;
+            }
+        }
+        temp.clear();
+        size_t x = inRoom[i].whenCanTake;
+        if(x == roomFeatures[inRoom[i].featureSource].getinteractionNum())
+        {
+            available = true;
+        }
+
+	}
+	return available;
+}
+//valid cmd interact with a feature increments interaction number
+void Room::featureInteraction(std::string fName)
+{
+    usedFeatures.push_back(fName);
+    std::vector<string> temp;
+
+    for(size_t i = 0; i < roomFeatures.size(); i++)
+    {
+        std::stringstream ss(roomFeatures[i].getName());
+        std::string tok;
+
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == fName)
+            {
+                if(roomFeatures[i].getinteractionNum()+1 > (roomFeatures[i].getInteractionDesc()).size())
+                {
+                    break;
+                }
+                else
+                {
+                    roomFeatures[i].setInteractionNum();
+                }
+            }
+        }
+        temp.clear();
+    }
+    for(size_t i = 0; i < inRoom.size(); i++)
+    {
+        std::stringstream ss(inRoom[i].iName);
+        std::string tok;
+
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == fName)
+            {
+                roomFeatures[inRoom[i].featureSource].setInteractionNum();
+            }
+        }
+        temp.clear();
+    }
+}
+//check if feature is in the room
+bool Room::finRoom(std::string fName)
+{
+    bool found = false;
+    std::vector<string> temp;
+    for(size_t i = 0; i < roomFeatures.size(); i++)
+    {
+        std::stringstream ss(roomFeatures[i].getName());
+        std::string tok;
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == fName)
+            {
+                found = true;
+            }
+        }
+        temp.clear();
+    }
+    return found;
+}
+//prints feature interaction description
+void Room::featureIDescription(std::string fDesc)
+{
+    std::vector<string> temp;
+    std::vector<std::string> FeatureDesc;
+    for(size_t i = 0; i < roomFeatures.size(); i++)
+    {
+        std::stringstream ss(roomFeatures[i].getName());
+        std::string tok;
+
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == fDesc)
+            {
+                if(roomFeatures[i].getinteractionNum() >= (roomFeatures[i].getInteractionDesc()).size())
+                {
+                    break;
+                }
+                else
+                {
+                    FeatureDesc = roomFeatures[i].getInteractionDesc();
+                    cout << FeatureDesc[roomFeatures[i].getinteractionNum()] << endl;
+                    break;
+                }
+            }
+        }
+        temp.clear();
+    }
+
+}
+//print item interaction description
+ void Room::getItemIDesc(std::string iDesc)
+ {
+    std::vector<string> temp;
+    std::vector<std::string> FeatureDesc;
+    for(size_t i = 0; i < inRoom.size(); i++)
+    {
+        std::stringstream ss(inRoom[i].iName);
+        std::string tok;
+
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == iDesc)
+            {
+                FeatureDesc = roomFeatures[inRoom[i].featureSource].getInteractionDesc();
+                cout << FeatureDesc[roomFeatures[inRoom[i].featureSource].getinteractionNum()] << endl;
+              //  break;
+            }
+        }
+        temp.clear();
+    }
+ }
+
+ //prints feature description
+void Room::featureDescription(std::string fDesc)
+{
+    std::vector<string> temp;
+    std::vector<std::string> FeatureDesc;
+    for(size_t i = 0; i < roomFeatures.size(); i++)
+    {
+        std::stringstream ss(roomFeatures[i].getName());
+        std::string tok;
+
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == fDesc)
+            {
+                FeatureDesc = roomFeatures[i].getFeatureDesc();
+                cout << FeatureDesc[roomFeatures[i].getinteractionNum()] << endl;
+                //break;
+            }
+        }
+        temp.clear();
+    }
+
+}
+
+////////////////////// 8/8 additions ///////////////
+
+std::vector<string> Room::split(const string& s)
+{
+	std::vector<string> temp;
+
+	//split string into vector
+	//http://code.runnable.com/VHb0hWMZp-ws1gAr/splitting-a-string-into-a-vector-for-c%2B%2B
+	std::stringstream ss(s);
+	std::string tok;
+
+	while(getline(ss, tok, ' '))
+    {
+        temp.push_back(tok);
+    }
+
+	return temp;
+}
+
+
+////////////////////// 8/12 additions ///////////////
+void Room::showHints()
+{
+    cout << "You have activated hints for this room. " << endl;
+    cout << "Features you can interact with for this room are: " << endl;
+    for(size_t i = 0; i < roomFeatures.size(); i++)
+    {
+        cout << "Feature " << i +1 << ": " << roomFeatures[i].getName() << endl;
+    }
+    cout << "\nItems you can take from this room are: " << endl;
+    for(size_t j = 0; j < inRoom.size(); j++)
+    {
+        cout << "Item " << j+1 << ": " << inRoom[j].iName << endl;
+    }
+    cout << "*Note: Some items may require interactions with features\nin the room before you can take them.*" << endl;
+    cout << "*Always LOOK at capitalized keywords to find more hints on what to do..." << endl;
+}
+
+bool Room::getCanProceed()
+{
+    return canProceedForward;
+}

@@ -3,6 +3,7 @@
 
 #include<string>
 #include<iostream>
+#include<vector>
 #include "Room.hpp"
 #include "Inventory.hpp"
 
@@ -17,44 +18,52 @@ class Player
 		int maxStamina;	//what do we want this value to be?
 		double score;
 		Room *currentLocation;
-		Room *lastLocation;		
-		Inventory *bag; 
+		Room *lastLocation;
+		std::string curLocationName;
+		std::string lastLocationName;
+		Inventory bag;
+		bool gameOver;
 
 	public:
 		//Constructors
 		Player();
-		Player(int hPoints, int pStamina, double pScore); 	
-		~Player();	
+		Player(std::string newName, int hPoints, int pStamina, double pScore, Inventory pInvent);
+		~Player();
 
-		//Set Values	
+		//Get and Set Values
 		void setName(std::string playerName);
-		void setHitPoints(int playerHitPoints);
-		void setStamina(int playerStamina);
-		void setScore(double playerScore);
-		void setCurrentLocation(Room*);
-	
-		//Get Values
 		std::string getName();
+		void setHitPoints(int playerHitPoints);
 		int getHitPoints();
+		void setStamina(int playerStamina);
 		int getStamina();
+		void setScore(double playerScore);
 		int getScore();
-		Room* getCurrentLocation();
-          Room* getLastLocation();
-	
-		//add inventory method
-		void move();
-		void addToBag(std::string);
-		void removeFromBag(std::string);
-		void lookBag();		
-		void pickUpItem(std::string);
-		void dropItem(std::string);
-	
-	//
-		bool itemInInventory(std:: string pItem);
-		bool useItem(std:: string pItem);
-		void removeItem(std::string pItem);
+		std::string getCurLocName();
+                std::string getLastLocName();
+		void setCurrentLocation(Room *curRoom);
+		void setLastLocation(Room *lastRoom);
+		Room *getCurrentLocation();
 
+       		//Player Functionality Methods
+		void printPlayerInfo();
+		void subtractHitPoints(int help);
+		void addStamina(int sustenance);
+		void subtractStamina(int sustenance);
+		void addToBag(Item& thing);
+		void removeFromBag(std::string thing);
+		void lookBag();					//prints list of all items
+		bool hasItem(std::string);			//checks to see if the item is in the player's inventory
+		bool useItem(std::string pItem);		//does the same thing as hasItem?
+		void viewBagItem(std::string);		//prints out information for specific item
+		bool canDrink(std::string);
+		void fill(int);
+		void subtractWater(int);
+
+		bool endCheck();
+		int savePlayer();
+		int loadPlayer();
+		void printLocs();	
 };
-		
+
 #endif
-	

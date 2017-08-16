@@ -1,0 +1,91 @@
+2
+@@
+As I enter the room, I hear some rather strange breathing. Like snoring, but
+somehow intimidating. As I enter I see why, there is a sleeping dragon there.
+It has a wooden box and a passageway behind it. The dragon shows no signs of
+waking up. Even so, getting past this thing will be no easy task, I don't even
+have a ring that will make me inivsible...regardless, that passageway to the
+north would seem to be my way out of here.
+@@
+I'm back in the dragon room. The monster continues to slumber. The box is still
+nearby. Exits continue to be through the northern passageway and to the south.
+@@
+Dragon Room
+@@
+normal
+@@
+3
+@@
+south
+@@
+north
+@@
+passageway
+@@
+False
+@@
+1
+@@
+potion
+@@
+A bright purple potion inside a glass bottle
+@@
+It is well known that purple things heal you.
+@@
+0
+@@
+0
+@@
+False
+@@
+0
+@@
+1
+@@
+2
+@@
+weakBox
+@@
+3
+@@
+It's a wooden box. There wouldn't seem to be any way to open it, but it looks
+fragile...
+@@
+The box is busted open. There's a potion inside!
+@@
+The broken box remains on the floor
+@@
+I put my foot on the box...sweating bullets as I watch to see that the dragon
+remains asleep. I slowly increase the pressure I'm putting on the box until it
+breaks beneath my weight. As I withdraw my foot, I notice that there is a
+potion inside the box.
+@@
+I reach into the busted box slowly, ever cautious of the sleeping dragon. I
+grab the potion, slowly put it into my bag, and back away.
+@@
+False
+@@
+False
+@@
+break
+@@
+get
+take
+@@
+dragon
+@@
+2
+@@
+It is a large slumbering dragon. It looks fast asleep.
+@@
+The dragon continues to sleep. It really is a deep sleeper.
+@@
+I'm unsure whether I should sneak by crouching down or getting on my tip-toes.
+Eventually, I end up doing a bizzare combination of both as I move around the
+dragon. Apparently I'm more sneaky than I give myself credit for, because it
+doesn't wake up. I can leave through the passageway (i.e to the north) now!
+@@
+True
+@@
+sneak
+@@@

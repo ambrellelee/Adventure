@@ -1,0 +1,94 @@
+2
+@@
+As I enter the room, I notice a faint green glow that illuminates everything.
+The walls are covered in hieroglyhics. Man, the person designing this dungeon
+sure seems to have lacked a sense of direction when it came to decorating...
+Regardless, I notice a platform with something floating atop it. To the north
+I see a door, but in the way is a statue of a sphinx. I can always go back east.
+@@
+I'm back in the sphinx room. The platform is still there, as is the sphinx
+statue. Exits are to the east and the north.
+@@
+Riddle Room
+@@
+normal
+@@
+2
+@@
+east
+@@
+north
+@@
+False
+@@
+1
+@@
+orb
+@@
+A glowing green orb
+@@
+Having it increases my maximum health
+@@
+0
+@@
+0
+@@
+True
+@@
+0
+@@
+1
+@@
+2
+@@
+platform
+@@
+3
+@@
+Atop the platform, I see a glass case covering an area in which there is a
+floating green orb. That orb looks valuable.
+@@
+With the glass case removed, the orb floats free on the platform. Ripe for the
+taking.
+@@
+The platform lacks the orb now, making it seem much less impressive.
+@@
+I grab the glass case, gently pick it up, and put it to the side.
+@@
+I reach out and grab the orb. Upon grabbing it, I immediately feel stronger.
+@@
+False
+@@
+False
+@@
+remove
+@@
+get
+take
+@@
+sphinx
+@@
+3
+@@
+The sphinx's eyes seem to have followed you since me since I entered the room.
+Maybe I should investigate this thing more.
+@@
+The sphinx sits poised, waiting for an answer to "what walks on four
+legs, then two, and then three?"
+@@
+The sphinx sits motionless.
+@@
+As I approach the sphinx, a voice calls out asking "what walks first on four
+legs, then two, and then three?"
+@@
+The sphinx comes to life, only to move out of the way and return to stone.
+@@
+False
+@@
+True
+@@
+investigate
+study
+@@
+man
+@@@
