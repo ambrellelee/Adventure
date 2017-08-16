@@ -841,3 +841,459 @@ bool Room::getCanProceed()
 {
     return canProceedForward;
 }
+
+
+int Room::saveRoom(std::string outFileName)
+{
+        fstream outputFile;
+        std::string line;
+        std::string directory = "saveData";
+        std::string fileName;
+        std::string fullPath;
+        int numEntries;
+
+        fullPath = directory + "/" + outFileName;
+
+        outputFile.open(fullPath.c_str(), ios::out);
+        if (!outputFile)
+        {
+                cout << "ERROR: Could not open file: " << fullPath << endl;
+                cout << "Terminating savegame command" << endl;
+                return 1;
+        }
+
+        outputFile << rDescription.size() << endl;
+        outputFile << "@@" << endl;
+
+        for (int i = 0; i < rDescription.size(); i++)
+        {
+                outputFile << rDescription[i] << "@@" << endl;
+        }
+
+        outputFile << rName << endl << "@@" << endl;
+        outputFile << rType << endl << "@@" << endl;
+        outputFile << exitVec.size() << endl << "@@" << endl;
+
+        for (int i = 0; i < exitVec.size(); i++)
+        {
+                outputFile << exitVec[i] << endl << "@@" << endl;
+        }
+
+        if (canProceedForward == true)
+                outputFile << "True" << endl << "@@" << endl;
+        else
+                outputFile << "False" << endl << "@@" << endl;
+
+        outputFile << inRoom.size() << endl << "@@" << endl;
+
+        for (int i = 0; i < inRoom.size(); i++)
+        {
+                outputFile << inRoom[i].iName << endl << "@@" << endl;
+                outputFile << inRoom[i].iDesc << endl << "@@" << endl;
+                outputFile << inRoom[i].useDesc << endl << "@@" << endl;
+                outputFile << inRoom[i].waterLevel << endl << "@@" << endl;
+                outputFile << inRoom[i].maxWater << endl << "@@" << endl;
+
+                if (inRoom[i].available == true)
+                        outputFile << "True" << endl << "@@" << endl;
+                else
+                        outputFile << "False" << endl << "@@" << endl;
+
+                outputFile << inRoom[i].featureSource << endl << "@@" << endl;
+                outputFile << inRoom[i].whenCanTake << endl << "@@" << endl;
+
+        }
+
+        outputFile << roomFeatures.size() << endl << "@@" << endl;
+        vector<string> fDescTest;
+        vector<string> interactionDescTest;
+        vector<bool> canLeaveTest;
+        vector<vector<string> > verbTest;
+
+
+        for (int i = 0; i < roomFeatures.size(); i++)
+        {
+                outputFile << roomFeatures[i].getName() << endl << "@@" << endl;
+                fDescTest = roomFeatures[i].getFeatureDesc();
+                interactionDescTest = roomFeatures[i].getInteractionDesc();
+                canLeaveTest = roomFeatures[i].getActions();
+                verbTest = roomFeatures[i].getVerbs();
+
+                outputFile << fDescTest.size() << endl << "@@" << endl;
+                for (int j = 0; j < fDescTest.size(); j++)
+                {
+                        outputFile << fDescTest[j] << "@@" << endl;
+                }
+
+                for (int j = 0; j < interactionDescTest.size(); j++)
+                {
+                        outputFile << interactionDescTest[j] << "@@";
+                        outputFile << endl;
+                }
+
+                for (int j = 0; j < canLeaveTest.size(); j++)
+                {
+                        if (canLeaveTest[j] == true)
+                                outputFile << "True" << endl << "@@" << endl;
+                        else
+                                outputFile << "False" << endl << "@@" << endl;
+                }
+
+                for (int j = 0; j < verbTest.size(); j++)
+                {
+                        for (int k = 0; k < verbTest[j].size(); k++)
+                        {
+                                outputFile << verbTest[j][k] << endl;
+                        }
+
+                        outputFile << "@@" << endl;
+                }
+
+                outputFile << roomFeatures[i].getinteractionNum() << endl << "@@";
+                outputFile << endl;
+                outputFile << roomFeatures[i].getExactLookingNum() << endl << "@@";
+                outputFile << endl;
+
+                fDescTest.clear();
+                interactionDescTest.clear();
+                canLeaveTest.clear();
+                for (int j = 0; j < verbTest.size(); j++)
+                {
+                        verbTest[j].clear();
+                }
+                verbTest.clear();
+        }
+
+        outputFile << roomNumber << endl << "@@" << endl;
+
+        outputFile << dropped.size() << endl << "@@" << endl;
+
+        for (int i = 0; i < dropped.size(); i++)
+        {
+                outputFile << dropped[i].iName << endl << "@@" << endl;
+                outputFile << dropped[i].iDesc << endl << "@@" << endl;
+                outputFile << dropped[i].useDesc << endl << "@@" << endl;
+                outputFile << dropped[i].waterLevel << endl << "@@" << endl;
+                outputFile << dropped[i].maxWater << endl << "@@" << endl;
+
+                if (dropped[i].available == true)
+                        outputFile << "True" << endl << "@@" << endl;
+                else
+                        outputFile << "False" << endl << "@@" << endl;
+
+                outputFile << dropped[i].featureSource << endl << "@@" << endl;
+                outputFile << dropped[i].whenCanTake << endl << "@@" << endl;
+
+        }
+
+        outputFile.close();
+        return 0;
+}
+
+int Room::loadRoom(std::string inFileName)
+{
+        fstream inputFile;
+        string line;
+        string fullMessage = "";
+        string directory = "saveData";
+        string fileName;
+        string fullPath;
+        string roomName;
+        string roomType;
+        int numExits;
+        vector<string> exits;
+        vector<Item> roomItems;
+        //bool canProceed;
+
+        vector<string> roomDescriptions;
+        int numRoomDescriptions;
+
+        fullPath = directory + "/" + inFileName;
+
+        inputFile.open(fullPath.c_str(), ios::in);
+        if (!inputFile)
+        {
+                cout << "ERROR: Could not open file: " << fullPath << endl;
+                cout << "Ending program" << endl;
+                return 1; //TODO: Change this to exit(1)
+        }
+
+        //roomNumber = thisRoomNum + 1; //set roomNumber data member
+
+        getline(inputFile, line);
+
+        stringstream numEntries(line);
+        numEntries >> numRoomDescriptions;
+       getline(inputFile, line);
+        getline(inputFile, line);
+
+
+        for (int i = 0; i < numRoomDescriptions; i++)
+        {
+                while (inputFile && line != "@@")
+                {
+                        fullMessage = fullMessage + line + "\n";
+                        getline(inputFile, line);
+                }
+                        getline (inputFile, line);
+                        roomDescriptions.push_back(fullMessage);
+                        fullMessage = "";
+
+        }
+
+        rDescription.clear();
+        rDescription = roomDescriptions;
+
+        roomName = line;
+        rName = roomName;               //set rName data member
+        getline(inputFile, line);
+        getline(inputFile, line);
+
+        roomType = line;
+        rType = roomType;               //set rType data member
+
+        getline(inputFile, line);
+        getline(inputFile, line);
+
+        stringstream numEx(line);
+        numEx >> numExits;
+        getline(inputFile, line);
+
+        for (int i = 0; i < numExits; i++)
+        {
+                getline(inputFile, line);
+                exits.push_back(line);
+                getline(inputFile, line);
+        }
+
+        exitVec.clear();
+        exitVec = exits;
+
+        getline(inputFile, line);
+
+        canProceedForward = setBool(line);
+
+        getline(inputFile, line);
+        getline(inputFile, line);
+        int numItems;
+        stringstream itemNum(line);
+        itemNum >> numItems;
+        getline(inputFile, line);
+        string iName, iDescription, iUse, waterLevel, maxWater, canGet;
+        string inFeature, interactionGet;
+        int waterNum, waterLimit, featNum, interactionNum;
+        bool canPickUp;
+
+
+        for (int i = 0; i < numItems; i++)
+        {
+                getline(inputFile, line);
+                iName = line;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                iDescription = line;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                iUse = line;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                stringstream wLevel(line);
+                wLevel >> waterNum;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                stringstream limit(line);
+                limit >> waterLimit;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                canPickUp = setBool(line);
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                stringstream fNum(line);
+                fNum >> featNum;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                stringstream intNum(line);
+                intNum >> interactionNum;
+
+                getline(inputFile, line);
+                Item newItem = Item(iName, iDescription, iUse, waterNum, waterLimit, canPickUp, featNum, interactionNum);
+                roomItems.push_back(newItem);
+
+
+        }
+
+        inRoom.clear();
+        inRoom = roomItems;
+
+        string featName;
+        vector<string> fDesc;
+        vector<string> interactionDesc;
+        int numDesc;
+        vector<bool> canLeave;
+        bool canLeaveNow;
+        int numberFeatures;
+        vector<vector<string> > verbs;
+        vector<string> verbRow;
+        size_t intNum;
+        size_t lookNum;
+
+        getline(inputFile, line);
+        stringstream numFeatures(line);
+        numFeatures >> numberFeatures;
+        getline(inputFile, line);
+        getline(inputFile, line);
+
+        roomFeatures.clear();
+
+        for (int i = 0; i < numberFeatures; i++)
+        {
+                fullMessage = "";
+                featName = line;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                stringstream descNumber(line);
+                descNumber >> numDesc;
+                getline(inputFile, line);
+                getline(inputFile, line);
+
+                for (int j = 0; j < numDesc; j++)
+                {
+                        while(line != "@@")
+                        {
+                                fullMessage = fullMessage + line + "\n";
+                                getline(inputFile, line);
+                        }
+
+                        getline(inputFile, line);
+                        fDesc.push_back(fullMessage);
+                        fullMessage = "";
+                }
+
+                for (int j = 0; j < (numDesc-1); j++)
+                {
+                        while(line != "@@")
+                        {
+                                fullMessage = fullMessage + line + "\n";
+                                getline(inputFile, line);
+                        }
+
+                        getline(inputFile, line);
+                        interactionDesc.push_back(fullMessage);
+                        fullMessage = "";
+                }
+
+                for (int j = 0; j < (numDesc-1); j++)
+                {
+                        canLeaveNow = setBool(line);
+
+                        getline(inputFile, line);
+                        getline(inputFile, line);
+                        canLeave.push_back(canLeaveNow);
+                }
+
+                for (int j = 0; j < (numDesc-1); j++)
+                {
+                        while ((line != "@@") && (line != "@@@")) {
+                                verbRow.push_back(line);
+
+                                getline(inputFile, line);
+
+                        }
+                        getline(inputFile, line);
+                        verbs.push_back(verbRow);
+                        verbRow.clear();
+                }
+
+                stringstream intNumber(line);
+                intNumber >> intNum;
+                getline(inputFile, line);
+                getline(inputFile, line);
+                stringstream lookNumber(line);
+                lookNumber >> lookNum;
+                getline(inputFile, line);
+                getline(inputFile, line);
+
+
+                Feature myFeat = Feature(featName, fDesc, interactionDesc, canLeave, verbs);
+                myFeat.setExactInteractionNum(intNum);
+                myFeat.setExactLookingNum(lookNum);
+                roomFeatures.push_back(myFeat);
+                fDesc.clear();
+                interactionDesc.clear();
+                canLeave.clear();
+                for (int j = 0; j < verbs.size(); j++)
+                {
+                        verbs[j].clear();
+                }
+                verbs.clear();
+
+        }
+
+        stringstream numRoom(line);
+        numRoom >> roomNumber;
+        getline(inputFile, line);
+        getline(inputFile, line);
+        int numDropped;
+        stringstream numItemsDropped(line);
+        numItemsDropped >> numDropped;
+        getline(inputFile, line);
+        dropped.clear();
+
+
+        for (int i = 0; i < numDropped; i++)
+        {
+                getline(inputFile, line);
+                iName = line;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                iDescription = line;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                iUse = line;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                stringstream wLevel(line);
+                wLevel >> waterNum;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                stringstream limit(line);
+                limit >> waterLimit;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                canPickUp = setBool(line);
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                stringstream fNum(line);
+                fNum >> featNum;
+
+                getline(inputFile, line);
+                getline(inputFile, line);
+                stringstream intNum(line);
+                intNum >> interactionNum;
+
+                getline(inputFile, line);
+                Item newItem = Item(iName, iDescription, iUse, waterNum, waterLimit, canPickUp, featNum, interactionNum);
+                dropped.push_back(newItem);
+
+
+        }
+
+        inputFile.close();
+
+
+        return 0;
+}
