@@ -6,11 +6,11 @@ a hint of old, worn parchment. Like the smell of a library if it had been
 abandoned for a thousand years. I notice this room is very well lit, thanks
 to lanterns hanging from the ceiling. The walls are covered with maps, but none
 of them seem to feature familiar lands. In the centre of the room is a
-GLASS CASE that seems to have something displayed prominantly within it.
-There is also a TABLE with a plate and (hopefully) full MEAL on it.
+glass case that seems to have something displayed prominantly within it.
+There is also a table with a plate and (hopefully) some food on it.
 @@
-I'm back in the map room. The GLASS CASE is still there, as clean as ever.
-The TABLE reamains, unmoved. The lanterns burn as brightly as ever. I wonder
+I'm back in the map room. The glass case is still there, as clean as ever.
+The table reamains, unmoved. The lanterns burn as brightly as ever. I wonder
 briefly about how they keep going, but find it best not to focus on it.
 @@
 Map Room
@@ -27,7 +27,7 @@ True
 @@
 2
 @@
-meal
+food
 @@
 An assortment of fresh food. A freshly cooked steak, a salad and some fruit.
 @@
@@ -66,7 +66,7 @@ table
 2
 @@
 The table is clean. Surprisingly clean given how dusty everything in this room
-seems to be. On top of it lies a full MEAL,  placed atop some fabric
+seems to be. On top of it lies a full meal,  placed atop some fabric
 that could be bunched together to function as a sack.
 @@
 The table is bare now. Still quite clean of course.
@@ -74,20 +74,24 @@ The table is bare now. Still quite clean of course.
 I reach over, fold the four corners of the cloth over the food, and tie them
 together. Then, I place the sack in my bag.
 @@
-true
+False
 @@
 take
 get
+@@
+0
+@@
+0
 @@
 glass case
 @@
 3
 @@
 The case is covered in dust, but I can see in it well enough to tell that
-there seems to be a MAP inside. Maybe one I can use? I notice the lid looks
-easy enough to OPEN. It doesn't even have a lock.
+there seems to be a map inside. Maybe one I can use? I notice the lid looks
+easy enough to open. It doesn't even have a lock.
 @@
-The case is open now. Nothing's stopping me from getting that MAP if I want it
+The case is open now. Nothing's stopping me from getting that map if I want it
 @@
 The case remains empty and open.
 @@
@@ -96,12 +100,20 @@ bursts in my face, making me sneeze. I feel like I should have seen that coming.
 @@
 I reach into the case and grab the map. I fold it neatly and put it in my bag.
 @@
-true
+False
 @@
-true
+False
 @@
 open
 @@
 get
 take
-@@@
+@@
+0
+@@
+0
+@@
+3
+@@
+0
+@@

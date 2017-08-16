@@ -1,56 +1,83 @@
 #include "Player.hpp"
+#include "Item.hpp"
+#include "Inventory.hpp"
+#include <vector>
+#include <fstream>
+#include <string>
+#include <iostream>
+#include <sstream>
 
-//Finish move, drop, and pickup methods
-//add in identifier to end the game
+using namespace std;
+//Finish move; test drop and pickup methods
 
 //Constructors
 Player::Player()
 {
-	hitPoints = 0;
-	stamina = 0;
+	pName = "Player 1";
+	hitPoints = 10;
+	stamina = 3;
 	score = 0;
+	maxHitPoints = 20;
+	maxStamina = 10;
+	gameOver = false;
+        bag = Inventory("myInventory");
+        lastLocation = NULL;
+        currentLocation = NULL;
+
 }
 
-Player::Player(int hPoints, int pStamina, double pScore)
+Player::Player(std::string newName, int hPoints, int pStamina, double pScore, Inventory pInvent)
 {
+	pName = newName;
 	hitPoints = hPoints;
 	stamina = pStamina;
 	score = pScore;
-	bag = new Inventory("bag");
+	bag = pInvent;
+	maxHitPoints = 20;
+	maxStamina = 10;
+	gameOver = false;
+	lastLocation = NULL;
+        currentLocation = NULL;
 }
 
-//set values
+//Get and Set Methods
 void Player::setName(std::string playerName)
 {
 	pName = playerName;
-} 
+}
 
+std::string Player::getName()
+{
+     return pName;
+	std::cout << pName << std::endl;
+}
 
 void Player::setHitPoints(int playerHitPoints)
 {
-	hitPoints = playerHitPoints;
-	
-	if(hitPoints >= maxHitPoints)
-	{	
-		std::cout << "You have been hit too many times. You have lost." << std::endl;
-		exit(0);
-	}
-}	
+	hitPoints += playerHitPoints;
+
+    if(hitPoints >= maxHitPoints)
+    {
+        hitPoints = maxHitPoints;
+        std::cout << "Your HP is at MAX." << std::endl;
+    }
+}
+
+int Player::getHitPoints()
+{
+    return hitPoints;
+	std::cout << hitPoints << std::endl;
+}
 
 void Player::setStamina(int playerStamina)
 {
 	stamina = playerStamina;
+}
 
-	 if(stamina <= 0)
-     {
-          std::cout << "You do not have enough stamina left. You have expired." <<std::endl;
-		exit(0);
-     }
-     else if(stamina > maxStamina)
-     {    
-        stamina = maxStamina;
-     }
-
+int Player::getStamina()
+{
+     return stamina;
+	std::cout << stamina << std::endl;
 }
 
 void Player::setScore(double playerScore)
@@ -58,139 +85,369 @@ void Player::setScore(double playerScore)
 	score = playerScore;
 }
 
-void Player::setCurrentLocation(Room* position)
-{
-	lastLocation = currentLocation;
-	currentLocation = position;
-}
-
-//get values
-std::string Player::getName()
-{
-     return pName;
-}
-
-int Player::getHitPoints()
-{
-     return hitPoints;
-}
-
-int Player::getStamina()
-{
-     return stamina;
-}
-
 int Player::getScore()
 {
 	return score;
+	std::cout << score << std::endl;
 }
 
-Room* Player::getCurrentLocation()
+std::string Player::getCurLocName()
 {
-	return currentLocation;
+        return curLocationName;
 }
 
-Room* Player::getLastLocation()
+std::string Player::getLastLocName()
 {
-	return lastLocation;
+        return lastLocationName;
 }
 
-void move()
+void Player::setCurrentLocation(Room *curRoom)
 {
-	
+        currentLocation = curRoom;
+        curLocationName = curRoom->getName();
 }
 
-void Player::addToBag(Item thing)
+void Player::setLastLocation(Room *lastRoom)
 {
-	bag->addInventory(thing);
+        lastLocation = lastRoom;
+        lastLocationName = lastRoom->getName();
+}
+
+Room *Player::getCurrentLocation()
+{
+        return currentLocation;
+}
+
+
+void Player::printPlayerInfo()
+{
+	std::cout << "Name:" << pName << std::endl;
+     std::cout << "Hit Points:" << hitPoints << std::endl;
+     std::cout << "Stamina: " << stamina << std::endl;
+     std::cout << "Score: " << score << std::endl;
+}
+
+void Player::subtractHitPoints(int help)
+{
+	hitPoints -= help;
+
+	if(hitPoints < 0)
+	{
+	    hitPoints = 0;
+		std::cout << "You have been hit too may times, you have died." << std::endl;
+		gameOver = true;
+	}
+}
+
+void Player::addStamina(int sustenance)
+{
+	stamina += sustenance;
+
+	if(stamina > maxStamina)
+	{
+		stamina = maxStamina;
+		std::cout << "You have your maximum level of stamina." << std::endl;
+	}
+	else
+	{
+		std::cout << "Your stamina have increased by " << sustenance << std::endl;
+	}
+}
+
+void Player::subtractWater(int water)
+{
+	bag.decreaseFlask(water);
+}
+
+void Player::subtractStamina(int sustenance)
+{
+    stamina -= sustenance;
+    std::cout << "Your current stamina is: " << stamina << std::endl;
+    if(stamina <= 0)
+    {
+        std::cout << "You do not have enough stamina left. You have expired." <<std::endl;
+		gameOver = true;
+    }
+}
+
+void Player::addToBag(Item& thing)
+{
+    //find the item name and pull the whole item then add to inventory
+	bag.addInventory(thing);
 }
 
 void Player::removeFromBag(std::string thing)
 {
-	bag->removeInventory(thing);
+	bag.removeInventory(thing);
 }
 
 void Player::lookBag()
 {
-	 bag->viewInventory();
+	 bag.viewInventory();
+}
+
+bool Player::hasItem(std::string item)
+{
+	return bag.inInventory(item);
+}
+
+bool Player::useItem(std::string pItem)
+{
+	bool canUse;
+
+	if(hasItem(pItem))
+	{
+		canUse = true;
+	}
+	else
+	{
+		canUse = false;
+	}
+	return canUse;
+}
+
+bool Player::canDrink(std::string pItem)
+{
+	return bag.drinkable(pItem);
+}
+
+void Player::fill(int liquid)
+{
+     bag.fillFlask(liquid);
 }
 
 Player::~Player()
 {
-	delete bag;
+	//delete bag;
 }
 
-//hardcoded comparsion for now refine later
-void Player::pickUpItem(std::string thing)
+/*********************************
+ Yu's edit
+*********************************/
+void Player::viewBagItem(std::string itemName)
 {
-    std::cout << "picked up item, add to bag" << std::endl;
-//	addToBag(thing);  //buggy at this point
+	bag.viewItem(itemName);
+}
+void Player::getItemInfo(std::string itemName)
+{
+    bag.getInfo(itemName);
+}
+bool Player::endCheck()
+{
+    return gameOver;
+}
+/*
+void Player::savePlayer(std::ofstream& savePlayerFile)
+{
+	savePlayerFile << "name" << pName << std::endl;
+	savePlayerFile << "hitPoints" << hitPoints << std::endl;
+	savePlayerFile << "stamina" << stamina << std::endl;
+	savePlayerFile << "score" << score << std::endl;
+	for(int i = 0; i < bag->size(); i++)
+	{
+		savePlayerFile << bag[i] <<std::endl;
+	}
+
 }
 
-void Player::dropItem(std::string thing)
+
+void Player::loadPlayer(std::ifstream& loadPlayerFile)
 {
-	removeFromBag(thing);
+	std::string info;
+
+	loadPlayerFile >> info >> pName;
+	loadPlayerFile >> info >> hitPoints;
+	loadPlayerFile >> info >> stamina;
+	loadPlayerFile >> info >> score;
+	//inFile >> info >> bag;
+}
+*/
+int Player::savePlayer()
+{
+        fstream outputFile;
+        vector<Item> myStuff = bag.getStuff();
+        std::string fileName = "saveData/playerFile.txt";
+
+
+        outputFile.open(fileName.c_str(), ios::out);
+        if (!outputFile)
+        {
+                cout << "ERROR: Could not open file: " << fileName << endl;
+                cout << "Terminating savegame command" << endl;
+                return 1;
+        }
+
+        outputFile << pName << endl;
+        outputFile << hitPoints << endl;
+        outputFile << maxHitPoints << endl;
+        outputFile << stamina << endl;
+        outputFile << maxStamina << endl;
+        outputFile << score << endl;
+
+        if (currentLocation != NULL)
+        {
+                outputFile << currentLocation->getName() << endl;
+        }
+        else
+        {
+                outputFile << "NULL" << endl;
+        }
+        if (lastLocation != NULL)
+        {
+                outputFile << lastLocation->getName() << endl;
+        }
+        else
+        {
+                outputFile << "NULL" << endl;
+        }
+        outputFile << myStuff.size() << endl;
+        for (int i = 0; i < myStuff.size(); i++)
+        {
+                outputFile << myStuff[i].iName << endl;
+                outputFile << myStuff[i].iDesc << endl;
+                outputFile << myStuff[i].useDesc << endl;
+                outputFile << myStuff[i].waterLevel << endl;
+                outputFile << myStuff[i].maxWater << endl;
+
+                if (myStuff[i].available == true)
+                        outputFile << "True" << endl;
+                else
+                        outputFile << "False" << endl;
+
+                outputFile << myStuff[i].featureSource << endl;
+                outputFile << myStuff[i].whenCanTake << endl;
+
+        }
+
+        outputFile << bag.getName() << endl;
+
+        if (gameOver)
+                outputFile << "True" << endl;
+        else
+                outputFile << "False" << endl;
+
+        outputFile.close();
+        return 0;
 }
 
-bool Player::itemInInventory(std:: string pItem)
+int Player::loadPlayer()
 {
-    if(pItem == "sword")
-    {
-#ifdef NOISYTEST
-        std::cout << pItem << " is in inventory." << std::endl;
-#endif
-        return true;
-    }
-    else if(pItem == "water")
-    {
-#ifdef NOISYTEST
-        std::cout << pItem << " is in inventory." << std::endl;
-#endif
-        return true;
-    }
-    else if(pItem == "potion")
-    {
-#ifdef NOISYTEST
-        std::cout << pItem << " is in inventory." << std::endl;
-#endif
-        return true;
-    }
-    else
-        return false;
+        fstream inputFile;
+        vector<Item> myStuff;
+        bag.clearInventory();
+        std::string fileName = "saveData/playerFile.txt";
+        std::string line;
+        int numItems;
+        string iName, iDescription, iUse, waterLevel, maxWater, canGet;
+        string inFeature, interactionGet;
+        int waterNum, waterLimit, featNum, interactionNum;
+        bool canPickUp;
+
+        inputFile.open(fileName.c_str(), ios::in);
+        if (!inputFile)
+        {
+                cout << "ERROR: Could not open file: " << fileName << endl;
+                cout << "Terminating loadgame command" << endl;
+                return 1;
+        }
+
+        getline(inputFile, line);
+        pName = line;
+
+        getline(inputFile, line);
+        stringstream hitNum(line);
+        hitNum >> hitPoints;
+
+        getline(inputFile, line);
+        stringstream maxHit(line);
+        maxHit >> maxHitPoints;
+
+        getline(inputFile, line);
+        stringstream stamNum(line);
+        stamNum >> stamina;
+
+        getline(inputFile, line);
+        stringstream maxStam(line);
+        maxStam >> maxStamina;
+
+        getline(inputFile, line);
+        stringstream scoreNum(line);
+        scoreNum >> score;
+
+        getline(inputFile, line);
+
+        if (line != "NULL")
+                curLocationName = line;
+        else
+                curLocationName = "";
+
+        getline(inputFile, line);
+
+        if (line != "NULL")
+                lastLocationName = line;
+        else
+                lastLocationName = "";
+
+        getline(inputFile, line);
+        stringstream itemNum(line);
+        itemNum >> numItems;
+
+        for (int i = 0; i < numItems; i++)
+        {
+                getline(inputFile, line);
+                iName = line;
+
+                getline(inputFile, line);
+                iDescription = line;
+
+                getline(inputFile, line);
+                iUse = line;
+
+                getline(inputFile, line);
+                stringstream wLevel(line);
+                wLevel >> waterNum;
+
+                getline(inputFile, line);
+                stringstream limit(line);
+                limit >> waterLimit;
+
+                getline(inputFile, line);
+                if (line == "True")
+                        canPickUp = true;
+                else
+                        canPickUp = false;
+
+                getline(inputFile, line);
+                stringstream fNum(line);
+                fNum >> featNum;
+
+                getline(inputFile, line);
+                stringstream intNum(line);
+                intNum >> interactionNum;
+
+
+                Item newItem = Item(iName, iDescription, iUse, waterNum, waterLimit, canPickUp, featNum, interactionNum);
+                bag.addInventory(newItem);
+
+        }
+
+        getline(inputFile, line);
+        bag.setName(line);
+
+        getline(inputFile, line);
+        if (line == "True")
+                gameOver = true;
+        else
+                gameOver = false;
+
+        inputFile.close();
+
+
+        return 0;
 }
 
-bool Player::useItem(std:: string pItem)
+void Player::printLocs()
 {
-    if(pItem == "sword")
-    {
-#ifdef NOISYTEST
-        std::cout << "Using " << pItem << " from inventory." << std::endl;
-#endif
-        return true;
-    }
-    else if(pItem == "water")
-    {
-#ifdef NOISYTEST
-        std::cout << "filling/Drinking " << pItem << " from inventory." << std::endl;
-#endif
-        return true;
-    }
-   else if(pItem == "potion")
-   {
-#ifdef NOISYTEST
-        std::cout << "Drinking " << pItem << " from inventory." << std::endl;
-#endif
-        return true;
-   }
-    else
-        return false;
-
-}
-void Player::removeItem(std::string pItem)
-{
-#ifdef NOISYTEST
-        std::cout << pItem << " removed from inventory." << std::endl;
-#endif
-    removeFromBag(pItem);
-
+        cout << currentLocation->getName() << endl;
+        cout << "lastLocation " << lastLocation->getName() << endl;
 }

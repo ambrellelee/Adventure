@@ -3,8 +3,8 @@
 As I enter the room, I notice a faint green glow that illuminates everything.
 The walls are covered in hieroglyhics. Man, the person designing this dungeon
 sure seems to have lacked a sense of direction when it came to decorating...
-Regardless, I notice a platform with something floating atop it. To the north
-I see a door, but in the way is a statue of a sphinx. I can always go back east.
+Regardless, I notice a PLATFORM with something floating atop it. To the north
+I see a door, but in the way is a statue of a SPHINX. I can always go back east.
 @@
 I'm back in the sphinx room. The platform is still there, as is the sphinx
 statue. Exits are to the east and the north.
@@ -46,16 +46,16 @@ platform
 3
 @@
 Atop the platform, I see a glass case covering an area in which there is a
-floating green orb. That orb looks valuable.
+floating green ORB. That ORB looks valuable. Maybe I should REMOVE the PLATFORM?
 @@
-With the glass case removed, the orb floats free on the platform. Ripe for the
+With the glass case removed, the ORB floats free on the platform. Ripe for the
 taking.
 @@
-The platform lacks the orb now, making it seem much less impressive.
+The platform lacks the ORB now, making it seem much less impressive.
 @@
 I grab the glass case, gently pick it up, and put it to the side.
 @@
-I reach out and grab the orb. Upon grabbing it, I immediately feel stronger.
+I reach out and grab the ORB. Upon grabbing it, I immediately feel stronger.
 @@
 False
 @@
@@ -70,16 +70,16 @@ sphinx
 @@
 3
 @@
-The sphinx's eyes seem to have followed you since me since I entered the room.
-Maybe I should investigate this thing more.
+The SPHINX's eyes seem to have followed you since me since I entered the room.
+Maybe I should INVESTIGATE this thing more.
 @@
 The sphinx sits poised, waiting for an answer to "what walks on four
-legs, then two, and then three?"
+legs, then two, and then three?" (hint: 3 letter answer.)
 @@
-The sphinx sits motionless.
+The SPHINX sits motionless.
 @@
-As I approach the sphinx, a voice calls out asking "what walks first on four
-legs, then two, and then three?"
+As I approach the SPHINX, a voice calls out asking "what walks first on four
+legs, then two, and then three?" (hint: 3 letter answer.)
 @@
 The sphinx comes to life, only to move out of the way and return to stone.
 @@

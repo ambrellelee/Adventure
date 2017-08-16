@@ -1,0 +1,19 @@
+Player 1
+10
+20
+3
+10
+0
+NULL
+NULL
+1
+flask
+An old flask. Worn, but devoid of leaks.
+I take a drink from the flask. It is refreshing
+5
+10
+False
+0
+1
+myInventory
+False

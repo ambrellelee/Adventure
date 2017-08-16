@@ -4,8 +4,8 @@ As I move through the door, the stale air of the room gives way to a
 comparatively fresh one. I've found myself in an ornate court yard of sorts.
 Outside, but unable to see the sky through the thick fog. What I can tell is
 that there are walls on each side, each of which are far too high for me to 
-scale. In the center of the court yard is a FOUNTAIN. On the north side of 
-the yard, I can just barely make out the form of a large MONSTER. It is too
+scale. In the center of the court yard is a fountain. On the north side of 
+the yard, I can just barely make out the form of a large monster. It is too
 close to the exit for me to just stroll past it.
 @@
 I'm in the court yard again. The fog is still thick. The pristine fountain
@@ -48,8 +48,8 @@ water fountain
 @@
 2
 @@
-It is a very finely crafted WATER FOUNTAIN. There doesn't seem to be any
-new WATER coming in, but its basin is full of clear, fresh WATER.
+It is a very finely crafted water fountain. There doesn't seem to be any
+new water coming in, but its basin is full of clear, fresh water.
 @@
 The fountain is empty now, still apparently without any source of water.
 @@
@@ -57,7 +57,8 @@ I gather up the water in my flask, which is full now.
 @@
 False
 @@
-scoop
+take
+get
 collect
 fill
 @@
@@ -66,11 +67,10 @@ monster guard
 3
 @@
 As I take a closer look at the monstrous guard, I notice how worn out it
-looks. The beast seems old and slow. It wears tattered armor. I should 
-ATTACK the MONSTER.
+looks. The beast seems old and slow. It wears tattered armor.
 @@
 The old guard lies dead on the floor with a gaping wound in its chest, its
-GUTS spilled out on the floor. I can't help but notice its bizzare innards.
+guts spilled out on the floor. I can't help but notice its bizzare innards.
 They seem to have absorbed quite a bit of water, and give off a smell not
 unlike the old Nutro pet food factory...
 @@
@@ -85,12 +85,16 @@ briefly look down at my hand afterwards. The sight and smell of the bits
 stuck to my hand remind me of the time I ate dog food as a child. I
 shudder at the memory, wiping my hand clean on my pants.
 @@
-False
-@@
 True
+@@
+False
 @@
 attack
 @@
 get
 take
-@@@
+@@
+1
+@@
+0
+@@

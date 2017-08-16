@@ -1,0 +1,103 @@
+2
+@@
+As I enter the next room, I notice it seems surprisingly clean. All around me
+are various MIRRORS, which leaves me disoriented. The MIRRORS make it clear,
+as one might suspect, that the trials I've faced left me less then presentable.
+Regardless, I look around and see an exit to the east. Other exits are the one
+I came from, to the west. Unfortunately, there's a rather large LOCK holding the
+eastern door closed.
+@@
+The mirror room remains as clean and disorienting as ever. The mirrors are there
+and the lock still hangs from the door.
+@@
+Mirror Room
+@@
+normal
+@@
+2
+@@
+west
+@@
+east
+@@
+False
+@@
+1
+@@
+mirror key
+@@
+A key I somehow got from the mirror.
+@@
+Maybe it opens the lock in the mirror room?
+@@
+0
+@@
+0
+@@
+False
+@@
+0
+@@
+1
+@@
+2
+@@
+mirrors
+@@
+3
+@@
+Looking into the MIRRORS I notice what at first seems like exactly what one
+would expect, images of the room as well as reflections of other mirrors. Maybe
+I should STUDY the MIRRORS and see the reflections more closely.
+@@
+The same reflections are there. That KEY sure is weird. Maybe I should take it.
+@@
+All of the normal reflections are there, nothing out of the ordinary.
+@@
+I begin to think that someone must have been extremely vain to need this many
+MIRRORS...but then I notice something in the reflection. It's a large KEY near
+where I'm standing. Strange, as the KEY doesn't seem to actually be there...
+@@
+I crouch down and reach out with my hand, keeping an eye on where the key in
+the reflection is in relation to my hand. Once I get the reflection of my hand
+above the key-reflection, I close my hand and feel it as my reflection starts
+to grab it. I look down, and see they key in my hand now! I put it in my bag.
+@@
+False
+@@
+False
+@@
+study
+investigate
+@@
+take
+get
+@@
+0
+@@
+0
+@@
+mirror lock
+@@
+2
+@@
+It's a large padlock hanging from the door, it is in locked position. Only if
+I have a KEY to UNLOCK this MIRROR LOCK...
+@@
+The padlock still hangs there, but it is unlocked now!
+@@
+I take the KEY I found, put it in the MIRROR LOCK, and turn it. I hear a distinct
+"click" as the lock disengages.
+@@
+True
+@@
+unlock
+@@
+0
+@@
+0
+@@
+9
+@@
+0
+@@

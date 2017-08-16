@@ -3,11 +3,11 @@
 Ugh...where am I? Face down on a stone floor and it's so blasted hot...As I get
 up I notice that I'm in a midieval style room made of stone. Their are no
 windows, the only sources of light are torches on the wall. There's a wooden
-chest a short distance from me. In the corner, there seems to be the silhouette
-of a person, but it's hard to focus on it. I'm so damn thirsty. There is a door
-on the eastern side of the room.
+CHEST a short distance from me. In the corner, there seems to be the SILHOUETTE
+of a person, but it's hard to focus on it maybe I should LOOK at it. I'm so damn thirsty. 
+There is a door on the eastern side of the room.
 @@
-I'm in the room I first woke up in. I see a wooden chest and the silhouette of
+I'm in the room I first woke up in. I see a wooden CHEST and the SILHOUETTE of
 a person. The room is lit by torches that show no signs of going out. An exit
 lies on the eastern side of the room.
 @@
@@ -65,7 +65,7 @@ Initially it seems like a rather ordinary wooden chest, but upon closer
 inspection you notice the distinct picture of a water droplet painted on its
 front side. That reminds you of just how thirsty you are.
 @@
-It's an open chest. There appears to be a flask inside.
+It's an open chest. There appears to be a FLASK inside.
 @@
 It's an empty wooden chest.
 @@
@@ -89,25 +89,25 @@ silhouette
 6
 @@
 It is quite distinctly the silhouette of a man. Strange, considering there seems
-to be no source casting a shadow.
+to be no source casting a shadow, maybe i should TALK to SILHOUETTE.
 @@
 It speaks! It offered help in a way that didn't feel particularly warm. Even so,
-given the circumstances, it would be unwise to not ask for help.
+given the circumstances, it would be unwise to not ASK SILHOUETTE for help.
 @@
-The silhouette's shadowy hand holds a sword with the handle facing me. The way
+The silhouette's shadowy hand holds a SWORD with the handle facing me. The way
 it offered help made it unclear whether the help was for me or my enemies. Even
-so, getting a sword COULD go a long way towards making me feel safe.
+so, getting a SWORD could go a long way towards making me feel safe.
 @@
-The shadowy figure is swiping its sword at me. I need to defend myself!
+The shadowy figure is swiping its sword at me. I need to BLOCK the SILHOUETTE from its attack and defend myself!
 @@
 The figure is off balance after I blocked its attack. Now is the perfect time
-to counter.
+to counter and ATTACK the SILHOUETTE.
 @@
 The silhouette stands motionless.
 @@
-I look towards the silhouette and say "hello." Upon doing so the silhouette
+I LOOK towards the silhouette and say "hello." Upon doing so the silhouette
 turns his head to look at me. "The road ahead is fraught with foes," says the
-shape in a flat, lifeless tone, "I can help."
+shape in a flat, lifeless tone, "I can help." 
 @@
 "Please, offer me what help you can." I say to the silhouette, immediately
 wondering why I bothered with manners towards something so clearly indifferent

@@ -2,9 +2,9 @@
 @@
 As I enter the room, I notice it is lit with the same lanterns I've become 
 accustomed to. The room is full of various statues and paintings, all of which
-are clearly too large for me to cover. Salient among these things is a box, a
-chest, and a vault. All of them would seem to be openable. Maybe I should take
-a look.
+are clearly too large for me to cover. Salient among these things is a BOX, a
+CHEST, and a VAULT. All of them would seem to be OPENable. Maybe I should take
+a LOOK.
 @@
 I'm in the treasure room again. The box, the chest, and the vault are still
 there.
@@ -55,11 +55,11 @@ False
 @@
 1
 @@
-coins
+gold coins
 @@
 Some gold coins
 @@
-It's hard to say what good currency could do down here. Maybe if I have to bribe someone?
+It's hard to say what good currency could do down here. Maybe if I have to BRIBE someone?
 @@
 0
 @@
@@ -79,7 +79,7 @@ chest
 @@
 An ordinary wooden chest. Maybe there's something inside?
 @@
-The chest is open now. There is steel-plated armor inside!
+The chest is open now. There is steel-plated ARMOR inside!
 @@
 The chest is empty
 @@
@@ -89,9 +89,9 @@ open it up and notice there is something inside.
 I reach into the chest and pull out the armor. It could fit in my seemingly 
 bottomless bag, so that's where I put it.
 @@
-False
+true
 @@
-False
+True
 @@
 open
 @@
@@ -108,14 +108,14 @@ It's an open box, there's something shiny inside!
 @@
 The box is empty
 @@
-The lid of the box slides off easily. There's a key in there!
+The lid of the box slides off easily. There's a TREASURE KEY in there!
 @@
 I reach into the box and get the key. Whoever runs security for this place
 should be fired
 @@
-False
+true
 @@
-False
+true
 @@
 open
 @@
@@ -128,7 +128,7 @@ vault
 @@
 A rather well maintained vault. It has a combination based lock.
 @@
-With the door to the vault opened, I notice gold inside. I'm rich!
+With the door to the vault opened, I notice GOLD COINS inside. I'm rich!
 @@
 The vault is empty
 @@
@@ -139,10 +139,11 @@ notice it's full of some enticing treasure!
 @@
 I continually grab handfuls of coins, transfering them to my bag as I do so.
 @@
-False
+true
 @@
-False
+true
 @@
+open
 crack
 @@
 get

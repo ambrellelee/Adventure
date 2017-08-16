@@ -2,10 +2,10 @@
 @@
 As I enter the room, I notice the oddly unfurnished nature of it. It's like the
 person moving in got started but gave up on their task almost immediately. 
-There's an ugly painting on the northern wall, some shelves, and a table. 
-That's it. The dust on the ground suggests the latter two have been moved 
-recently. There's also another place on the wall to hang a painting. The 
-existing painting could be placed there. There's an exit back to the south, but
+There's an ugly PAINTING on the northern wall, some SHELVES, and a TABLE. 
+That's it. The dust on the ground suggests the latter two have been MOVEd 
+recently. There's also another place on the wall to hang a PAINTING. The 
+existing PAINTING could be placed there. There's an exit back to the south, but
 that's back the way I came. There's got to be another, right? Or else I'm in a 
 dungeon from which there's no exit. But how would the builders have gotten out 
 without an exit?
@@ -33,8 +33,8 @@ painting
 @@
 2
 @@
-It's an extremely ugly painting of an old woman. It looks like you could pick
-it up. There's even another place on the wall you could put it.
+It's an extremely ugly painting of an old woman. It looks like you could MOVE
+it elsewhere. There's even another place on the wall you could put it.
 @@
 The painting sits on the other part of the wall
 @@
@@ -49,7 +49,7 @@ shelves
 @@
 2
 @@
-It's a set of book shelves covered in dust. I could move it if I needed to.
+It's a set of book shelves covered in dust. I could MOVE it if I needed to.
 @@
 The shelves sit in their new location, unused as ever.
 @@
@@ -64,7 +64,7 @@ table
 @@
 2
 @@
-It's an old wooden table. I could move it easily.
+It's an old wooden table. I could MOVE it easily.
 @@
 The table sits in its new place.
 @@
