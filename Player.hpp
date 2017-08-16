@@ -37,6 +37,11 @@ class Player
 		int getStamina();
 		void setScore(double playerScore);
 		int getScore();
+		std::string getCurLocName();
+                std::string getLastLocName();
+                void setCurrentLocation(Room *curRoom);
+                void setLastLocation(Room *lastRoom);
+                Room *getCurrentLocation();
 
         //Player Functionality Methods
 		void printPlayerInfo();
@@ -56,8 +61,10 @@ class Player
         void getItemInfo(std::string);    //print item desc
         bool endCheck();        //check if player game over
 
-		void savePlayer(std::ofstream& savePlayerFile);
-		void loadPlayer(std::ifstream& loadPlayerFile);
+		int savePlayer();
+		int loadPlayer();
+		void printLocs();
+
 };
 
 #endif
