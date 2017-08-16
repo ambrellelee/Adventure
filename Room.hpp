@@ -79,6 +79,10 @@ class Room
         ////////////////////// 8/12 additions ///////////////
         void showHints();
         bool getCanProceed();
+	
+        int saveRoom(std::string outFileName);
+        int loadRoom(std::string inFileName);
+
 };
 
 #endif
