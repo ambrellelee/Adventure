@@ -1,9 +1,9 @@
 2
 @@
-As I enter the room, I notice it is lit with the same lanterns I've become 
+As I enter the room I notice it is lit with the same lanterns I've become 
 accustomed to. The room is full of various statues and paintings, all of which
 are clearly too large for me to cover. Salient among these things is a BOX, a
-CHEST, and a VAULT. All of them would seem to be OPENable. Maybe I should take
+CHEST, and a VAULT. All of them seem to be OPENable. Maybe I should take
 a LOOK.
 @@
 I'm in the treasure room again. The box, the chest, and the vault are still
@@ -111,7 +111,7 @@ The box is empty
 The lid of the box slides off easily. There's a TREASURE KEY in there!
 @@
 I reach into the box and get the key. Whoever runs security for this place
-should be fired
+should be fired.
 @@
 true
 @@
@@ -128,7 +128,7 @@ vault
 @@
 A rather well maintained vault. It has a combination based lock.
 @@
-With the door to the vault opened, I notice GOLD COINS inside. I'm rich!
+With the door to the vault opened I notice GOLD COINS inside. I'm rich!
 @@
 The vault is empty
 @@
@@ -137,7 +137,7 @@ dial as appropriate, eventually finding the right numbers. And here my mom said
 I wasted those 10,000 hours I spent learning to crack safes...Regardless, I 
 notice it's full of some enticing treasure!
 @@
-I continually grab handfuls of coins, transfering them to my bag as I do so.
+I continually grab handfuls of coins, transferring them to my bag as I do so.
 @@
 true
 @@

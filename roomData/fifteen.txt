@@ -1,9 +1,9 @@
 2
 @@
-As I enter this room, I notice that it is rather bare. That is, aside from a
-large MONSTER blocking the exit. There's also an old BEGGAR nearby, who looks like
-a BEGGAR. Still, this MONSTER still seems more threatening. I could return to
-the east, or exit to the south.
+As I enter this room I notice that it is rather bare. That is, aside from a
+large MONSTER blocking the exit. There's also an old man nearby, who looks like
+a BEGGAR. Still, this MONSTER seems more threatening. I could return to
+the east or exit to the south.
 @@
 I'm back in the room with the begger and the big monster. Both are still there,
 as are the exits to the east and south.
@@ -30,7 +30,7 @@ beggar
 @@
 He looks kind enough, maybe I should TALK to him?
 @@
-So he wants some money, maybe if I could BRIBE the BEGGER with some coins I got...
+So he wants some money, maybe if I could BRIBE the BEGGAR with some coins I got...
 @@
 He looks at me nicely. "You should be able to leave this place now boy, 
 assuming you make it past that over-valued guard there..."
@@ -40,8 +40,8 @@ but I rule this place. It doesn't matter what you do, I'm keeping you forever
 unless you PAY me with some wealth. Damned knight back there contaminated all my
 good with demonic energy!"
 @@
-I reach out and hand the begger the gold I found in the valut. "Why thank you
-young boy!" the begger responds. I wonder how he presumes to know my gender
+I reach out and hand the beggar the gold I found in the vault. "Why thank you,
+young boy!" the beggar responds. I wonder how he presumes to know my gender
 when we haven't talked and he is clearly blind. Even so, he goes on. "You should
 be free to go now."
 @@
@@ -61,10 +61,10 @@ monster
 @@
 It looks rather threatening. Still, I bet he's no pushover! ATTACK!
 @@
-Wow, what a push over, that guy was one worthless guard
+Wow, what a pushover, that guy was one worthless guard
 @@
-I swing my sword at the monster. It is surprisingly slow, and ends up
-decapatated. Well, that was easy.
+I swing my sword at the monster. It is surprisingly slow and ends up
+decapitated. Well, that was easy.
 @@
 False
 @@
