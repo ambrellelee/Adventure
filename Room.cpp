@@ -89,6 +89,16 @@ std::vector<std::string> Room::getExits()
 	return exitVec;
 }
 
+bool Room::getHasVisited()
+{
+	return hasVisited
+}
+		
+void setHasVisited(bool visited)
+{
+	hasVisited = visited;
+}
+
 //checks whether or not an exit exists
 bool Room::canProceed(std::string exitName)
 {
@@ -264,7 +274,7 @@ Room::Room(std::string roomFile, int thisRoomNum)
         int numExits;
         vector<string> exits;
         vector<Item> roomItems;
-        //bool canProceed;
+        hasVisited = false;
 
         vector<string> roomDescriptions;
         int numRoomDescriptions;
@@ -978,6 +988,11 @@ int Room::saveRoom(std::string outFileName)
 
         }
 
+	if (hasVisited)
+		outputFile << "True" << endl;
+	else
+		outputFile << "False" << endl;
+	
         outputFile.close();
         return 0;
 }
@@ -1281,9 +1296,12 @@ int Room::loadRoom(std::string inFileName)
                 Item newItem = Item(iName, iDescription, iUse, waterNum, waterLimit, canPickUp, featNum, interactionNum);
                 dropped.push_back(newItem);
 
-
+		
         }
 
+	getline(inputFile, line);
+	
+	hasVisited = setBool(line);
         inputFile.close();
 
 
