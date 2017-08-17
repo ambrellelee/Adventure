@@ -236,47 +236,6 @@ void Room::printRoomInfo()
         cout << "-------->  " << exitVec[i] << endl;
     }
     cout << "++++++++++++++++++++++++++" << endl;
-/*
-    cout << "Items:" << endl;
-
-        ///////////////////////////////////////////////////////////////////////////////
-        vector<string> fDescTest;
-        vector<string> interactionDescTest;
-        vector<bool> canLeaveTest;
-        vector<vector<string> > verbTest;
-
-        cout <<"\n******************************************************************************"<<endl;
-        cout << "Features:" << endl;
-
-        for (size_t i = 0; i < roomFeatures.size(); i++)
-        {
-                cout << "Feature number " << i << endl;
-                cout << "Feature name: " << roomFeatures[i].getName() << endl;
-                fDescTest = roomFeatures[i].getFeatureDesc();
-                verbTest = roomFeatures[i].getVerbs();
-
-                cout << fDescTest[0] << endl;
-                interactionDescTest = roomFeatures[i].getInteractionDesc();
-                cout << "List of verbs that can be used on this feature are: " << endl;
-                for(size_t j = 0; j < verbTest.size(); j++)
-                {
-                    cout << "Potential verbs for interaction number " << j << endl;
-
-                    for (size_t k = 0; k < verbTest[j].size(); k++)
-                    {
-                        cout << verbTest[j][k] << ", ";
-                    }
-                    cout << endl;
-                }
-                cout << endl;
-                canLeaveTest = roomFeatures[i].getActions();
-                cout << "Exit status: " << canLeaveTest[roomFeatures[i].getinteractionNum()] << endl;
-                cout << "------------------------------------------------------------------------" << endl;
-        }
-
-	cout << endl;
-	cout << endl;
-*/
 	cout << "What do you want to do ? " << endl;
 }
 
@@ -541,12 +500,6 @@ Item Room::getItemInRoom(std::string itemName)
 
 void Room::printRoomDesc()
 {
-    /*
-    for (size_t i = 0; i < rDescription.size(); i++)
-    {
-        cout << rDescription[i] << endl;
-    }
-    */
     cout << rDescription[1] << endl;
     cout << "The door you see that you can to go to are " ;
     cout << "Exits:" << endl;
@@ -854,6 +807,10 @@ void Room::showHints()
     for(size_t j = 0; j < inRoom.size(); j++)
     {
         cout << "Item " << j+1 << ": " << inRoom[j].iName << endl;
+    }
+    for(size_t k = 0; k < dropped.size(); k++)
+    {
+        cout << "Item " << k+1 << ": " << dropped[k].iName << endl;
     }
     cout << "*Note: Some items may require interactions with features\nin the room before you can take them.*" << endl;
     cout << "*Always LOOK at capitalized keywords to find more hints on what to do..." << endl;
