@@ -264,7 +264,7 @@ void Parser::parser(Dungeon& curDungeon, Player& curPlayer, playerString& curSen
         getline (cin, answer);
         if(answer == "yes" || answer == "y")
         {
-            system("CLS");
+            std::system("clear");
             cout << "loading game...."<< endl;
             curDungeon.loadDungeon(&curPlayer);
             cout << "Finished loading previously saved game.\n" <<endl;

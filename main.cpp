@@ -61,7 +61,7 @@ int main()
         int choice = d.showMenu();
         if(choice ==  1)
         {
-            system("CLS");
+            std::system("clear");
             bool backToMenu = false;
             d.setCurrentRoom(0);
             d.printCurLocation();
