@@ -19,6 +19,7 @@ class Room
 		std::vector<Item> dropped;	//vector holding structs of items that the player dropped in the room
 		std::vector<std::string> interactions;	// vector holding descriptions for interactions that occur in the room
 		bool canProceedForward;		//indicates whether or not the player can leave through the exit
+		bool hasVisited;
 
 	public:
 
@@ -48,6 +49,8 @@ class Room
 		void setItem(std::string, std::string, std::string, int, int, bool, int, int);
 		Item getItemInRoom(std::string itemName);
 		void setExits(std::string newExit);
+		bool getHasVisited();
+		void setHasVisited(bool visited);
 
 		//Room Functionality methods
 		bool canProceed(std::string exitName);		//Finds whether an exit exists or not
