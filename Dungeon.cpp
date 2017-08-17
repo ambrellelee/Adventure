@@ -77,7 +77,7 @@ void Dungeon::playGame()
 //displays primary commands
 void Dungeon::help()
 {
-	cout <<"Allowed commands:\n" "look \n" "take \n" " talk \n" "open\n" "fill \n " "use \n" "go \n" "inventory \n" "drink \n" "attack \n""hint \n" "instructions \n" "savegame \n" "loadgame \n" << endl;
+	cout <<"Allowed commands:\n" "look \n" "take \n" "drop \n" "talk \n" "open\n" "fill \n" "use \n" "go \n" "inventory \n" "drink \n" "attack \n""hint \n" "instructions \n" "savegame \n" "loadgame \n" << endl;
 }
 
 void Dungeon::setCurrentRoom(int i)
@@ -105,14 +105,18 @@ void Dungeon::getItemInfo(std::string itemName)
 //returns item in room
 Item Dungeon::returnItem(std::string itemName)
 {
+	Item newItem;    
+
     if(itemInRoom(itemName))
     {
-        return newRoom->getItemInRoom(itemName);
+        newItem = newRoom->getItemInRoom(itemName);
     }
     else if(itemInDroppedList(itemName))
     {
-        return newRoom->getItemInDrop(itemName);
+        newItem = newRoom->getItemInDrop(itemName);
     }
+
+	return newItem;
 }
 
 //displays room description

@@ -28,7 +28,6 @@ class Inventory
 		bool drinkable(std::string);			//checks if item can be drank from
 		void fillFlask(int);
 		void decreaseFlask(int);
-		void getInfo(std::string);
 		void clearInventory();
 		std::vector<Item> getStuff();
 		
