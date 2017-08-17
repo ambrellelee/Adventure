@@ -27,6 +27,7 @@ Room::Room()
 {
 	rName = "no name";
 	rType = "no type";
+    hasVisited = false;
 }
 
 Room::Room(std::string newName, std::vector<std::string> description, std::string tType, std::vector<std::string> exits)

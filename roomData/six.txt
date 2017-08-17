@@ -1,6 +1,6 @@
 2
 @@
-As I enter the room I notice the oddly unfurnished nature of it. It's like the
+As I enter the room, I notice the oddly unfurnished nature of it. It's like the
 person moving in got started but gave up on their task almost immediately. 
 There's an ugly PAINTING on the northern wall, some SHELVES, and a TABLE. 
 That's it. The dust on the ground suggests the latter two have been MOVEd 
@@ -36,7 +36,7 @@ painting
 It's an extremely ugly painting of an old woman. It looks like you could MOVE
 it elsewhere. There's even another place on the wall you could put it.
 @@
-The painting sits on the other part of the wall.
+The painting sits on the other part of the wall
 @@
 I pick up the painting and move it to the other spot. Hey, the old hanging spot
 had a door behind it!
@@ -49,7 +49,7 @@ shelves
 @@
 2
 @@
-It's a set of bookshelves covered in dust. I could MOVE it if I needed to.
+It's a set of book shelves covered in dust. I could MOVE it if I needed to.
 @@
 The shelves sit in their new location, unused as ever.
 @@

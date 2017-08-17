@@ -349,10 +349,10 @@ void Parser::findNextDungeon(playerString& curSentence, Dungeon& curDungeon, Pla
                 {
                     prevRoom = true;
                 }
-                if(curDungeon.getRoomVisited() == true)
-                {
-                    prevRoom = true;
-                }
+   //             if(curDungeon.getRoomVisited() == true)
+    //            {
+    //                prevRoom = true;
+    //            }
                 curDungeon.setRoomVisited();
                 curDungeon.setCurrRoom(*i);
                 if(curDungeon.finishCheck() == true)
@@ -366,6 +366,10 @@ void Parser::findNextDungeon(playerString& curSentence, Dungeon& curDungeon, Pla
                     std::cout << "****            You have entered: " << (*i) << " Dungeon.          ****" << std::endl;
                     std::cout << "****************************************************************" << std::endl;
                     if(prevRoom == true)
+                    {
+                        curDungeon.viewCurRoom();
+                    }
+                    else if(curDungeon.getRoomVisited() == true)
                     {
                         curDungeon.viewCurRoom();
                     }

@@ -1,6 +1,6 @@
 2
 @@
-As I enter the room I notice a faint green glow that illuminates everything.
+As I enter the room, I notice a faint green glow that illuminates everything.
 The walls are covered in hieroglyhics. Man, the person designing this dungeon
 sure seems to have lacked a sense of direction when it came to decorating...
 Regardless, I notice a PLATFORM with something floating atop it. To the north
@@ -27,7 +27,7 @@ orb
 @@
 A glowing green orb
 @@
-Having it increases my maximum health.
+Having it increases my maximum health
 @@
 0
 @@
@@ -70,7 +70,7 @@ sphinx
 @@
 3
 @@
-The SPHINX's eyes seem to have followed me since I entered the room.
+The SPHINX's eyes seem to have followed you since me since I entered the room.
 Maybe I should INVESTIGATE this thing more.
 @@
 The sphinx sits poised, waiting for an answer to "what walks on four

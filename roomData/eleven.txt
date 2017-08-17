@@ -1,7 +1,7 @@
 2
 @@
-As I enter the room I hear some rather strange breathing. Like snoring, but
-somehow intimidating. As I enter I see why - there is a sleeping DRAGON there!
+As I enter the room, I hear some rather strange breathing. Like snoring, but
+somehow intimidating. As I enter I see why, there is a sleeping DRAGON there.
 It has a wooden BOX and a passageway behind it. The DRAGON shows no signs of
 waking up. Even so, getting past this thing will be no easy task, I don't even
 have a ring that will make me inivsible...regardless, that passageway to the
@@ -75,7 +75,7 @@ dragon
 @@
 2
 @@
-It is a large slumbering dragon. It looks fast asleep, but I can probably SNEAK by
+It is a large slumbering dragon. It looks fast asleep, I can probably SNEAK by
 the sleeping DRAGON...
 @@
 The dragon continues to sleep. It really is a deep sleeper.
