@@ -46,7 +46,7 @@ vector<string> playerInput()
 
 }
 
-main()
+int main()
 {
     Dungeon d;  //create dungeon
     Player p;   //create player
