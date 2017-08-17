@@ -1,18 +1,18 @@
 2
 @@
-As I move through the door, the stale air of the room gives way to a
-comparatively fresh one. I've found myself in an ornate court yard of sorts.
+As I move through the door the stale air of the room gives way to a
+comparatively fresh one. I've found myself in an ornate courtyard of sorts.
 Outside, but unable to see the sky through the thick fog. What I can tell is
 that there are walls on each side, each of which are far too high for me to 
 scale. In the center of the court yard is a FOUNTAIN. On the north side of 
-the yard, I can just barely make out the form of a large MONSTER. It is too
+the yard I can just barely make out the form of a large MONSTER. It is too
 close to the exit for me to just stroll past it.
 @@
-I'm in the court yard again. The fog is still thick. The pristine fountain
+I'm in the courtyard again. The fog is still thick. The pristine fountain
 continues to stand in the center. The form of the monster remains near the
 north side.
 @@
-Court Yard
+Courtyard
 @@
 normal
 @@
@@ -49,7 +49,7 @@ water fountain
 2
 @@
 It is a very finely crafted WATER FOUNTAIN. There doesn't seem to be any
-new WATER coming in, but its basin is full of clear, fresh WATER.
+new WATER coming in but its basin is full of clear, fresh WATER.
 @@
 The fountain is empty now, still apparently without any source of water.
 @@
@@ -65,16 +65,16 @@ monster guard
 @@
 3
 @@
-As I take a closer look at the monstrous guard, I notice how worn out it
+As I take a closer look at the monstrous guard I notice how worn out it
 looks. The beast seems old and slow. It wears tattered armor. I should 
 ATTACK the MONSTER.
 @@
 The old guard lies dead on the floor with a gaping wound in its chest, its
 GUTS spilled out on the floor. I can't help but notice its bizzare innards.
-They seem to have absorbed quite a bit of water, and give off a smell not
+They seem to have absorbed quite a bit of water and give off a smell not
 unlike the old Nutro pet food factory...
 @@
-The guard's corpse lies on the floor. Without the guts you took, the corpse
+The guard's corpse lies on the floor. Without the guts you took the corpse
 has animals crawling in to feast on the meat.
 @@
 I charge forward and slash at the beast with my sword. It falls, with its

@@ -3,7 +3,7 @@
 An intense wave of heat assaults me as I open the door to the next room. As I
 make my way inside I notice a dark atmosphere, lit as much by the glow of a pit
 of lava as it is by the few lanterns hanging from the ceiling. The pit sits
-between me and the other sides of the room. The eas side would appear to have
+between me and the other sides of the room. The east side would appear to have
 a door, but I know I can't jump far enough to get over the lava and to the
 platform in front of the door. There is an ALCOVE nearby on the wall, with
 something that shines brightly. Next to it is a LEVER of some kind.
@@ -54,7 +54,7 @@ Strangely, I feel no heat from it.
 It's a stone alcove. It remains empty.
 @@
 I reach in and grab the torch. Strangely enough, the flames don't seem to give
-off any heat. In one of my more reckless moments, I put my hand over the flame,
+off any heat. In one of my more reckless moments I put my hand over the flame
 and feel no pain. Similarly, it doesn't burn my bag, so I put the torch inside.
 @@
 False
