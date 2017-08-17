@@ -138,10 +138,27 @@ void Room::removeItem(std::string rItem)
                 targetItem = inRoom[i].iName;
                 std::vector<Item>::iterator i = std::find_if(inRoom.begin(), inRoom.end(), findItem(targetItem));
                 inRoom.erase(i);
-cout << "removing " << targetItem << " from room" <<endl;
+                cout << "removing " << targetItem << " from room" <<endl;
                 break;
             }
         }
+        temp.clear();
+	}
+	for( size_t i = 0; i< dropped.size(); i++)
+	{
+	    temp = split(dropped[i].iName);
+	    for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == rItem)
+            {
+                targetItem = dropped[i].iName;
+                std::vector<Item>::iterator i = std::find_if(dropped.begin(), dropped.end(), findItem(targetItem));
+                dropped.erase(i);
+                cout << "removing " << targetItem << " from room" <<endl;
+                break;
+            }
+        }
+        temp.clear();
 	}
 
 }
@@ -846,6 +863,63 @@ bool Room::getCanProceed()
     return canProceedForward;
 }
 
+void Room::saveDroppedItems(Item& droppedItem)
+{
+    dropped.push_back(droppedItem);
+    std::cout << droppedItem.iName << " has been dropped in " << rName << "." <<std::endl;
+}
+
+bool Room::itemsDroppedInRoom(std::string itemName)
+{
+    std::vector<string> temp;
+    bool inDropped = false;
+    for(size_t i = 0; i < dropped.size(); i++)
+    {
+        //split string into vector
+        //http://code.runnable.com/VHb0hWMZp-ws1gAr/splitting-a-string-into-a-vector-for-c%2B%2B
+        std::stringstream ss(dropped[i].iName);
+        std::string tok;
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == itemName)
+            {
+                inDropped = true;
+            }
+        }
+        temp.clear();
+     }
+     return inDropped;
+}
+
+Item Room::getItemInDrop(std::string itemName)
+{
+    Item tempItem = Item("", "", "", 0, 0, 0, 0, 0);
+    std::vector<string> temp;
+    for(size_t i =0; i < dropped.size(); i++)
+    {
+        //split string into vector
+        //http://code.runnable.com/VHb0hWMZp-ws1gAr/splitting-a-string-into-a-vector-for-c%2B%2B
+        std::stringstream ss(dropped[i].iName);
+        std::string tok;
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == itemName)
+            {
+                tempItem = dropped[i];
+            }
+        }
+        temp.clear();
+     }
+     return tempItem;
+}
 int Room::saveRoom(std::string outFileName)
 {
         fstream outputFile;

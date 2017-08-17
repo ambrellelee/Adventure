@@ -69,6 +69,9 @@ class Room
 		void printItemDescription(std::string);
 		void getItemIDesc(std::string);
 		bool getAvailability(std::string availability);
+		void saveDroppedItems(Item&);
+		bool itemsDroppedInRoom(std::string);
+        Item getItemInDrop(std::string);
 
 		//Methods Related to Features In Room
 		bool canUseFeature(std::string, std::string);

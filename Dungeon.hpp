@@ -51,6 +51,8 @@ class Dungeon
 		bool itemInRoom(std::string iName);
 		void getItemInfo(std::string);
 		Item returnItem(std::string itemName);
+		void droppedInRoom(Item&);
+		bool itemInDroppedList(std::string);
 
 		//related to features
 		void validInteraction(std::string);

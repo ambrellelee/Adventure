@@ -105,7 +105,14 @@ void Dungeon::getItemInfo(std::string itemName)
 //returns item in room
 Item Dungeon::returnItem(std::string itemName)
 {
-	return newRoom->getItemInRoom(itemName);
+    if(itemInRoom(itemName))
+    {
+        return newRoom->getItemInRoom(itemName);
+    }
+    else if(itemInDroppedList(itemName))
+    {
+        return newRoom->getItemInDrop(itemName);
+    }
 }
 
 //displays room description
@@ -248,7 +255,15 @@ bool Dungeon::previousRooms(std::string newRoomName)
     }
     return previouslyEnteredRoom;
 }
+void Dungeon::droppedInRoom(Item& droppedItem)
+{
+    newRoom->saveDroppedItems(droppedItem);
+}
 
+bool Dungeon::itemInDroppedList(std::string itemName)
+{
+    return newRoom->itemsDroppedInRoom(itemName);
+}
 //check for end of game
 bool Dungeon::finishCheck()
 {

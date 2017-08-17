@@ -226,6 +226,35 @@ void Player::getItemInfo(std::string itemName)
 {
     bag.getInfo(itemName);
 }
+
+Item Player::getItemInBag(std::string itemName)
+{
+    std::vector<Item> tempItems;
+    tempItems = bag.getStuff();
+
+    Item tempItem = Item("", "", "", 0, 0, 0, 0, 0);
+     std::vector<string> temp;
+     for(size_t i =0; i < tempItems.size(); i++)
+     {
+        //split string into vector
+        //http://code.runnable.com/VHb0hWMZp-ws1gAr/splitting-a-string-into-a-vector-for-c%2B%2B
+        std::stringstream ss(tempItems[i].iName);
+        std::string tok;
+        while(getline(ss, tok, ' '))
+        {
+            temp.push_back(tok);
+        }
+        for(size_t j = 0; j < temp.size(); j++)
+        {
+            if(temp[j] == itemName)
+            {
+                tempItem = tempItems[i];
+            }
+        }
+        temp.clear();
+     }
+     return tempItem;
+}
 bool Player::endCheck()
 {
     return gameOver;

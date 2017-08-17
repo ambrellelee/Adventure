@@ -415,8 +415,6 @@ void Parser::takeItemInDungeon(playerString& curSentence, Player& curPlayer, Dun
                     //item is in Dungeon, pick up item and place in player inventory
                     Item temp = curDungeon.returnItem(*i);
 
- //                   cout << "You picked up " << temp.iName << endl;
-//                    cout << temp.iDesc << endl;
                     curPlayer.addToBag(temp);
                     if(temp.iName == "armor")
                     {
@@ -446,6 +444,14 @@ void Parser::takeItemInDungeon(playerString& curSentence, Player& curPlayer, Dun
                 itemTaken = true;
             }
 		}
+		else if(curDungeon.itemInDroppedList(*i)== true)
+        {
+            Item temp = curDungeon.returnItem(*i);
+            curPlayer.addToBag(temp);
+            curDungeon.removeRoomItem(*i);
+            itemTaken = true;
+            break;
+        }
 	}
 	if (itemTaken == false)
 	{
@@ -692,12 +698,20 @@ void Parser::dropSomething(playerString& curSentence, Player& curPlayer, Dungeon
 		std::transform(i->begin(), i->end(), i->begin(), ::tolower);
 		if (curPlayer.hasItem(*i) == true)
 		{
-		    if(curDungeon.featureInRoom("hound") == true)
+		    if(curDungeon.featureInRoom("hound") == true && *i == "guts")
             {
                 //remove from inventory
                 curPlayer.removeFromBag(*i);
                 curDungeon.fIDesc("hound");
                 curDungeon.validInteraction("hound");
+                dropped = true;
+                break;
+            }
+            else
+            {
+                Item temp = curPlayer.getItemInBag(*i);
+                curDungeon.droppedInRoom(temp);
+                curPlayer.removeFromBag(*i);
                 dropped = true;
                 break;
             }
