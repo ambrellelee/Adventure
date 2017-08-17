@@ -35,19 +35,14 @@ int Dungeon::showMenu()
    bool go = false;
     while(!go)
     {
-        std::cout << "Welcome to the Dungeon! What would you like to do? \n Enter: 1 to play \n\t2 to load saved game \n\t3 to quit." << std::endl;
+        std::cout << "Welcome to the Dungeon! What would you like to do? \n Enter: 1 to play \n\t2 to quit." << std::endl;
         std::cin >>playerInput;
         if(playerInput == 1)
         {
             go = true;
             return 1;
         }
-        else if(playerInput == 2)
-        {
-            go = true;
-            return 2;
-        }
-        else if (playerInput < 1 || playerInput > 3)
+        else if (playerInput < 1 || playerInput > 2)
         {
             std::cout << "Please enter a valid option." <<std::endl;
             std::cin.clear();
@@ -58,7 +53,7 @@ int Dungeon::showMenu()
             go = true;
         }
     }
-    return 3;
+    return 2;
 }
 
 //displays game instructions
@@ -107,7 +102,7 @@ void Dungeon::getItemInfo(std::string itemName)
     newRoom->lookItems(itemName);
 }
 
-//returns item in room 
+//returns item in room
 Item Dungeon::returnItem(std::string itemName)
 {
 	return newRoom->getItemInRoom(itemName);
@@ -230,8 +225,19 @@ void Dungeon::hints()
     newRoom->showHints();
 }
 
+void Dungeon::setRoomVisited()
+{
+    newRoom->setHasVisited(true);
+}
+
+bool Dungeon::getRoomVisited()
+{
+   return newRoom->getHasVisited();
+}
+
 bool Dungeon::previousRooms(std::string newRoomName)
 {
+
     bool previouslyEnteredRoom = false;
     if(newRoom->getName() != allRooms[0].getName())
     {
@@ -240,7 +246,6 @@ bool Dungeon::previousRooms(std::string newRoomName)
             previouslyEnteredRoom = true;
         }
     }
-
     return previouslyEnteredRoom;
 }
 

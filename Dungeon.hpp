@@ -20,10 +20,10 @@ class Dungeon
 
 	public:
 		Dungeon();
-		
+
 		Dungeon(std::vector<Room> rooms);
-	
-		//related to game play	
+
+		//related to game play
 		void setGameDescription(std::string);
 		std::string showGameDescription();
 		int showMenu();
@@ -32,16 +32,18 @@ class Dungeon
 		bool finishCheck();
 		void help();
 		void hints();
-		
+
 		//related to Rooms
-		void setCurrRoom(std::string);  
+		void setCurrRoom(std::string);
 		void setCurrentRoom(int i);
 		void printCurLocation();
 		void viewCurRoom();
-          bool useExit(std::string exitName);
+        bool useExit(std::string exitName);
 		bool checkRoomExitStatus(std::string exitStatus);
-          bool itemAvailability(std::string availability);
+        bool itemAvailability(std::string availability);
 		bool previousRooms(std::string);
+		void setRoomVisited();
+        bool getRoomVisited();
 
 		//related to Items
 		void useItem(std::string);
@@ -49,7 +51,7 @@ class Dungeon
 		bool itemInRoom(std::string iName);
 		void getItemInfo(std::string);
 		Item returnItem(std::string itemName);
-		
+
 		//related to features
 		void validInteraction(std::string);
 		void fIDesc(std::string);
@@ -58,10 +60,10 @@ class Dungeon
 		bool featureInRoom(std::string fName);
 
 		bool verbCheck(std::string, std::string);
-		
+
 		int saveDungeon();
 		int loadDungeon(Player *myPlayer);
-		
+
 		~Dungeon();
 
 };

@@ -35,6 +35,7 @@ Room::Room(std::string newName, std::vector<std::string> description, std::strin
 	rDescription = description;
 	rType = tType;
 	exitVec = exits;
+	hasVisited = false;
 }
 
 //Destructor
@@ -91,10 +92,10 @@ std::vector<std::string> Room::getExits()
 
 bool Room::getHasVisited()
 {
-	return hasVisited
+	return hasVisited;
 }
-		
-void setHasVisited(bool visited)
+
+void Room::setHasVisited(bool visited)
 {
 	hasVisited = visited;
 }
@@ -852,7 +853,6 @@ int Room::saveRoom(std::string outFileName)
         std::string directory = "saveData";
         std::string fileName;
         std::string fullPath;
-        int numEntries;
 
         fullPath = directory + "/" + outFileName;
 
@@ -867,7 +867,7 @@ int Room::saveRoom(std::string outFileName)
         outputFile << rDescription.size() << endl;
         outputFile << "@@" << endl;
 
-        for (int i = 0; i < rDescription.size(); i++)
+        for (size_t i = 0; i < rDescription.size(); i++)
         {
                 outputFile << rDescription[i] << "@@" << endl;
         }
@@ -876,7 +876,7 @@ int Room::saveRoom(std::string outFileName)
         outputFile << rType << endl << "@@" << endl;
         outputFile << exitVec.size() << endl << "@@" << endl;
 
-        for (int i = 0; i < exitVec.size(); i++)
+        for (size_t i = 0; i < exitVec.size(); i++)
         {
                 outputFile << exitVec[i] << endl << "@@" << endl;
         }
@@ -888,7 +888,7 @@ int Room::saveRoom(std::string outFileName)
 
         outputFile << inRoom.size() << endl << "@@" << endl;
 
-        for (int i = 0; i < inRoom.size(); i++)
+        for (size_t i = 0; i < inRoom.size(); i++)
         {
                 outputFile << inRoom[i].iName << endl << "@@" << endl;
                 outputFile << inRoom[i].iDesc << endl << "@@" << endl;
@@ -913,7 +913,7 @@ int Room::saveRoom(std::string outFileName)
         vector<vector<string> > verbTest;
 
 
-        for (int i = 0; i < roomFeatures.size(); i++)
+        for (size_t i = 0; i < roomFeatures.size(); i++)
         {
                 outputFile << roomFeatures[i].getName() << endl << "@@" << endl;
                 fDescTest = roomFeatures[i].getFeatureDesc();
@@ -922,18 +922,18 @@ int Room::saveRoom(std::string outFileName)
                 verbTest = roomFeatures[i].getVerbs();
 
                 outputFile << fDescTest.size() << endl << "@@" << endl;
-                for (int j = 0; j < fDescTest.size(); j++)
+                for (size_t j = 0; j < fDescTest.size(); j++)
                 {
                         outputFile << fDescTest[j] << "@@" << endl;
                 }
 
-                for (int j = 0; j < interactionDescTest.size(); j++)
+                for (size_t j = 0; j < interactionDescTest.size(); j++)
                 {
                         outputFile << interactionDescTest[j] << "@@";
                         outputFile << endl;
                 }
 
-                for (int j = 0; j < canLeaveTest.size(); j++)
+                for (size_t j = 0; j < canLeaveTest.size(); j++)
                 {
                         if (canLeaveTest[j] == true)
                                 outputFile << "True" << endl << "@@" << endl;
@@ -941,9 +941,9 @@ int Room::saveRoom(std::string outFileName)
                                 outputFile << "False" << endl << "@@" << endl;
                 }
 
-                for (int j = 0; j < verbTest.size(); j++)
+                for (size_t j = 0; j < verbTest.size(); j++)
                 {
-                        for (int k = 0; k < verbTest[j].size(); k++)
+                        for (size_t k = 0; k < verbTest[j].size(); k++)
                         {
                                 outputFile << verbTest[j][k] << endl;
                         }
@@ -959,7 +959,7 @@ int Room::saveRoom(std::string outFileName)
                 fDescTest.clear();
                 interactionDescTest.clear();
                 canLeaveTest.clear();
-                for (int j = 0; j < verbTest.size(); j++)
+                for (size_t j = 0; j < verbTest.size(); j++)
                 {
                         verbTest[j].clear();
                 }
@@ -970,7 +970,7 @@ int Room::saveRoom(std::string outFileName)
 
         outputFile << dropped.size() << endl << "@@" << endl;
 
-        for (int i = 0; i < dropped.size(); i++)
+        for (size_t i = 0; i < dropped.size(); i++)
         {
                 outputFile << dropped[i].iName << endl << "@@" << endl;
                 outputFile << dropped[i].iDesc << endl << "@@" << endl;
@@ -992,7 +992,7 @@ int Room::saveRoom(std::string outFileName)
 		outputFile << "True" << endl;
 	else
 		outputFile << "False" << endl;
-	
+
         outputFile.close();
         return 0;
 }
@@ -1236,7 +1236,7 @@ int Room::loadRoom(std::string inFileName)
                 fDesc.clear();
                 interactionDesc.clear();
                 canLeave.clear();
-                for (int j = 0; j < verbs.size(); j++)
+                for (size_t j = 0; j < verbs.size(); j++)
                 {
                         verbs[j].clear();
                 }
@@ -1296,11 +1296,11 @@ int Room::loadRoom(std::string inFileName)
                 Item newItem = Item(iName, iDescription, iUse, waterNum, waterLimit, canPickUp, featNum, interactionNum);
                 dropped.push_back(newItem);
 
-		
+
         }
 
 	getline(inputFile, line);
-	
+
 	hasVisited = setBool(line);
         inputFile.close();
 

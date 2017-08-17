@@ -14,7 +14,7 @@ class Room
 		std::vector<Feature> roomFeatures;		//vector holding Features that are present in the room
 		unsigned int roomNumber;
 		std::vector<std::string> rDescription;
-		std::string rType;			//indicates whether the room is the final room	
+		std::string rType;			//indicates whether the room is the final room
 		std::vector<Item> inRoom;     //vector holding structs of items in the room
 		std::vector<Item> dropped;	//vector holding structs of items that the player dropped in the room
 		std::vector<std::string> interactions;	// vector holding descriptions for interactions that occur in the room
@@ -36,9 +36,9 @@ class Room
 		std::vector<std::string> exitVec;		//vector holding exits
 		std::vector<std::string> usedFeatures;
 		std::vector<std::vector<std::string> > verbsList;
-          std::vector<std::string> split(const std::string& s);
+        std::vector<std::string> split(const std::string& s);
 		std::vector<std::string> getExits();
-		
+
 		//Get and Set Values
 		void setName(std::string newName);
 		std::string getName();
@@ -50,23 +50,22 @@ class Room
 		Item getItemInRoom(std::string itemName);
 		void setExits(std::string newExit);
 		bool getHasVisited();
-		void setHasVisited(bool visited);
+		void setHasVisited(bool);
 
 		//Room Functionality methods
 		bool canProceed(std::string exitName);		//Finds whether an exit exists or not
 		bool checkRoomNames(std::string rName);      //Find if parameter match any room names
 		void printRoomInfo();
 		void printRoomDesc();
-//		void printAllData();
 		void showHints();
-          bool getCanProceed();
-          bool getExitStatus();	
-	
+        bool getCanProceed();
+        bool getExitStatus();
+
 		//Methods Related to Items in Room
 		void lookItems(std::string rItem);           //look at an item in the room
 		bool checkItemInRoom(std::string rItem);     //check if item is in room
-          void removeItem(std::string rItem);
-          void addItem(Item);
+        void removeItem(std::string rItem);
+        void addItem(Item);
 		void printItemDescription(std::string);
 		void getItemIDesc(std::string);
 		bool getAvailability(std::string availability);
@@ -77,8 +76,8 @@ class Room
 		bool finRoom(std::string);
 		void featureIDescription(std::string);
 		void featureDescription(std::string);
-		
-		//Save and Load Room methods 	
+
+		//Save and Load Room methods
 		int saveRoom(std::string outFileName);
 		int loadRoom(std::string inFileName);
 

@@ -270,7 +270,7 @@ int Player::savePlayer()
                 outputFile << "NULL" << endl;
         }
         outputFile << myStuff.size() << endl;
-        for (int i = 0; i < myStuff.size(); i++)
+        for (size_t i = 0; i < myStuff.size(); i++)
         {
                 outputFile << myStuff[i].iName << endl;
                 outputFile << myStuff[i].iDesc << endl;

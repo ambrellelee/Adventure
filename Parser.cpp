@@ -12,7 +12,7 @@ using std::string;
 using std::cin;
 void Parser::parser(Dungeon& curDungeon, Player& curPlayer, playerString& curSentence)
 {
-    if (verbInSentence(curSentence, "go") || verbInSentence(curSentence, "walk") == true)
+    if (verbInSentence(curSentence, "go") || verbInSentence(curSentence, "north") || verbInSentence(curSentence, "south") || verbInSentence(curSentence, "west") || verbInSentence(curSentence, "east") == true)
 	{
 		//search for the next Room and if found, go to next Room.
 #ifdef NOISYTEST
@@ -243,7 +243,7 @@ void Parser::parser(Dungeon& curDungeon, Player& curPlayer, playerString& curSen
 		removeSomething(curSentence, curPlayer, curDungeon);
     }
     //for save
-    else if(verbInSentence(curSentence, "save") == true)
+    else if(verbInSentence(curSentence, "save") ||  verbInSentence(curSentence, "savegame") == true)
     {
 #ifdef NOISYTEST
 		std::cout << "'save' detected...proceeding to 'save' function." << std::endl;
@@ -254,14 +254,26 @@ void Parser::parser(Dungeon& curDungeon, Player& curPlayer, playerString& curSen
 		cout << "Current game status saved!" << endl;
     }
     //for load
-    else if(verbInSentence(curSentence, "load") == true)
+    else if(verbInSentence(curSentence, "load") || verbInSentence(curSentence, "loadgame") == true)
     {
 #ifdef NOISYTEST
 		std::cout << "'load' detected...proceeding to 'load' function." << std::endl;
 #endif
-		cout << "loading game...."<< endl;
-		curDungeon.loadDungeon(&curPlayer);
-		cout << "Finished loading previously saved game." <<endl;
+        string answer;
+        cout << "Are you sure you would like to load previously saved game? ";
+        getline (cin, answer);
+        if(answer == "yes" || answer == "y")
+        {
+            system("CLS");
+            cout << "loading game...."<< endl;
+            curDungeon.loadDungeon(&curPlayer);
+            cout << "Finished loading previously saved game.\n" <<endl;
+            curDungeon.printCurLocation();
+        }
+        else
+        {
+            cout << "What would you like to do?" << endl;
+        }
     }
 
     //for exit
@@ -337,6 +349,11 @@ void Parser::findNextDungeon(playerString& curSentence, Dungeon& curDungeon, Pla
                 {
                     prevRoom = true;
                 }
+                if(curDungeon.getRoomVisited() == true)
+                {
+                    prevRoom = true;
+                }
+                curDungeon.setRoomVisited();
                 curDungeon.setCurrRoom(*i);
                 if(curDungeon.finishCheck() == true)
                 {
