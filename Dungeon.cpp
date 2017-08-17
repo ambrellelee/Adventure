@@ -105,18 +105,14 @@ void Dungeon::getItemInfo(std::string itemName)
 //returns item in room
 Item Dungeon::returnItem(std::string itemName)
 {
-	Item newItem;    
-
     if(itemInRoom(itemName))
     {
-        newItem = newRoom->getItemInRoom(itemName);
+        return newRoom->getItemInRoom(itemName);
     }
     else if(itemInDroppedList(itemName))
     {
-        newItem = newRoom->getItemInDrop(itemName);
+        return newRoom->getItemInDrop(itemName);
     }
-
-	return newItem;
 }
 
 //displays room description
