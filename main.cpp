@@ -73,7 +73,11 @@ int main()
                 {
                     backToMenu = true;
                 }
-                else
+               else if(p.gameOver ==true)
+			{
+				backToMenu = true;
+			} 
+			else
                 {
                     input.clear();
                     while(input.size() == 0)

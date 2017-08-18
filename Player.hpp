@@ -22,13 +22,15 @@ class Player
 		std::string curLocationName;
           std::string lastLocationName;
 		Inventory bag;
-		bool gameOver;
 
 	public:
 		//Constructors and Destructor
 		Player();
 		Player(std::string newName, int hPoints, int pStamina, double pScore, Inventory pInvent);
 		~Player();
+
+		//Public Data Members
+		bool gameOver;
 
 		//Get and Set Values
 		void setName(std::string playerName);
