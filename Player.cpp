@@ -163,7 +163,7 @@ void Player::subtractStamina(int sustenance)
     std::cout << "Your current stamina is: " << stamina << std::endl;
     if(stamina <= 0)
     {
-        std::cout << "You do not have enough stamina left. You have expired." <<std::endl;
+        std::cout << "You do not have enough stamina left. You have expired.\n \n" <<std::endl;
 		gameOver = true;
     }
 }
