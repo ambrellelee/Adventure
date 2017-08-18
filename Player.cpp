@@ -134,7 +134,6 @@ void Player::subtractHitPoints(int help)
 	    hitPoints = 0;
 		std::cout << "You have been hit too may times, you have died." << std::endl;
 		gameOver = true;
-		exit(0);
 	}
 }
 
@@ -166,7 +165,6 @@ void Player::subtractStamina(int sustenance)
     {
         std::cout << "You do not have enough stamina left. You have expired.\n \n" <<std::endl;
 		gameOver = true;
-		exit(0);
 	}
 }
 
