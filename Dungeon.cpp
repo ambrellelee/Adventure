@@ -59,7 +59,7 @@ int Dungeon::showMenu()
 //displays game instructions
 void Dungeon::instructions()
 {
-     std::cout << "Navigate through the Dungeon using text commands. Your commands should be entered with the command name followed by the name of the feature or object that you would like to interact with. Example: \"look shelf \". If your stamina level drops below 0 your game will end upon leaving the current room. Type \"help\" for a list of commands that may be used or \"instructions\" to read the instructions again. \n" << std::endl;
+     std::cout << "Navigate through the Dungeon using text commands. Your commands should be entered \nwith the command name followed by the name of the feature or object that you would \nlike to interact with. Example: \"look shelf \". If your stamina level drops below 0 \nyour game will end upon leaving the current room. Type \"help\" for a list of \ncommands that may be used or \"instructions\" to read the instructions again. \n" << std::endl;
 }
 
 void Dungeon::playGame()
