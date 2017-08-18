@@ -63,7 +63,8 @@ int main()
         {
             std::system("clear");
             bool backToMenu = false;
-            d.setCurrentRoom(0);
+            d.instructions();
+		  d.setCurrentRoom(0);
             d.printCurLocation();
 
             std::vector<string> input;
@@ -86,7 +87,7 @@ int main()
                     }
                     else if(input[0] == "go" && p.endCheck() == true)
                     {
-                        std::cout << "You ran out of stamina to continue traveling..." << endl;
+                        std::cout << "You ran out of stamina to continue traveling...\n" << endl;
                         backToMenu = true;
                     }
                     else
