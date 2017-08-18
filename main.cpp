@@ -115,6 +115,7 @@ int main()
                     }
                     else if(input[0] == "go" && p.endCheck() == true)
                     {
+                        std::system("clear");
                         std::cout << "You ran out of stamina to continue traveling...\n" << endl;
                         backToMenu = true;
                     }
