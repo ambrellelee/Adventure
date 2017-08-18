@@ -773,7 +773,7 @@ void Parser::lookAtStuff(playerString& curSentence, Player& curPlayer, Dungeon& 
             }
             else if(curPlayer.hasItem(*i) == true)
             {
-                curPlayer.getItemInfo(*i);
+                curPlayer.viewBagItem(*i);
                 looking = true;
                 break;
             }

@@ -222,10 +222,6 @@ void Player::viewBagItem(std::string itemName)
 {
 	bag.viewItem(itemName);
 }
-void Player::getItemInfo(std::string itemName)
-{
-    bag.getInfo(itemName);
-}
 
 Item Player::getItemInBag(std::string itemName)
 {

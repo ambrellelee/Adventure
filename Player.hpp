@@ -20,7 +20,7 @@ class Player
 		Room *currentLocation;
 		Room *lastLocation;
 		std::string curLocationName;
-        std::string lastLocationName;
+          std::string lastLocationName;
 		Inventory bag;
 		bool gameOver;
 
@@ -42,8 +42,8 @@ class Player
 		std::string getCurLocName();
 		std::string getLastLocName();
 		void setCurrentLocation(Room *curRoom);
-        void setLastLocation(Room *lastRoom);
-        Room *getCurrentLocation();
+          void setLastLocation(Room *lastRoom);
+          Room *getCurrentLocation();
 
           //Player Functionality Methods
 		void printPlayerInfo();
@@ -55,15 +55,14 @@ class Player
 
 		//Related to Bag and Items
 		void addToBag(Item& thing);
-        void removeFromBag(std::string thing);
-        void lookBag();                         //prints list of all items
-        bool hasItem(std::string);              //checks to see if the item is in the player's inventory
-        bool useItem(std::string pItem);        //does the same thing as hasItem?
-        void viewBagItem(std::string);          //prints out information for specific item
+          void removeFromBag(std::string thing);
+          void lookBag();                         //prints list of all items
+          bool hasItem(std::string);              //checks to see if the item is in the player's inventory
+          bool useItem(std::string pItem);        //does the same thing as hasItem?
+          void viewBagItem(std::string);          //prints out information for specific item
 		void fill(int);
 		void subtractWater(int);                //decreases water level in flask
-        void getItemInfo(std::string);          //print item desc
-        Item getItemInBag(std::string);
+          Item getItemInBag(std::string);
 
 		//Save and Load methods
 		int savePlayer();
