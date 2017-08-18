@@ -9,6 +9,7 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <limits>
 
 using std::vector;
 using std::cout;
@@ -45,26 +46,53 @@ vector<string> playerInput()
 	return stringVector;
 
 }
-
+int showMenu()
+{
+    bool go = false;
+    int playerInput;
+    while(!go)
+    {
+        std::cout << "Welcome to the Dungeon! What would you like to do? \n Enter: 1 to play \n\t2 to quit." << std::endl;
+        std::cin >> playerInput;
+        if(playerInput == 1)
+        {
+            go = true;
+            return 1;
+        }
+        else if (playerInput < 1 || playerInput > 2)
+        {
+            std::cout << "Please enter a valid option." <<std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //skip bad input
+        }
+        else
+        {
+            go = true;
+        }
+    }
+    return 2;
+}
 int main()
 {
+    Parser par; //create parser
     Dungeon d;  //create dungeon
     Player p;   //create player
-    Parser par; //create parser
-    d.playGame();
     bool quit = false;
     //for testing, load player inventory with every item needed to interact
  //   Item tempItem = Item("coins", "", "", 0, 0, 0, 0, 0);
   //  p.addToBag(tempItem);
     while(!quit)
     {
-        int choice = d.showMenu();
+        int choice = showMenu();
         if(choice ==  1)
         {
             std::system("clear");
+            d = Dungeon();
+            p = Player();
+            d.playGame();
             bool backToMenu = false;
             d.instructions();
-		  d.setCurrentRoom(0);
+            d.setCurrentRoom(0);
             d.printCurLocation();
 
             std::vector<string> input;
@@ -74,7 +102,7 @@ int main()
                 {
                     backToMenu = true;
                 }
-			else
+                else
                 {
                     input.clear();
                     while(input.size() == 0)

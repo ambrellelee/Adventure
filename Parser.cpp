@@ -349,19 +349,17 @@ void Parser::findNextDungeon(playerString& curSentence, Dungeon& curDungeon, Pla
                 {
                     prevRoom = true;
                 }
-   //             if(curDungeon.getRoomVisited() == true)
-    //            {
-    //                prevRoom = true;
-    //            }
                 curDungeon.setRoomVisited();
                 curDungeon.setCurrRoom(*i);
                 if(curDungeon.finishCheck() == true)
                 {
+                    std::system("clear");
                     cout << "Congratulations you have finished the game!" << endl;
                     DungeonFound = true;
                 }
                 else
                 {
+                    std::system("clear");
                     std::cout << "****************************************************************" << std::endl;
                     std::cout << "****            You have entered: " << (*i) << " Dungeon.          ****" << std::endl;
                     std::cout << "****************************************************************" << std::endl;
@@ -897,6 +895,7 @@ void Parser::unlockObject(playerString& curSentence, Player& curPlayer, Dungeon&
                     //unlock item
                     curDungeon.fIDesc(*i);
                     curDungeon.validInteraction(*i);
+                    curPlayer.removeFromBag("key");
                     unlocked = true;
                     break;
                 }

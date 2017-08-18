@@ -13,7 +13,6 @@ class Dungeon
 	private:
 		Room *newRoom;
 		std::string gameDesc;
-		int playerInput;
 		std::vector<Room> allRooms; //vector of rooms
 		std::vector<std::string> fileNames;
 		bool finishGame;
@@ -26,7 +25,6 @@ class Dungeon
 		//related to game play
 		void setGameDescription(std::string);
 		std::string showGameDescription();
-		int showMenu();
 		void instructions();
 		void playGame();
 		bool finishCheck();

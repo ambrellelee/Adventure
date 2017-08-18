@@ -29,33 +29,6 @@ std::string Dungeon::showGameDescription()
 	return gameDesc;
 }
 
-//player menu
-int Dungeon::showMenu()
-{
-   bool go = false;
-    while(!go)
-    {
-        std::cout << "Welcome to the Dungeon! What would you like to do? \n Enter: 1 to play \n\t2 to quit." << std::endl;
-        std::cin >>playerInput;
-        if(playerInput == 1)
-        {
-            go = true;
-            return 1;
-        }
-        else if (playerInput < 1 || playerInput > 2)
-        {
-            std::cout << "Please enter a valid option." <<std::endl;
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //skip bad input
-        }
-        else
-        {
-            go = true;
-        }
-    }
-    return 2;
-}
-
 //displays game instructions
 void Dungeon::instructions()
 {
@@ -105,14 +78,16 @@ void Dungeon::getItemInfo(std::string itemName)
 //returns item in room
 Item Dungeon::returnItem(std::string itemName)
 {
+    Item tempItem = Item("", "", "", 0, 0, 0, 0, 0);
     if(itemInRoom(itemName))
     {
-        return newRoom->getItemInRoom(itemName);
+        tempItem = newRoom->getItemInRoom(itemName);
     }
     else if(itemInDroppedList(itemName))
     {
-        return newRoom->getItemInDrop(itemName);
+        tempItem = newRoom->getItemInDrop(itemName);
     }
+    return tempItem;
 }
 
 //displays room description
@@ -197,21 +172,18 @@ void Dungeon::setCurrRoom(std::string newRoomName)
 			if(newRoom->exitVec.size() == 1 && newRoom->exitVec[0] == newRoomName)
 			{
 				newRoom = &allRooms[i+1];
-			//	newRoom->setHasVisited(true);
 				break;
 			}
 			//the rest of the room that have more than 1 exitVec
 			else if(newRoom->exitVec[0] == newRoomName)
 			{
 				newRoom = &allRooms[i-1];
-			//	newRoom->setHasVisited(true);
 				break;
 			}
 			else if(newRoom->exitVec[1] == newRoomName)
 			{
 			    if(newRoom->getType() == "final")
                 {
-  //                  cout << "Congratulations you have finished the game!" << endl;
                     finishGame = true;
                 }
                 else
@@ -275,6 +247,7 @@ bool Dungeon::finishCheck()
 //Destructor
 Dungeon::~Dungeon()
 {
+    finishGame = false;
 	delete newRoom;
 }
 
@@ -288,13 +261,6 @@ int Dungeon::saveDungeon()
         {
                 allRooms[i].saveRoom(files[i]);
         }
-
-        //std::vector<Room>::iterator it = allRooms.begin();
-        //it++;
-        //cout << it->getName() << endl;
-        //newRoom = &(*it);
-        //cout << newRoom->getName() << endl;
-        //it = NULL;
 
         outputFile.open(fileName.c_str(), std::ios::out);
         if (!outputFile)
@@ -367,11 +333,6 @@ int Dungeon::loadDungeon(Player *myPlayer)
                 iter++;
         }
 
-        //myPlayer->setCurrentLocation(newRoom);
-        //myPlayer->setLastLocation(newRoom);
-        //cout << "newRoom Name " << newRoom->getName() << endl;
-        //myPlayer->savePlayer();
-
         getline(inputFile, line);
 
         if (line == "True")
@@ -397,29 +358,5 @@ int Dungeon::loadDungeon(Player *myPlayer)
         }
 
         inputFile.close();
-/*
-        iter = allRooms.begin();
-
-        while (iter != allRooms.end())
-        {
-                cout << iter->getName() << endl;
-                iter++;
-        }
-
-        cout << "New Room Value " << newRoom->getName() << endl;
-
-        if (finishGame)
-                cout << "Game finished" << endl;
-        else
-                cout << "Game not finished" << endl;
-
-        if (gameDesc == "")
-                cout << "BLANK" << endl;
-        else
-                cout << gameDesc << endl;
-
-        //Room *test = myPlayer->getCurrentLocation();
-        //cout << test->getName() << endl;
-*/
         return 0;
 }
